@@ -1,9 +1,5 @@
 function _1(md){return(
-md`<div style="color: grey; font: 13px/25.5px var(--sans-serif); text-transform: uppercase;"><h1 style="display: none;">Smooth zooming</h1><a href="https://d3js.org/">D3</a> › <a href="/@d3/gallery">Gallery</a></div>
-
-# Smooth zooming
-
-This notebook demonstrates using [d3.interpolateZoom](https://d3js.org/d3-interpolate/zoom) to implement smooth pan-and-zoom transitions between two views. See also [d3.zoom’s transitions](/@d3/programmatic-zoom), which also allows freeform zooming.`
+md`<div style="color: grey; font: 13px/25.5px var(--sans-serif); text-transform: uppercase;"><h1 style="display: none;">Smooth zooming</h1><a href="https://d3js.org/">D3</a> › <a href="/@d3/gallery">Gallery</a></div>`
 )}
 
 function _chart(width,height,d3,data,radius)
