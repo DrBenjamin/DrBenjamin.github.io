@@ -26,12 +26,14 @@ The site automatically synchronizes content from the Analytical Skills for Busin
 ### Workflows
 
 #### 1. Content Update Workflow (`.github/workflows/update-content.yml`)
+
 - Downloads the latest HTML content from the source repository
 - Compares with existing content to detect changes
 - Updates the site and commits changes if content has changed
 - Provides detailed logging and status reporting
 
 #### 2. Jekyll Deployment (`.github/workflows/jekyll-gh-pages.yml`)
+
 - Standard GitHub Pages Jekyll workflow
 - Automatically triggered when content is updated
 - Builds and deploys the site to GitHub Pages
@@ -39,12 +41,14 @@ The site automatically synchronizes content from the Analytical Skills for Busin
 ## 🔧 Manual Operations
 
 ### Triggering Content Update
+
 1. Go to the [Actions tab](https://github.com/DrBenjamin/DrBenjamin.github.io/actions)
 2. Select "Update Content from Analytical Skills Repository"
 3. Click "Run workflow" > "Run workflow"
 
 ### Testing the Setup
 Run the verification script to test the automation:
+
 ```bash
 ./verify-automation.sh
 ```
@@ -72,6 +76,7 @@ The site displays the course material for courses at the Fresenius University of
 ## 🔗 Related Repositories
 
 - **Source Content**: [DrBenjamin/Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business)
+- **Source Content**: [DrBenjamin/Data-Science-and-Data-Analytics](https://github.com/DrBenjamin/Data-Science-and-Data-Analytics)
 - **Live Site**: [https://drbenjamin.github.io](https://drbenjamin.github.io)
 
 ## Fixing update issues on GitHub Pages
