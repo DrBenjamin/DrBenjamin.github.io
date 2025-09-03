@@ -59,27 +59,15 @@ Run the verification script to test the automation:
 │       └── update-content.yml       # Content synchronization workflow
 ├── index.html                       # Main site content (auto-updated)
 ├── verify-automation.sh             # Script to verify automation setup
-├── GITHUB_ACTIONS_SETUP.md          # Manual setup requirements guide
-├── SETUP_AUTOMATION.md              # Advanced automation setup guide
-├── AUTOMATION_COMPLETE.md           # Automation completion status
 └── README.md                        # This file
 ```
 
-## 🚀 Advanced Setup (Optional)
-
-For fully automated updates when source content changes, see [SETUP_AUTOMATION.md](SETUP_AUTOMATION.md) for instructions on setting up repository dispatch triggers.
-
 ## 📊 Site Content
 
-The site displays the course material for "Analytical Skills for Business" which covers:
+The site displays the course material for courses at the Fresenius University of Applied Sciences - International Business School.
 
-- Version control systems (Git, GitHub)
-- No-code and low-code analytics tools (Tableau, Power BI, QlikView, etc.)
-- Programming languages (R, Python, SQL)
-- Development environments (Unix-like systems, containers, APIs, Jupyter, RStudio)
-- Descriptive statistics and data analysis
-- Inferential statistics and hypothesis testing
-- Predictive analytics and data mining
+- Analytical Skills for Business (Master Studies in Business Administration)
+- Data Science and Data Analytics (Bachelor Studies in International Business Management)
 
 ## 🔗 Related Repositories
 
