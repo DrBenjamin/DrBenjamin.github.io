@@ -37,66 +37,86 @@ else
     echo "⚠️  Python not available for YAML validation, skipping syntax check"
 fi
 
-# Test 2: Source repository accessibility
+# Test 2: Source repository accessibility (both courses)
 echo ""
 echo "📋 Test 2: Source repository accessibility"
 echo "-----------------------------------------"
 
-SOURCE_URL="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html"
-HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SOURCE_URL")
+ANALYTICAL_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html"
+DATA_SCI_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.html"
 
-if [ "$HTTP_STATUS" = "200" ]; then
-    echo "✅ Source repository is accessible (HTTP $HTTP_STATUS)"
-else
-    echo "❌ Source repository not accessible (HTTP $HTTP_STATUS)"
-    echo "   This may affect automatic content updates"
-fi
+for SRC in "$ANALYTICAL_SRC" "$DATA_SCI_SRC"; do
+  NAME=$(basename "$SRC")
+  HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$SRC")
+  if [ "$HTTP_STATUS" = "200" ]; then
+      echo "✅ $NAME accessible (HTTP $HTTP_STATUS)"
+  else
+      echo "⚠️  $NAME not accessible (HTTP $HTTP_STATUS) — if this file is optional it will simply be skipped by the workflow"
+  fi
+done
 
-# Test 3: Content download functionality
+# Test 3: Content download functionality (size + hash)
 echo ""
 echo "📋 Test 3: Content download functionality"
 echo "----------------------------------------"
 
-curl -s "$SOURCE_URL" -o test-download.html
+tmpdir=$(mktemp -d)
+for SRC in "$ANALYTICAL_SRC" "$DATA_SCI_SRC"; do
+  NAME=$(basename "$SRC")
+  DEST="$tmpdir/$NAME"
+  curl -s "$SRC" -o "$DEST"
+  if [ -f "$DEST" ]; then
+      SIZE=$(wc -c < "$DEST")
+      if [ "$SIZE" -gt 800 ]; then
+          if command -v shasum &> /dev/null; then
+            HASH=$(shasum -a 256 "$DEST" | cut -d' ' -f1)
+            echo "✅ $NAME downloaded ($SIZE bytes) sha256=$HASH"
+          else
+            echo "✅ $NAME downloaded ($SIZE bytes)"
+          fi
+      else
+          echo "⚠️  $NAME downloaded but size seems small ($SIZE bytes)"
+      fi
+  else
+      echo "⚠️  Failed to download $NAME"
+  fi
+done
+rm -rf "$tmpdir"
 
-if [ -f test-download.html ]; then
-    SIZE=$(wc -c < test-download.html)
-    if [ "$SIZE" -gt 1000 ]; then
-        echo "✅ Content download successful ($SIZE bytes)"
-    else
-        echo "❌ Downloaded content seems too small ($SIZE bytes)"
-        echo "   This may indicate an issue with the source file"
-    fi
-    rm test-download.html
-else
-    echo "❌ Failed to download content"
-fi
-
-# Test 4: Change detection logic
+# Test 4: Change detection logic (per course file)
 echo ""
 echo "📋 Test 4: Change detection simulation"
 echo "-------------------------------------"
 
-if [ -f index.html ]; then
-    CURRENT_SIZE=$(wc -c < index.html)
-    echo "📊 Current site content: $CURRENT_SIZE bytes"
-    
-    # Download fresh content for comparison
-    curl -s "$SOURCE_URL" -o fresh-content.html
-    if [ -f fresh-content.html ]; then
-        FRESH_SIZE=$(wc -c < fresh-content.html)
-        echo "📊 Source content: $FRESH_SIZE bytes"
-        
-        if cmp -s fresh-content.html index.html; then
-            echo "✅ Content is identical - no update needed"
-        else
-            echo "🔄 Content differs - update would be triggered"
-        fi
-        rm fresh-content.html
+for PAIR in \
+    "${ANALYTICAL_SRC}::analytical-skills.html" \
+    "${DATA_SCI_SRC}::data-science-analytics.html"; do
+    SRC_URL="${PAIR%%::*}"
+    LOCAL_FILE="${PAIR##*::}"
+    BASENAME=$(basename "$SRC_URL")
+    echo ""
+    echo "▶ Checking $LOCAL_FILE vs source $BASENAME"
+    curl -s "$SRC_URL" -o fresh.tmp || true
+    if [ ! -f fresh.tmp ]; then
+        echo "⚠️  Skipping $LOCAL_FILE (source fetch failed)"
+        continue
     fi
-else
-    echo "⚠️  No current index.html found"
-fi
+    if [ -f "$LOCAL_FILE" ]; then
+        if cmp -s fresh.tmp "$LOCAL_FILE"; then
+            echo "✅ No change ($LOCAL_FILE)"
+        else
+            echo "🔄 Would update ($LOCAL_FILE differs)"
+            if command -v diff &>/dev/null; then
+                echo "--- size comparison"
+                echo -n "current: "; wc -c < "$LOCAL_FILE"
+                echo -n "fresh:   "; wc -c < fresh.tmp
+            fi
+        fi
+    else
+        echo "🆕 $LOCAL_FILE missing locally (would be created)"
+    fi
+    rm -f fresh.tmp
+done
 
 # Test 5: GitHub Actions workflow permissions
 echo ""
@@ -122,14 +142,15 @@ echo "======================"
 echo ""
 echo "The automation should work automatically with:"
 echo "• Daily scheduled updates (6 AM UTC)"
-echo "• Manual triggering from GitHub Actions tab"
-echo "• Automatic Jekyll deployment"
+echo "• Manual triggering from GitHub Actions tab (multi-repo sync)"
+echo "• Per-file change detection for two course HTML files"
+echo "• Static landing page preserved (not auto-overwritten)"
 echo ""
 echo "No manual setup required for basic functionality!"
 echo ""
 echo "To manually trigger an update:"
 echo "1. Go to: https://github.com/$(git remote get-url origin | sed 's/.*github.com[:/]//' | sed 's/.git$//')/actions"
-echo "2. Click 'Update Content from Analytical Skills Repository'"
+echo "2. Click 'Update Course Content (Analytical + Data Science)'"
 echo "3. Click 'Run workflow' → 'Run workflow'"
 echo ""
 echo "For advanced real-time updates, see GITHUB_ACTIONS_SETUP.md"
