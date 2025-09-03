@@ -153,4 +153,3 @@ echo "1. Go to: https://github.com/$(git remote get-url origin | sed 's/.*github
 echo "2. Click 'Update Course Content (Analytical + Data Science)'"
 echo "3. Click 'Run workflow' → 'Run workflow'"
 echo ""
-echo "For advanced real-time updates, see GITHUB_ACTIONS_SETUP.md"
