@@ -1,4 +1,4 @@
-name: Update Content from Analytical Skills Repository
+name: Update Course Content (Analytical + Data Science)
 
 on:
   # Allows manual triggering from Actions tab
@@ -32,42 +32,53 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Download latest content from source repository
+      - name: Download latest content from source repositories
         run: |
-          # Download the latest HTML file from the Analytical-Skills-for-Business repository
-          curl -s "https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html" \
-               -o analytical-skills.html
-               
-          # Check if the file was downloaded successfully
-          if [ ! -f analytical-skills.html ]; then
-            echo "Failed to download content from source repository"
-            exit 1
-          fi
-          
-          # Check if the content has changed by comparing with existing content
-          if [ -f index.html ]; then
-            if cmp -s analytical-skills.html index.html; then
-              echo "Content has not changed, skipping update"
-              echo "CONTENT_CHANGED=false" >> $GITHUB_ENV
-              exit 0
+          set -euo pipefail
+
+          ANALYTICAL_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html"
+          DATA_SCI_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.html"
+
+          # Target output filenames (linked from landing page)
+          ANALYTICAL_OUT="analytical-skills.html"
+          DATA_SCI_OUT="data-science-analytics.html"
+
+          ANY_CHANGED=false
+
+          echo "Downloading Analytical Skills for Business HTML ..."
+          if curl -fsSL "$ANALYTICAL_SRC" -o "$ANALYTICAL_OUT.new"; then
+            if [ -f "$ANALYTICAL_OUT" ] && cmp -s "$ANALYTICAL_OUT.new" "$ANALYTICAL_OUT"; then
+              echo "No change in $ANALYTICAL_OUT"
+              rm "$ANALYTICAL_OUT.new"
+            else
+              mv "$ANALYTICAL_OUT.new" "$ANALYTICAL_OUT"
+              echo "Updated $ANALYTICAL_OUT"
+              ANY_CHANGED=true
             fi
+          else
+            echo "::warning::Failed to download Analytical Skills HTML (source repo may not yet contain the file)"
           fi
-          
-          echo "Content has changed, proceeding with update"
-          echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
-          
-      - name: Update site content
-        if: env.CONTENT_CHANGED == 'true'
-        run: |
-          # Replace the current index.html with the new content
-          mv analytical-skills.html index.html
-          
-          # Create a backup of the previous version if it exists
-          if [ -f index.html.bak ]; then
-            rm index.html.bak
+
+          echo "Downloading Data Science and Data Analytics HTML ..."
+          if curl -fsSL "$DATA_SCI_SRC" -o "$DATA_SCI_OUT.new"; then
+            if [ -f "$DATA_SCI_OUT" ] && cmp -s "$DATA_SCI_OUT.new" "$DATA_SCI_OUT"; then
+              echo "No change in $DATA_SCI_OUT"
+              rm "$DATA_SCI_OUT.new"
+            else
+              mv "$DATA_SCI_OUT.new" "$DATA_SCI_OUT"
+              echo "Updated $DATA_SCI_OUT"
+              ANY_CHANGED=true
+            fi
+          else
+            echo "::warning::Failed to download Data Science & Data Analytics HTML (source repo may not yet contain the file)"
           fi
-          
-          echo "Content updated successfully"
+
+          if [ "$ANY_CHANGED" = true ]; then
+            echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "CONTENT_CHANGED=false" >> $GITHUB_ENV
+            echo "No course content changes detected."
+          fi
           
       - name: Commit and push changes
         if: env.CONTENT_CHANGED == 'true'
@@ -75,7 +86,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          git add index.html
+          git add analytical-skills.html data-science-analytics.html
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
@@ -83,18 +94,22 @@ jobs:
             exit 0
           fi
           
-          git commit -m "Auto-update: Sync content from Analytical-Skills-for-Business repository
-          
-          Updated content from https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/main/Analytical_Skills_for_Business.html
-          
+          git commit -m "Auto-update: Sync course content
+
+          Updated from:
+          - $ANALYTICAL_SRC
+          - $DATA_SCI_SRC
+
           Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           
           git push
           
       - name: Output summary
-        if: env.CONTENT_CHANGED == 'true'
         run: |
-          echo "✅ Content successfully updated from source repository"
-          echo "📄 Updated file: index.html"
-          echo "🔗 Source: https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/main/Analytical_Skills_for_Business.html"
-          echo "🌐 Site will be automatically deployed via Jekyll Pages workflow"
+          if [ "${{ env.CONTENT_CHANGED }}" = 'true' ]; then
+            echo "✅ Course content updated"
+            git diff --name-only HEAD~1 HEAD || true
+          else
+            echo "ℹ️ No course content changes detected"
+          fi
+          echo "Landing page (index.html) remains static."
