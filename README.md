@@ -90,7 +90,7 @@ The site displays the course material for "Analytical Skills for Business" which
 
 If you encounter issues with GitHub Pages not reflecting the latest updates, try the following steps:
 
-```bash
-git push origin :gh-pages
-git push origin gh-pages
-```
+1. Go to the [Actions tab](https://github.com/DrBenjamin/DrBenjamin.github.io/actions)
+2. Select "Deploy Jekyll with GitHub Pages dependencies preinstalled"
+3. Click "Run workflow" > "Run workflow"
+4. This forces a rebuild and redeployment
