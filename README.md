@@ -6,6 +6,8 @@ This repository hosts Dr. Benjamin's GitHub Pages site, featuring automated cont
 
 The site automatically synchronizes content from the Analytical Skills for Business course materials using GitHub Actions workflows.
 
+> **❓ Need to know about manual setup?** See [GITHUB_ACTIONS_SETUP.md](GITHUB_ACTIONS_SETUP.md) for a complete breakdown of what works automatically vs. what requires manual configuration.
+
 ### How It Works
 
 1. **Source Repository**: Content is maintained in [DrBenjamin/Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business)
@@ -42,9 +44,9 @@ The site automatically synchronizes content from the Analytical Skills for Busin
 3. Click "Run workflow" > "Run workflow"
 
 ### Testing the Setup
-Run the test script to verify the automation logic:
+Run the verification script to test the automation:
 ```bash
-./test-workflow.sh
+./verify-automation.sh
 ```
 
 ## 📁 Repository Structure
@@ -53,12 +55,14 @@ Run the test script to verify the automation logic:
 .
 ├── .github/
 │   └── workflows/
-│       ├── jekyll-gh-pages.yml    # Jekyll deployment workflow
-│       └── update-content.yml     # Content synchronization workflow
-├── index.html                     # Main site content (auto-updated)
-├── test-workflow.sh              # Test script for workflow logic
-├── SETUP_AUTOMATION.md           # Detailed automation setup guide
-└── README.md                     # This file
+│       ├── jekyll-gh-pages.yml      # Jekyll deployment workflow
+│       └── update-content.yml       # Content synchronization workflow
+├── index.html                       # Main site content (auto-updated)
+├── verify-automation.sh             # Script to verify automation setup
+├── GITHUB_ACTIONS_SETUP.md          # Manual setup requirements guide
+├── SETUP_AUTOMATION.md              # Advanced automation setup guide
+├── AUTOMATION_COMPLETE.md           # Automation completion status
+└── README.md                        # This file
 ```
 
 ## 🚀 Advanced Setup (Optional)
