@@ -1,0 +1,100 @@
+name: Update Content from Analytical Skills Repository
+
+on:
+  # Allows manual triggering from Actions tab
+  workflow_dispatch:
+  
+  # Run automatically every day at 6 AM UTC
+  schedule:
+    - cron: '0 6 * * *'
+    
+  # Trigger when the main repository is updated
+  repository_dispatch:
+    types: [content-update]
+
+# Sets permissions to allow the workflow to update content and trigger Pages deployment
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "content-update"
+  cancel-in-progress: false
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Download latest content from source repository
+        run: |
+          # Download the latest HTML file from the Analytical-Skills-for-Business repository
+          curl -s "https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html" \
+               -o analytical-skills.html
+               
+          # Check if the file was downloaded successfully
+          if [ ! -f analytical-skills.html ]; then
+            echo "Failed to download content from source repository"
+            exit 1
+          fi
+          
+          # Check if the content has changed by comparing with existing content
+          if [ -f index.html ]; then
+            if cmp -s analytical-skills.html index.html; then
+              echo "Content has not changed, skipping update"
+              echo "CONTENT_CHANGED=false" >> $GITHUB_ENV
+              exit 0
+            fi
+          fi
+          
+          echo "Content has changed, proceeding with update"
+          echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
+          
+      - name: Update site content
+        if: env.CONTENT_CHANGED == 'true'
+        run: |
+          # Replace the current index.html with the new content
+          mv analytical-skills.html index.html
+          
+          # Create a backup of the previous version if it exists
+          if [ -f index.html.bak ]; then
+            rm index.html.bak
+          fi
+          
+          echo "Content updated successfully"
+          
+      - name: Commit and push changes
+        if: env.CONTENT_CHANGED == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add index.html
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          git commit -m "Auto-update: Sync content from Analytical-Skills-for-Business repository
+          
+          Updated content from https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/main/Analytical_Skills_for_Business.html
+          
+          Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          
+          git push
+          
+      - name: Output summary
+        if: env.CONTENT_CHANGED == 'true'
+        run: |
+          echo "✅ Content successfully updated from source repository"
+          echo "📄 Updated file: index.html"
+          echo "🔗 Source: https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/main/Analytical_Skills_for_Business.html"
+          echo "🌐 Site will be automatically deployed via Jekyll Pages workflow"
