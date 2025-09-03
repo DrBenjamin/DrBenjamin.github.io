@@ -1,10 +1,10 @@
 # DrBenjamin.github.io
 
-This repository hosts Dr. Benjamin's GitHub Pages site, featuring automated content synchronization from the [Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business) repository.
+This repository hosts Dr. Benjamin's GitHub Pages site, featuring automated content synchronization from the [Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business) and [DrBenjamin/Data-Science-and-Data-Analytics](https://github.com/DrBenjamin/Data-Science-and-Data-Analytics) repositories.
 
 ## 🤖 Automated Content Updates
 
-The site automatically synchronizes content from the Analytical Skills for Business course materials using GitHub Actions workflows.
+The site automatically synchronizes content from the course materials using GitHub Actions workflows.
 
 ### How It Works
 
@@ -45,6 +45,7 @@ The site automatically synchronizes content from the Analytical Skills for Busin
 3. Click "Run workflow" > "Run workflow"
 
 ### Testing the Setup
+
 Run the verification script to test the automation:
 
 ```bash
