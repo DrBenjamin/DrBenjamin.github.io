@@ -6,14 +6,12 @@ This repository hosts Dr. Benjamin's GitHub Pages site, featuring automated cont
 
 The site automatically synchronizes content from the Analytical Skills for Business course materials using GitHub Actions workflows.
 
-> **❓ Need to know about manual setup?** See [GITHUB_ACTIONS_SETUP.md](GITHUB_ACTIONS_SETUP.md) for a complete breakdown of what works automatically vs. what requires manual configuration.
-
 ### How It Works
 
-1. **Source Repository**: Content is maintained in [DrBenjamin/Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business)
+1. **Source Repositories**: Content is maintained in [DrBenjamin/Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business) and [DrBenjamin/Data-Science-and-Data-Analytics](https://github.com/DrBenjamin/Data-Science-and-Data-Analytics)
 2. **Quarto Document**: The main content is written as a Quarto document (`.qmd` file)
 3. **HTML Generation**: Quarto renders the document to HTML
-4. **Automated Sync**: GitHub Actions automatically fetches the latest HTML and updates this site
+4. **Automated Sync**: GitHub Actions automatically fetches the latest HTML files and updates this site
 5. **Jekyll Deployment**: GitHub Pages automatically deploys the updated content using Jekyll
 
 ### Automation Features
