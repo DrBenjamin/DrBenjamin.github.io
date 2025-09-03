@@ -86,6 +86,11 @@ The site displays the course material for "Analytical Skills for Business" which
 - **Source Content**: [DrBenjamin/Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business)
 - **Live Site**: [https://drbenjamin.github.io](https://drbenjamin.github.io)
 
----
+## Fixing update issues on GitHub Pages
 
-*Last updated: Automated via GitHub Actions*
+If you encounter issues with GitHub Pages not reflecting the latest updates, try the following steps:
+
+```bash
+git push origin :gh-pages
+git push origin gh-pages
+```
