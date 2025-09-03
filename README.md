@@ -10,9 +10,11 @@ The site automatically synchronizes content from the course materials using GitH
 
 1. **Source Repositories**: Content is maintained in the two source repositories above.
 2. **Quarto (or other) Authoring**: Course material is authored (e.g. in Quarto `.qmd`) and rendered to HTML inside each source repository.
-3. **Automated Sync**: This site’s workflow downloads the published HTML files daily (or on manual trigger) and stores them locally as:
+3. **Automated Sync**: This site’s workflow downloads the published HTML (and now PDF) files daily (or on manual trigger) and stores them locally as:
    - `analytical-skills.html`
    - `data-science-analytics.html`
+   - `Analytical_Skills_for_Business.pdf`
+   - `Data_Science_and_Data_Analytics.pdf`
 4. **Static Landing Page**: `index.html` is intentionally not overwritten; it links to the two course files.
 5. **GitHub Pages Deployment**: The Jekyll Pages workflow deploys any changed HTML assets.
 
@@ -29,7 +31,7 @@ The site automatically synchronizes content from the course materials using GitH
 
 - Downloads the latest HTML from both source repositories
 - Saves/updates `analytical-skills.html` and `data-science-analytics.html`
-- Performs change detection (per file) to avoid empty commits
+- Performs change detection (per file) to avoid empty commits (HTML + PDF)
 - Leaves `index.html` untouched (acts as stable landing page)
 - Commits only when at least one course file changed
 
@@ -66,6 +68,8 @@ Run the verification script to test the automation:
 ├── index.html                           # Static landing page linking to course HTML
 ├── analytical-skills.html (generated)   # Synced course material (master level)
 ├── data-science-analytics.html (generated) # Synced course material (bachelor level)
+├── Analytical_Skills_for_Business.pdf (generated) # PDF export (master)
+├── Data_Science_and_Data_Analytics.pdf (generated) # PDF export (bachelor)
 ├── verify-automation.sh             # Script to verify automation setup
 └── README.md                        # This file
 ```
@@ -74,8 +78,8 @@ Run the verification script to test the automation:
 
 The site provides navigational access to two sets of course materials (Fresenius University of Applied Sciences – International Business School):
 
-- Analytical Skills for Business (Master Studies in Business Administration) → `analytical-skills.html`
-- Data Science and Data Analytics (Bachelor Studies in International Business Management) → `data-science-analytics.html`
+- Analytical Skills for Business (Master Studies in Business Administration) → `analytical-skills.html` / `Analytical_Skills_for_Business.pdf`
+- Data Science and Data Analytics (Bachelor Studies in International Business Management) → `data-science-analytics.html` / `Data_Science_and_Data_Analytics.pdf`
 
 ## 🔗 Related Repositories
 

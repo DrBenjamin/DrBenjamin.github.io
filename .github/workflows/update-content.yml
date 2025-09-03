@@ -39,9 +39,17 @@ jobs:
           ANALYTICAL_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html"
           DATA_SCI_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.html"
 
+          # PDF sources (added per user request)
+          ANALYTICAL_PDF_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.pdf"
+          DATA_SCI_PDF_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.pdf"
+
           # Target output filenames (linked from landing page)
           ANALYTICAL_OUT="analytical-skills.html"
           DATA_SCI_OUT="data-science-analytics.html"
+
+          # PDF output filenames (served at site root)
+          ANALYTICAL_PDF_OUT="Analytical_Skills_for_Business.pdf"
+          DATA_SCI_PDF_OUT="Data_Science_and_Data_Analytics.pdf"
 
           ANY_CHANGED=false
 
@@ -73,6 +81,34 @@ jobs:
             echo "::warning::Failed to download Data Science & Data Analytics HTML (source repo may not yet contain the file)"
           fi
 
+          echo "Downloading Analytical Skills PDF ..."
+          if curl -fsSL "$ANALYTICAL_PDF_SRC" -o "$ANALYTICAL_PDF_OUT.new"; then
+            if [ -f "$ANALYTICAL_PDF_OUT" ] && cmp -s "$ANALYTICAL_PDF_OUT.new" "$ANALYTICAL_PDF_OUT"; then
+              echo "No change in $ANALYTICAL_PDF_OUT"
+              rm "$ANALYTICAL_PDF_OUT.new"
+            else
+              mv "$ANALYTICAL_PDF_OUT.new" "$ANALYTICAL_PDF_OUT"
+              echo "Updated $ANALYTICAL_PDF_OUT"
+              ANY_CHANGED=true
+            fi
+          else
+            echo "::warning::Failed to download Analytical Skills PDF (may not exist yet)"
+          fi
+
+          echo "Downloading Data Science PDF ..."
+          if curl -fsSL "$DATA_SCI_PDF_SRC" -o "$DATA_SCI_PDF_OUT.new"; then
+            if [ -f "$DATA_SCI_PDF_OUT" ] && cmp -s "$DATA_SCI_PDF_OUT.new" "$DATA_SCI_PDF_OUT"; then
+              echo "No change in $DATA_SCI_PDF_OUT"
+              rm "$DATA_SCI_PDF_OUT.new"
+            else
+              mv "$DATA_SCI_PDF_OUT.new" "$DATA_SCI_PDF_OUT"
+              echo "Updated $DATA_SCI_PDF_OUT"
+              ANY_CHANGED=true
+            fi
+          else
+            echo "::warning::Failed to download Data Science PDF (may not exist yet)"
+          fi
+
           if [ "$ANY_CHANGED" = true ]; then
             echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
           else
@@ -80,13 +116,18 @@ jobs:
             echo "No course content changes detected."
           fi
           
-      - name: Commit and push changes
-        if: env.CONTENT_CHANGED == 'true'
+      - name: Commit and push changes (if any)
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          git add analytical-skills.html data-science-analytics.html
+          if [ "${CONTENT_CHANGED}" != 'true' ]; then
+            echo "Skipping commit step (no content changed)."
+            exit 0
+          fi
+
+          git add analytical-skills.html data-science-analytics.html \
+                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
@@ -99,6 +140,8 @@ jobs:
           Updated from:
           - $ANALYTICAL_SRC
           - $DATA_SCI_SRC
+          - $ANALYTICAL_PDF_SRC
+          - $DATA_SCI_PDF_SRC
 
           Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           
@@ -106,7 +149,7 @@ jobs:
           
       - name: Output summary
         run: |
-          if [ "${{ env.CONTENT_CHANGED }}" = 'true' ]; then
+          if [ "${CONTENT_CHANGED}" = 'true' ]; then
             echo "✅ Course content updated"
             git diff --name-only HEAD~1 HEAD || true
           else
