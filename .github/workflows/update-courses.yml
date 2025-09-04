@@ -1,0 +1,158 @@
+name: Update Course Content (Analytical + Data Science)
+
+on:
+  # Allows manual triggering from Actions tab
+  workflow_dispatch:
+  
+  # Run automatically every day at 6 AM UTC
+  schedule:
+    - cron: '0 6 * * *'
+    
+  # Trigger when the main repository is updated
+  repository_dispatch:
+    types: [content-update]
+
+# Sets permissions to allow the workflow to update content and trigger Pages deployment
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "content-update"
+  cancel-in-progress: false
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Download latest content from source repositories
+        run: |
+          set -euo pipefail
+
+          ANALYTICAL_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html"
+          DATA_SCI_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.html"
+
+          # PDF sources (added per user request)
+          ANALYTICAL_PDF_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.pdf"
+          DATA_SCI_PDF_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.pdf"
+
+          # Target output filenames (linked from landing page)
+          ANALYTICAL_OUT="analytical-skills.html"
+          DATA_SCI_OUT="data-science-analytics.html"
+
+          # PDF output filenames (served at site root)
+          ANALYTICAL_PDF_OUT="Analytical_Skills_for_Business.pdf"
+          DATA_SCI_PDF_OUT="Data_Science_and_Data_Analytics.pdf"
+
+          ANY_CHANGED=false
+
+          echo "Downloading Analytical Skills for Business HTML ..."
+          if curl -fsSL "$ANALYTICAL_SRC" -o "$ANALYTICAL_OUT.new"; then
+            if [ -f "$ANALYTICAL_OUT" ] && cmp -s "$ANALYTICAL_OUT.new" "$ANALYTICAL_OUT"; then
+              echo "No change in $ANALYTICAL_OUT"
+              rm "$ANALYTICAL_OUT.new"
+            else
+              mv "$ANALYTICAL_OUT.new" "$ANALYTICAL_OUT"
+              echo "Updated $ANALYTICAL_OUT"
+              ANY_CHANGED=true
+            fi
+          else
+            echo "::warning::Failed to download Analytical Skills HTML (source repo may not yet contain the file)"
+          fi
+
+          echo "Downloading Data Science and Data Analytics HTML ..."
+          if curl -fsSL "$DATA_SCI_SRC" -o "$DATA_SCI_OUT.new"; then
+            if [ -f "$DATA_SCI_OUT" ] && cmp -s "$DATA_SCI_OUT.new" "$DATA_SCI_OUT"; then
+              echo "No change in $DATA_SCI_OUT"
+              rm "$DATA_SCI_OUT.new"
+            else
+              mv "$DATA_SCI_OUT.new" "$DATA_SCI_OUT"
+              echo "Updated $DATA_SCI_OUT"
+              ANY_CHANGED=true
+            fi
+          else
+            echo "::warning::Failed to download Data Science & Data Analytics HTML (source repo may not yet contain the file)"
+          fi
+
+          echo "Downloading Analytical Skills PDF ..."
+          if curl -fsSL "$ANALYTICAL_PDF_SRC" -o "$ANALYTICAL_PDF_OUT.new"; then
+            if [ -f "$ANALYTICAL_PDF_OUT" ] && cmp -s "$ANALYTICAL_PDF_OUT.new" "$ANALYTICAL_PDF_OUT"; then
+              echo "No change in $ANALYTICAL_PDF_OUT"
+              rm "$ANALYTICAL_PDF_OUT.new"
+            else
+              mv "$ANALYTICAL_PDF_OUT.new" "$ANALYTICAL_PDF_OUT"
+              echo "Updated $ANALYTICAL_PDF_OUT"
+              ANY_CHANGED=true
+            fi
+          else
+            echo "::warning::Failed to download Analytical Skills PDF (may not exist yet)"
+          fi
+
+          echo "Downloading Data Science PDF ..."
+          if curl -fsSL "$DATA_SCI_PDF_SRC" -o "$DATA_SCI_PDF_OUT.new"; then
+            if [ -f "$DATA_SCI_PDF_OUT" ] && cmp -s "$DATA_SCI_PDF_OUT.new" "$DATA_SCI_PDF_OUT"; then
+              echo "No change in $DATA_SCI_PDF_OUT"
+              rm "$DATA_SCI_PDF_OUT.new"
+            else
+              mv "$DATA_SCI_PDF_OUT.new" "$DATA_SCI_PDF_OUT"
+              echo "Updated $DATA_SCI_PDF_OUT"
+              ANY_CHANGED=true
+            fi
+          else
+            echo "::warning::Failed to download Data Science PDF (may not exist yet)"
+          fi
+
+          if [ "$ANY_CHANGED" = true ]; then
+            echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "CONTENT_CHANGED=false" >> $GITHUB_ENV
+            echo "No course content changes detected."
+          fi
+          
+      - name: Commit and push changes (if any)
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if [ "${CONTENT_CHANGED}" != 'true' ]; then
+            echo "Skipping commit step (no content changed)."
+            exit 0
+          fi
+
+          git add analytical-skills.html data-science-analytics.html \
+                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          git commit -m "Auto-update: Sync course content
+
+          Updated from:
+          - $ANALYTICAL_SRC
+          - $DATA_SCI_SRC
+          - $ANALYTICAL_PDF_SRC
+          - $DATA_SCI_PDF_SRC
+
+          Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          
+          git push
+          
+      - name: Output summary
+        run: |
+          if [ "${CONTENT_CHANGED}" = 'true' ]; then
+            echo "✅ Course content updated"
+            git diff --name-only HEAD~1 HEAD || true
+          else
+            echo "ℹ️ No course content changes detected"
+          fi
+          echo "Landing page (index.html) remains static."

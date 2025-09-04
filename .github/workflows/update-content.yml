@@ -1,4 +1,4 @@
-name: Update Course Content (Analytical + Data Science)
+name: Update Course Content (Analytical + Data Science) and Deploy to GitHub Pages
 
 on:
   # Allows manual triggering from Actions tab
