@@ -16,7 +16,7 @@ The site automatically synchronizes content from the course materials using GitH
    - `Analytical_Skills_for_Business.pdf`
    - `Data_Science_and_Data_Analytics.pdf`
 4. **Static Landing Page**: `index.html` is intentionally not overwritten; it links to the two course files.
-5. **GitHub Pages Deployment**: The Jekyll Pages workflow deploys any changed HTML assets.
+5. **GitHub Pages Deployment**: Integrated into the unified workflow (build + deploy after successful renders).
 
 ### Automation Features
 
@@ -25,23 +25,15 @@ The site automatically synchronizes content from the course materials using GitH
 - **Change Detection**: Only updates when content has actually changed
 - **Automatic Deployment**: Leverages Jekyll's GitHub Pages integration for seamless deployment
 
-### Workflows
-
-#### 1. Course Content Sync (`.github/workflows/update-content.yml`)
+### Unified Workflow (`.github/workflows/update-content.yml`)
 
 - Checks out both source repositories
-- Renders `Analytical_Skills_for_Business.qmd` and `Data_Science_and_Data_Analytics.qmd` with Quarto (HTML + PDF)
-- Saves/updates `analytical-skills.html`, `data-science-analytics.html` + both PDFs
-- Copies any associated `_files` resource directories when changed
-- Performs change detection (per file) to avoid empty commits (HTML, PDF, resources)
-- Leaves `index.html` untouched (acts as stable landing page)
-- Commits only when at least one course file changed
-
-#### 2. Jekyll Deployment (`.github/workflows/jekyll-gh-pages.yml`)
-
-- Standard GitHub Pages Jekyll workflow
-- Automatically triggered when content is updated
-- Builds and deploys the site to GitHub Pages
+- Sets up R + Quarto (TinyTeX) environment
+- Renders `Analytical_Skills_for_Business.qmd` and `Data_Science_and_Data_Analytics.qmd` (HTML + PDF)
+- Copies/updates `analytical-skills.html`, `data-science-analytics.html`, PDFs, and resource directories
+- Performs per-file change detection to avoid empty commits
+- Builds Jekyll site (`_site/`) after content stage
+- Deploys to GitHub Pages in the same workflow (separate deploy job)
 
 ## 🔧 Manual Operations
 
@@ -50,6 +42,7 @@ The site automatically synchronizes content from the course materials using GitH
 1. Go to the [Actions tab](https://github.com/DrBenjamin/DrBenjamin.github.io/actions)
 2. Select "Update Course Content (Analytical + Data Science)"
 3. Click "Run workflow" > "Run workflow" (no inputs required)
+4. Wait for both jobs: `update-content` then `deploy` to succeed
 
 ### Testing the Setup
 
@@ -65,15 +58,14 @@ Run the verification script to test the automation:
 .
 ├── .github/
 │   └── workflows/
-│       ├── jekyll-gh-pages.yml          # Jekyll deployment workflow
-│       └── update-content.yml           # Multi-repo content sync workflow
+│       └── update-content.yml           # Unified content build + Pages deploy
 ├── index.html                           # Static landing page linking to course HTML
 ├── analytical-skills.html (generated)   # Synced course material (master level)
 ├── data-science-analytics.html (generated) # Synced course material (bachelor level)
 ├── Analytical_Skills_for_Business.pdf (generated) # PDF export (master)
 ├── Data_Science_and_Data_Analytics.pdf (generated) # PDF export (bachelor)
-├── verify-automation.sh             # Script to verify automation setup
-└── README.md                        # This file
+├── verify-automation.sh                 # Script to verify automation setup
+└── README.md                            # This file
 ```
 
 ## 📊 Site Content
@@ -93,10 +85,10 @@ The site provides navigational access to two sets of course materials (Fresenius
 
 If changes are not visible:
 
-1. Manually run the Jekyll deployment workflow: "Deploy Jekyll with GitHub Pages dependencies preinstalled".
+1. Run unified workflow manually (if not already running).
 2. Hard refresh your browser (Cmd+Shift+R / Ctrl+F5) or append a cache buster `?v=TIMESTAMP`.
-3. Confirm the content sync workflow shows the updated file names in its log.
-4. Check that the source repositories actually committed the regenerated HTML.
+3. Confirm logs in `update-content` show renders; `deploy` finished successfully.
+4. Verify source `.qmd` changes exist in their repos.
 
 If a source `.qmd` file is missing, the workflow logs a warning and skips that course. No commit occurs unless at least one rendered output (HTML / PDF / resources) changed.
 
