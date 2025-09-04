@@ -31,83 +31,106 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Download latest content from source repositories
+      - name: Checkout Analytical Skills source
+        uses: actions/checkout@v4
+        with:
+          repository: DrBenjamin/Analytical-Skills-for-Business
+          path: source-analytical
+
+      - name: Checkout Data Science source
+        uses: actions/checkout@v4
+        with:
+          repository: DrBenjamin/Data-Science-and-Data-Analytics
+          path: source-datasci
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      - name: Render QMD files and collect artifacts
         run: |
           set -euo pipefail
 
-          ANALYTICAL_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.html"
-          DATA_SCI_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.html"
+          ANALYTICAL_QMD="Analytical_Skills_for_Business.qmd"
+          DATASCI_QMD="Data_Science_and_Data_Analytics.qmd"
 
-          # PDF sources (added per user request)
-          ANALYTICAL_PDF_SRC="https://raw.githubusercontent.com/DrBenjamin/Analytical-Skills-for-Business/main/Analytical_Skills_for_Business.pdf"
-          DATA_SCI_PDF_SRC="https://raw.githubusercontent.com/DrBenjamin/Data-Science-and-Data-Analytics/main/Data_Science_and_Data_Analytics.pdf"
-
-          # Target output filenames (linked from landing page)
-          ANALYTICAL_OUT="analytical-skills.html"
-          DATA_SCI_OUT="data-science-analytics.html"
-
-          # PDF output filenames (served at site root)
-          ANALYTICAL_PDF_OUT="Analytical_Skills_for_Business.pdf"
-          DATA_SCI_PDF_OUT="Data_Science_and_Data_Analytics.pdf"
+          # Expected output artifact names (HTML slugs + PDFs)
+          ANALYTICAL_HTML_SLUG="analytical-skills.html"
+          DATASCI_HTML_SLUG="data-science-analytics.html"
+          ANALYTICAL_PDF="Analytical_Skills_for_Business.pdf"
+          DATASCI_PDF="Data_Science_and_Data_Analytics.pdf"
 
           ANY_CHANGED=false
 
-          echo "Downloading Analytical Skills for Business HTML ..."
-          if curl -fsSL "$ANALYTICAL_SRC" -o "$ANALYTICAL_OUT.new"; then
-            if [ -f "$ANALYTICAL_OUT" ] && cmp -s "$ANALYTICAL_OUT.new" "$ANALYTICAL_OUT"; then
-              echo "No change in $ANALYTICAL_OUT"
-              rm "$ANALYTICAL_OUT.new"
-            else
-              mv "$ANALYTICAL_OUT.new" "$ANALYTICAL_OUT"
-              echo "Updated $ANALYTICAL_OUT"
-              ANY_CHANGED=true
-            fi
-          else
-            echo "::warning::Failed to download Analytical Skills HTML (source repo may not yet contain the file)"
-          fi
+          render_course() {
+            local SRC_DIR=$1
+            local QMD=$2
+            local HTML_SLUG=$3
+            local PDF_NAME=$4
+            local LABEL=$5
 
-          echo "Downloading Data Science and Data Analytics HTML ..."
-          if curl -fsSL "$DATA_SCI_SRC" -o "$DATA_SCI_OUT.new"; then
-            if [ -f "$DATA_SCI_OUT" ] && cmp -s "$DATA_SCI_OUT.new" "$DATA_SCI_OUT"; then
-              echo "No change in $DATA_SCI_OUT"
-              rm "$DATA_SCI_OUT.new"
-            else
-              mv "$DATA_SCI_OUT.new" "$DATA_SCI_OUT"
-              echo "Updated $DATA_SCI_OUT"
-              ANY_CHANGED=true
+            echo "--- Rendering ${LABEL} (${QMD}) ---"
+            if [ ! -f "${SRC_DIR}/${QMD}" ]; then
+              echo "::warning::Missing QMD ${QMD} in ${SRC_DIR}; skipping ${LABEL}"
+              return 0
             fi
-          else
-            echo "::warning::Failed to download Data Science & Data Analytics HTML (source repo may not yet contain the file)"
-          fi
 
-          echo "Downloading Analytical Skills PDF ..."
-          if curl -fsSL "$ANALYTICAL_PDF_SRC" -o "$ANALYTICAL_PDF_OUT.new"; then
-            if [ -f "$ANALYTICAL_PDF_OUT" ] && cmp -s "$ANALYTICAL_PDF_OUT.new" "$ANALYTICAL_PDF_OUT"; then
-              echo "No change in $ANALYTICAL_PDF_OUT"
-              rm "$ANALYTICAL_PDF_OUT.new"
-            else
-              mv "$ANALYTICAL_PDF_OUT.new" "$ANALYTICAL_PDF_OUT"
-              echo "Updated $ANALYTICAL_PDF_OUT"
-              ANY_CHANGED=true
+            pushd "$SRC_DIR" >/dev/null
+            echo "Running: quarto render ${QMD}"
+            if ! quarto render "${QMD}"; then
+              echo "::error::Quarto render failed for ${QMD}"
+              popd >/dev/null
+              return 0
             fi
-          else
-            echo "::warning::Failed to download Analytical Skills PDF (may not exist yet)"
-          fi
 
-          echo "Downloading Data Science PDF ..."
-          if curl -fsSL "$DATA_SCI_PDF_SRC" -o "$DATA_SCI_PDF_OUT.new"; then
-            if [ -f "$DATA_SCI_PDF_OUT" ] && cmp -s "$DATA_SCI_PDF_OUT.new" "$DATA_SCI_PDF_OUT"; then
-              echo "No change in $DATA_SCI_PDF_OUT"
-              rm "$DATA_SCI_PDF_OUT.new"
+            # Determine produced HTML (same stem as QMD)
+            local STEM="${QMD%.qmd}"
+            local RAW_HTML="${STEM}.html"
+            local RAW_PDF="${STEM}.pdf"
+
+            if [ ! -f "$RAW_HTML" ]; then
+              echo "::warning::Expected HTML output $RAW_HTML not found for ${LABEL}"
             else
-              mv "$DATA_SCI_PDF_OUT.new" "$DATA_SCI_PDF_OUT"
-              echo "Updated $DATA_SCI_PDF_OUT"
-              ANY_CHANGED=true
+              # Move/rename HTML to slug (resource folder keeps original stem name)
+              if [ -f "../${HTML_SLUG}" ]; then
+                if cmp -s "$RAW_HTML" "../${HTML_SLUG}"; then
+                  echo "No change in ${HTML_SLUG}"; 
+                else
+                  cp "$RAW_HTML" "../${HTML_SLUG}"
+                  echo "Updated ${HTML_SLUG}"; ANY_CHANGED=true
+                fi
+              else
+                cp "$RAW_HTML" "../${HTML_SLUG}"; echo "Added ${HTML_SLUG}"; ANY_CHANGED=true
+              fi
+              # Copy resource directory if exists (always overwrite)
+              if [ -d "${STEM}_files" ]; then
+                rm -rf "../${STEM}_files"
+                cp -R "${STEM}_files" ../
+                echo "Copied resource dir ${STEM}_files"
+                ANY_CHANGED=true
+              fi
             fi
-          else
-            echo "::warning::Failed to download Data Science PDF (may not exist yet)"
-          fi
+
+            if [ -f "$RAW_PDF" ]; then
+              if [ -f "../${PDF_NAME}" ]; then
+                if cmp -s "$RAW_PDF" "../${PDF_NAME}"; then
+                  echo "No change in ${PDF_NAME}"; 
+                else
+                  cp "$RAW_PDF" "../${PDF_NAME}"; echo "Updated ${PDF_NAME}"; ANY_CHANGED=true
+                fi
+              else
+                cp "$RAW_PDF" "../${PDF_NAME}"; echo "Added ${PDF_NAME}"; ANY_CHANGED=true
+              fi
+            else
+              echo "::warning::PDF not produced (expected ${RAW_PDF}) for ${LABEL}";
+            fi
+
+            popd >/dev/null
+          }
+
+          render_course source-analytical "$ANALYTICAL_QMD" "$ANALYTICAL_HTML_SLUG" "$ANALYTICAL_PDF" "Analytical Skills for Business"
+          render_course source-datasci "$DATASCI_QMD" "$DATASCI_HTML_SLUG" "$DATASCI_PDF" "Data Science and Data Analytics"
 
           if [ "$ANY_CHANGED" = true ]; then
             echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
@@ -137,11 +160,9 @@ jobs:
           
           git commit -m "Auto-update: Sync course content
 
-          Updated from:
-          - $ANALYTICAL_SRC
-          - $DATA_SCI_SRC
-          - $ANALYTICAL_PDF_SRC
-          - $DATA_SCI_PDF_SRC
+          Rebuilt from QMD sources using Quarto:
+          - Analytical: Analytical_Skills_for_Business.qmd
+          - Data Science: Data_Science_and_Data_Analytics.qmd
 
           Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           

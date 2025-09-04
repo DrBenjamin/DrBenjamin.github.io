@@ -10,7 +10,7 @@ The site automatically synchronizes content from the course materials using GitH
 
 1. **Source Repositories**: Content is maintained in the two source repositories above.
 2. **Quarto (or other) Authoring**: Course material is authored (e.g. in Quarto `.qmd`) and rendered to HTML inside each source repository.
-3. **Automated Sync**: This site’s workflow downloads the published HTML (and now PDF) files daily (or on manual trigger) and stores them locally as:
+3. **Automated Build**: This site’s workflow now checks out the source repositories, runs Quarto directly on the `.qmd` files to render fresh HTML and PDF artifacts (on schedule or manual trigger), and stores them locally as:
    - `analytical-skills.html`
    - `data-science-analytics.html`
    - `Analytical_Skills_for_Business.pdf`
@@ -29,9 +29,11 @@ The site automatically synchronizes content from the course materials using GitH
 
 #### 1. Course Content Sync (`.github/workflows/update-content.yml`)
 
-- Downloads the latest HTML from both source repositories
-- Saves/updates `analytical-skills.html` and `data-science-analytics.html`
-- Performs change detection (per file) to avoid empty commits (HTML + PDF)
+- Checks out both source repositories
+- Renders `Analytical_Skills_for_Business.qmd` and `Data_Science_and_Data_Analytics.qmd` with Quarto (HTML + PDF)
+- Saves/updates `analytical-skills.html`, `data-science-analytics.html` + both PDFs
+- Copies any associated `_files` resource directories when changed
+- Performs change detection (per file) to avoid empty commits (HTML, PDF, resources)
 - Leaves `index.html` untouched (acts as stable landing page)
 - Commits only when at least one course file changed
 
@@ -96,4 +98,19 @@ If changes are not visible:
 3. Confirm the content sync workflow shows the updated file names in its log.
 4. Check that the source repositories actually committed the regenerated HTML.
 
-If a source HTML file is temporarily missing, the workflow logs a warning but continues (other file still updates). No commit occurs unless at least one file changes.
+If a source `.qmd` file is missing, the workflow logs a warning and skips that course. No commit occurs unless at least one rendered output (HTML / PDF / resources) changed.
+
+## ✍️ Authoring Requirements
+
+Ensure each source repository contains the expected Quarto file at its root:
+
+```text
+Analytical-Skills-for-Business/Analytical_Skills_for_Business.qmd
+Data-Science-and-Data-Analytics/Data_Science_and_Data_Analytics.qmd
+```
+
+Optional supporting assets (images, data) should be referenced with relative paths inside the repositories. Quarto-generated resource directories like `Analytical_Skills_for_Business_files/` are copied to the site root when they change.
+
+## 🔄 Regenerating Immediately
+
+After pushing changes to either `.qmd` source file, manually trigger the workflow to publish the updated HTML/PDF without waiting for the daily schedule.
