@@ -40,7 +40,7 @@ The site automatically synchronizes content from the course materials using GitH
 ### Triggering Content Update
 
 1. Go to the [Actions tab](https://github.com/DrBenjamin/DrBenjamin.github.io/actions)
-2. Select "Update Course Content (Analytical + Data Science)"
+2. Select "Update course contents and Deploy to GitHub Pages"
 3. Click "Run workflow" > "Run workflow" (no inputs required)
 4. Wait for both jobs: `update-content` then `deploy` to succeed
 
