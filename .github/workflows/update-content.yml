@@ -1,26 +1,19 @@
-name: Update Course Content (Analytical + Data Science) and Deploy to GitHub Pages
+name: Update course contents and Deploy to GitHub Pages
 
 on:
-  # Allows manual triggering from Actions tab
   workflow_dispatch:
-  
-  # Run automatically every day at 6 AM UTC
   schedule:
-    - cron: '0 6 * * *'
-    
-  # Trigger when the main repository is updated
+    - cron: "0 2 * * *"
   repository_dispatch:
     types: [content-update]
 
-# Sets permissions to allow the workflow to update content and trigger Pages deployment
 permissions:
   contents: write
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 concurrency:
-  group: "content-update"
+  group: content-update
   cancel-in-progress: false
 
 jobs:
@@ -35,13 +28,23 @@ jobs:
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: 'release'
+          r-version: "release"
           use-public-rspm: true
 
-      - name: Install R packages (quarto + tidyverse basics)
+      - name: Install R dependencies (cached)
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::RefManageR
+            any::tidyverse
+            any::knitr
+            any::rmarkdown
+            any::quarto
+
+      - name: Verify RefManageR installation
         run: |
-          set -euo pipefail
-          Rscript -e 'install.packages(c("tidyverse","knitr","rmarkdown", "quarto", "RefManageR"), repos="https://cloud.r-project.org")'
+          Rscript -e 'if (!requireNamespace("RefManageR", quietly=TRUE)) { install.packages("RefManageR", repos="https://cloud.r-project.org"); if(!requireNamespace("RefManageR", quietly=TRUE)) stop("RefManageR still missing") } else { cat("RefManageR already available.\n") }'
+
       - name: Checkout Analytical Skills source
         uses: actions/checkout@v4
         with:
@@ -60,13 +63,20 @@ jobs:
           tinytex: true
 
       - name: Render QMD files and collect artifacts
+        env:
+          REQUIRED_R_PACKAGES: RefManageR
         run: |
           set -euo pipefail
+
+          ensure_pkg() {
+            local PKG=$1
+            Rscript -e "if(!requireNamespace('$PKG', quietly=TRUE)) { install.packages('$PKG', repos='https://cloud.r-project.org'); if(!requireNamespace('$PKG', quietly=TRUE)) stop('$PKG not installed'); }"
+          }
+          for p in $REQUIRED_R_PACKAGES; do ensure_pkg "$p"; done
 
           ANALYTICAL_QMD="Analytical_Skills_for_Business.qmd"
           DATASCI_QMD="Data_Science_and_Data_Analytics.qmd"
 
-          # Expected output artifact names (HTML slugs + PDFs)
           ANALYTICAL_HTML_SLUG="analytical-skills.html"
           DATASCI_HTML_SLUG="data-science-analytics.html"
           ANALYTICAL_PDF="Analytical_Skills_for_Business.pdf"
@@ -95,54 +105,39 @@ jobs:
               return 0
             fi
 
-            # Determine produced HTML (same stem as QMD)
             local STEM="${QMD%.qmd}"
             local RAW_HTML="${STEM}.html"
             local RAW_PDF="${STEM}.pdf"
 
-            if [ ! -f "$RAW_HTML" ]; then
-              echo "::warning::Expected HTML output $RAW_HTML not found for ${LABEL}"
-            else
-              # Move/rename HTML to slug (resource folder keeps original stem name)
-              if [ -f "../${HTML_SLUG}" ]; then
-                if cmp -s "$RAW_HTML" "../${HTML_SLUG}"; then
-                  echo "No change in ${HTML_SLUG}"; 
-                else
-                  cp "$RAW_HTML" "../${HTML_SLUG}"
-                  echo "Updated ${HTML_SLUG}"; ANY_CHANGED=true
-                fi
+            if [ -f "$RAW_HTML" ]; then
+              if [ -f "../${HTML_SLUG}" ] && cmp -s "$RAW_HTML" "../${HTML_SLUG}"; then
+                echo "No change in ${HTML_SLUG}"
               else
-                cp "$RAW_HTML" "../${HTML_SLUG}"; echo "Added ${HTML_SLUG}"; ANY_CHANGED=true
+                cp "$RAW_HTML" "../${HTML_SLUG}"; echo "Updated ${HTML_SLUG}"; ANY_CHANGED=true
               fi
-              # Copy resource directory if exists (always overwrite)
               if [ -d "${STEM}_files" ]; then
-                rm -rf "../${STEM}_files"
-                cp -R "${STEM}_files" ../
-                echo "Copied resource dir ${STEM}_files"
-                ANY_CHANGED=true
+                rm -rf "../${STEM}_files" && cp -R "${STEM}_files" ../ && echo "Copied resource dir ${STEM}_files"; ANY_CHANGED=true
               fi
+            else
+              echo "::warning::Expected HTML output $RAW_HTML not found for ${LABEL}"
             fi
 
             if [ -f "$RAW_PDF" ]; then
-              if [ -f "../${PDF_NAME}" ]; then
-                if cmp -s "$RAW_PDF" "../${PDF_NAME}"; then
-                  echo "No change in ${PDF_NAME}"; 
-                else
-                  cp "$RAW_PDF" "../${PDF_NAME}"; echo "Updated ${PDF_NAME}"; ANY_CHANGED=true
-                fi
+              if [ -f "../${PDF_NAME}" ] && cmp -s "$RAW_PDF" "../${PDF_NAME}"; then
+                echo "No change in ${PDF_NAME}"
               else
-                cp "$RAW_PDF" "../${PDF_NAME}"; echo "Added ${PDF_NAME}"; ANY_CHANGED=true
+                cp "$RAW_PDF" "../${PDF_NAME}"; echo "Updated ${PDF_NAME}"; ANY_CHANGED=true
               fi
             else
-              echo "::warning::PDF not produced (expected ${RAW_PDF}) for ${LABEL}";
+              echo "::warning::PDF not produced (expected ${RAW_PDF}) for ${LABEL}"
             fi
 
             popd >/dev/null
           }
 
           FAILED_COUNT=0
-          render_course source-analytical "$ANALYTICAL_QMD" "$ANALYTICAL_HTML_SLUG" "$ANALYTICAL_PDF" "Analytical Skills for Business" || FAILED_COUNT=$((FAILED_COUNT+1))
-          render_course source-datasci "$DATASCI_QMD" "$DATASCI_HTML_SLUG" "$DATASCI_PDF" "Data Science and Data Analytics" || FAILED_COUNT=$((FAILED_COUNT+1))
+            render_course source-analytical "$ANALYTICAL_QMD" "$ANALYTICAL_HTML_SLUG" "$ANALYTICAL_PDF" "Analytical Skills for Business" || FAILED_COUNT=$((FAILED_COUNT+1))
+            render_course source-datasci "$DATASCI_QMD" "$DATASCI_HTML_SLUG" "$DATASCI_PDF" "Data Science and Data Analytics" || FAILED_COUNT=$((FAILED_COUNT+1))
 
           if [ $FAILED_COUNT -ge 2 ]; then
             echo "::error::All course renders failed. Failing job."
@@ -155,26 +150,25 @@ jobs:
             echo "CONTENT_CHANGED=false" >> $GITHUB_ENV
             echo "No course content changes detected."
           fi
-          
+
       - name: Commit and push changes (if any)
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
+
           if [ "${CONTENT_CHANGED}" != 'true' ]; then
             echo "Skipping commit step (no content changed)."
             exit 0
           fi
 
           git add analytical-skills.html data-science-analytics.html \
-                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf
-          
-          # Check if there are changes to commit
+                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf || true
+
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
-          
+
           git commit -m "Auto-update: Sync course content
 
           Rebuilt from QMD sources using Quarto:
@@ -182,9 +176,8 @@ jobs:
           - Data Science: Data_Science_and_Data_Analytics.qmd
 
           Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
-          
           git push
-          
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
