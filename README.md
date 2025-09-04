@@ -111,6 +111,22 @@ Data-Science-and-Data-Analytics/Data_Science_and_Data_Analytics.qmd
 
 Optional supporting assets (images, data) should be referenced with relative paths inside the repositories. Quarto-generated resource directories like `Analytical_Skills_for_Business_files/` are copied to the site root when they change.
 
+### R / Quarto Runtime
+
+The GitHub Actions workflow now provisions:
+
+- R (latest stable) via `r-lib/actions/setup-r@v2`
+- TinyTeX (from the Quarto setup step) for PDF rendering
+- Core R packages: `tidyverse`, `knitr`, `rmarkdown`
+
+If your `.qmd` files require additional R packages, add them in the workflow install step or include an `_extensions` / project-level `renv.lock` (future enhancement). For a quick addition, edit:
+
+```yaml
+         - name: Install R packages (quarto + tidyverse basics)
+            run: |
+               Rscript -e 'install.packages(c("tidyverse","knitr","rmarkdown","YOURPACKAGE"), repos="https://cloud.r-project.org")'
+```
+
 ## 🔄 Regenerating Immediately
 
 After pushing changes to either `.qmd` source file, manually trigger the workflow to publish the updated HTML/PDF without waiting for the daily schedule.
