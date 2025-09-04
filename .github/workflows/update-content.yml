@@ -185,14 +185,14 @@ jobs:
           
           git push
           
-      - name: Prepare Pages artifact (always build Jekyll to include site shell)
-        run: |
-          bundle init || true
-          echo 'source "https://rubygems.org"' > Gemfile
-          echo 'gem "github-pages", group: :jekyll_plugins' >> Gemfile
-          bundle install --quiet
-          JEKYLL_ENV=production bundle exec jekyll build -s . -d _site
-          ls -1 _site | head -20
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
