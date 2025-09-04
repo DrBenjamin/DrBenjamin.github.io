@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="© Benjamin Gross">
-<meta name="dcterms.date" content="2025-09-03">
+<meta name="dcterms.date" content="2025-09-04">
 
 <title>Data Science and Data Analytics (WS 2025/26)</title>
 <style>
@@ -21,27 +21,7 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
-
-div.csl-bib-body { }
-div.csl-entry {
-clear: both;
-margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-margin-left:2em;
-text-indent:-2em;
-}
-div.csl-left-margin {
-min-width:2em;
-float:left;
-}
-div.csl-right-inline {
-margin-left:2em;
-padding-left:1em;
-}
-div.csl-indent {
-margin-left: 2em;
-}</style>
+</style>
 
 
 <script>/*!
@@ -2161,19 +2141,19 @@ vertical-align: -.125em;
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="5">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#scope-and-nature-of-data-science" id="toc-scope-and-nature-of-data-science" class="nav-link active" data-scroll-target="#scope-and-nature-of-data-science"><span class="header-section-number">1</span> Scope and Nature of Data Science</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#defining-data-science-as-an-academic-discipline" id="toc-defining-data-science-as-an-academic-discipline" class="nav-link" data-scroll-target="#defining-data-science-as-an-academic-discipline"><span class="header-section-number">1.1</span> Defining Data Science as an Academic Discipline</a></li>
   <li><a href="#significance-of-business-data-analysis-for-decision-making" id="toc-significance-of-business-data-analysis-for-decision-making" class="nav-link" data-scroll-target="#significance-of-business-data-analysis-for-decision-making"><span class="header-section-number">1.2</span> Significance of Business Data Analysis for Decision-Making</a></li>
   <li><a href="#emerging-trends" id="toc-emerging-trends" class="nav-link" data-scroll-target="#emerging-trends"><span class="header-section-number">1.3</span> Emerging Trends</a></li>
   <li><a href="#types-of-analytics" id="toc-types-of-analytics" class="nav-link" data-scroll-target="#types-of-analytics"><span class="header-section-number">1.4</span> Types of Analytics</a></li>
   </ul></li>
   <li><a href="#data-analytic-competencies" id="toc-data-analytic-competencies" class="nav-link" data-scroll-target="#data-analytic-competencies"><span class="header-section-number">2</span> Data Analytic Competencies</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data"><span class="header-section-number">2.1</span> Types of Data</a></li>
   <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables"><span class="header-section-number">2.2</span> Types of Variables</a></li>
   <li><a href="#conceptual-framework-knowledge-understanding-of-data" id="toc-conceptual-framework-knowledge-understanding-of-data" class="nav-link" data-scroll-target="#conceptual-framework-knowledge-understanding-of-data"><span class="header-section-number">2.3</span> Conceptual Framework: Knowledge &amp; Understanding of Data</a></li>
@@ -2182,7 +2162,7 @@ vertical-align: -.125em;
   <li><a href="#data-evaluation" id="toc-data-evaluation" class="nav-link" data-scroll-target="#data-evaluation"><span class="header-section-number">2.6</span> Data Evaluation</a></li>
   </ul></li>
   <li><a href="#applications-in-the-programming-language-r" id="toc-applications-in-the-programming-language-r" class="nav-link" data-scroll-target="#applications-in-the-programming-language-r"><span class="header-section-number">3</span> Applications in the Programming Language R</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#core-tidyverse-tooling" id="toc-core-tidyverse-tooling" class="nav-link" data-scroll-target="#core-tidyverse-tooling"><span class="header-section-number">3.1</span> Core tidyverse Tooling</a></li>
   <li><a href="#data-visualization-principles" id="toc-data-visualization-principles" class="nav-link" data-scroll-target="#data-visualization-principles"><span class="header-section-number">3.2</span> Data Visualization Principles</a></li>
   <li><a href="#detecting-outliers-and-anomalies" id="toc-detecting-outliers-and-anomalies" class="nav-link" data-scroll-target="#detecting-outliers-and-anomalies"><span class="header-section-number">3.3</span> Detecting Outliers and Anomalies</a></li>
@@ -2190,7 +2170,11 @@ vertical-align: -.125em;
   <li><a href="#data-exploration-and-mining" id="toc-data-exploration-and-mining" class="nav-link" data-scroll-target="#data-exploration-and-mining"><span class="header-section-number">3.5</span> Data Exploration and Mining</a></li>
   <li><a href="#causal-inference-with-regression-analysis" id="toc-causal-inference-with-regression-analysis" class="nav-link" data-scroll-target="#causal-inference-with-regression-analysis"><span class="header-section-number">3.6</span> Causal Inference with Regression Analysis</a></li>
   </ul></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature"><span class="header-section-number">4</span> Literature</a></li>
+  <li><a href="#sec-literature" id="toc-sec-literature" class="nav-link" data-scroll-target="#sec-literature"><span class="header-section-number">4</span> Literature</a>
+  <ul>
+  <li><a href="#essential-readings" id="toc-essential-readings" class="nav-link" data-scroll-target="#essential-readings"><span class="header-section-number">4.1</span> Essential Readings</a></li>
+  <li><a href="#further-readings" id="toc-further-readings" class="nav-link" data-scroll-target="#further-readings"><span class="header-section-number">4.2</span> Further Readings</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Data_Science_and_Data_Analytics.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -2229,7 +2213,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2025</p>
+      <p class="date">September 4, 2025</p>
     </div>
   </div>
   
@@ -2388,43 +2372,60 @@ vertical-align: -.125em;
 </ul>
 </section>
 </section>
-<section id="literature" class="level1" data-number="4">
+<section id="sec-literature" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Literature</h1>
-<div class="{refs}">
+<p>All references for this course.</p>
+<section id="essential-readings" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="essential-readings"><span class="header-section-number">4.1</span> Essential Readings</h2>
+<ul>
+<li><p>
+<cite>Békés, G. and G. Kézdi (2021). <em>Resources for Data Analysis for Business, Economics, and Policy</em>. https://www-cambridge-org.eux.idm.oclc.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20/resources/instructor-resources/F57C5762D1593E72250729668A08A53B. URL: <a href="https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/c2ec1b2061c7dc36200977cfd58daf6020c1c774/literature/B%C3%A9k%C3%A9s_Data%20Analysis%20for%20Business%2C%20Economics%2C%20and%20Policy_2021_First%20Day%20of%20Class%20Slides.pdf/?raw=true}.">https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/c2ec1b2061c7dc36200977cfd58daf6020c1c774/literature/B%C3%A9k%C3%A9s_Data%20Analysis%20for%20Business%2C%20Economics%2C%20and%20Policy_2021_First%20Day%20of%20Class%20Slides.pdf/?raw=true}.</a>
+</cite></p>
 
-</div>
+<p></p></li>
+<li><p>
+<cite>Evans, J. R. (2020). “Evans, J. R. (2020). Business analytics”.
+</cite></p>
 
+<p></p></li>
+<li><p>
+<cite>Huntington-Klein, N. (2025). <em>The Effect: An Introduction to Research Design and Causality</em>. URL: <a href="https://theeffectbook.net/">https://theeffectbook.net/</a>.</cite>
+</p></li>
+<li><p>
+<cite>Wickham, H., M. Çetinkaya-Rundel, and G. Grolemund (2023). <em>R for Data Science (2e)</em>. URL: <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.</cite>
+</p></li>
+</ul>
+</section>
+<section id="further-readings" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="further-readings"><span class="header-section-number">4.2</span> Further Readings</h2>
+<ul>
+<li><p>
+<cite>Irizarry, R. A. (2024). <em>Introduction to Data Science: Data Wrangling and Visualization with R.</em> URL: <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/">https://rafalab.dfci.harvard.edu/dsbook-part-1/</a>.</cite>
+</p></li>
+<li><p>
+<cite>Kumar, U. D. (2017). “Business analytics: The science of data-driven decision making.”
+</cite></p>
+
+<p></p></li>
+<li><p>
+<cite>M., Ç. and J. Hardin (2021). <em>Introduction to Modern Statistics</em>. https://www.openintro.org/book/ims/. URL: <a href="https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/491a9a84dd0227aab44e0a6db7e6330830a05a6b/literature/Introduction_to_Modern_Statistics_2e.pdf/?raw=true">https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/491a9a84dd0227aab44e0a6db7e6330830a05a6b/literature/Introduction_to_Modern_Statistics_2e.pdf/?raw=true</a>.</cite>
+</p></li>
+<li><p>
+<cite>Pochiraju, B. and S. Seshadri (2019). <em>Essentials of Business Analytics</em>. Ed. by B. Pochiraju and S. Seshadri. Vol. 264. https://link.springer.com/10.1007/978-3-319-68837-4. Springer International Publishing. ISBN: 978-3-319-68836-7. DOI: <a href="https://doi.org/10.1007/978-3-319-68837-4">10.1007/978-3-319-68837-4</a>. URL: <a href="https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/c2ec1b2061c7dc36200977cfd58daf6020c1c774/literature/Essentials%20of%20Business%20Analytics.pdf/?raw=true}.">https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/c2ec1b2061c7dc36200977cfd58daf6020c1c774/literature/Essentials%20of%20Business%20Analytics.pdf/?raw=true}.</a>
+</cite></p>
+
+<p></p></li>
+<li><p>
+<cite>Vaughan, D. (2020). “Analytical skills for AI and data science”.
+</cite></p>
+<p>
+URL: <a href="https://learning.oreilly.com/library/view/analytical-skills-for/9781492060932/preface01.html#idm46388898852872">https://learning.oreilly.com/library/view/analytical-skills-for/9781492060932/preface01.html#idm46388898852872</a>.
+</p></li>
+</ul>
+</section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-Bks2021" class="csl-entry" role="listitem">
-Békés, G., &amp; Kézdi, G. (2021). <em>Resources for data analysis for business, economics, and policy cambridge aspire website</em>. <a href="https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/c2ec1b2061c7dc36200977cfd58daf6020c1c774/literature/B%C3%A9k%C3%A9s_Data%20Analysis%20for%20Business%2C%20Economics%2C%20and%20Policy_2021_First%20Day%20of%20Class%20Slides.pdf/?raw=true">https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/c2ec1b2061c7dc36200977cfd58daf6020c1c774/literature/B%C3%A9k%C3%A9s_Data%20Analysis%20for%20Business%2C%20Economics%2C%20and%20Policy_2021_First%20Day%20of%20Class%20Slides.pdf/?raw=true</a>. Weblink: https://www-cambridge-org.eux.idm.oclc.org/highereducation/books/data-analysis-for-business-economics-and-policy/D67A1B0B56176D6D6A92E27F3F82AA20/resources/instructor-resources/F57C5762D1593E72250729668A08A53B
-</div>
-<div id="ref-Evans2020" class="csl-entry" role="listitem">
-Evans, J. R. (2020). <em>Evans, j. R. (2020). Business analytics</em>.
-</div>
-<div id="ref-Huntington-Klein2025" class="csl-entry" role="listitem">
-Huntington-Klein, N. (2025). <em>The effect: An introduction to research design and causality the effect</em>. <a href="https://theeffectbook.net/">https://theeffectbook.net/</a>
-</div>
-<div id="ref-Irizarry2024" class="csl-entry" role="listitem">
-Irizarry, R. A. (2024). <em>Introduction to data science: Data wrangling and visualization with r.</em> <a href="https://rafalab.dfci.harvard.edu/dsbook-part-1/">https://rafalab.dfci.harvard.edu/dsbook-part-1/</a>
-</div>
-<div id="ref-Kumar2017" class="csl-entry" role="listitem">
-Kumar, U. D. (2017). <em>Business analytics: The science of data-driven decision making.</em>
-</div>
-<div id="ref-etinkaya-Rundel2021" class="csl-entry" role="listitem">
-M., Ç.-R., &amp; Hardin, J. (2021). <em>Introduction to modern statistics</em>. <a href="https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/491a9a84dd0227aab44e0a6db7e6330830a05a6b/literature/Introduction_to_Modern_Statistics_2e.pdf/?raw=true">https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/491a9a84dd0227aab44e0a6db7e6330830a05a6b/literature/Introduction_to_Modern_Statistics_2e.pdf/?raw=true</a>. Weblink: https://www.openintro.org/book/ims/
-</div>
-<div id="ref-Pochiraju2019" class="csl-entry" role="listitem">
-Pochiraju, B., &amp; Seshadri, S. (2019). <em>Essentials of business analytics</em> (B. Pochiraju &amp; S. Seshadri, Eds.; Vol. 264). Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-68837-4">https://doi.org/10.1007/978-3-319-68837-4</a>. Weblink: https://link.springer.com/10.1007/978-3-319-68837-4
-</div>
-<div id="ref-Vaughan2020" class="csl-entry" role="listitem">
-Vaughan, D. (2020). <em>Analytical skills for AI and data science</em>. <a href="https://learning.oreilly.com/library/view/analytical-skills-for/9781492060932/preface01.html#idm46388898852872">https://learning.oreilly.com/library/view/analytical-skills-for/9781492060932/preface01.html#idm46388898852872</a>
-</div>
-<div id="ref-Wickham2023" class="csl-entry" role="listitem">
-Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data science (2e)</em>. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>
-</div>
-</div></section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
