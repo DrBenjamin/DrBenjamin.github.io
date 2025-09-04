@@ -41,7 +41,7 @@ jobs:
       - name: Install R packages (quarto + tidyverse basics)
         run: |
           set -euo pipefail
-          Rscript -e 'install.packages(c("tidyverse","knitr","rmarkdown"), repos="https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("tidyverse","knitr","rmarkdown", "quarto", "RefManageR"), repos="https://cloud.r-project.org")'
       - name: Checkout Analytical Skills source
         uses: actions/checkout@v4
         with:
