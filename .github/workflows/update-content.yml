@@ -185,12 +185,27 @@ jobs:
           
           git push
           
-      - name: Output summary
+      - name: Prepare Pages artifact (always build Jekyll to include site shell)
         run: |
-          if [ "${CONTENT_CHANGED}" = 'true' ]; then
-            echo "✅ Course content updated"
-            git diff --name-only HEAD~1 HEAD || true
-          else
-            echo "ℹ️ No course content changes detected"
-          fi
-          echo "Landing page (index.html) remains static."
+          bundle init || true
+          echo 'source "https://rubygems.org"' > Gemfile
+          echo 'gem "github-pages", group: :jekyll_plugins' >> Gemfile
+          bundle install --quiet
+          JEKYLL_ENV=production bundle exec jekyll build -s . -d _site
+          ls -1 _site | head -20
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: update-content
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
