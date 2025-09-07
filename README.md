@@ -62,6 +62,7 @@ Run the verification script to test the automation:
 │       └── update-content.yml           # Unified content build + Pages deploy
 ├── .gitignore                           # Ignore files for Git
 ├── .Rprofile                           # R profiling configuration
+├── environment.yml                      # Conda environment for R + Quarto
 ├── index.html                           # Static landing page linking to course HTML
 ├── analytical-skills.html (generated)   # Synced course material (master level)
 ├── data-science-analytics.html (generated) # Synced course material (bachelor level)

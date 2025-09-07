@@ -1,0 +1,58 @@
+# Conda environment for integrated R + Python workflows via reticulate
+name: r-reticulate
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Core runtimes
+  - python=3.11
+  - r-base>=4.3,<4.4
+
+  # R <-> Python interoperability
+  - r-reticulate
+
+  # R essentials for data science / reproducible docs
+  - r-tidyverse
+  - r-data.table
+  - r-knitr
+  - r-rmarkdown
+  - r-tinytex        # Lightweight LaTeX support for PDF rendering (will still need tinytex::install_tinytex())
+  - r-devtools
+  - r-jsonlite
+  - r-xml2
+  - r-readxl
+  - r-arrow          # Arrow / Parquet support
+  - r-glue
+  - r-here
+  - r-renv           # Project-local R dependency management (optional)
+
+  # Jupyter ecosystem
+  - jupyterlab
+  - notebook
+  - ipykernel
+  - r-irkernel       # R kernel for Jupyter
+  - nb_conda_kernels # Discover kernels from other envs (optional)
+
+  # Publishing / conversion
+  - pandoc
+  - quarto           # Scientific and technical publishing system
+
+  # Python scientific stack (minimal; expand as needed)
+  - numpy
+  - pandas
+  - pyarrow
+  - matplotlib
+  - seaborn
+  - scikit-learn
+
+  # Utilities
+  - pip
+  - git
+  - radian         # Modern R console with syntax highlighting & multi-line editing
+
+  - pip:
+      # Add pip-only Python packages here
+      - jupyterlab-code-formatter
+      - black
+      - isort

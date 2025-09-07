@@ -20,3 +20,39 @@ if (interactive() && Sys.getenv("RSTUDIO") == "" && Sys.getenv("TERM_PROGRAM") =
     }
   }
 }
+
+# --- Begin radian configuration (appended) ---
+if (interactive()) {
+  # Only proceed if we're inside radian (it sets RADIAN_VERSION)
+  if (!is.null(Sys.getenv("RADIAN_VERSION", unset = NA))) {
+    current_opts <- options()
+
+    safe_set <- function(name, value) {
+      if (is.null(current_opts[[name]])) {
+        options(structure(list(value), names = name))
+      }
+    }
+
+    # Core requested feature: automatic bracket/quote matching
+    safe_set("radian.auto_match", TRUE)
+
+    # Additional quality-of-life defaults (comment out any you don't want)
+    safe_set("radian.insert_new_line", TRUE)
+    safe_set("radian.color_scheme", "native")
+    safe_set("radian.highlight_matching_bracket", TRUE)
+
+    # Console friendliness / nicer printing
+    safe_set("tibble.print_min", 6)
+    safe_set("tibble.width", Inf)
+    if (getOption("scipen", 0) < 6) options(scipen = 6)
+
+    # reticulate: prefer project conda env python if not already pinned
+    if (is.null(Sys.getenv("RETICULATE_PYTHON", unset = NULL))) {
+      py_bin <- file.path(Sys.getenv("HOME"), "conda/envs/r-reticulate/bin/python")
+      if (file.exists(py_bin)) Sys.setenv(RETICULATE_PYTHON = py_bin)
+    }
+
+    rm(safe_set, current_opts)
+  }
+}
+# --- End radian configuration ---
