@@ -63,10 +63,19 @@ jobs:
             local dir="$1"
             local lock_file="${dir}/r-code/renv.lock"
             if [ -f "$lock_file" ]; then
-              echo "-- Restoring R packages for ${dir} using renv.lock"
-              Rscript -e 'if (!requireNamespace("renv", quietly=TRUE)) install.packages("renv", repos="https://cloud.r-project.org"); renv::consent(provided=TRUE); renv::restore(project="'"${dir}/r-code"'", prompt=FALSE)'
-              # Emit package list
-              Rscript -e 'ip <- as.data.frame(installed.packages()[,c("Package","Version")]); write.csv(ip, file="'"${dir}"'-r-packages.csv", row.names=FALSE)'
+              echo "-- Installing R packages for ${dir} from renv.lock (manual parse)"
+              Rscript -e 'lock_path <- "'"${lock_file}"'";\
+                if(!requireNamespace("jsonlite", quietly=TRUE)) install.packages("jsonlite", repos="https://cloud.r-project.org");\
+                pkgs <- names(jsonlite::fromJSON(lock_path)$Packages);\
+                installed <- rownames(installed.packages());\
+                missing <- setdiff(pkgs, installed);\
+                if(length(missing)) { install.packages(missing, repos="https://cloud.r-project.org"); } else { message("No new R packages needed."); }\
+                core <- c("knitr","rmarkdown"); core_missing <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)];\
+                if(length(core_missing)) install.packages(core_missing, repos="https://cloud.r-project.org");\
+                ip <- as.data.frame(installed.packages()[,c("Package","Version")]);\
+                utils::write.csv(ip, file="'"${dir}"'-r-packages.csv", row.names=FALSE);\
+                cat("Installed/available versions for render-critical packages:\n");\
+                for(p in core) cat(p, ":", if(requireNamespace(p, quietly=TRUE)) as.character(utils::packageVersion(p)) else "(missing)", "\n")'
             else
               echo "No renv.lock found for ${dir} (expected at r-code/renv.lock)"
             fi
@@ -93,6 +102,12 @@ jobs:
               echo "Directory $r missing; skipping"
             fi
           done
+
+          echo "-- Verifying render-critical R packages (knitr, rmarkdown) --"
+          Rscript -e 'core <- c("knitr","rmarkdown"); miss <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)]; if(length(miss)) { install.packages(miss, repos="https://cloud.r-project.org"); miss2 <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)]; if(length(miss2)) stop("Missing required R packages even after install: ", paste(miss2, collapse=",")); } cat("Core packages present:\n"); for(p in core) cat(p, ":", as.character(packageVersion(p)), "\n")'
+
+          echo "-- R Library Paths & Selected Package Versions --"
+          Rscript -e 'cat(".libPaths():\n"); cat(paste(" -", .libPaths()), sep="\n"); cat("\n"); for(p in c("knitr","rmarkdown","RefManageR")) { cat(p, ": "); if(requireNamespace(p, quietly=TRUE)) cat(as.character(utils::packageVersion(p)),"\n") else cat("(missing)\n"); }'
 
           echo "Generated package listing files:"
           ls -1 *-r-packages.csv *-pip-freeze.txt 2>/dev/null || echo "(none)"
