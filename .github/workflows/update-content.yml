@@ -1,4 +1,4 @@
-name: Update course contents and Deploy to GitHub Pages
+name: Update and deploy to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -31,20 +31,6 @@ jobs:
           r-version: "release"
           use-public-rspm: true
 
-      - name: Install R dependencies (cached)
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::RefManageR
-            any::tidyverse
-            any::knitr
-            any::rmarkdown
-            any::quarto
-
-      - name: Verify RefManageR installation
-        run: |
-          Rscript -e 'if (!requireNamespace("RefManageR", quietly=TRUE)) { install.packages("RefManageR", repos="https://cloud.r-project.org"); if(!requireNamespace("RefManageR", quietly=TRUE)) stop("RefManageR still missing") } else { cat("RefManageR already available.\n") }'
-
       - name: Checkout Analytical Skills source
         uses: actions/checkout@v4
         with:
@@ -62,17 +48,58 @@ jobs:
         with:
           tinytex: true
 
-      - name: Render QMD files and collect artifacts
-        env:
-          REQUIRED_R_PACKAGES: RefManageR
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install repository dependencies (R via renv.lock, Python via requirements.txt)
         run: |
           set -euo pipefail
 
-          ensure_pkg() {
-            local PKG=$1
-            Rscript -e "if(!requireNamespace('$PKG', quietly=TRUE)) { install.packages('$PKG', repos='https://cloud.r-project.org'); if(!requireNamespace('$PKG', quietly=TRUE)) stop('$PKG not installed'); }"
+          REPOS=(source-analytical source-datasci)
+
+          install_r_from_renv() {
+            local dir="$1"
+            local lock_file="${dir}/r-code/renv.lock"
+            if [ -f "$lock_file" ]; then
+              echo "-- Restoring R packages for ${dir} using renv.lock"
+              Rscript -e 'if (!requireNamespace("renv", quietly=TRUE)) install.packages("renv", repos="https://cloud.r-project.org"); renv::consent(provided=TRUE); renv::restore(project="'"${dir}/r-code"'", prompt=FALSE)'
+              # Emit package list
+              Rscript -e 'ip <- as.data.frame(installed.packages()[,c("Package","Version")]); write.csv(ip, file="'"${dir}"'-r-packages.csv", row.names=FALSE)'
+            else
+              echo "No renv.lock found for ${dir} (expected at r-code/renv.lock)"
+            fi
           }
-          for p in $REQUIRED_R_PACKAGES; do ensure_pkg "$p"; done
+
+          install_python_reqs() {
+            local dir="$1"
+            local req_file="${dir}/python/requirements.txt"
+            if [ -f "$req_file" ]; then
+              echo "-- Installing Python packages for ${dir} from requirements.txt"
+              python -m pip install --upgrade pip
+              pip install -r "$req_file"
+              pip freeze > "${dir}-pip-freeze.txt"
+            else
+              echo "No Python requirements.txt for ${dir} (expected at python/requirements.txt)"
+            fi
+          }
+
+          for r in "${REPOS[@]}"; do
+            if [ -d "$r" ]; then
+              install_r_from_renv "$r" || echo "R install failed for $r (continuing)"
+              install_python_reqs "$r" || echo "Python install failed for $r (continuing)"
+            else
+              echo "Directory $r missing; skipping"
+            fi
+          done
+
+          echo "Generated package listing files:"
+          ls -1 *-r-packages.csv *-pip-freeze.txt 2>/dev/null || echo "(none)"
+
+      - name: Render QMD files and collect artifacts
+        run: |
+          set -euo pipefail
 
           ANALYTICAL_QMD="Analytical_Skills_for_Business.qmd"
           DATASCI_QMD="Data_Science_and_Data_Analytics.qmd"
