@@ -94,6 +94,3 @@ Analytical-Skills-for-Business: Analytical_Skills_for_Business.qmd
 Data-Science-and-Data-Analytics: Data_Science_and_Data_Analytics.qmd
 ```
 
-### 🔄 Regenerating Immediately
-
-After pushing changes to either `.qmd` source file, manually trigger the workflow to publish the updated HTML/PDF without waiting for the daily schedule.
