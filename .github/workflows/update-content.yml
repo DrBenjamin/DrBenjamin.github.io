@@ -300,8 +300,7 @@ jobs:
 
           sync_topics() {
             local SRC_REPO_DIR="$1"
-            local LABEL="$2"
-            local DEST_DIR="topics-${LABEL}"
+            local DEST_DIR="topics"
             local SRC_TOPICS="${SRC_REPO_DIR}/topics"
             if [ -d "$SRC_TOPICS" ]; then
               echo "Found topics in $SRC_REPO_DIR; syncing to $DEST_DIR"
