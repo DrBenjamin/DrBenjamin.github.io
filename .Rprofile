@@ -23,8 +23,8 @@ if (interactive() && Sys.getenv("RSTUDIO") == "" && Sys.getenv("TERM_PROGRAM") =
 
 # --- Begin radian configuration (appended) ---
 if (interactive()) {
-  # Only proceed if we're inside radian (it sets RADIAN_VERSION)
-  if (!is.null(Sys.getenv("RADIAN_VERSION", unset = NA))) {
+  # Only proceed if we're inside radian (it sets RADIAN_VERSION). Sys.getenv always returns a string; use != "" rather than NULL tests.
+  if (nzchar(Sys.getenv("RADIAN_VERSION"))) {
     current_opts <- options()
 
     safe_set <- function(name, value) {
@@ -47,7 +47,8 @@ if (interactive()) {
     if (getOption("scipen", 0) < 6) options(scipen = 6)
 
     # reticulate: prefer project conda env python if not already pinned
-    if (is.null(Sys.getenv("RETICULATE_PYTHON", unset = NULL))) {
+    # Sys.getenv returns "" if unset, so test with nzchar()
+    if (!nzchar(Sys.getenv("RETICULATE_PYTHON"))) {
       py_bin <- file.path(Sys.getenv("HOME"), "conda/envs/r-reticulate/bin/python")
       if (file.exists(py_bin)) Sys.setenv(RETICULATE_PYTHON = py_bin)
     }
