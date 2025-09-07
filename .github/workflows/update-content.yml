@@ -64,17 +64,17 @@ jobs:
             local lock_file="${dir}/r-code/renv.lock"
             if [ -f "$lock_file" ]; then
               echo "-- Installing R packages for ${dir} from renv.lock (manual parse)"
-              Rscript -e 'lock_path <- "'"${lock_file}"'";\
-                if(!requireNamespace("jsonlite", quietly=TRUE)) install.packages("jsonlite", repos="https://cloud.r-project.org");\
-                pkgs <- names(jsonlite::fromJSON(lock_path)$Packages);\
-                installed <- rownames(installed.packages());\
-                missing <- setdiff(pkgs, installed);\
-                if(length(missing)) { install.packages(missing, repos="https://cloud.r-project.org"); } else { message("No new R packages needed."); }\
-                core <- c("knitr","rmarkdown"); core_missing <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)];\
-                if(length(core_missing)) install.packages(core_missing, repos="https://cloud.r-project.org");\
-                ip <- as.data.frame(installed.packages()[,c("Package","Version")]);\
-                utils::write.csv(ip, file="'"${dir}"'-r-packages.csv", row.names=FALSE);\
-                cat("Installed/available versions for render-critical packages:\n");\
+              Rscript -e 'lock_path <- "'"${lock_file}"'";
+                if(!requireNamespace("jsonlite", quietly=TRUE)) install.packages("jsonlite", repos="https://cloud.r-project.org");
+                pkgs <- names(jsonlite::fromJSON(lock_path)$Packages);
+                installed <- rownames(installed.packages());
+                missing <- setdiff(pkgs, installed);
+                if(length(missing)) { install.packages(missing, repos="https://cloud.r-project.org"); } else { message("No new R packages needed."); }
+                core <- c("knitr","rmarkdown"); core_missing <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)];
+                if(length(core_missing)) install.packages(core_missing, repos="https://cloud.r-project.org");
+                ip <- as.data.frame(installed.packages()[,c("Package","Version")]);
+                utils::write.csv(ip, file="'"${dir}"'-r-packages.csv", row.names=FALSE);
+                cat("Installed/available versions for render-critical packages:\n");
                 for(p in core) cat(p, ":", if(requireNamespace(p, quietly=TRUE)) as.character(utils::packageVersion(p)) else "(missing)", "\n")'
             else
               echo "No renv.lock found for ${dir} (expected at r-code/renv.lock)"
