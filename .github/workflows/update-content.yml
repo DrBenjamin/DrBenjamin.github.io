@@ -87,8 +87,8 @@ jobs:
           echo "Installing core build tooling (build-essential, pkg-config)"
           sudo apt-get install -y --no-install-recommends \
             build-essential \
-            pkg-config \
-            r-base-dev
+            pkg-config
+          # NOTE: r-base-dev removed (R provided by setup-r; r-base-dev pulls large Perl/dev tool chain)
           echo "Installing libraries for curl, XML, fonts, text shaping, images"
           sudo apt-get install -y --no-install-recommends \
             libcurl4-openssl-dev \
