@@ -79,7 +79,7 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-
 
-      - name: Restore apt cache archive (Option B)
+      - name: Restore apt cache archive
         uses: actions/cache@v4
         with:
           # Single tarball containing /var/cache/apt and /var/lib/apt/lists
