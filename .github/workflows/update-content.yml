@@ -53,6 +53,28 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Detect primary R library path
+        id: detect-r-lib
+        run: |
+          Rscript -e 'cat("PRIMARY_R_LIB=", .libPaths()[1], "\n", sep="")' >> "$GITHUB_ENV"
+          echo "Primary R library set to: $PRIMARY_R_LIB"
+
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PRIMARY_R_LIB }}
+          key: r-lib-${{ runner.os }}-${{ hashFiles('source-analytical/r-code/renv.lock', 'source-datasci/r-code/renv.lock') }}
+          restore-keys: |
+            r-lib-${{ runner.os }}-
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('source-analytical/python/requirements.txt', 'source-datasci/python/requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
       - name: Install repository dependencies (R via renv.lock, Python via requirements.txt)
         run: |
           set -euo pipefail
