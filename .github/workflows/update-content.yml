@@ -129,6 +129,12 @@ jobs:
           echo "Generated package listing files:"
           ls -1 *-pip-freeze.txt 2>/dev/null || echo "(no Python freeze files)"
 
+      - name: Verify critical R packages
+        run: |
+          set -e
+          echo "Verifying critical R packages (knitr, rmarkdown, RefManageR)"
+          Rscript -e 'crit <- c("knitr","rmarkdown","RefManageR"); miss <- crit[!vapply(crit, requireNamespace, logical(1), quietly=TRUE)]; if(length(miss)) { writeLines(paste0("::error::Missing critical packages: ", paste(miss, collapse=","))); quit(status=1);} cat("All critical packages present:\n"); for(p in crit) cat(p, ": ", as.character(packageVersion(p)), "\n", sep="")'
+
       - name: Render QMD files and collect artifacts
         run: |
           set -euo pipefail
