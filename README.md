@@ -93,4 +93,3 @@ Ensure each source repository contains the expected Quarto file at its root:
 Analytical-Skills-for-Business: Analytical_Skills_for_Business.qmd
 Data-Science-and-Data-Analytics: Data_Science_and_Data_Analytics.qmd
 ```
-

@@ -306,9 +306,8 @@ jobs:
           git add analytical-skills.html data-science-analytics.html \
                   Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf || true
 
+          # Add any files in topics directories from both courses
           # Add any generated resource directories (e.g. Analytical_Skills_for_Business_files)
-          # and any topic folders (matching topics*). Only add those that exist to avoid
-          # shell expansion errors or accidentally staging source checkouts.
           for d in *_files topics*; do
             if [ -e "$d" ]; then
               echo "Staging directory: $d"
@@ -316,7 +315,6 @@ jobs:
             fi
           done
 
-          # If nothing staged after all adds, skip committing
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
