@@ -4,21 +4,45 @@
 # This script installs packages from renv.lock files in source repositories
 
 # Function to safely install packages 
-install_packages_safe <- function(packages, repos = "https://cloud.r-project.org") {
+install_packages_safe <- function(packages, repos = "https://cloud.r-project.org", allow_parallel = TRUE) {
+  packages <- unique(packages)
+  if (!length(packages)) return(invisible(character()))
+
   cat("Installing", length(packages), "packages:", paste(packages, collapse = ", "), "\n")
-  
-  for (pkg in packages) {
+
+  failed <- character()
+  # Attempt vectorised install first for dependency resolution efficiency
+  to_install <- packages[!vapply(packages, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(to_install)) {
+    cat("\n-- Installing missing set (batch):", paste(to_install, collapse = ", "), "\n")
     tryCatch({
-      if (!requireNamespace(pkg, quietly = TRUE)) {
-        cat("Installing package:", pkg, "\n")
-        install.packages(pkg, repos = repos, quiet = TRUE)
-      } else {
-        cat("Package", pkg, "already available\n")
-      }
+      install.packages(to_install, repos = repos, quiet = TRUE)
     }, error = function(e) {
-      cat("Failed to install", pkg, ":", e$message, "\n")
+      cat("Batch install encountered an error:", e$message, "\nFalling back to per-package installs.\n")
     })
   }
+
+  # Verify & fallback per package where still missing
+  for (pkg in to_install) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      cat("Retrying individual install:", pkg, "\n")
+      ok <- TRUE
+      tryCatch({
+        install.packages(pkg, repos = repos, quiet = TRUE)
+      }, error = function(e) {
+        ok <<- FALSE
+        cat("Failed to install", pkg, ":", e$message, "\n")
+      })
+      if (!ok || !requireNamespace(pkg, quietly = TRUE)) failed <- c(failed, pkg)
+    } else {
+      cat("Package", pkg, "already available after batch\n")
+    }
+  }
+
+  if (length(failed)) {
+    cat("\nPackages still missing after attempts:", paste(failed, collapse = ", "), "\n")
+  }
+  invisible(failed)
 }
 
 # Function to install packages from renv.lock
@@ -44,10 +68,13 @@ install_from_renv_lock <- function(lock_file) {
   # Get currently installed packages
   installed <- rownames(installed.packages())
   missing <- setdiff(package_names, installed)
-  
+
   if (length(missing) > 0) {
     cat("Installing", length(missing), "missing packages\n")
-    install_packages_safe(missing)
+    failed <- install_packages_safe(missing)
+    if (length(failed)) {
+      cat("Warning: some packages from", lock_file, "failed to install:", paste(failed, collapse = ", "), "\n")
+    }
   } else {
     cat("All packages from renv.lock are already installed\n")
   }
@@ -55,21 +82,19 @@ install_from_renv_lock <- function(lock_file) {
 
 # Function to ensure critical packages are available
 ensure_critical_packages <- function() {
-  critical_packages <- c("knitr", "rmarkdown")
+  # Add RefManageR (bibliography), treat as critical for render
+  critical_packages <- c("knitr", "rmarkdown", "RefManageR")
   cat("Verifying critical packages for Quarto:", paste(critical_packages, collapse = ", "), "\n")
   
-  missing_critical <- critical_packages[!sapply(critical_packages, function(pkg) {
-    requireNamespace(pkg, quietly = TRUE)
-  })]
+  missing_critical <- critical_packages[!vapply(critical_packages, requireNamespace, logical(1), quietly = TRUE)]
   
   if (length(missing_critical) > 0) {
     cat("Installing missing critical packages:", paste(missing_critical, collapse = ", "), "\n")
-    install_packages_safe(missing_critical)
+  failed <- install_packages_safe(missing_critical)
+  # Remove any that are in failed from further verification attempt
     
     # Verify again
-    still_missing <- critical_packages[!sapply(critical_packages, function(pkg) {
-      requireNamespace(pkg, quietly = TRUE)
-    })]
+    still_missing <- critical_packages[!vapply(critical_packages, requireNamespace, logical(1), quietly = TRUE)]
     
     if (length(still_missing) > 0) {
       stop("Failed to install critical packages: ", paste(still_missing, collapse = ", "))

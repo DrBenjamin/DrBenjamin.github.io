@@ -61,13 +61,14 @@ Run the verification script to test the automation:
 │   └── workflows/
 │       └── update-content.yml           # Unified content build + Pages deploy
 ├── .gitignore                           # Ignore files for Git
-├── .Rprofile                           # R profiling configuration
+├── .Rprofile                            # R profiling configuration
 ├── environment.yml                      # Conda environment for R + Quarto
+├── install-packages.R                   # R script to install required packages
 ├── index.html                           # Static landing page linking to course HTML
-├── analytical-skills.html (generated)   # Synced course material (master level)
-├── data-science-analytics.html (generated) # Synced course material (bachelor level)
-├── Analytical_Skills_for_Business.pdf (generated) # PDF export for linking
-├── Data_Science_and_Data_Analytics.pdf (generated) # PDF export for linking
+├── analytical-skills.html               # Synced and generated course material (master level)
+├── data-science-analytics.html          # Synced and generated course material (bachelor level)
+├── Analytical_Skills_for_Business.pdf   # Synced and generated PDF export for linking
+├── Data_Science_and_Data_Analytics.pdf  # Synced and generated PDF export for linking
 ├── verify-automation.sh                 # Script to verify automation setup
 └── README.md                            # This file
 ```
