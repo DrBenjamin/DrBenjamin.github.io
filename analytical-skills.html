@@ -2243,10 +2243,64 @@ vertical-align: -.125em;
 <p>xy</p>
 <section id="implementing-version-control-systems" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="implementing-version-control-systems"><span class="header-section-number">1.1</span> Implementing version control systems</h2>
+<p>Version control systems are essential tools for managing code, tracking changes, and facilitating collaborative development in modern business analytics projects <span class="citation" data-cites="cetinkaya-Rundel2021">[@cetinkaya-Rundel2021]</span>. These systems enable teams to work efficiently on shared codebases while maintaining a complete history of all modifications, ensuring reproducibility and accountability in data analysis workflows.</p>
+<section id="core-concepts" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="core-concepts"><span class="header-section-number">1.1.1</span> Core Concepts</h3>
+<p>Version control systems provide systematic approaches to managing changes in documents, programs, and other collections of information:</p>
 <ul>
-<li>git</li>
-<li>GitHub</li>
+<li><strong>Repository</strong>: A central storage location containing all project files and their complete revision history</li>
+<li><strong>Commit</strong>: A snapshot of the project at a specific point in time, representing a set of changes</li>
+<li><strong>Branch</strong>: An independent line of development allowing parallel work on different features</li>
+<li><strong>Merge</strong>: The process of integrating changes from different branches back together</li>
 </ul>
+</section>
+<section id="git-distributed-version-control" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="git-distributed-version-control"><span class="header-section-number">1.1.2</span> Git: Distributed Version Control</h3>
+<p><strong>Git</strong> is a distributed version control system that tracks changes in files and coordinates work among multiple contributors. Key characteristics include:</p>
+<p><strong>Local Repository</strong>: Each user maintains a complete copy of the project history, enabling offline work and faster operations.</p>
+<p><strong>Staging Area</strong>: An intermediate area where changes are prepared before being committed to the repository.</p>
+<p><strong>Branching and Merging</strong>: Lightweight branching allows for experimental development without affecting the main codebase.</p>
+<p><strong>Distributed Workflow</strong>: No single point of failure, as every user has a complete backup of the project.</p>
+</section>
+<section id="github-cloud-based-collaboration-platform" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="github-cloud-based-collaboration-platform"><span class="header-section-number">1.1.3</span> GitHub: Cloud-Based Collaboration Platform</h3>
+<p><strong>GitHub</strong> is a web-based hosting service for Git repositories that adds collaboration features and project management tools:</p>
+<ul>
+<li><strong>Remote Repositories</strong>: Centralized storage accessible from anywhere with internet connectivity</li>
+<li><strong>Pull Requests</strong>: Structured code review process for integrating changes</li>
+<li><strong>Issue Tracking</strong>: Built-in project management for tracking bugs and feature requests</li>
+<li><strong>Actions and CI/CD</strong>: Automated workflows for testing and deployment</li>
+<li><strong>Documentation</strong>: Integrated wiki and README support for project documentation</li>
+</ul>
+<p>The combination of Git and GitHub creates a powerful ecosystem for collaborative analytics projects, ensuring code quality, facilitating peer review, and maintaining comprehensive project documentation <span class="citation" data-cites="GeeksforGeeksGit2024">[@GeeksforGeeksGit2024]</span>.</p>
+</section>
+<section id="business-analytics-applications" class="level3" data-number="1.1.4">
+<h3 data-number="1.1.4" class="anchored" data-anchor-id="business-analytics-applications"><span class="header-section-number">1.1.4</span> Business Analytics Applications</h3>
+<p>In business analytics contexts, version control systems provide:</p>
+<ul>
+<li><strong>Reproducible Analysis</strong>: Complete tracking of analytical scripts and data processing steps</li>
+<li><strong>Collaborative Research</strong>: Multiple analysts can work simultaneously on different aspects of projects</li>
+<li><strong>Model Versioning</strong>: Systematic management of machine learning models and their evolution</li>
+<li><strong>Data Governance</strong>: Audit trails for compliance and regulatory requirements</li>
+<li><strong>Backup and Recovery</strong>: Protection against data loss and accidental modifications</li>
+</ul>
+</section>
+<section id="reference-materials" class="level3" data-number="1.1.5">
+<h3 data-number="1.1.5" class="anchored" data-anchor-id="reference-materials"><span class="header-section-number">1.1.5</span> Reference Materials</h3>
+<p>For comprehensive coverage of version control concepts, implementation strategies, and best practices, consult:</p>
+<ul>
+<li><strong>Theoretical Foundation</strong>: <a href="./literature/Introduction_to_Modern_Statistics_2e.pdf">Introduction to Modern Statistics</a> provides context on reproducible research practices and collaborative analytics <span class="citation" data-cites="cetinkaya-Rundel2021">[@cetinkaya-Rundel2021]</span></li>
+<li><strong>Git Resources</strong>: <a href="./topics/Introduction%20to%20tools%20of%20business%20analytics/git%20and%20Github/git-cheat-sheet-education.pdf">Git Cheat Sheet</a> offers quick reference for common Git commands</li>
+<li><strong>GitHub Documentation</strong>: <a href="./topics/Introduction%20to%20tools%20of%20business%20analytics/git%20and%20Github/github-manual.pdf">GitHub Manual</a> contains detailed guidance on platform features</li>
+<li><strong>Visual Overview</strong>: <a href="./topics/Introduction%20to%20tools%20of%20business%20analytics/git%20and%20Github/git-github.png">Git and GitHub Workflow</a> illustrates the relationship between local and remote repositories</li>
+<li><strong>Online Resources</strong>:
+<ul>
+<li><a href="https://www.geeksforgeeks.org/git/difference-between-git-and-github/">GeeksforGeeks Git vs GitHub Guide</a> provides practical comparisons and use cases <span class="citation" data-cites="GeeksforGeeksGit2024">[@GeeksforGeeksGit2024]</span></li>
+<li><a href="https://docs.github.com/en/get-started/start-your-journey/about-github-and-git">Official GitHub Documentation</a> offers authoritative guidance on getting started <span class="citation" data-cites="GitHubDocs2024">[@GitHubDocs2024]</span></li>
+</ul></li>
+</ul>
+<p>Understanding version control systems is fundamental for modern business analytics, enabling collaborative development, ensuring reproducibility, and maintaining professional standards in data science projects.</p>
+</section>
 </section>
 <section id="overview-on-no-code-and-low-code-tools-for-data-analytics" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="overview-on-no-code-and-low-code-tools-for-data-analytics"><span class="header-section-number">1.2</span> Overview on no-code and low-code tools for data analytics</h2>
@@ -2351,8 +2405,8 @@ vertical-align: -.125em;
 <section id="hypothesis-testing" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">3.3</span> Hypothesis testing</h2>
 <p>Hypothesis testing is a fundamental statistical method used to make inferences about population parameters based on sample data <span class="citation" data-cites="Illowsky2018">[@Illowsky2018]</span>. It provides a systematic framework for evaluating claims about populations using sample evidence, enabling data-driven decision making in business contexts.</p>
-<section id="core-concepts" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="core-concepts"><span class="header-section-number">3.3.1</span> Core Concepts</h3>
+<section id="core-concepts-1" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="core-concepts-1"><span class="header-section-number">3.3.1</span> Core Concepts</h3>
 <p>A statistical hypothesis test involves formulating two competing hypotheses:</p>
 <ul>
 <li><strong>Null hypothesis (H₀)</strong>: The status quo or default position, typically representing no effect or no difference</li>
@@ -2375,8 +2429,8 @@ vertical-align: -.125em;
 <li><strong>Statistical Power (1-β)</strong>: The probability of correctly rejecting a false null hypothesis</li>
 </ul>
 </section>
-<section id="reference-materials" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="reference-materials"><span class="header-section-number">3.3.4</span> Reference Materials</h3>
+<section id="reference-materials-1" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="reference-materials-1"><span class="header-section-number">3.3.4</span> Reference Materials</h3>
 <p>For comprehensive coverage of hypothesis testing concepts, methodologies, and applications, consult:</p>
 <ul>
 <li><strong>Theoretical Foundation</strong>: <a href="./literature/Introductory%20Statistics.pdf">Introductory Statistics</a> provides detailed explanations of hypothesis testing principles and procedures <span class="citation" data-cites="Illowsky2018">[@Illowsky2018]</span></li>
@@ -2467,7 +2521,19 @@ vertical-align: -.125em;
 </li>
 <li class="ref-entry">
 <p>
-<cite>GeeksforGeeks (2024). <em>Understanding Hypothesis Testing</em>. Online resource for software testing and statistical concepts. URL: <a href="&lt;https://www.geeksforgeeks.org/software-testing/understanding-hypothesis-testing/">https://www.geeksforgeeks.org/software-testing/understanding-hypothesis-testing/</a>.</cite>
+<cite>GeeksforGeeks (2024a). <em>Difference between Git and GitHub</em>. Comprehensive comparison of Git and GitHub for version control. URL: <a href="&lt;https://www.geeksforgeeks.org/git/difference-between-git-and-github/">https://www.geeksforgeeks.org/git/difference-between-git-and-github/</a>.</cite>
+</p>
+<blockquote class="blockquote">
+</blockquote></li>
+<li class="ref-entry">
+<p>
+<cite>— (2024b). <em>Understanding Hypothesis Testing</em>. Online resource for software testing and statistical concepts. URL: <a href="&lt;https://www.geeksforgeeks.org/software-testing/understanding-hypothesis-testing/">https://www.geeksforgeeks.org/software-testing/understanding-hypothesis-testing/</a>.</cite>
+</p>
+<blockquote class="blockquote">
+</blockquote></li>
+<li class="ref-entry">
+<p>
+<cite>GitHub (2024). <em>About GitHub and Git</em>. Official GitHub documentation on Git and GitHub fundamentals. URL: <a href="&lt;https://docs.github.com/en/get-started/start-your-journey/about-github-and-git">https://docs.github.com/en/get-started/start-your-journey/about-github-and-git</a>.</cite>
 </p>
 <blockquote class="blockquote">
 </blockquote></li>
@@ -2513,6 +2579,8 @@ URL: <a href="&lt;https://learning.oreilly.com/library/view/analytical-skills-fo
 <blockquote class="blockquote">
 </blockquote></li>
 </ul>
+
+
 
 
 
