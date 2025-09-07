@@ -79,6 +79,28 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-
 
+      - name: Restore apt cache archive (Option B)
+        uses: actions/cache@v4
+        with:
+          # Single tarball containing /var/cache/apt and /var/lib/apt/lists
+          path: apt-cache.tgz
+          # Bump version suffix to invalidate / refresh cache when changing system package set
+          key: apt-cache-${{ runner.os }}-v1
+          restore-keys: |
+            apt-cache-${{ runner.os }}-
+
+      - name: Load apt cache (if present)
+        run: |
+          set -euo pipefail
+          if [ -f apt-cache.tgz ]; then
+            echo "Found apt-cache.tgz – restoring to system locations"
+            # Extract with sudo so ownership/permissions are preserved where possible
+            sudo tar xzf apt-cache.tgz -C /
+            echo "Apt cache restored."
+          else
+            echo "No existing apt cache archive to restore."
+          fi
+
       - name: Install system libraries for R packages
         run: |
           set -euo pipefail
@@ -110,10 +132,17 @@ jobs:
             libgeos-dev \
             libproj-dev \
             libudunits2-dev
-          echo "Cleaning apt caches to reduce layer size"
-          sudo apt-get clean
-          sudo rm -rf /var/lib/apt/lists/*
+          echo "Skipping apt clean to allow caching (Option B)"
           echo "System dependency installation complete"
+
+      - name: Save apt cache archive
+        # This step always (re)creates the archive; actions/cache will only upload on a key miss.
+        run: |
+          set -euo pipefail
+            echo "Creating apt cache archive for future runs"
+            sudo tar czf apt-cache.tgz /var/cache/apt /var/lib/apt/lists || echo "Tar creation had non-fatal warnings"
+            ls -lh apt-cache.tgz || true
+            echo "Apt cache archive ready (upload occurs only if primary cache key was a miss)."
 
       - name: Install repository dependencies (R via renv.lock, Python via requirements.txt)
         run: |
