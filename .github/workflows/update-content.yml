@@ -53,16 +53,20 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Detect primary R library path
-        id: detect-r-lib
+      - name: Setup R library path
         run: |
-          Rscript -e 'cat("PRIMARY_R_LIB=", .libPaths()[1], "\n", sep="")' >> "$GITHUB_ENV"
-          echo "Primary R library set to: $PRIMARY_R_LIB"
+          # Create a writable R library directory
+          mkdir -p "${HOME}/R-library"
+          echo "R_LIBS_USER=${HOME}/R-library" >> "$GITHUB_ENV"
+          echo "PRIMARY_R_LIB=${HOME}/R-library" >> "$GITHUB_ENV"
+          # Set this for current session too
+          export R_LIBS_USER="${HOME}/R-library"
+          echo "R library path set to: ${HOME}/R-library"
 
       - name: Cache R packages
         uses: actions/cache@v4
         with:
-          path: ${{ env.PRIMARY_R_LIB }}
+          path: ${{ env.R_LIBS_USER }}
           key: r-lib-${{ runner.os }}-${{ hashFiles('source-analytical/r-code/renv.lock', 'source-datasci/r-code/renv.lock') }}
           restore-keys: |
             r-lib-${{ runner.os }}-
@@ -81,28 +85,25 @@ jobs:
 
           REPOS=(source-analytical source-datasci)
 
-          install_r_from_renv() {
-            local dir="$1"
-            local lock_file="${dir}/r-code/renv.lock"
-            if [ -f "$lock_file" ]; then
-              echo "-- Installing R packages for ${dir} from renv.lock (manual parse)"
-              Rscript -e 'lock_path <- "'"${lock_file}"'";
-                if(!requireNamespace("jsonlite", quietly=TRUE)) install.packages("jsonlite", repos="https://cloud.r-project.org");
-                pkgs <- names(jsonlite::fromJSON(lock_path)$Packages);
-                installed <- rownames(installed.packages());
-                missing <- setdiff(pkgs, installed);
-                if(length(missing)) { install.packages(missing, repos="https://cloud.r-project.org"); } else { message("No new R packages needed."); }
-                core <- c("knitr","rmarkdown"); core_missing <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)];
-                if(length(core_missing)) install.packages(core_missing, repos="https://cloud.r-project.org");
-                ip <- as.data.frame(installed.packages()[,c("Package","Version")]);
-                utils::write.csv(ip, file="'"${dir}"'-r-packages.csv", row.names=FALSE);
-                cat("Installed/available versions for render-critical packages:\n");
-                for(p in core) cat(p, ":", if(requireNamespace(p, quietly=TRUE)) as.character(utils::packageVersion(p)) else "(missing)", "\n")'
-            else
-              echo "No renv.lock found for ${dir} (expected at r-code/renv.lock)"
+          # Install R packages using our dedicated script
+          echo "=== Installing R packages ==="
+          RENV_LOCK_FILES=""
+          for r in "${REPOS[@]}"; do
+            if [ -d "$r" ] && [ -f "$r/r-code/renv.lock" ]; then
+              RENV_LOCK_FILES="$RENV_LOCK_FILES $r/r-code/renv.lock"
             fi
-          }
+          done
+          
+          if [ -n "$RENV_LOCK_FILES" ]; then
+            export RENV_LOCK_FILES
+            Rscript install-r-packages.R $RENV_LOCK_FILES
+          else
+            echo "No renv.lock files found, installing critical packages only"
+            Rscript install-r-packages.R
+          fi
 
+          # Install Python packages
+          echo "=== Installing Python packages ==="
           install_python_reqs() {
             local dir="$1"
             local req_file="${dir}/python/requirements.txt"
@@ -113,26 +114,20 @@ jobs:
               pip freeze > "${dir}-pip-freeze.txt"
             else
               echo "No Python requirements.txt for ${dir} (expected at python/requirements.txt)"
+              echo "# no python manifest found" > "${dir}-pip-freeze.txt"
             fi
           }
 
           for r in "${REPOS[@]}"; do
             if [ -d "$r" ]; then
-              install_r_from_renv "$r" || echo "R install failed for $r (continuing)"
               install_python_reqs "$r" || echo "Python install failed for $r (continuing)"
             else
-              echo "Directory $r missing; skipping"
+              echo "Directory $r missing; skipping Python packages"
             fi
           done
 
-          echo "-- Verifying render-critical R packages (knitr, rmarkdown) --"
-          Rscript -e 'core <- c("knitr","rmarkdown"); miss <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)]; if(length(miss)) { install.packages(miss, repos="https://cloud.r-project.org"); miss2 <- core[!vapply(core, requireNamespace, logical(1), quietly=TRUE)]; if(length(miss2)) stop("Missing required R packages even after install: ", paste(miss2, collapse=",")); } cat("Core packages present:\n"); for(p in core) cat(p, ":", as.character(packageVersion(p)), "\n")'
-
-          echo "-- R Library Paths & Selected Package Versions --"
-          Rscript -e 'cat(".libPaths():\n"); cat(paste(" -", .libPaths()), sep="\n"); cat("\n"); for(p in c("knitr","rmarkdown","RefManageR")) { cat(p, ": "); if(requireNamespace(p, quietly=TRUE)) cat(as.character(utils::packageVersion(p)),"\n") else cat("(missing)\n"); }'
-
           echo "Generated package listing files:"
-          ls -1 *-r-packages.csv *-pip-freeze.txt 2>/dev/null || echo "(none)"
+          ls -1 *-pip-freeze.txt 2>/dev/null || echo "(no Python freeze files)"
 
       - name: Render QMD files and collect artifacts
         run: |
