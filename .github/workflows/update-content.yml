@@ -79,6 +79,42 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-
 
+      - name: Install system libraries for R packages
+        run: |
+          set -euo pipefail
+          echo "Updating apt package index"
+          sudo apt-get update -y
+          echo "Installing core build tooling (build-essential, pkg-config)"
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            pkg-config \
+            r-base-dev
+          echo "Installing libraries for curl, XML, fonts, text shaping, images"
+          sudo apt-get install -y --no-install-recommends \
+            libcurl4-openssl-dev \
+            libxml2-dev \
+            libfontconfig1-dev \
+            libfreetype6-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libpng-dev \
+            libjpeg-dev \
+            libtiff5-dev
+          echo "Installing git + libgit2 for usethis/gert"
+          sudo apt-get install -y --no-install-recommends \
+            git \
+            libgit2-dev
+          echo "Installing spatial / geospatial stack (sf, terra, rnaturalearth)"
+          sudo apt-get install -y --no-install-recommends \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev \
+            libudunits2-dev
+          echo "Cleaning apt caches to reduce layer size"
+          sudo apt-get clean
+          sudo rm -rf /var/lib/apt/lists/*
+          echo "System dependency installation complete"
+
       - name: Install repository dependencies (R via renv.lock, Python via requirements.txt)
         run: |
           set -euo pipefail
