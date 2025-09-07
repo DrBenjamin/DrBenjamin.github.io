@@ -292,6 +292,46 @@ jobs:
             echo "No course content changes detected."
           fi
 
+      - name: Sync topic asset folders
+        run: |
+          set -euo pipefail
+          echo "Syncing topic folders from source repositories"
+          CHANGED=false
+
+          sync_topics() {
+            local SRC_REPO_DIR="$1"
+            local LABEL="$2"
+            local DEST_DIR="topics-${LABEL}"
+            local SRC_TOPICS="${SRC_REPO_DIR}/topics"
+            if [ -d "$SRC_TOPICS" ]; then
+              echo "Found topics in $SRC_REPO_DIR; syncing to $DEST_DIR"
+              # Create destination if missing
+              mkdir -p "$DEST_DIR"
+              # Use rsync to copy only changes; quiet unless changes occur
+              # The --delete ensures removed files upstream are removed here
+              # Capture output to detect if anything actually changed
+              RSYNC_OUTPUT=$(rsync -a --delete "$SRC_TOPICS/" "$DEST_DIR/" 2>&1 || true)
+              if [ -n "$RSYNC_OUTPUT" ]; then
+                echo "$RSYNC_OUTPUT" | sed 's/^/  rsync: /'
+                CHANGED=true
+              else
+                echo "No changes for $DEST_DIR"
+              fi
+            else
+              echo "No topics directory at $SRC_TOPICS (skipping)"
+            fi
+          }
+
+          sync_topics source-analytical analytical
+          sync_topics source-datasci datasci
+
+          if [ "$CHANGED" = true ]; then
+            echo "Topic assets changed; marking CONTENT_CHANGED=true"
+            echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "No topic asset changes detected"
+          fi
+
       - name: Commit and push changes (if any)
         run: |
           git config --local user.email "action@github.com"
