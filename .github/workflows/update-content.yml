@@ -243,8 +243,17 @@ jobs:
             fi
 
             pushd "$SRC_DIR" >/dev/null
-            echo "Running: quarto render ${QMD}"
-            if ! quarto render "${QMD}"; then
+            echo "Preparing environment to bypass renv for render"
+            # Force-disable renv autoload inside this subshell
+            export RENV_CONFIG_AUTOLOAD=FALSE
+            unset RENV_PROJECT || true
+            # Neutralize user/site profiles that could trigger renv
+            export R_PROFILE_USER=/dev/null
+            export R_ENVIRON_USER=/dev/null
+            # Ensure critical packages are installed in global lib (idempotent)
+            Rscript -e "crit<-c('knitr','rmarkdown','RefManageR'); miss<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(miss)) install.packages(miss,repos='https://cloud.r-project.org'); left<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(left)) { quit(status=1) }"
+            echo "Running: quarto render ${QMD} (renv disabled)"
+            if ! RENV_CONFIG_AUTOLOAD=FALSE quarto render "${QMD}"; then
               echo "::error::Quarto render failed for ${QMD}"
               popd >/dev/null
               return 0
