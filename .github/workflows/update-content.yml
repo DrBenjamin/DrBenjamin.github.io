@@ -198,25 +198,6 @@ jobs:
           echo "Generated package listing files:"
           ls -1 *-pip-freeze.txt 2>/dev/null || echo "(no Python freeze files)"
 
-      - name: Bootstrap renv and restore per source repo (explicit)
-        if: env.USE_RENV == 'true'
-        run: |
-          set -euo pipefail
-          echo "Bootstrapping renv and running renv::restore() for each source repository"
-          for repo in source-analytical source-datasci; do
-            lockfile="${repo}/r-code/renv.lock"
-            if [ -f "$lockfile" ]; then
-              echo "Processing $lockfile"
-              # Ensure R_LIBS_USER is exported in this runner (was set earlier)
-              export R_LIBS_USER=${HOME}/R-library
-              # Install renv if missing and run renv::restore() in the project directory
-              Rscript -e "if (!requireNamespace('renv', quietly=TRUE)) install.packages('renv', repos='https://cloud.r-project.org')"
-              Rscript -e "cat('Running renv::restore for $repo\n'); setwd('$repo'); renv::restore(prompt = FALSE)"
-            else
-              echo "No lockfile at $lockfile; skipping"
-            fi
-          done
-
       - name: Verify critical R packages
         run: |
           set -euo pipefail
