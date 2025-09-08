@@ -19,6 +19,9 @@ concurrency:
 jobs:
   update-content:
     runs-on: ubuntu-latest
+    env:
+      USE_RENV: "false"            # Toggle to 'true' to enable full renv restore
+      RENV_CONFIG_AUTOLOAD: "FALSE" # Prevent automatic renv activation when disabled
     steps:
       - name: Checkout current repository
         uses: actions/checkout@v4
@@ -144,7 +147,7 @@ jobs:
             ls -lh apt-cache.tgz || true
             echo "Apt cache archive ready (upload occurs only if primary cache key was a miss)."
 
-      - name: Install repository dependencies (R via renv.lock, Python via requirements.txt)
+      - name: Install repository dependencies (R via renv.lock or critical only, Python via requirements.txt)
         run: |
           set -euo pipefail
 
@@ -159,11 +162,12 @@ jobs:
             fi
           done
           
-          if [ -n "$RENV_LOCK_FILES" ]; then
+          if [ -n "$RENV_LOCK_FILES" ] && [ "${USE_RENV}" = "true" ]; then
+            echo "USE_RENV=true -> passing lockfiles to install script"
             export RENV_LOCK_FILES
             Rscript install-r-packages.R $RENV_LOCK_FILES
           else
-            echo "No renv.lock files found, installing critical packages only"
+            echo "Skipping lockfile-driven install (either no lockfiles or USE_RENV != true); installing critical packages only"
             Rscript install-r-packages.R
           fi
 
@@ -195,6 +199,7 @@ jobs:
           ls -1 *-pip-freeze.txt 2>/dev/null || echo "(no Python freeze files)"
 
       - name: Bootstrap renv and restore per source repo (explicit)
+        if: env.USE_RENV == 'true'
         run: |
           set -euo pipefail
           echo "Bootstrapping renv and running renv::restore() for each source repository"
