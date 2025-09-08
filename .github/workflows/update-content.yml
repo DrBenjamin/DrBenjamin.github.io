@@ -215,6 +215,48 @@ jobs:
           R_EOF
           Rscript /tmp/verify_critical_packages.R
 
+      - name: Sync topic asset folders
+        run: |
+          set -euo pipefail
+          echo "Merging topic folders from source repositories into ./topics (unified)"
+          CHANGED=false
+
+          DEST_ROOT="topics"
+          mkdir -p "$DEST_ROOT"
+
+          # Function: merge a repo's topics directory into the unified topics/ tree.
+          # Collision policy: last repo processed wins for files with identical relative paths.
+          # We deliberately DO NOT use --delete to avoid one repo deleting the other's unique files.
+          merge_topics() {
+            local SRC_REPO_DIR="$1"
+            local SRC_TOPICS="${SRC_REPO_DIR}/topics"
+            if [ -d "$SRC_TOPICS" ]; then
+              echo "Found topics in $SRC_REPO_DIR; merging into $DEST_ROOT/"
+              # Capture rsync output; if non-empty, treat as change. -i itemizes only actual changes.
+              # No --delete so deletions in a source repo don't remove files from the unified set.
+              RSYNC_OUTPUT=$(rsync -a -i "$SRC_TOPICS/" "$DEST_ROOT/" 2>&1 || true)
+              if [ -n "$RSYNC_OUTPUT" ]; then
+                echo "$RSYNC_OUTPUT" | sed 's/^/  rsync: /'
+                CHANGED=true
+              else
+                echo "No changes for merge from $SRC_REPO_DIR"
+              fi
+            else
+              echo "No topics directory at $SRC_TOPICS (skipping)"
+            fi
+          }
+
+          # Order matters for collision policy (second can overwrite first). Current order: analytical then datasci.
+          merge_topics source-analytical
+          merge_topics source-datasci
+
+          if [ "$CHANGED" = true ]; then
+            echo "Unified topic assets changed; marking CONTENT_CHANGED=true"
+            echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "No unified topic asset changes detected"
+          fi
+
       - name: Render QMD files and collect artifacts
         run: |
           set -euo pipefail
@@ -303,48 +345,6 @@ jobs:
           else
             echo "CONTENT_CHANGED=false" >> $GITHUB_ENV
             echo "No course content changes detected."
-          fi
-
-      - name: Sync topic asset folders
-        run: |
-          set -euo pipefail
-          echo "Merging topic folders from source repositories into ./topics (unified)"
-          CHANGED=false
-
-          DEST_ROOT="topics"
-          mkdir -p "$DEST_ROOT"
-
-          # Function: merge a repo's topics directory into the unified topics/ tree.
-          # Collision policy: last repo processed wins for files with identical relative paths.
-          # We deliberately DO NOT use --delete to avoid one repo deleting the other's unique files.
-          merge_topics() {
-            local SRC_REPO_DIR="$1"
-            local SRC_TOPICS="${SRC_REPO_DIR}/topics"
-            if [ -d "$SRC_TOPICS" ]; then
-              echo "Found topics in $SRC_REPO_DIR; merging into $DEST_ROOT/"
-              # Capture rsync output; if non-empty, treat as change. -i itemizes only actual changes.
-              # No --delete so deletions in a source repo don't remove files from the unified set.
-              RSYNC_OUTPUT=$(rsync -a -i "$SRC_TOPICS/" "$DEST_ROOT/" 2>&1 || true)
-              if [ -n "$RSYNC_OUTPUT" ]; then
-                echo "$RSYNC_OUTPUT" | sed 's/^/  rsync: /'
-                CHANGED=true
-              else
-                echo "No changes for merge from $SRC_REPO_DIR"
-              fi
-            else
-              echo "No topics directory at $SRC_TOPICS (skipping)"
-            fi
-          }
-
-          # Order matters for collision policy (second can overwrite first). Current order: analytical then datasci.
-          merge_topics source-analytical
-          merge_topics source-datasci
-
-          if [ "$CHANGED" = true ]; then
-            echo "Unified topic assets changed; marking CONTENT_CHANGED=true"
-            echo "CONTENT_CHANGED=true" >> $GITHUB_ENV
-          else
-            echo "No unified topic asset changes detected"
           fi
 
       - name: Commit and push changes (if any)
