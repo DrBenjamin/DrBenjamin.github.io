@@ -91,14 +91,17 @@ ensure_critical_packages <- function() {
   if (length(missing_critical) > 0) {
     cat("Installing missing critical packages:", paste(missing_critical, collapse = ", "), "\n")
   failed <- install_packages_safe(missing_critical)
-  # Remove any that are in failed from further verification attempt
-    
-    # Verify again
-    still_missing <- critical_packages[!vapply(critical_packages, requireNamespace, logical(1), quietly = TRUE)]
-    
-    if (length(still_missing) > 0) {
-      stop("Failed to install critical packages: ", paste(still_missing, collapse = ", "))
-    }
+  # Report any failed critical installs
+  if (length(failed)) {
+    cat("Warning: failed to install critical packages:", paste(failed, collapse = ", "), "\n")
+  }
+
+  # Verify again
+  still_missing <- critical_packages[!vapply(critical_packages, requireNamespace, logical(1), quietly = TRUE)]
+
+  if (length(still_missing) > 0) {
+    stop("Failed to install critical packages: ", paste(still_missing, collapse = ", "))
+  }
   }
   
   # Report versions
@@ -136,7 +139,42 @@ main <- function() {
   
   # Install packages from each renv.lock file
   for (lock_file in args) {
-    install_from_renv_lock(lock_file)
+    # If renv is available, prefer to perform a full renv::restore() in the
+    # project directory that contains the lockfile. This restores package
+    # library state deterministically rather than installing ad-hoc.
+    project_dir <- dirname(lock_file)
+    if (!project_dir %in% c("", ".") && file.exists(lock_file)) {
+      cat("Attempting renv restore in project:", project_dir, "\n")
+      # Ensure the R library path requested by CI (R_LIBS_USER) is present
+      r_libs_user <- Sys.getenv("R_LIBS_USER", unset = "")
+      if (nzchar(r_libs_user) && !r_libs_user %in% .libPaths()) {
+        cat("Adding R_LIBS_USER to .libPaths():", r_libs_user, "\n")
+        .libPaths(c(r_libs_user, .libPaths()))
+      }
+
+      # Attempt to use renv::restore() for deterministic restore. If renv is
+      # missing, bootstrap it first (renv::hydrate/renv::restore will install
+      # renv automatically when using the bootstrap script but we'll be explicit).
+      tryCatch({
+        if (!requireNamespace("renv", quietly = TRUE)) {
+          install.packages("renv", repos = "https://cloud.r-project.org", quiet = TRUE)
+        }
+
+        # Run restore in the project directory so that renv uses the correct lockfile
+        old_wd <- getwd()
+        on.exit(setwd(old_wd), add = TRUE)
+        setwd(project_dir)
+        renv::restore(lockfile = basename(lock_file), prompt = FALSE)
+        cat("renv::restore completed for", project_dir, "\n")
+      }, error = function(e) {
+        cat("renv::restore failed for", project_dir, "- falling back to individual installs.\n")
+        cat("  error:", conditionMessage(e), "\n")
+        # Fallback to parsing lockfile and installing packages individually
+        install_from_renv_lock(lock_file)
+      })
+    } else {
+      install_from_renv_lock(lock_file)
+    }
   }
   
   # Ensure critical packages are available
