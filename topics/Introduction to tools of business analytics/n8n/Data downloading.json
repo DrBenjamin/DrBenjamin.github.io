@@ -1,0 +1,134 @@
+{
+  "name": "Data downloading",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a12097f7-2282-4f53-a9df-fe657c7e63c9",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://minio.seriousbenentertainment.org:9000/data/Business_Report%20-%202025.csv",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "080bc55c-ba80-4f96-af01-e832081f19b5",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=data",
+        "options": {
+          "append": false
+        }
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        624,
+        0
+      ],
+      "id": "71ec8b83-b51d-42c6-9569-ba87cacbd0be",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "options": {
+          "delimiter": ",",
+          "fileName": "Downloaded_CSV_File",
+          "headerRow": true
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "79b3ad12-5efb-4708-9d54-bb8b8a87d2ad",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Parse CSV from item.json.data into a DataFrame (pandas preferred; fallback to csv module)\n# Setting imports and helpers\nimport io\nimport json\nfrom datetime import datetime\n\n# Try to import pandas; if not available we use csv.DictReader as fallback\ntry:\n    import pandas as pd\n    PANDAS_AVAILABLE = True\nexcept Exception:\n    import csv\n    PANDAS_AVAILABLE = False\n\n\ndef try_parse_number(s):\n    # Setting helper to try parse numbers (int/float), else return original string\n    if s is None:\n        return None\n    if isinstance(s, (int, float)):\n        return s\n    s = s.strip()\n    if s == \"\":\n        return None\n    # Try int\n    try:\n        return int(s)\n    except Exception:\n        pass\n    # Try float\n    try:\n        return float(s)\n    except Exception:\n        return s\n\n\ndef try_parse_date(s):\n    # Setting helper to try parse ISO-like date strings\n    if s is None:\n        return None\n    if isinstance(s, datetime):\n        return s\n    s = s.strip()\n    if s == \"\":\n        return None\n    # Try common ISO format first\n    for fmt in (\"%Y-%m-%d\", \"%Y/%m/%d\", \"%d-%m-%Y\", \"%m/%d/%Y\"):\n        try:\n            return datetime.strptime(s, fmt)\n        except Exception:\n            pass\n    # fallback: try fromisoformat\n    try:\n        return datetime.fromisoformat(s)\n    except Exception:\n        return s\n\n\n# Setting main loop over input items\noutput = []\nfor item in _input.all():\n    out_item = {\"json\": dict(item.get(\"json\", {}))}  # copy original JSON\n    data_field = out_item[\"json\"].get(\"data\")\n\n    if not data_field:\n        out_item[\"json\"][\"error\"] = \"No `data` field found or it's empty\"\n        output.append(out_item)\n        continue\n\n    # If data is a JSON string wrapping the CSV (sometimes happens), try to unwrap\n    if isinstance(data_field, (dict, list)):\n        # If someone already parsed it into objects, keep as-is\n        out_item[\"json\"][\"_parsed\"] = data_field\n        output.append(out_item)\n        continue\n\n    # Ensure it's a plain string\n    csv_text = str(data_field)\n\n    try:\n        if PANDAS_AVAILABLE:\n            # Setting: parse CSV with pandas\n            df = pd.read_csv(io.StringIO(csv_text))\n            # Setting: try convert 'Date' column to datetime if present\n            if \"Date\" in df.columns:\n                df[\"Date\"] = pd.to_datetime(df[\"Date\"], errors=\"coerce\")\n\n            # Setting: try convert other numeric-like columns to numeric where safe\n            for col in df.columns:\n                if col == \"Date\":\n                    continue\n                # Pandas to_numeric with errors='ignore' will keep non-numeric as-is\n                df[col] = pd.to_numeric(df[col], errors=\"ignore\")\n\n            # Convert DataFrame to JSON-friendly structures\n            records = df.to_dict(orient=\"records\")\n            dtypes = {col: str(dtype) for col, dtype in df.dtypes.items()}\n\n            out_item[\"json\"][\"_df_records\"] = records\n            out_item[\"json\"][\"_df_columns\"] = list(df.columns)\n            out_item[\"json\"][\"_df_dtypes\"] = dtypes\n            out_item[\"json\"][\"_df_row_count\"] = len(df)\n\n        else:\n            # Setting: fallback parsing using csv module (no pandas)\n            import csv as _csv\n            reader = _csv.DictReader(io.StringIO(csv_text))\n            rows = list(reader)\n\n            # Try to coerce numbers and dates\n            for r in rows:\n                for k, v in list(r.items()):\n                    if v is None:\n                        continue\n                    # strip whitespace\n                    val = v.strip()\n                    # Try parse date for 'Date' column\n                    if k == \"Date\":\n                        parsed = try_parse_date(val)\n                        r[k] = parsed if isinstance(parsed, datetime) else val\n                        continue\n                    # Try numbers\n                    parsed_num = try_parse_number(val)\n                    r[k] = parsed_num\n\n            out_item[\"json\"][\"_df_records\"] = rows\n            out_item[\"json\"][\"_df_columns\"] = reader.fieldnames or []\n            out_item[\"json\"][\"_df_dtypes\"] = {\n                col: \"unknown (pandas not available)\" for col in (reader.fieldnames or [])\n            }\n            out_item[\"json\"][\"_df_row_count\"] = len(rows)\n\n    except Exception as e:\n        out_item[\"json\"][\"error\"] = f\"Parsing error: {str(e)}\"\n    output.append(out_item)\n\n# Setting: return all processed items\nreturn output"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        208
+      ],
+      "id": "33a9a62f-8ebf-4b7b-a808-f25ab9128d70",
+      "name": "Creating a pandas dataframe"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Creating a pandas dataframe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "40259671-9104-4870-aea1-09820c1ca3ad",
+  "meta": {
+    "instanceId": "b832e040fbedd7101b68e90640eccba5035d956c4725d62674206e00319162cf"
+  },
+  "id": "AazRSpaMQm77Ywd3",
+  "tags": []
+}
