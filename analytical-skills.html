@@ -2242,7 +2242,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">19.09.2025 03:32</p>
+      <p class="date">19.09.2025 10:51</p>
     </div>
   </div>
   
@@ -2417,15 +2417,28 @@ vertical-align: -.125em;
 <ul>
 <li><a href="https://app.n8n.cloud/dashboard">n8n</a>
 <ul>
-<li>Follow this short introduction to n8n:
+<li>Follow these short introductions to n8n workflows:
+<ul>
+<li><a href="https://minio.seriousbenentertainment.org:9000/data/Data%20downloading.json">Data downloading</a> (import it with the context menu on the top right of the workflow page (…) - <code>Import from File...</code> or <code>Import from URL...</code>):
 <ol type="1">
 <li>Create an account on <a href="https://app.n8n.cloud/dashboard">n8n.cloud</a></li>
 <li>Create a new workflow</li>
 <li>Add a new node and select “HTTP Request”</li>
 <li>Configure the node to make a GET request to <code>https://minio.seriousbenentertainment.org:9000/data/Business_Report%20-%202025.csv</code></li>
-<li>Add a new node and select “Convert to File”</li>
-<li>See what other possibilities n8n offers you to wrangle the data You can also import the <a href="https://minio.seriousbenentertainment.org:9000/data/Data%20downloading.json">n8n workflow</a> with the context menu on the top right of the workflow page (…) - <code>Import from File...</code> or <code>Import from URL...</code>.</li>
+<li>Add a new node and select “Write Binary File”</li>
+<li>Configure the node to write the data to your local disk</li>
 </ol></li>
+<li><a href="https://minio.seriousbenentertainment.org:9000/data/Mediapipe.json">Mediapipe</a> (import it with the context menu on the top right of the workflow page (…) - <code>Import from File...</code> or <code>Import from URL...</code>):
+<ol type="1">
+<li>Create a new workflow</li>
+<li>Add a new node and select “HTTP Request” - configure the node to make a GET request to <code>https://minio.seriousbenentertainment.org:9000/data/input.mp4</code></li>
+<li>Add a new node Extract from File</li>
+<li>Add a new node Build JSON</li>
+<li>Add a new node and select “Mediapipe”</li>
+<li>Add a new node HTTP Request - configure the node to make a POST request to <code>http://212.227.102.172:8000/mediapipe</code></li>
+<li>Add a new node Github - configure the node to commit the results to the <a href="https://github.com/DrBenjamin/Mediapipe">Github repository</a></li>
+</ol></li>
+</ul></li>
 </ul></li>
 <li><a href="https://www.tableau.com/academic/students">Tableau</a></li>
 <li><a href="https://signup.snowflake.com/?">Snowflake</a></li>
