@@ -79,6 +79,15 @@ The landing page provides navigational access to two sets of course materials (F
 - Analytical Skills for Business (Master Studies in Business Administration) → `analytical-skills.html` / `Analytical_Skills_for_Business.pdf`
 - Data Science and Data Analytics (Bachelor Studies in International Business Management) → `data-science-analytics.html` / `Data_Science_and_Data_Analytics.pdf`
 
+### 💬 Comments Feature
+
+The landing page includes a comments section powered by [giscus](https://giscus.app), which uses GitHub Discussions to enable:
+
+- Students and visitors to leave comments and feedback
+- Discussion threads on course materials
+- Reactions and engagement with comments
+- GitHub authentication for secure commenting
+
 ## 🔗 Related Repositories
 
 - **Source Content**: [DrBenjamin/Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business)
