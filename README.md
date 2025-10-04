@@ -1,4 +1,4 @@
-# DrBenjamin.github.io
+# Github Pages - DrBenjamin.github.io
 
 This repository hosts Dr. Benjamin's GitHub Pages site, featuring automated content synchronization from
 - [Analytical-Skills-for-Business](https://github.com/DrBenjamin/Analytical-Skills-for-Business)
