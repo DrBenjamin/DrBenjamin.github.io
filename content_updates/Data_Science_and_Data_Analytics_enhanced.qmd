@@ -1,0 +1,414 @@
+---
+title: "Data Science and Data Analytics (WS 2025/26)"
+subtitle: "International Business Management (B. A.)"
+author: 
+    name: "© Benjamin Gross"
+    email: benjamin.gross@ext.hs-fresenius.de
+    affiliation: 
+      - Hochschule Fresenius - University of Applied Science
+      - "Email: benjamin.gross@ext.hs-fresenius.de"
+      - "Website: https://drbenjamin.github.io"
+filters:
+  - scripts/adjustTime.lua
+abstract: |
+  This document provides the course material for Data Science and Data Analytics (B. A. – International Business Management). Upon successful completion of the course, students will be able to: recognize important technological and methodological advancements in data science and distinguish between descriptive, predictive, and prescriptive analytics; demonstrate proficiency in classifying data and variables, collecting and managing data, and conducting comprehensive data evaluations; utilize R for effective data manipulation, cleaning, visualization, outlier detection, and dimensionality reduction; conduct sophisticated data exploration and mining techniques (including PCA, Factor Analysis, and Regression Analysis) to discover underlying patterns and inform decision-making; analyze and interpret causal relationships in data using regression analysis; evaluate and organize the implementation of a data analysis project in a business environment; and communicate the results and effects of a data analysis project in a structured way.
+format:
+  html:
+    embed-resources: true
+    theme: cerulean
+    toc: true
+    toc-expand: 5
+    toc-depth: 5
+    number-sections: false
+    number-depth: 5
+  pdf:
+    keep-tex: false
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+    documentclass: scrartcl
+    classoption: [onecolumn, oneside, a4paper]
+    linkcolor: blue
+    urlcolor: blue
+    filecolor: magenta
+    citecolor: magenta
+    colorlinks: true
+    margin-left: "1in"
+    margin-right: "1in"
+    margin-top: "1in"
+    margin-bottom: "1in"
+    papersize: a4
+    fig-cap-location: top
+    toc: true
+    toc-depth: 5
+    number-sections: true
+    lof: false
+    lot: false
+link-citations: false
+csl: "./literature/apa.csl"
+bibliography: ["./literature/essential_readings.bib", "./literature/further_readings.bib"]
+suppress-bibliography: true
+execute:
+  enabled: true
+  echo: false
+---
+
+\clearpage
+# Scope and Nature of Data Science
+
+Let's start this course with some definitions and context.
+
+**Definition of Data Science:**
+
+> The ﬁeld of Data Science concerns techniques for extracting
+> knowledge from diverse data, with a particular focus on ‘big’
+> data exhibiting ‘V’ attributes such as volume, velocity, variety, value and veracity.
+
+@Maneth2016
+
+**Definition of Data Analytics:**
+
+Data analytics is the systematic process of examining data using statistical, computational, and domain-specific methods to extract insights, identify patterns, and support decision-making. It combines competencies in data handling, analysis techniques, and domain knowledge to generate actionable outcomes in organizational contexts [@Cuadrado-Gallego2023].
+
+**Definition of Business Analytics:**
+
+> Business analytics is the science of posing and answering data questions related to
+> business. Business analytics has rapidly expanded in the last few years to include
+> tools drawn from statistics, data management, data visualization, and machine learn-
+> ing. There is increasing emphasis on big data handling to assimilate the advances
+> made in data sciences. As is often the case with applied methodologies, business
+> analytics has to be soundly grounded in applications in various disciplines and
+> business verticals to be valuable. The bridge between the tools and the applications
+> are the modeling methods used by managers and researchers in disciplines such as
+> finance, marketing, and operations.
+
+@Pochiraju2019
+
+There are many roles in the data science field, including (but not limited to):
+
+![**Source:** *LinkedIn*](./topics/Scope%20and%20Nature%20of%20Data%20Science/IMG_0120.png)
+
+For skills and competencies required for data science activities, see [Skills Landscape](./topics/Scope%20and%20Nature%20of%20Data%20Science/The%20data%20science%20skills%20landscape%20slides.pdf).
+
+## Defining Data Science as an Academic Discipline
+
+Data science emerges as an interdisciplinary field that synthesizes methodologies and insights from multiple academic domains to extract knowledge and actionable insights from data. As an academic discipline, data science represents a convergence of computational, statistical, and domain-specific expertise that addresses the growing need for data-driven decision-making in various sectors.
+
+Data science draws from and interacts with multiple foundational disciplines:
+
+* **Informatics / Information Systems:**
+
+  Informatics provides the foundational understanding of information processing, storage, and retrieval systems that underpin data science infrastructure. It encompasses database design, data modeling, information architecture, and system integration principles essential for managing large-scale data ecosystems. Information systems contribute knowledge about organizational data flows, enterprise architectures, and the sociotechnical aspects of data utilization in business contexts.
+
+  See the [Technical Applications & Data Analytics coursebook](https://github.com/DrBenjamin/Data-Science-and-Data-Analytics/blob/66da3d5a65a1f57ab9ca5e35fd91df4077a7bad7/literature/Technical%20Applications%20%26%20Data%20Analytics.pdf/?raw=true) by @Gross2021 for further reading on foundations in informatics.
+
+* **Computer Science (algorithms, data structures, systems design):**
+
+  Computer science provides the computational foundation for data science through algorithm design, complexity analysis, and efficient data structures. Core contributions include machine learning algorithms, distributed computing paradigms, database systems, and software engineering practices. System design principles enable scalable data processing architectures, while computational thinking frameworks guide algorithmic problem-solving approaches essential for data-driven solutions.
+
+  See also: [Analytical Skills for Business - 1 Introduction](https://drbenjamin.github.io/analytical-skills.html#sec-intro) and take a look at the AI Universe overview graphic:
+
+  ![**Source:** *LinkedIn*](./topics/Scope%20and%20Nature%20of%20Data%20Science/IMG_0122.png)
+
+  See the [Overview on no-code and low-code tools for data analytics](https://drbenjamin.github.io/analytical-skills.html#overview-on-no-code-and-low-code-tools-for-data-analytics) for an overview on no-code and low-code tools for data analytics and AI tooling.
+
+* **Mathematics (linear algebra, calculus, optimization):**
+
+  Mathematics provides the theoretical backbone for data science through linear algebra (matrix operations, eigenvalues, vector spaces), calculus (derivatives, gradients, optimization), and discrete mathematics (graph theory, combinatorics). These mathematical foundations enable dimensionality reduction techniques, gradient-based optimization algorithms, statistical modeling, and the rigorous formulation of machine learning problems. Mathematical rigor ensures the validity and interpretability of analytical results.
+
+* **Statistics & Econometrics (inference, modeling, causal analysis):**
+
+  Statistics provides the methodological framework for data analysis through hypothesis testing, confidence intervals, regression analysis, and experimental design. Econometrics contributes advanced techniques for causal inference, time series analysis, and handling observational data challenges such as endogeneity and selection bias. These disciplines ensure rigorous uncertainty quantification, model validation, and the ability to draw reliable conclusions from data while understanding limitations and assumptions.
+
+* **Social Science & Behavioral Sciences (contextual interpretation, experimental design):**
+
+  Social and behavioral sciences contribute essential understanding of human behavior, organizational dynamics, and contextual factors that influence data generation and interpretation. These disciplines provide expertise in experimental design, survey methodology, ethical considerations, and the social implications of data-driven decisions. They ensure that data science applications consider human factors, cultural context, and societal impact while maintaining ethical standards in data collection and analysis.
+
+  ![**Source:** *LinkedIn*](topics/./Scope%20and%20Nature%20of%20Data%20Science/AI%20and%20culture.png)
+
+The interdisciplinary nature of data science requires practitioners to develop competencies across these domains while maintaining awareness of how different methodological traditions complement and inform each other. This multidisciplinary foundation enables data scientists to approach complex problems with both technical rigor and contextual understanding, ensuring that analytical solutions are both technically sound and practically relevant.
+
+For further reading on the academic foundations of data science, see the comprehensive analysis in [Defining Data Science as an Academic Discipline](./topics/Scope%20and%20Nature%20of%20Data%20Science/Defining%20Data%20Science%20as%20an%20Academic%20Discipline/482-1-945-1-10-20150421.pdf).
+
+## Significance of Business Data Analysis for Decision-Making
+
+Business data analysis has evolved from a supporting function to a critical strategic capability that fundamentally transforms how organizations make decisions, allocate resources, and compete in modern markets. The systematic application of analytical methods to business data enables evidence-based decision-making that reduces uncertainty, improves operational efficiency, and creates sustainable competitive advantages.
+
+### Strategic Decision-Making Framework
+
+Business data analysis provides a structured approach to strategic decision-making through multiple analytical dimensions:
+
+* **Evidence-Based Strategic Planning**: Data analysis supports long-term strategic decisions by providing empirical evidence about market trends, competitive positioning, and organizational capabilities. Statistical analysis of historical performance data, market research, and competitive intelligence enables organizations to formulate strategies grounded in quantifiable evidence rather than intuition alone.
+
+* **Risk Assessment and Mitigation**: Advanced analytical techniques enable comprehensive risk evaluation across operational, financial, and strategic dimensions. Monte Carlo simulations, scenario analysis, and predictive modeling help organizations quantify potential risks and develop contingency plans based on probabilistic assessments of future outcomes.
+
+* **Resource Allocation Optimization**: Data-driven resource allocation models leverage optimization algorithms and statistical analysis to maximize return on investment across different business units, projects, and initiatives. Linear programming, integer optimization, and multi-criteria decision analysis provide frameworks for allocating limited resources to achieve optimal organizational outcomes.
+
+### Operational Decision Support
+
+At the operational level, business data analysis transforms day-to-day decision-making through real-time insights and systematic performance measurement:
+
+* **Performance Measurement and Continuous Improvement**: Key Performance Indicators (KPIs) and statistical process control methods enable organizations to monitor operational efficiency, quality metrics, and customer satisfaction in real-time. Time series analysis, control charts, and regression analysis identify trends, anomalies, and improvement opportunities that drive continuous operational enhancement.
+
+* **Forecasting and Demand Planning**: Statistical forecasting models using techniques such as ARIMA, exponential smoothing, and machine learning algorithms enable accurate demand prediction for inventory management, capacity planning, and supply chain optimization. These analytical approaches reduce uncertainty in operational planning while minimizing costs associated with overstock or stockouts.
+
+* **Customer Analytics and Personalization**: Advanced customer analytics leverage segmentation analysis, predictive modeling, and behavioral analytics to understand customer preferences, predict churn, and optimize retention strategies. Clustering algorithms, logistic regression, and recommendation systems enable personalized customer experiences that increase satisfaction and loyalty.
+
+### Tactical Decision Integration
+
+Business data analysis bridges strategic planning and operational execution through tactical decision support:
+
+* **Pricing Strategy Optimization**: Price elasticity analysis, competitive pricing models, and revenue optimization techniques enable dynamic pricing strategies that maximize profitability while maintaining market competitiveness. Regression analysis, A/B testing, and econometric modeling provide empirical foundations for pricing decisions.
+
+* **Market Intelligence and Competitive Analysis**: Data analysis transforms market research and competitive intelligence into actionable insights through statistical analysis of market trends, customer behavior, and competitive positioning. Multivariate analysis, factor analysis, and time series forecasting identify market opportunities and competitive threats.
+
+* **Financial Performance Analysis**: Financial analytics encompassing ratio analysis, variance analysis, and predictive financial modeling enable organizations to assess financial health, identify cost reduction opportunities, and optimize capital structure decisions. Statistical analysis of financial data supports both internal performance evaluation and external stakeholder communication.
+
+### Contemporary Analytical Capabilities
+
+Modern business data analysis capabilities extend traditional analytical methods through integration of advanced technologies and methodologies:
+
+* **Real-Time Analytics and Decision Support**: Stream processing, event-driven analytics, and real-time dashboards enable immediate response to changing business conditions. Complex event processing and real-time statistical monitoring support dynamic decision-making in fast-paced business environments.
+
+* **Predictive and Prescriptive Analytics**: Machine learning algorithms, neural networks, and optimization models enable organizations to not only predict future outcomes but also recommend optimal actions. These advanced analytical capabilities support automated decision-making and strategic scenario planning.
+
+* **Data-Driven Innovation**: Analytics-driven innovation leverages data science techniques to identify new business opportunities, develop innovative products and services, and create novel revenue streams. Advanced analytics enable organizations to discover hidden patterns, correlations, and insights that drive innovation and competitive differentiation.
+
+The significance of business data analysis for decision-making extends beyond technical capabilities to encompass organizational transformation, cultural change, and strategic competitive positioning. Organizations that successfully integrate analytical capabilities into their decision-making processes achieve superior performance outcomes, enhanced agility, and sustainable competitive advantages in increasingly data-driven markets.
+
+For comprehensive coverage of business data analysis methodologies and applications, see [Advanced Business Analytics](./topics/Scope%20and%20Nature%20of%20Data%20Science/Business%20Data%20Analysis/978-3-031-78070-7.pdf) and the analytical foundations outlined in @Evans2020.
+
+## Emerging Trends
+
+Key technological and methodological developments shaping the data landscape:
+
+* Evolution of computing and data processing architectures.
+* Digitalization of processes and platforms.
+* Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL).
+* Big Data ecosystems (volume, velocity, variety, veracity, value).
+
+  ![**Source:** *LinkedIn*](./topics/Scope%20and%20Nature%20of%20Data%20Science/Emerging%20Trends/Big_Data_5Vs.jpg)
+
+* Internet of Things (IoT) and sensor-driven data generation.
+
+  ![**Source:** *https://businesstech.bus.umich.edu/uncategorized/tech-101-internet-of-things/*](./topics/Scope%20and%20Nature%20of%20Data%20Science/Emerging%20Trends/iot2.png)
+  
+* Cloud computing and elastic infrastructure.
+* Blockchain for distributed trust and data integrity.
+* Industry 4.0: cyber-physical systems and automation.
+* Remote and hybrid working environments: collaboration, distributed analytics, governance.
+
+## Types of Analytics
+
+* Descriptive Analytics: What happened?
+* Predictive Analytics: What is likely to happen?
+* Prescriptive Analytics: What should we do?
+
+![**Source:** *https://datamites.com/blog/descriptive-vs-predictive-vs-prescriptive-analytics/*](./topics/Scope%20and%20Nature%20of%20Data%20Science/Emerging%20Trends/analytics.jpg)
+
+\newpage
+# Data Analytic Competencies
+
+Data analytic competencies encompass the ability to apply machine learning, data mining, statistical methods, and algorithmic approaches to extract meaningful patterns, insights, and predictions from complex datasets. They include proficiency in exploratory data analysis, feature engineering, model selection, evaluation, and validation. These skills ensure rigorous interpretation of data, support evidence-based decision-making, and enable the development of robust analytical solutions adaptable to diverse health, social, and technological contexts.
+
+## Types of Data
+
+The structure and temporal dimension of data fundamentally influence analytical approaches and statistical methods. Understanding data types enables researchers to select appropriate modeling techniques and interpret results within proper contextual boundaries.
+
+* **Cross-sectional data** captures observations of multiple entities (individuals, firms, countries) at a single point in time. This structure facilitates comparative analysis across units but does not track changes over time. Cross-sectional studies are particularly valuable for examining relationships between variables at a specific moment and testing hypotheses about population characteristics.
+
+* **Time-series data** records observations of a single entity across multiple time points, enabling the analysis of temporal patterns, trends, seasonality, and cyclical behaviors. Time-series methods account for autocorrelation and temporal dependencies, supporting forecasting and dynamic modeling. This data structure is essential for economic indicators, financial markets, and environmental monitoring.
+
+* **Panel (longitudinal) data** combines both dimensions, tracking multiple entities over time. This structure offers substantial analytical advantages by controlling for unobserved heterogeneity across entities and modeling both within-entity and between-entity variation. Panel data methods support causal inference through fixed-effects and random-effects models, difference-in-differences estimation, and dynamic panel specifications.
+
+![**Source:** *https://static.vecteezy.com*](topics/Data%20Analytic%20Competencies/Types%20of%20Data/types%20of%20data.jpg)
+
+**Additional data structures:**
+
+* **Geo-referenced / spatial data** is data associated with specific geographic locations, enabling spatial analysis and visualization. Techniques such as Geographic Information Systems (GIS), spatial autocorrelation, and spatial regression models are employed to analyze patterns and relationships in spatially distributed data.
+
+![**Source:** *https://www.slingshotsimulations.com/*](topics/Data%20Analytic%20Competencies/Types%20of%20Data/GIS-Data.png)
+
+* **Streaming / real-time data** is continuously generated data that is processed and analyzed in real-time. This data structure is crucial for applications requiring immediate insights, such as fraud detection, network monitoring, and real-time recommendation systems.
+
+## Types of Variables
+
+* **Continuous (interval/ratio)** data is measured on a scale with meaningful intervals and a true zero point (ratio) or arbitrary zero point (interval). Examples include height, weight, temperature, and income. Continuous variables support a wide range of statistical analyses, including regression and correlation.
+* **Count** data represents the number of occurrences of an event or the frequency of a particular characteristic. Count variables are typically non-negative integers and can be analyzed using Poisson regression or negative binomial regression.
+* **Ordinal** data represents categories with a meaningful order or ranking but no consistent interval between categories. Examples include survey responses (e.g., Likert scales) and socioeconomic status (e.g., low, medium, high). Ordinal variables can be analyzed using non-parametric tests or ordinal regression.
+* **Categorical (nominal / binary)** data represents distinct categories without any inherent order. Nominal variables have two or more categories (e.g., gender, race, or marital status), while binary variables have only two categories (e.g., yes/no, success/failure). Categorical variables can be analyzed using chi-square tests or logistic regression.
+* **Compositional or hierarchical structures** represent data with a part-to-whole relationship or nested categories. Examples include demographic data (e.g., age groups within gender) and geographical data (e.g., countries within continents). Compositional data can be analyzed using techniques such as hierarchical clustering or multilevel modeling.
+
+![**Source:** *https://www.collegedisha.com/*](topics/Data%20Analytic%20Competencies/Types%20of%20Data/Types_of_Data.png)
+
+## Conceptual Framework: Knowledge & Understanding of Data
+
+* **Clarify analytical purpose and domain context** to guide data selection and interpretation.
+* **Define entities, observational units, and identifiers** to ensure accurate data representation.
+* **Align business concepts with data structures** for meaningful analysis.
+
+## Data Collection
+
+Data collection forms the foundational stage of any data science project, requiring systematic approaches to gather information that aligns with research objectives and analytical requirements. As outlined in modern statistical frameworks, effective data collection strategies must balance methodological rigor with practical constraints [@etinkaya-Rundel2021].
+
+### Methodological Foundation
+
+The scientific approach to data collection is grounded in fundamental principles of research methodology and statistical inference. According to @etinkaya-Rundel2021, data collection strategies must consider sampling design, measurement validity, and potential sources of bias that could compromise the integrity of subsequent analyses. The choice between observational studies and experimental designs fundamentally shapes what causal inferences can be drawn from the collected data.
+
+**Key methodological considerations include:**
+
+* **Sampling Framework**: Determining whether to employ probability sampling (simple random, stratified, cluster) or non-probability approaches (convenience, purposive, snowball) based on research objectives and population accessibility.
+
+* **Measurement Design**: Establishing operational definitions for variables, selecting appropriate scales (nominal, ordinal, interval, ratio), and ensuring measurement instruments demonstrate adequate reliability and validity.
+
+* **Temporal Dimensions**: Distinguishing between cross-sectional (single time point), longitudinal (repeated measures), and time-series data collection approaches, each with distinct analytical implications.
+
+![Methods of Data Collection](./topics/Data%20Analytic%20Competencies/Data%20Collection/Method_of_data_collection.jpg)
+
+### Core Data Collection Competencies
+
+The competencies required for effective data collection encompass both technical proficiency and methodological understanding (see [Data Collection Competencies.pdf](./topics/Data Analytic Competencies/Data Collection/Data Collection Competencies.pdf)):
+
+* **Source Identification and Assessment**: Systematically identify internal and external data sources, evaluating their relevance, quality, and accessibility for the analytical objectives. This includes distinguishing between primary data (collected specifically for the research question) and secondary data (existing datasets repurposed for new analyses).
+
+* **Data Acquisition Methods**: Implement appropriate collection techniques including:
+  - **Primary Collection**: Surveys, interviews, focus groups, direct observation, sensor measurements, and controlled experiments
+  - **Secondary Sources**: APIs, database queries, administrative records, third-party datasets, web scraping, and vendor partnerships
+  - Ensure methodological alignment with research design while considering cost-effectiveness, timeliness, and data quality trade-offs.
+
+* **Quality and Governance Framework**: Establish protocols for assessing data provenance, licensing agreements, ethical compliance, and regulatory requirements (GDPR, HIPAA, industry-specific standards). Implement data quality assessment frameworks addressing accuracy, completeness, consistency, timeliness, and relevance [@etinkaya-Rundel2021].
+
+* **Methodological Considerations**: Apply principles from research methodology to ensure data collection approaches support valid statistical inference and minimize bias introduction during the acquisition process. Address potential sources of selection bias, measurement error, non-response bias, and confounding variables that may threaten internal and external validity.
+
+### Statistical Considerations in Data Collection
+
+Modern data collection must address fundamental statistical principles that impact analytical validity:
+
+**Sample Size Determination**: Calculate appropriate sample sizes using power analysis to ensure adequate precision for parameter estimation and hypothesis testing, considering effect size, significance level, and desired statistical power.
+
+**Missing Data Mechanisms**: Design collection protocols that minimize missing data while recognizing the distinction between data missing completely at random (MCAR), missing at random (MAR), and missing not at random (MNAR), as these mechanisms have different implications for bias and analytical approaches.
+
+**Measurement Error**: Implement validation procedures and quality control mechanisms to quantify and minimize systematic and random measurement errors that can attenuate relationships or introduce spurious associations.
+
+### Contemporary Data Collection Landscape
+
+Modern data collection operates within an increasingly complex ecosystem characterized by diverse data types, real-time requirements, and distributed sources. The integration of traditional survey methods with emerging IoT sensors, social media APIs, and automated data pipelines requires comprehensive competency frameworks that address both technical implementation and methodological validity.
+
+**Emerging Collection Paradigms:**
+
+* **Real-time Streaming Data**: Continuous data flows from sensors, transaction systems, and digital platforms requiring stream processing architectures and near-instantaneous quality assessment.
+
+* **Unstructured Data Sources**: Collection and preprocessing of text, images, video, and audio data using natural language processing, computer vision, and multimodal learning approaches.
+
+* **Participatory Data Collection**: Crowdsourcing, citizen science, and community-engaged research methods that democratize data collection while introducing unique quality assurance challenges.
+
+* **Passive Data Collection**: Behavioral tracking through digital platforms, wearable devices, and ambient sensors that capture naturalistic data without explicit participant engagement, raising important ethical and privacy considerations.
+
+### Ethical and Legal Dimensions
+
+Contemporary data collection must navigate complex ethical and regulatory landscapes:
+
+* **Informed Consent**: Ensure participants understand data collection purposes, uses, risks, and their rights regarding data access, modification, and deletion.
+
+* **Data Minimization**: Collect only data necessary for specified analytical purposes, reducing privacy risks and regulatory compliance burden.
+
+* **Algorithmic Fairness**: Recognize that biased data collection (e.g., non-representative sampling, measurement bias) propagates through analytical pipelines, potentially perpetuating or amplifying societal inequities.
+
+*For comprehensive coverage of data collection methodologies and best practices, refer to: [Research Methodology - Data Collection](https://researchmethodology.org/data-collection/)*
+
+<!-- unfinished content
+## Data Management
+
+* Organize: schema design, naming conventions.
+* Clean: resolve duplicates, inconsistencies, missingness.
+* Convert: type casting, normalization, encoding.
+* Curate: maintain lineage, documentation, metadata.
+* Preserve: backups, versioning (see also [Analytical Skills for Business - Implementing version control systems](https://drbenjamin.github.io/analytical-skills.html#implementing-version-control-systems)), retention policies.
+
+## Data Evaluation
+
+* Plan analyses aligned with objectives and stakeholders.
+* Conduct exploratory, inferential, and predictive procedures appropriately.
+* Evaluate robustness, reliability, and validity.
+* Assess limitations, bias, and ethical impact.
+-->
+
+\newpage
+# Applications in the Programming Language R
+
+Please read the [How to Use R for Data Science](https://hubchev.github.io/ds/) by Prof. Dr. Huber for any basic questions regarding R programming.
+
+<!-- unfinished content
+## Core tidyverse Tooling
+
+Fundamental packages:
+
+* `dplyr` for data manipulation (filter, mutate, summarize, joins).
+* `tidyr` for data reshaping (pivoting, nesting, separating, unnesting).
+* `ggplot2` for layered grammar-based visualization.
+* some more R libraries:
+  * `readr`
+  * `purrr`
+  * `stringr`
+  * `forcats`
+
+  for ingestion, functional iteration, text, and factor handling.
+
+## Data Visualization Principles
+
+* Choose encodings appropriate to variable types.
+* Emphasize clarity: reduce chart junk; apply perceptual best practices.
+* Support comparison, trend detection, and anomaly spotting.
+
+## Detecting Outliers and Anomalies
+
+* Rule-based methods (IQR, z-scores).
+* Robust statistics (median, MAD).
+* Model-based or multivariate detection (e.g., Mahalanobis distance, clustering residuals).
+* Distinguish errors vs. novel but valid observations.
+
+## Dimensionality Reduction
+
+* Motivation: mitigate multicollinearity, noise, and curse of dimensionality.
+* Techniques: Principal Component Analysis (PCA), Factor Analysis, (optionally) t-SNE / UMAP (for exploration).
+* Interpretability vs. compression trade-offs.
+
+## Data Exploration and Mining
+
+* Structured EDA workflow: question → visualize → quantify → refine.
+* PCA for variance structure.
+* Factor Analysis for latent constructs.
+* Regression Analysis for relationships and predictive structure.
+* Clustering (k-means, hierarchical) for pattern discovery (if included).
+
+## Causal Inference with Regression Analysis
+
+* Distinguish association vs. causation.
+* Model specification and confounding control.
+* Assumptions: linearity, independence, homoskedasticity, exogeneity.
+* Interpretation of coefficients and marginal effects.
+* Sensitivity and robustness checks.
+
+-->
+\newpage
+# Literature {#sec-literature}
+
+All references for this course.
+
+## Essential Readings
+
+```{r essential_bib, results='asis', echo=FALSE, warning=FALSE}
+source("literature/refmanager.r")
+render_bib("literature/essential_readings.bib")
+```
+
+## Further Readings
+
+```{r further_bib, results='asis', echo=FALSE, warning=FALSE}
+source("literature/refmanager.r")
+render_bib("literature/further_readings.bib")
+```
