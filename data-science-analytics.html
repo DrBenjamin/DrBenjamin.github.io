@@ -2248,7 +2248,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">05.10.2025 15:28</p>
+      <p class="date">05.10.2025 18:31</p>
     </div>
   </div>
   
@@ -2502,11 +2502,17 @@ vertical-align: -.125em;
 <section id="data-evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="data-evaluation">Data Evaluation</h2>
 <ul>
-<li>Plan analyses aligned with objectives and stakeholders.</li>
-<li>Conduct exploratory, inferential, and predictive procedures appropriately.</li>
-<li>Evaluate robustness, reliability, and validity.</li>
-<li>Assess limitations, bias, and ethical impact. –&gt;</li>
+<li>Define data quality dimensions and assessment frameworks.</li>
+<li>Distinguish validation from verification in data pipelines.</li>
+<li>Apply statistical methods and data profiling for evaluation.</li>
+<li>Balance automated and manual (human-in-the-loop) evaluation approaches.</li>
+<li>Implement tools, workflows, and governance for data evaluation.</li>
 </ul>
+<p>Data evaluation is a critical competency in data science that ensures datasets are fit-for-purpose, reliable, and trustworthy throughout the analytical lifecycle. Effective data evaluation encompasses systematic assessment of data quality dimensions (completeness, accuracy, consistency, validity, timeliness, and uniqueness), rigorous validation and verification processes within data pipelines, and the strategic application of statistical methods and data profiling techniques. Data quality dimensions provide measurable criteria and benchmarks to determine whether data meets requirements for downstream analysis and decision-making (Weiskopf &amp; Weng, 2013; Lee et al., 2018; Collibra, 2022). Assessment frameworks translate these abstract dimensions into actionable metrics and evaluation workflows, enabling both objective measurement and contextual interpretation.</p>
+<p>The distinction between data validation and data verification is essential for maintaining data integrity across analytical pipelines. Validation checks occur at entry or ingestion points, preventing bad data from entering systems through constraint checks, format validation, and business rule enforcement. Verification, in contrast, involves post-collection checks ensuring data remained accurate and consistent over time and across system boundaries, supporting reproducibility and traceability (Precisely, n.d.). Both processes are complementary: validation acts as a gatekeeper, while verification provides ongoing assurance that data quality has not degraded through processing, transformation, or storage.</p>
+<p>Statistical methods and data profiling form the technical foundation for data evaluation. Outlier detection techniques (z-score, IQR, DBSCAN) identify anomalous observations that may represent errors or novel phenomena requiring investigation. Distribution checks assess whether data conforms to expected patterns, while data profiling describes dataset structure, missingness patterns, and statistical properties. Regression analysis and hypothesis testing can diagnose data quality issues and quantify relationships between quality metrics and analytical outcomes. Integrating profiling with quality dimensions enables targeted improvements and prioritization of data quality initiatives (ActivityInfo, 2023).</p>
+<p>Modern data evaluation requires balancing automated and manual approaches. Automated evaluation offers speed, scalability, and consistency for large datasets, enabling continuous monitoring and real-time quality checks. Rule-based validation, statistical profiling, and machine learning-based anomaly detection can process millions of records efficiently. However, manual evaluation contributes domain expertise, contextual understanding, and interpretative judgment that automated systems cannot replicate. Human-in-the-loop approaches combine automation’s efficiency with human interpretability, particularly valuable for nuanced or high-stakes data where context matters (Lee et al., 2018). Hybrid workflows might automate initial screening while flagging edge cases for expert review, optimizing both throughput and quality.</p>
+<p>Tools, workflows, and governance frameworks provide the infrastructure for systematic data evaluation across the data lifecycle. Data profiling tools (e.g., Pandas Profiling, Great Expectations, Deequ) automate quality assessment and generate summary reports. Validation frameworks embed checks into ETL/ELT pipelines, ensuring quality gates at critical processing stages. Data lineage tracking and metadata management support traceability and impact analysis, documenting data provenance and transformation history. Governance frameworks establish roles, responsibilities, and processes for data quality management, aligning evaluation practices with regulatory requirements and reproducibility needs. Together, these elements create a comprehensive ecosystem for maintaining data quality, supporting both exploratory research and production analytics (Weiskopf &amp; Weng, 2013; Collibra, 2022).</p>
 <div style="page-break-after: always;"></div>
 </section>
 </section>
@@ -2617,6 +2623,18 @@ for ingestion, functional iteration, text, and factor handling.</li>
 <ul class="ref-bib">
 <li class="ref-entry">
 <p>
+<cite>ActivityInfo (2023). <em>A six-step guide to data quality assessments</em>. Web article. URL: <a href="&lt;https://www.activityinfo.org/blog/posts/2023-03-10-a-six-step-guide-to-data-quality-assessments.html">https://www.activityinfo.org/blog/posts/2023-03-10-a-six-step-guide-to-data-quality-assessments.html</a>.</cite>
+</p>
+<blockquote class="blockquote">
+</blockquote></li>
+<li class="ref-entry">
+<p>
+<cite>Collibra (2022). <em>The 6 dimensions of data quality</em>. Web article. URL: <a href="&lt;https://www.collibra.com/blog/the-6-dimensions-of-data-quality">https://www.collibra.com/blog/the-6-dimensions-of-data-quality</a>.</cite>
+</p>
+<blockquote class="blockquote">
+</blockquote></li>
+<li class="ref-entry">
+<p>
 <cite>Cuadrado-Gallego, J. J., Y. Demchenko, J. G. Pérez, et al. (2023). “Data Analytics: A Theoretical and Practical View from the EDISON Project”. In: <em>Data Analytics: A Theoretical and Practical View from the EDISON Project</em>, pp. 1-477. DOI: <a href="&lt;https://doi.org/10.1007/978-3-031-39129-3/COVER">10.1007/978-3-031-39129-3/COVER</a>.</cite>
 </p>
 <blockquote class="blockquote">
@@ -2656,6 +2674,12 @@ for ingestion, functional iteration, text, and factor handling.</li>
 </li>
 <li class="ref-entry">
 <p>
+<cite>Lee, K., N. G. Weiskopf, and J. Pathak (2018). “A framework for data quality assessment in clinical research datasets”. In: <em>AMIA Annual Symposium Proceedings</em>. , pp. 1080–1089. URL: <a href="&lt;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5977591/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5977591/</a>.</cite>
+</p>
+<blockquote class="blockquote">
+</blockquote></li>
+<li class="ref-entry">
+<p>
 <cite>M., Ç. and J. Hardin (2021). <em>Introduction to Modern Statistics</em>. <a href="https://www.openintro.org/book/ims/." class="uri">https://www.openintro.org/book/ims/.</a> URL: <a href="&lt;https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/491a9a84dd0227aab44e0a6db7e6330830a05a6b/literature/Introduction_to_Modern_Statistics_2e.pdf/?raw=true">https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/491a9a84dd0227aab44e0a6db7e6330830a05a6b/literature/Introduction_to_Modern_Statistics_2e.pdf/?raw=true</a>.</cite>
 </p>
 <blockquote class="blockquote">
@@ -2672,6 +2696,12 @@ for ingestion, functional iteration, text, and factor handling.</li>
 </cite></p>
 
 <p></p>
+<blockquote class="blockquote">
+</blockquote></li>
+<li class="ref-entry">
+<p>
+<cite>Precisely <em>Data validation vs. data verification: What’s the difference?</em> Web article. URL: <a href="&lt;https://www.precisely.com/data-quality/data-validation-vs-data-verification/">https://www.precisely.com/data-quality/data-validation-vs-data-verification/</a>.</cite>
+</p>
 <blockquote class="blockquote">
 </blockquote></li>
 <li class="ref-entry">
@@ -2697,11 +2727,22 @@ URL: <a href="&lt;https://learning.oreilly.com/library/view/analytical-skills-fo
 </blockquote></li>
 <li class="ref-entry">
 <p>
+<cite>— (2013). “Methods and dimensions of electronic health record data quality assessment: Enabling reuse for clinical research”. In: <em>Journal of the American Medical Informatics Association</em> 20.1, pp. 144–151. DOI: <a href="&lt;https://doi.org/10.1136/amiajnl-2011-000681">10.1136/amiajnl-2011-000681</a>.</cite>
+</p>
+<blockquote class="blockquote">
+</blockquote></li>
+<li class="ref-entry">
+<p>
 <cite>Wilkinson, M. D., M. Dumontier, I. J. Aalbersberg, et al. (2016). “The FAIR guiding principles for scientific data management and stewardship”. In: <em>Scientific Data</em> 3.160018. URL: <a href="&lt;https://www.nature.com/articles/sdata.2016.18">https://www.nature.com/articles/sdata.2016.18</a>.</cite>
 </p>
 <blockquote class="blockquote">
 </blockquote></li>
 </ul>
+
+
+
+
+
 
 
 
