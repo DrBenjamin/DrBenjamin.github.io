@@ -2196,10 +2196,17 @@ vertical-align: -.125em;
   <li><a href="#core-data-collection-competencies" id="toc-core-data-collection-competencies" class="nav-link" data-scroll-target="#core-data-collection-competencies">Core Data Collection Competencies</a></li>
   <li><a href="#contemporary-data-collection-landscape" id="toc-contemporary-data-collection-landscape" class="nav-link" data-scroll-target="#contemporary-data-collection-landscape">Contemporary Data Collection Landscape</a></li>
   </ul></li>
+  <li><a href="#data-management" id="toc-data-management" class="nav-link" data-scroll-target="#data-management">Data Management</a></li>
+  <li><a href="#data-evaluation" id="toc-data-evaluation" class="nav-link" data-scroll-target="#data-evaluation">Data Evaluation</a></li>
   </ul></li>
-  <li><a href="#applications-in-the-programming-language-r" id="toc-applications-in-the-programming-language-r" class="nav-link" data-scroll-target="#applications-in-the-programming-language-r">Applications in the Programming Language R</a></li>
-  <li><a href="#sec-literature" id="toc-sec-literature" class="nav-link" data-scroll-target="#sec-literature">Literature</a>
+  <li><a href="#applications-in-the-programming-language-r" id="toc-applications-in-the-programming-language-r" class="nav-link" data-scroll-target="#applications-in-the-programming-language-r">Applications in the Programming Language R</a>
   <ul>
+  <li><a href="#core-tidyverse-tooling" id="toc-core-tidyverse-tooling" class="nav-link" data-scroll-target="#core-tidyverse-tooling">Core tidyverse Tooling</a></li>
+  <li><a href="#data-visualization-principles" id="toc-data-visualization-principles" class="nav-link" data-scroll-target="#data-visualization-principles">Data Visualization Principles</a></li>
+  <li><a href="#detecting-outliers-and-anomalies" id="toc-detecting-outliers-and-anomalies" class="nav-link" data-scroll-target="#detecting-outliers-and-anomalies">Detecting Outliers and Anomalies</a></li>
+  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction">Dimensionality Reduction</a></li>
+  <li><a href="#data-exploration-and-mining" id="toc-data-exploration-and-mining" class="nav-link" data-scroll-target="#data-exploration-and-mining">Data Exploration and Mining</a></li>
+  <li><a href="#causal-inference-with-regression-analysis" id="toc-causal-inference-with-regression-analysis" class="nav-link" data-scroll-target="#causal-inference-with-regression-analysis">Causal Inference with Regression Analysis</a></li>
   <li><a href="#essential-readings" id="toc-essential-readings" class="nav-link" data-scroll-target="#essential-readings">Essential Readings</a></li>
   <li><a href="#further-readings" id="toc-further-readings" class="nav-link" data-scroll-target="#further-readings">Further Readings</a></li>
   </ul></li>
@@ -2241,7 +2248,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">05.10.2025 03:34</p>
+      <p class="date">05.10.2025 12:11</p>
     </div>
   </div>
   
@@ -2479,86 +2486,96 @@ vertical-align: -.125em;
 <h3 class="anchored" data-anchor-id="contemporary-data-collection-landscape">Contemporary Data Collection Landscape</h3>
 <p>Modern data collection operates within an increasingly complex ecosystem characterized by diverse data types, real-time requirements, and distributed sources. The integration of traditional survey methods with emerging IoT sensors, social media APIs, and automated data pipelines requires comprehensive competency frameworks that address both technical implementation and methodological validity.</p>
 <p><em>For comprehensive coverage of data collection methodologies and best practices, refer to: <a href="https://researchmethodology.org/data-collection/">Research Methodology - Data Collection</a></em></p>
-<!-- unfinished content
-## Data Management
-
-* Organize: schema design, naming conventions.
-* Clean: resolve duplicates, inconsistencies, missingness.
-* Convert: type casting, normalization, encoding.
-* Curate: maintain lineage, documentation, metadata.
-* Preserve: backups, versioning (see also [Analytical Skills for Business - Implementing version control systems](https://drbenjamin.github.io/analytical-skills.html#implementing-version-control-systems)), retention policies.
-
-## Data Evaluation
-
-* Plan analyses aligned with objectives and stakeholders.
-* Conduct exploratory, inferential, and predictive procedures appropriately.
-* Evaluate robustness, reliability, and validity.
-* Assess limitations, bias, and ethical impact.
--->
-<div style="page-break-after: always;"></div>
 </section>
+</section>
+<section id="data-management" class="level2">
+<h2 class="anchored" data-anchor-id="data-management">Data Management</h2>
+<ul>
+<li>Organize: schema design, naming conventions.</li>
+<li>Clean: resolve duplicates, inconsistencies, missingness.</li>
+<li>Convert: type casting, normalization, encoding.</li>
+<li>Curate: maintain lineage, documentation, metadata.</li>
+<li>Preserve: backups, versioning (see also <a href="https://drbenjamin.github.io/analytical-skills.html#implementing-version-control-systems">Analytical Skills for Business - Implementing version control systems</a>), retention policies.</li>
+</ul>
+</section>
+<section id="data-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="data-evaluation">Data Evaluation</h2>
+<ul>
+<li>Plan analyses aligned with objectives and stakeholders.</li>
+<li>Conduct exploratory, inferential, and predictive procedures appropriately.</li>
+<li>Evaluate robustness, reliability, and validity.</li>
+<li>Assess limitations, bias, and ethical impact. –&gt;</li>
+</ul>
+<div style="page-break-after: always;"></div>
 </section>
 </section>
 <section id="applications-in-the-programming-language-r" class="level1">
 <h1>Applications in the Programming Language R</h1>
 <p>Please read the <a href="https://hubchev.github.io/ds/">How to Use R for Data Science</a> by Prof. Dr. Huber for any basic questions regarding R programming.</p>
-<!-- unfinished content
-## Core tidyverse Tooling
-
-Fundamental packages:
-
-* `dplyr` for data manipulation (filter, mutate, summarize, joins).
-* `tidyr` for data reshaping (pivoting, nesting, separating, unnesting).
-* `ggplot2` for layered grammar-based visualization.
-* some more R libraries:
-  * `readr`
-  * `purrr`
-  * `stringr`
-  * `forcats`
-
-  for ingestion, functional iteration, text, and factor handling.
-
-## Data Visualization Principles
-
-* Choose encodings appropriate to variable types.
-* Emphasize clarity: reduce chart junk; apply perceptual best practices.
-* Support comparison, trend detection, and anomaly spotting.
-
-## Detecting Outliers and Anomalies
-
-* Rule-based methods (IQR, z-scores).
-* Robust statistics (median, MAD).
-* Model-based or multivariate detection (e.g., Mahalanobis distance, clustering residuals).
-* Distinguish errors vs. novel but valid observations.
-
-## Dimensionality Reduction
-
-* Motivation: mitigate multicollinearity, noise, and curse of dimensionality.
-* Techniques: Principal Component Analysis (PCA), Factor Analysis, (optionally) t-SNE / UMAP (for exploration).
-* Interpretability vs. compression trade-offs.
-
-## Data Exploration and Mining
-
-* Structured EDA workflow: question → visualize → quantify → refine.
-* PCA for variance structure.
-* Factor Analysis for latent constructs.
-* Regression Analysis for relationships and predictive structure.
-* Clustering (k-means, hierarchical) for pattern discovery (if included).
-
-## Causal Inference with Regression Analysis
-
-* Distinguish association vs. causation.
-* Model specification and confounding control.
-* Assumptions: linearity, independence, homoskedasticity, exogeneity.
-* Interpretation of coefficients and marginal effects.
-* Sensitivity and robustness checks.
-
--->
-<div style="page-break-after: always;"></div>
+<section id="core-tidyverse-tooling" class="level2">
+<h2 class="anchored" data-anchor-id="core-tidyverse-tooling">Core tidyverse Tooling</h2>
+<p>Fundamental packages:</p>
+<ul>
+<li><code>dplyr</code> for data manipulation (filter, mutate, summarize, joins).</li>
+<li><code>tidyr</code> for data reshaping (pivoting, nesting, separating, unnesting).</li>
+<li><code>ggplot2</code> for layered grammar-based visualization.</li>
+<li>some more R libraries:
+<ul>
+<li><code>readr</code></li>
+<li><code>purrr</code></li>
+<li><code>stringr</code></li>
+<li><code>forcats</code></li>
+</ul>
+for ingestion, functional iteration, text, and factor handling.</li>
+</ul>
 </section>
-<section id="sec-literature" class="level1">
-<h1>Literature</h1>
+<section id="data-visualization-principles" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-principles">Data Visualization Principles</h2>
+<ul>
+<li>Choose encodings appropriate to variable types.</li>
+<li>Emphasize clarity: reduce chart junk; apply perceptual best practices.</li>
+<li>Support comparison, trend detection, and anomaly spotting.</li>
+</ul>
+</section>
+<section id="detecting-outliers-and-anomalies" class="level2">
+<h2 class="anchored" data-anchor-id="detecting-outliers-and-anomalies">Detecting Outliers and Anomalies</h2>
+<ul>
+<li>Rule-based methods (IQR, z-scores).</li>
+<li>Robust statistics (median, MAD).</li>
+<li>Model-based or multivariate detection (e.g., Mahalanobis distance, clustering residuals).</li>
+<li>Distinguish errors vs. novel but valid observations.</li>
+</ul>
+</section>
+<section id="dimensionality-reduction" class="level2">
+<h2 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality Reduction</h2>
+<ul>
+<li>Motivation: mitigate multicollinearity, noise, and curse of dimensionality.</li>
+<li>Techniques: Principal Component Analysis (PCA), Factor Analysis, (optionally) t-SNE / UMAP (for exploration).</li>
+<li>Interpretability vs. compression trade-offs.</li>
+</ul>
+</section>
+<section id="data-exploration-and-mining" class="level2">
+<h2 class="anchored" data-anchor-id="data-exploration-and-mining">Data Exploration and Mining</h2>
+<ul>
+<li>Structured EDA workflow: question → visualize → quantify → refine.</li>
+<li>PCA for variance structure.</li>
+<li>Factor Analysis for latent constructs.</li>
+<li>Regression Analysis for relationships and predictive structure.</li>
+<li>Clustering (k-means, hierarchical) for pattern discovery (if included).</li>
+</ul>
+</section>
+<section id="causal-inference-with-regression-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="causal-inference-with-regression-analysis">Causal Inference with Regression Analysis</h2>
+<ul>
+<li>Distinguish association vs. causation.</li>
+<li>Model specification and confounding control.</li>
+<li>Assumptions: linearity, independence, homoskedasticity, exogeneity.</li>
+<li>Interpretation of coefficients and marginal effects.</li>
+<li>Sensitivity and robustness checks.</li>
+</ul>
+<p>–&gt; # Literature {#sec-literature}</p>
 <p>All references for this course.</p>
+</section>
 <section id="essential-readings" class="level2">
 <h2 class="anchored" data-anchor-id="essential-readings">Essential Readings</h2>
 <ul class="ref-bib">
