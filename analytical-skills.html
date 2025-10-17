@@ -2191,6 +2191,18 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive statistics</a>
   <ul>
+  <li><a href="#measures-of-centrality-dispersion-and-concentration" id="toc-measures-of-centrality-dispersion-and-concentration" class="nav-link" data-scroll-target="#measures-of-centrality-dispersion-and-concentration">Measures of centrality, dispersion, and concentration</a></li>
+  <li><a href="#descriptive-analytics" id="toc-descriptive-analytics" class="nav-link" data-scroll-target="#descriptive-analytics">Descriptive analytics</a></li>
+  <li><a href="#techniques" id="toc-techniques" class="nav-link" data-scroll-target="#techniques">Techniques</a></li>
+  <li><a href="#visualizing-and-exploration" id="toc-visualizing-and-exploration" class="nav-link" data-scroll-target="#visualizing-and-exploration">Visualizing and exploration</a></li>
+  <li><a href="#handling-messy-data" id="toc-handling-messy-data" class="nav-link" data-scroll-target="#handling-messy-data">Handling messy data</a></li>
+  <li><a href="#association" id="toc-association" class="nav-link" data-scroll-target="#association">Association</a></li>
+  <li><a href="#implementing-applications" id="toc-implementing-applications" class="nav-link" data-scroll-target="#implementing-applications">Implementing applications</a></li>
+  </ul></li>
+  <li><a href="#inferential-statistics" id="toc-inferential-statistics" class="nav-link" data-scroll-target="#inferential-statistics">Inferential statistics</a>
+  <ul>
+  <li><a href="#basic-concepts-of-statistical-inference" id="toc-basic-concepts-of-statistical-inference" class="nav-link" data-scroll-target="#basic-concepts-of-statistical-inference">Basic concepts of statistical inference</a></li>
+  <li><a href="#quantification-of-probability-through-random-variables" id="toc-quantification-of-probability-through-random-variables" class="nav-link" data-scroll-target="#quantification-of-probability-through-random-variables">Quantification of probability through random variables</a></li>
   <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis testing</a>
   <ul>
   <li><a href="#core-concepts-1" id="toc-core-concepts-1" class="nav-link" data-scroll-target="#core-concepts-1">Core Concepts</a></li>
@@ -2198,7 +2210,8 @@ vertical-align: -.125em;
   <li><a href="#types-of-errors" id="toc-types-of-errors" class="nav-link" data-scroll-target="#types-of-errors">Types of Errors</a></li>
   <li><a href="#reference-materials" id="toc-reference-materials" class="nav-link" data-scroll-target="#reference-materials">Reference Materials</a></li>
   </ul></li>
-  <li><a href="#inferential-statistics" id="toc-inferential-statistics" class="nav-link" data-scroll-target="#inferential-statistics">Inferential statistics</a></li>
+  <li><a href="#confidence-intervals-p-values-and-statistical-tests" id="toc-confidence-intervals-p-values-and-statistical-tests" class="nav-link" data-scroll-target="#confidence-intervals-p-values-and-statistical-tests">Confidence intervals, p-values, and statistical tests</a></li>
+  <li><a href="#inferential-statistics-1" id="toc-inferential-statistics-1" class="nav-link" data-scroll-target="#inferential-statistics-1">Inferential statistics</a></li>
   </ul></li>
   <li><a href="#predictive-analytics" id="toc-predictive-analytics" class="nav-link" data-scroll-target="#predictive-analytics">Predictive analytics</a>
   <ul>
@@ -2250,7 +2263,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">17.10.2025 03:35</p>
+      <p class="date">17.10.2025 08:37</p>
     </div>
   </div>
   
@@ -2448,7 +2461,7 @@ vertical-align: -.125em;
 <li>Add a new node and select “HTTP Request” - configure the node to make a GET request to <code>https://minio.seriousbenentertainment.org:9000/data/input.mp4</code></li>
 <li>Add a new node Extract from File</li>
 <li>Add a new node Build JSON</li>
-<li>Add a new node and select “Mediapipe”</li>
+<li>Add a new node and select “MediaPipe”</li>
 <li>Add a new node HTTP Request - configure the node to make a POST request to <code>http://212.227.102.172:8000/mediapipe</code></li>
 <li>Add a new node Github - configure the node to commit the results to the <a href="https://github.com/DrBenjamin/Mediapipe">Github repository</a></li>
 </ol></li>
@@ -2473,10 +2486,8 @@ vertical-align: -.125em;
 </ul>
 <ol start="3" type="1">
 <li>Open QGIS and open the project file <code>Malawi.qgs</code></li>
-<li>Install the plugin “QGIS GeoNode” via the Plugin Manager via the menu <code>Plugins</code> -&gt; <code>Manage and Install Plugins...</code></li>
-<li>Open the <a href="https://www.masdap.mw/developer/">MASDAP website</a> and copy the details for WFS connections.</li>
-<li>Open the Data Source Manager via the menu <code>Layer</code> -&gt; <code>Data Source Manager...</code> or via the icon on the left toolbar and choose GeoNode Plugin.</li>
-<li>Create a new connection with the details from the MASDAP website and load the layers.</li>
+<li>Open <a href="http://www.dof.gov.mw/resources/geospatial-data">Department of Forestry</a> website and download some or all of the zip files.</li>
+<li>Add the layers via the menu <code>Layer</code> -&gt; <code>Add layer</code> -&gt; <code>Add Vector Layer</code> and select the shapefiles from the unzipped folders.</li>
 </ol></li>
 <li><p><a href="https://www.tableau.com/"><strong>Tableau</strong></a></p></li>
 <li><p>Follow these short introductions to Tableau:</p>
@@ -2518,55 +2529,61 @@ vertical-align: -.125em;
 <li>For monthly revenue by region, the mean signals typical performance, the standard deviation shows volatility, a box plot quickly flags outliers, and a bar chart compares regions. These summaries guide prioritization (e.g., regions with high variability may require deeper investigation) and set baselines for forecasting and experimentation.</li>
 </ul>
 <p>For an accessible overview of types, methods, and examples, see <a href="https://researchmethod.net/descriptive-statistics/">ResearchMethod.net</a>.</p>
-<!-- unfinished content
-## Measures of centrality, dispersion, and concentration
-
-xy
-
-## Descriptive analytics 
-
-* univariate data
-* bivariate data
-* multivariate data
-
-## Techniques 
-
-* constructing
-* interpreting
-* evaluating 
-of scores, rankings, metrics, and composite indicators.
-
-## Visualizing and exploration
-
-* categorical
-* numerical
-* time series data
-
-## Handling messy data
-
-xy
-
-## Association
-
-* measuring the association of variables, including correlation and regression
-
-## Implementing applications 
-
-in the programming language R for practical data analysis.
-
-\newpage
-# Inferential statistics
-
-xy
-
-## Basic concepts of statistical inference
-
-xy
-
-## Quantification of probability through random variables
-
-xy
--->
+<section id="measures-of-centrality-dispersion-and-concentration" class="level2">
+<h2 class="anchored" data-anchor-id="measures-of-centrality-dispersion-and-concentration">Measures of centrality, dispersion, and concentration</h2>
+<p>xy</p>
+</section>
+<section id="descriptive-analytics" class="level2">
+<h2 class="anchored" data-anchor-id="descriptive-analytics">Descriptive analytics</h2>
+<ul>
+<li>univariate data</li>
+<li>bivariate data</li>
+<li>multivariate data</li>
+</ul>
+</section>
+<section id="techniques" class="level2">
+<h2 class="anchored" data-anchor-id="techniques">Techniques</h2>
+<ul>
+<li>constructing</li>
+<li>interpreting</li>
+<li>evaluating of scores, rankings, metrics, and composite indicators.</li>
+</ul>
+</section>
+<section id="visualizing-and-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-and-exploration">Visualizing and exploration</h2>
+<ul>
+<li>categorical</li>
+<li>numerical</li>
+<li>time series data</li>
+</ul>
+</section>
+<section id="handling-messy-data" class="level2">
+<h2 class="anchored" data-anchor-id="handling-messy-data">Handling messy data</h2>
+<p>xy</p>
+</section>
+<section id="association" class="level2">
+<h2 class="anchored" data-anchor-id="association">Association</h2>
+<ul>
+<li>measuring the association of variables, including correlation and regression</li>
+</ul>
+</section>
+<section id="implementing-applications" class="level2">
+<h2 class="anchored" data-anchor-id="implementing-applications">Implementing applications</h2>
+<p>in the programming language R for practical data analysis.</p>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="inferential-statistics" class="level1">
+<h1>Inferential statistics</h1>
+<p>xy</p>
+<section id="basic-concepts-of-statistical-inference" class="level2">
+<h2 class="anchored" data-anchor-id="basic-concepts-of-statistical-inference">Basic concepts of statistical inference</h2>
+<p>xy</p>
+</section>
+<section id="quantification-of-probability-through-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="quantification-of-probability-through-random-variables">Quantification of probability through random variables</h2>
+<p>xy</p>
+</section>
 <section id="hypothesis-testing" class="level2">
 <h2 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis testing</h2>
 <p>Hypothesis testing is a fundamental statistical method used to make inferences about population parameters based on sample data <span class="citation" data-cites="Illowsky2018">(Illowsky &amp; Dean, 2018)</span>. It provides a systematic framework for evaluating claims about populations using sample evidence, enabling data-driven decision making in business contexts.</p>
@@ -2604,12 +2621,14 @@ xy
 <li><strong>Online Resource</strong>: Additional perspectives on hypothesis testing applications can be found in the <a href="https://www.geeksforgeeks.org/software-testing/understanding-hypothesis-testing/">GeeksforGeeks guide</a> <span class="citation" data-cites="GeeksforGeeks2024">(GeeksforGeeks, 2024)</span></li>
 </ul>
 <p>Understanding hypothesis testing is essential for making informed business decisions based on data analysis, forming the foundation for advanced statistical inference and predictive analytics in business contexts.</p>
-<p>&lt;!– unfinished content ## Confidence intervals, p-values, and statistical tests</p>
+</section>
+</section>
+<section id="confidence-intervals-p-values-and-statistical-tests" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-intervals-p-values-and-statistical-tests">Confidence intervals, p-values, and statistical tests</h2>
 <p>xy</p>
 </section>
-</section>
-<section id="inferential-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="inferential-statistics">Inferential statistics</h2>
+<section id="inferential-statistics-1" class="level2">
+<h2 class="anchored" data-anchor-id="inferential-statistics-1">Inferential statistics</h2>
 <p>in the programming language R, translating theoretical knowledge into practical applications.</p>
 <div style="page-break-after: always;"></div>
 </section>
