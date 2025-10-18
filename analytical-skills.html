@@ -2263,7 +2263,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">18.10.2025 10:48</p>
+      <p class="date">18.10.2025 11:33</p>
     </div>
   </div>
   
@@ -2479,61 +2479,41 @@ vertical-align: -.125em;
 <li><p>Follow these short introductions to QGIS:</p>
 <ol type="1">
 <li>Download and install QGIS from <a href="https://qgis.org/download/">here</a></li>
-<li>Download the sample data from:</li>
-</ol>
+<li>Download the sample data from:
 <ul>
 <li><a href="https://github.com/DrBenjamin/Analytical-Skills-for-Business/blob/c55a45d37ec5bba3b2a1d18704dd72b4d001de3f/topics/Introduction%20to%20tools%20of%20business%20analytics/data/Malawi.zip/?raw=true">here</a> and unzip them into one folder - it needs to contain all these files and sub-folders: <code>Day2Data</code> <code>Day4Data</code> <code>Malawi-healthsites</code> <code>mw_districts</code> <code>mw_shp</code> <code>Malawi.qgz</code></li>
-</ul>
-<ol start="3" type="1">
+</ul></li>
 <li>Open QGIS and open the project file <code>Malawi.qgs</code></li>
 <li>Open <a href="http://www.dof.gov.mw/resources/geospatial-data">Department of Forestry</a> website and download some or all of the zip files.</li>
 <li>Add the layers via the menu <code>Layer</code> -&gt; <code>Add layer</code> -&gt; <code>Add Vector Layer</code> and select the shapefiles from the unzipped folders.</li>
 </ol></li>
-<li><p><a href="https://www.tableau.com/"><strong>Tableau</strong></a></p></li>
+<li><p><a href="https://www.tableau.com/"><strong>Tableau</strong></a></p>
+<ul>
 <li><p>Follow these short introductions to Tableau:</p>
 <ol type="1">
 <li>Download and install <a href="https://www.tableau.com/academic/students">Tableau Desktop</a> which is free for students or use <a href="https://public.tableau.com/">Tableau Public</a> online.</li>
 <li>Download the sample data from <a href="https://public.tableau.com/app/profile/jay.narayan/viz/TaxiRideDashboard/Dashboard">here</a> and open it in Tableau.</li>
 </ol></li>
-<li><p><a href="https://app.powerbi.com"><strong>Power BI</strong></a></p></li>
+</ul></li>
+<li><p><a href="https://app.powerbi.com"><strong>Power BI</strong></a></p>
+<ul>
 <li><p>Follow these short introductions to Power BI:</p>
 <ol type="1">
 <li>We are using Power BI within MS Teams (it would also be available <a href="https://powerbi.microsoft.com/en-us/desktop/">here</a> to use as Power BI Desktop Application).</li>
 <li>Open an existing Power BI project and make yourself familiar with the interface.</li>
 </ol></li>
-<li><p><a href="https://www.knime.com"><strong>KNIME</strong></a></p></li>
+</ul></li>
+<li><p><a href="https://www.knime.com"><strong>KNIME</strong></a></p>
+<ul>
 <li><p>Follow these short introductions to KNIME:</p>
 <ol type="1">
 <li>Download and install KNIME Analytics Platform from <a href="https://www.knime.com/downloads">here</a></li>
 <li>Create a new KNIME workflow and add a CSV Reader node to read data from a CSV file. Configure the node to use Custom/KNIME URL and add <code>https://raw.githubusercontent.com/datasciencedojo/datasets/refs/heads/master/titanic.csv</code> in the URL field. Configure the node to properly read column headers and data types.</li>
-<li>Explore the Data</li>
-</ol>
-<ul>
-<li>Add a “Statistics” node to understand the data distribution</li>
-<li>Use the “Missing Value” node to identify missing values in columns like Age, Cabin, and Embarked</li>
-</ul>
-<ol start="4" type="1">
-<li>Handle Missing Values</li>
-</ol>
-<ul>
-<li>For the Age column: use “Missing Value” node with mean or median imputation</li>
-<li>For the Cabin column: create a new binary feature indicating whether cabin information is available</li>
-<li>For the Embarked column: use mode imputation or remove the few rows with missing values</li>
-</ul>
-<ol start="5" type="1">
-<li>Data Transformation</li>
-</ol>
-<ul>
-<li>Use “Column Filter” to remove unnecessary columns (e.g., PassengerId, Name, Ticket)</li>
-<li>Apply “String Manipulation” for categorical encoding</li>
-<li>Use “Normalizer” node for numerical features if needed</li>
-</ul>
-<ol start="6" type="1">
-<li>Export Cleaned Data</li>
-</ol>
-<ul>
-<li>Use “CSV Writer” node to save the cleaned dataset</li>
-<li>Verify the output and check data quality</li>
+<li>Explore the Data - Add a “Statistics” node to understand the data distribution - Use the “Missing Value” node to identify missing values in columns like Age, Cabin, and Embarked</li>
+<li>Handle Missing Values - For the Age column: use “Missing Value” node with mean or median imputation - For the Cabin column: create a new binary feature indicating whether cabin information is available - For the Embarked column: use mode imputation or remove the few rows with missing values</li>
+<li>Data Transformation - Use “Column Filter” to remove unnecessary columns (e.g., PassengerId, Name, Ticket) - Apply “String Manipulation” for categorical encoding - Use “Normalizer” node for numerical features if needed</li>
+<li>Export Cleaned Data - Use “CSV Writer” node to save the cleaned dataset - Verify the output and check data quality</li>
+</ol></li>
 </ul></li>
 </ul>
 <div style="page-break-after: always;"></div>
