@@ -292,6 +292,8 @@ jobs:
             # Neutralize user/site profiles that could trigger renv
             export R_PROFILE_USER=/dev/null
             export R_ENVIRON_USER=/dev/null
+            # Set GitHub PAT for devtools::install_github() calls in QMD
+            export GITHUB_PAT="${{ secrets.GITHUB_TOKEN }}"
             # Ensure critical packages are installed in global lib (idempotent)
             Rscript -e "crit<-c('knitr','rmarkdown','RefManageR'); miss<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(miss)) install.packages(miss,repos='https://cloud.r-project.org'); left<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(left)) { quit(status=1) }"
             echo "Running: quarto render ${QMD} (renv disabled)"
