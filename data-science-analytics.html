@@ -2283,7 +2283,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">23.10.2025 07:26</p>
+      <p class="date">23.10.2025 10:24</p>
     </div>
   </div>
   
@@ -2724,152 +2724,547 @@ vertical-align: -.125em;
 <p><strong>Some small datasets to start with</strong></p>
 <p>A custom R package <code>ourdata</code> has been created to provide some small datasets (and also some helper R functions) for practice. You can install it from GitHub using the following commands:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing devtools</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing Github R packages</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;DrBenjamin/ourdata&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installing Github R packages</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DrBenjamin/ourdata&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>── R CMD build ─────────────────────────────────────────────────────────────────
+* checking for file ‘/tmp/RtmpB27yuW/remotes46e82d11496c/DrBenjamin-ourdata-3403a65/DESCRIPTION’ ... OK
+* preparing ‘ourdata’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘ourdata_0.5.0.tar.gz’</code></pre>
+</div>
 </div>
 <p>Using the package and exploring its documentation:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading package</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ourdata)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Opening help of package</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>??ourdata</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Showing welcome message</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ourdata</span>()</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing some datasets</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(koelsch)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(kirche)</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Using help function from the package for a specific function from the `ourdata` R package</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(combine)</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the `combine` function from the `ourdata` R package to combine two vectors into a data frame</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="fu">combine</span>(kirche<span class="sc">$</span>Jahr, koelsch<span class="sc">$</span>Jahr, kirche<span class="sc">$</span>Austritte, koelsch<span class="sc">$</span>Koelsch)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading package</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ourdata)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Opening help of package</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>??ourdata</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Showing welcome message</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ourdata</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>This is the R package `ourdata` used for Data Science courses at the Fresenius University of Applied Sciences.
+Type `help(ourdata)` to display the content.
+Type `ourdata_website()` to open the package website.
+Have fun in the course!
+Benjamin Gross</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing some datasets</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(koelsch)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Jahr   Koelsch
+1 2017 186784000
+2 2018 191308000
+3 2019 179322000
+4 2020 169182000</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(kirche)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Jahr Austritte
+1 2017    364711
+2 2018    437416
+3 2019    539509
+4 2020    441390</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using help function from the package for a specific function from the `ourdata` R package</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(combine)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Help on topic &#39;combine&#39; was found in the following packages:
+
+  Package               Library
+  dplyr                 /home/runner/R-library
+  ourdata               /home/runner/R-library
+
+
+Using the first match ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the `combine` function from the `ourdata` R package to combine two vectors into a data frame</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">combine</span>(kirche<span class="sc">$</span>Jahr, koelsch<span class="sc">$</span>Jahr, kirche<span class="sc">$</span>Austritte, koelsch<span class="sc">$</span>Koelsch)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&#39;data.frame&#39;:   4 obs. of  3 variables:
+ $ C1: chr  &quot;2017&quot; &quot;2018&quot; &quot;2019&quot; &quot;2020&quot;
+ $ C2: num  364711 437416 539509 441390
+ $ C3: num  1.87e+08 1.91e+08 1.79e+08 1.69e+08</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    C1     C2        C3
+1 2017 364711 186784000
+2 2018 437416 191308000
+3 2019 539509 179322000
+4 2020 441390 169182000</code></pre>
+</div>
 </div>
 <p>** A messy dataset example**</p>
-<p>We collect <a href="https://data-explorer.oecd.org/vis?lc=en&amp;df%5Bds%5D=dsDisseminateFinalDMZ&amp;df%5Bid%5D=DSD_HEALTH_STAT%40DF_AM&amp;df%5Bag%5D=OECD.ELS.HD&amp;dq=AUS%2BAUT%2BBEL%2BCAN%2BCHL%2BCOL%2BCRI%2BCZE%2BDNK%2BEST%2BFIN%2BFRA%2BDEU%2BGRC%2BHUN%2BISL%2BIRL%2BISR%2BITA%2BJPN%2BKOR%2BLVA%2BLTU%2BLUX%2BMEX%2BNLD%2BNZL%2BNOR%2BPOL%2BPRT%2BSVK%2BSVN%2BESP%2BSWE%2BCHE%2BTUR%2BGBR%2BUSA%2BARG%2BBRA%2BBGR%2BHRV%2BPER%2BROU%2BZAF%2BTHA.A.PREVM%2BTRTM.DT_10P5HB.._T...STANDARD....&amp;pd=2010%2C2023&amp;to%5BTIME_PERIOD%5D=false">data</a> from OECD (Organization for Economic Co-operation and Development), an international organization that works to build better policies for better lives. The dataset shows many columns (variables) with non-informative data and needs to be cleaned (wrangled) before analysis:</p>
+<p>We collect <a href="https://data-explorer.oecd.org/vis?lc=en&amp;df%5Bds%5D=dsDisseminateFinalDMZ&amp;df%5Bid%5D=DSD_HEALTH_STAT%40DF_AM&amp;df%5Bag%5D=OECD.ELS.HD&amp;dq=AUS%2BAUT%2BBEL%2BCAN%2BCHL%2BCOL%2BCRI%2BCZE%2BDNK%2BEST%2BFIN%2BFRA%2BDEU%2BGRC%2BHUN%2BISL%2BIRL%2BISR%2BITA%2BJPN%2BKOR%2BLVA%2BLTU%2BLUX%2BMEX%2BNLD%2BNZL%2BNOR%2BPOL%2BPRT%2BSVK%2BSVN%2BESP%2BSWE%2BCHE%2BTUR%2BGBR%2BUSA%2BARG%2BBRA%2BBGR%2BHRV%2BPER%2BROU%2BZAF%2BTHA.A.PREVM%2BTRTM.DT_10P5HB.._T...STANDARD....&amp;pd=2010%2C2023&amp;to%5BTIME_PERIOD%5D=false">data</a> from OECD (Organization for Economic Co-operation and Development), an international organization that works to build better policies for better lives. The dataset shows many columns (variables) with non-informative data and needs to be cleaned (wrangled) before analysis. First load the data into R from CSV file:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading necessary library</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading the dataset</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>preventable_deaths <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;./topics/data/OECD_Preventable_Deaths.csv&quot;</span>,</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading the dataset from a CSV file</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>preventable_deaths <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;./topics/data/OECD_Preventable_Deaths.csv&quot;</span>,</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>or use the dataset directly from the <code>ourdata</code> R package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading the dataset from `ourdata` R package</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ourdata)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>preventable_deaths <span class="ot">&lt;-</span> oecd_preventable</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>First we explore the data:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing structure of the dataset</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(preventable_deaths)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing first few rows</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(preventable_deaths)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking dimensions</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(preventable_deaths)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing column names</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(preventable_deaths)</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(preventable_deaths)</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for missing values</span></span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(preventable_deaths))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing structure of the dataset</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(preventable_deaths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&#39;data.frame&#39;:   1162 obs. of  44 variables:
+ $ STRUCTURE                 : chr  &quot;DATAFLOW&quot; &quot;DATAFLOW&quot; &quot;DATAFLOW&quot; &quot;DATAFLOW&quot; ...
+ $ STRUCTURE_ID              : chr  &quot;OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1)&quot; &quot;OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1)&quot; &quot;OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1)&quot; &quot;OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1)&quot; ...
+ $ STRUCTURE_NAME            : chr  &quot;Avoidable mortality&quot; &quot;Avoidable mortality&quot; &quot;Avoidable mortality&quot; &quot;Avoidable mortality&quot; ...
+ $ ACTION                    : chr  &quot;I&quot; &quot;I&quot; &quot;I&quot; &quot;I&quot; ...
+ $ REF_AREA                  : chr  &quot;AUS&quot; &quot;AUS&quot; &quot;AUS&quot; &quot;AUS&quot; ...
+ $ Reference.area            : chr  &quot;Australia&quot; &quot;Australia&quot; &quot;Australia&quot; &quot;Australia&quot; ...
+ $ FREQ                      : chr  &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;A&quot; ...
+ $ Frequency.of.observation  : chr  &quot;Annual&quot; &quot;Annual&quot; &quot;Annual&quot; &quot;Annual&quot; ...
+ $ MEASURE                   : chr  &quot;PREVM&quot; &quot;PREVM&quot; &quot;PREVM&quot; &quot;PREVM&quot; ...
+ $ Measure                   : chr  &quot;Preventable mortality&quot; &quot;Preventable mortality&quot; &quot;Preventable mortality&quot; &quot;Preventable mortality&quot; ...
+ $ UNIT_MEASURE              : chr  &quot;DT_10P5HB&quot; &quot;DT_10P5HB&quot; &quot;DT_10P5HB&quot; &quot;DT_10P5HB&quot; ...
+ $ Unit.of.measure           : chr  &quot;Deaths per 100 000 inhabitants&quot; &quot;Deaths per 100 000 inhabitants&quot; &quot;Deaths per 100 000 inhabitants&quot; &quot;Deaths per 100 000 inhabitants&quot; ...
+ $ AGE                       : chr  &quot;_T&quot; &quot;_T&quot; &quot;_T&quot; &quot;_T&quot; ...
+ $ Age                       : chr  &quot;Total&quot; &quot;Total&quot; &quot;Total&quot; &quot;Total&quot; ...
+ $ SEX                       : chr  &quot;_T&quot; &quot;_T&quot; &quot;_T&quot; &quot;_T&quot; ...
+ $ Sex                       : chr  &quot;Total&quot; &quot;Total&quot; &quot;Total&quot; &quot;Total&quot; ...
+ $ SOCIO_ECON_STATUS         : chr  &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; ...
+ $ Socio.economic.status     : chr  &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
+ $ DEATH_CAUSE               : chr  &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; ...
+ $ Cause.of.death            : chr  &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
+ $ CALC_METHODOLOGY          : chr  &quot;STANDARD&quot; &quot;STANDARD&quot; &quot;STANDARD&quot; &quot;STANDARD&quot; ...
+ $ Calculation.methodology   : chr  &quot;Standardised rate&quot; &quot;Standardised rate&quot; &quot;Standardised rate&quot; &quot;Standardised rate&quot; ...
+ $ GESTATION_THRESHOLD       : chr  &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; ...
+ $ Gestation.period.threshold: chr  &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
+ $ HEALTH_STATUS             : chr  &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; ...
+ $ Health.status             : chr  &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
+ $ DISEASE                   : chr  &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; ...
+ $ Disease                   : chr  &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
+ $ CANCER_SITE               : chr  &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; &quot;_Z&quot; ...
+ $ Cancer.site               : chr  &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
+ $ TIME_PERIOD               : int  2010 2011 2012 2013 2014 2015 2016 2017 2018 2019 ...
+ $ Time.period               : logi  NA NA NA NA NA NA ...
+ $ OBS_VALUE                 : int  110 109 105 105 107 108 103 103 101 104 ...
+ $ Observation.value         : logi  NA NA NA NA NA NA ...
+ $ DECIMALS                  : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Decimals                  : chr  &quot;One&quot; &quot;One&quot; &quot;One&quot; &quot;One&quot; ...
+ $ OBS_STATUS                : logi  NA NA NA NA NA NA ...
+ $ Observation.status        : logi  NA NA NA NA NA NA ...
+ $ OBS_STATUS2               : logi  NA NA NA NA NA NA ...
+ $ Observation.status.2      : logi  NA NA NA NA NA NA ...
+ $ OBS_STATUS3               : logi  NA NA NA NA NA NA ...
+ $ Observation.status.3      : logi  NA NA NA NA NA NA ...
+ $ UNIT_MULT                 : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Unit.multiplier           : chr  &quot;Units&quot; &quot;Units&quot; &quot;Units&quot; &quot;Units&quot; ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing first few rows</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(preventable_deaths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  STRUCTURE                           STRUCTURE_ID      STRUCTURE_NAME ACTION
+1  DATAFLOW OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1) Avoidable mortality      I
+2  DATAFLOW OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1) Avoidable mortality      I
+3  DATAFLOW OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1) Avoidable mortality      I
+4  DATAFLOW OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1) Avoidable mortality      I
+5  DATAFLOW OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1) Avoidable mortality      I
+6  DATAFLOW OECD.ELS.HD:DSD_HEALTH_STAT@DF_AM(1.1) Avoidable mortality      I
+  REF_AREA Reference.area FREQ Frequency.of.observation MEASURE
+1      AUS      Australia    A                   Annual   PREVM
+2      AUS      Australia    A                   Annual   PREVM
+3      AUS      Australia    A                   Annual   PREVM
+4      AUS      Australia    A                   Annual   PREVM
+5      AUS      Australia    A                   Annual   PREVM
+6      AUS      Australia    A                   Annual   PREVM
+                Measure UNIT_MEASURE                Unit.of.measure AGE   Age
+1 Preventable mortality    DT_10P5HB Deaths per 100 000 inhabitants  _T Total
+2 Preventable mortality    DT_10P5HB Deaths per 100 000 inhabitants  _T Total
+3 Preventable mortality    DT_10P5HB Deaths per 100 000 inhabitants  _T Total
+4 Preventable mortality    DT_10P5HB Deaths per 100 000 inhabitants  _T Total
+5 Preventable mortality    DT_10P5HB Deaths per 100 000 inhabitants  _T Total
+6 Preventable mortality    DT_10P5HB Deaths per 100 000 inhabitants  _T Total
+  SEX   Sex SOCIO_ECON_STATUS Socio.economic.status DEATH_CAUSE Cause.of.death
+1  _T Total                _Z        Not applicable          _Z Not applicable
+2  _T Total                _Z        Not applicable          _Z Not applicable
+3  _T Total                _Z        Not applicable          _Z Not applicable
+4  _T Total                _Z        Not applicable          _Z Not applicable
+5  _T Total                _Z        Not applicable          _Z Not applicable
+6  _T Total                _Z        Not applicable          _Z Not applicable
+  CALC_METHODOLOGY Calculation.methodology GESTATION_THRESHOLD
+1         STANDARD       Standardised rate                  _Z
+2         STANDARD       Standardised rate                  _Z
+3         STANDARD       Standardised rate                  _Z
+4         STANDARD       Standardised rate                  _Z
+5         STANDARD       Standardised rate                  _Z
+6         STANDARD       Standardised rate                  _Z
+  Gestation.period.threshold HEALTH_STATUS  Health.status DISEASE
+1             Not applicable            _Z Not applicable      _Z
+2             Not applicable            _Z Not applicable      _Z
+3             Not applicable            _Z Not applicable      _Z
+4             Not applicable            _Z Not applicable      _Z
+5             Not applicable            _Z Not applicable      _Z
+6             Not applicable            _Z Not applicable      _Z
+         Disease CANCER_SITE    Cancer.site TIME_PERIOD Time.period OBS_VALUE
+1 Not applicable          _Z Not applicable        2010          NA       110
+2 Not applicable          _Z Not applicable        2011          NA       109
+3 Not applicable          _Z Not applicable        2012          NA       105
+4 Not applicable          _Z Not applicable        2013          NA       105
+5 Not applicable          _Z Not applicable        2014          NA       107
+6 Not applicable          _Z Not applicable        2015          NA       108
+  Observation.value DECIMALS Decimals OBS_STATUS Observation.status OBS_STATUS2
+1                NA        1      One         NA                 NA          NA
+2                NA        1      One         NA                 NA          NA
+3                NA        1      One         NA                 NA          NA
+4                NA        1      One         NA                 NA          NA
+5                NA        1      One         NA                 NA          NA
+6                NA        1      One         NA                 NA          NA
+  Observation.status.2 OBS_STATUS3 Observation.status.3 UNIT_MULT
+1                   NA          NA                   NA         0
+2                   NA          NA                   NA         0
+3                   NA          NA                   NA         0
+4                   NA          NA                   NA         0
+5                   NA          NA                   NA         0
+6                   NA          NA                   NA         0
+  Unit.multiplier
+1           Units
+2           Units
+3           Units
+4           Units
+5           Units
+6           Units</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking dimensions</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(preventable_deaths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1162   44</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing column names</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(preventable_deaths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] &quot;STRUCTURE&quot;                  &quot;STRUCTURE_ID&quot;              
+ [3] &quot;STRUCTURE_NAME&quot;             &quot;ACTION&quot;                    
+ [5] &quot;REF_AREA&quot;                   &quot;Reference.area&quot;            
+ [7] &quot;FREQ&quot;                       &quot;Frequency.of.observation&quot;  
+ [9] &quot;MEASURE&quot;                    &quot;Measure&quot;                   
+[11] &quot;UNIT_MEASURE&quot;               &quot;Unit.of.measure&quot;           
+[13] &quot;AGE&quot;                        &quot;Age&quot;                       
+[15] &quot;SEX&quot;                        &quot;Sex&quot;                       
+[17] &quot;SOCIO_ECON_STATUS&quot;          &quot;Socio.economic.status&quot;     
+[19] &quot;DEATH_CAUSE&quot;                &quot;Cause.of.death&quot;            
+[21] &quot;CALC_METHODOLOGY&quot;           &quot;Calculation.methodology&quot;   
+[23] &quot;GESTATION_THRESHOLD&quot;        &quot;Gestation.period.threshold&quot;
+[25] &quot;HEALTH_STATUS&quot;              &quot;Health.status&quot;             
+[27] &quot;DISEASE&quot;                    &quot;Disease&quot;                   
+[29] &quot;CANCER_SITE&quot;                &quot;Cancer.site&quot;               
+[31] &quot;TIME_PERIOD&quot;                &quot;Time.period&quot;               
+[33] &quot;OBS_VALUE&quot;                  &quot;Observation.value&quot;         
+[35] &quot;DECIMALS&quot;                   &quot;Decimals&quot;                  
+[37] &quot;OBS_STATUS&quot;                 &quot;Observation.status&quot;        
+[39] &quot;OBS_STATUS2&quot;                &quot;Observation.status.2&quot;      
+[41] &quot;OBS_STATUS3&quot;                &quot;Observation.status.3&quot;      
+[43] &quot;UNIT_MULT&quot;                  &quot;Unit.multiplier&quot;           </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(preventable_deaths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  STRUCTURE         STRUCTURE_ID       STRUCTURE_NAME        ACTION         
+ Length:1162        Length:1162        Length:1162        Length:1162       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+   REF_AREA         Reference.area         FREQ          
+ Length:1162        Length:1162        Length:1162       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+ Frequency.of.observation   MEASURE            Measure         
+ Length:1162              Length:1162        Length:1162       
+ Class :character         Class :character   Class :character  
+ Mode  :character         Mode  :character   Mode  :character  
+                                                               
+                                                               
+                                                               
+ UNIT_MEASURE       Unit.of.measure        AGE                Age           
+ Length:1162        Length:1162        Length:1162        Length:1162       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+     SEX                Sex            SOCIO_ECON_STATUS  Socio.economic.status
+ Length:1162        Length:1162        Length:1162        Length:1162          
+ Class :character   Class :character   Class :character   Class :character     
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character     
+                                                                               
+                                                                               
+                                                                               
+ DEATH_CAUSE        Cause.of.death     CALC_METHODOLOGY  
+ Length:1162        Length:1162        Length:1162       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+ Calculation.methodology GESTATION_THRESHOLD Gestation.period.threshold
+ Length:1162             Length:1162         Length:1162               
+ Class :character        Class :character    Class :character          
+ Mode  :character        Mode  :character    Mode  :character          
+                                                                       
+                                                                       
+                                                                       
+ HEALTH_STATUS      Health.status        DISEASE            Disease         
+ Length:1162        Length:1162        Length:1162        Length:1162       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+ CANCER_SITE        Cancer.site         TIME_PERIOD   Time.period   
+ Length:1162        Length:1162        Min.   :2010   Mode:logical  
+ Class :character   Class :character   1st Qu.:2013   NA&#39;s:1162     
+ Mode  :character   Mode  :character   Median :2016                 
+                                       Mean   :2016                 
+                                       3rd Qu.:2019                 
+                                       Max.   :2023                 
+   OBS_VALUE     Observation.value    DECIMALS   Decimals        
+ Min.   : 34.0   Mode:logical      Min.   :1   Length:1162       
+ 1st Qu.: 75.0   NA&#39;s:1162         1st Qu.:1   Class :character  
+ Median :116.0                     Median :1   Mode  :character  
+ Mean   :128.7                     Mean   :1                     
+ 3rd Qu.:156.0                     3rd Qu.:1                     
+ Max.   :453.0                     Max.   :1                     
+ OBS_STATUS     Observation.status OBS_STATUS2    Observation.status.2
+ Mode:logical   Mode:logical       Mode:logical   Mode:logical        
+ NA&#39;s:1162      NA&#39;s:1162          NA&#39;s:1162      NA&#39;s:1162           
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+ OBS_STATUS3    Observation.status.3   UNIT_MULT Unit.multiplier   
+ Mode:logical   Mode:logical         Min.   :0   Length:1162       
+ NA&#39;s:1162      NA&#39;s:1162            1st Qu.:0   Class :character  
+                                     Median :0   Mode  :character  
+                                     Mean   :0                     
+                                     3rd Qu.:0                     
+                                     Max.   :0                     </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for missing values</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(preventable_deaths))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 STRUCTURE               STRUCTURE_ID 
+                         0                          0 
+            STRUCTURE_NAME                     ACTION 
+                         0                          0 
+                  REF_AREA             Reference.area 
+                         0                          0 
+                      FREQ   Frequency.of.observation 
+                         0                          0 
+                   MEASURE                    Measure 
+                         0                          0 
+              UNIT_MEASURE            Unit.of.measure 
+                         0                          0 
+                       AGE                        Age 
+                         0                          0 
+                       SEX                        Sex 
+                         0                          0 
+         SOCIO_ECON_STATUS      Socio.economic.status 
+                         0                          0 
+               DEATH_CAUSE             Cause.of.death 
+                         0                          0 
+          CALC_METHODOLOGY    Calculation.methodology 
+                         0                          0 
+       GESTATION_THRESHOLD Gestation.period.threshold 
+                         0                          0 
+             HEALTH_STATUS              Health.status 
+                         0                          0 
+                   DISEASE                    Disease 
+                         0                          0 
+               CANCER_SITE                Cancer.site 
+                         0                          0 
+               TIME_PERIOD                Time.period 
+                         0                       1162 
+                 OBS_VALUE          Observation.value 
+                         0                       1162 
+                  DECIMALS                   Decimals 
+                         0                          0 
+                OBS_STATUS         Observation.status 
+                      1162                       1162 
+               OBS_STATUS2       Observation.status.2 
+                      1162                       1162 
+               OBS_STATUS3       Observation.status.3 
+                      1162                       1162 
+                 UNIT_MULT            Unit.multiplier 
+                         0                          0 </code></pre>
+</div>
 </div>
 <p>Now we can start cleaning the data by removing non-informative columns and rows with missing values:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting relevant columns for analysis</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> preventable_deaths <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    REF_AREA,</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    Reference.area,</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    TIME_PERIOD,</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    OBS_VALUE</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">country_code =</span> REF_AREA,</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> Reference.area,</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> TIME_PERIOD,</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">death_rate =</span> OBS_VALUE</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting year to numeric</span></span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>df_clean<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_clean<span class="sc">$</span>year)</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting death_rate to numeric (handling empty strings)</span></span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>df_clean<span class="sc">$</span>death_rate <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_clean<span class="sc">$</span>death_rate)</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing rows with missing death rates</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(death_rate))</span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing cleaned data structure</span></span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_clean)</span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of cleaned data</span></span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading necessary library</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting relevant columns for analysis</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> preventable_deaths <span class="sc">%&gt;%</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    REF_AREA,</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    Reference.area,</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    TIME_PERIOD,</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    OBS_VALUE</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">country_code =</span> REF_AREA,</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> Reference.area,</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> TIME_PERIOD,</span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">death_rate =</span> OBS_VALUE</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting year to numeric</span></span>
+<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>df_clean<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_clean<span class="sc">$</span>year)</span>
+<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting death_rate to numeric (handling empty strings)</span></span>
+<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>df_clean<span class="sc">$</span>death_rate <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_clean<span class="sc">$</span>death_rate)</span>
+<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing rows with missing death rates</span></span>
+<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
+<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(death_rate))</span>
+<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Viewing cleaned data structure</span></span>
+<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&#39;data.frame&#39;:   1162 obs. of  4 variables:
+ $ country_code: chr  &quot;AUS&quot; &quot;AUS&quot; &quot;AUS&quot; &quot;AUS&quot; ...
+ $ country     : chr  &quot;Australia&quot; &quot;Australia&quot; &quot;Australia&quot; &quot;Australia&quot; ...
+ $ year        : num  2010 2011 2012 2013 2014 ...
+ $ death_rate  : num  110 109 105 105 107 108 103 103 101 104 ...</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of cleaned data</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_clean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> country_code         country               year        death_rate   
+ Length:1162        Length:1162        Min.   :2010   Min.   : 34.0  
+ Class :character   Class :character   1st Qu.:2013   1st Qu.: 75.0  
+ Mode  :character   Mode  :character   Median :2016   Median :116.0  
+                                       Mean   :2016   Mean   :128.7  
+                                       3rd Qu.:2019   3rd Qu.:156.0  
+                                       Max.   :2023   Max.   :453.0  </code></pre>
+</div>
 </div>
 <p>Showing some basic statistics of the cleaned data:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing overall statistics</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">=== OVERALL STATISTICS ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean death rate:&quot;</span>, <span class="fu">mean</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Median death rate:&quot;</span>, <span class="fu">median</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Standard deviation:&quot;</span>, <span class="fu">sd</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Min death rate:&quot;</span>, <span class="fu">min</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Max death rate:&quot;</span>, <span class="fu">max</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing statistics by country</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>country_stats <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_rate =</span> <span class="fu">mean</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_rate =</span> <span class="fu">median</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_rate =</span> <span class="fu">sd</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_rate =</span> <span class="fu">min</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_rate =</span> <span class="fu">max</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_observations =</span> <span class="fu">n</span>()</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_rate))</span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(country_stats)</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing statistics by year</span></span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>year_stats <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_rate =</span> <span class="fu">mean</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_rate =</span> <span class="fu">median</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_countries =</span> <span class="fu">n_distinct</span>(country)</span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(year_stats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading necessary library</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing overall statistics</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">=== OVERALL STATISTICS ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== OVERALL STATISTICS ===</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean death rate:&quot;</span>, <span class="fu">mean</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mean death rate: 128.7151 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Median death rate:&quot;</span>, <span class="fu">median</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Median death rate: 116 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Standard deviation:&quot;</span>, <span class="fu">sd</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Standard deviation: 69.58822 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Min death rate:&quot;</span>, <span class="fu">min</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Min death rate: 34 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Max death rate:&quot;</span>, <span class="fu">max</span>(df_clean<span class="sc">$</span>death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max death rate: 453 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing statistics by country</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>country_stats <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_rate =</span> <span class="fu">mean</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_rate =</span> <span class="fu">median</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_rate =</span> <span class="fu">sd</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_rate =</span> <span class="fu">min</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_rate =</span> <span class="fu">max</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_observations =</span> <span class="fu">n</span>()</span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_rate))</span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(country_stats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 46 × 7
+   country        mean_rate median_rate sd_rate min_rate max_rate n_observations
+   &lt;chr&gt;              &lt;dbl&gt;       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;          &lt;int&gt;
+ 1 South Africa        330.        338     53.1      241      438             22
+ 2 Latvia              230.        226.    65.8      151      364             28
+ 3 Lithuania           225.        204.    67.9      134      340             28
+ 4 Romania             223.        220.    46.5      172      303             24
+ 5 Hungary             218.        208     72.4      141      375             28
+ 6 Mexico              216.        217     75.5      155      453             26
+ 7 Bulgaria            193.        186     45.5      156      378             26
+ 8 Brazil              185.        172.    51.6      133      356             24
+ 9 Slovak Republ…      178.        167     43.4      130      308             24
+10 Estonia             172.        167     59.7      100      265             26
+# ℹ 36 more rows</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing statistics by year</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>year_stats <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_rate =</span> <span class="fu">mean</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_rate =</span> <span class="fu">median</span>(death_rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_countries =</span> <span class="fu">n_distinct</span>(country)</span>
+<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(year_stats)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 × 4
+    year mean_rate median_rate n_countries
+   &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;       &lt;int&gt;
+ 1  2010      141.       128            45
+ 2  2011      135.       124.           44
+ 3  2012      133.       120            45
+ 4  2013      130.       116            45
+ 5  2014      126.       117            46
+ 6  2015      125.       114.           45
+ 7  2016      124.       112.           46
+ 8  2017      122.       111            45
+ 9  2018      121.       108.           45
+10  2019      118.       106.           44
+11  2020      137.       118.           42
+12  2021      148.       118.           40
+13  2022      120.       108.           35
+14  2023      112.        99.5          14</code></pre>
+</div>
 </div>
 <p>To visualize the cleaned data, we can create a distribution plot of preventable death rates:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading necessary library</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting distribution of death rates</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> death_rate)) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;#9B59B6&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Preventable Death Rates&quot;</span>,</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Death Rate per 100,000&quot;</span>,</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: OECD Health Statistics&quot;</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">14</span>)</span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading necessary library</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting distribution of death rates</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> death_rate)) <span class="sc">+</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;#9B59B6&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribution of Preventable Death Rates&quot;</span>,</span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Death Rate per 100,000&quot;</span>,</span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Source: OECD Health Statistics&quot;</span></span>
+<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="conceptual-framework-knowledge-understanding-of-data" class="level2">
