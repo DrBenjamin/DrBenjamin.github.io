@@ -201,10 +201,10 @@ jobs:
       - name: Verify critical R packages
         run: |
           set -euo pipefail
-          echo "Verifying critical R packages (knitr, rmarkdown, RefManageR, devtools)"
+          echo "Verifying critical R packages (knitr, rmarkdown, RefManageR, devtools, moments)"
           cat > /tmp/verify_critical_packages.R <<'R_EOF'
           # Verify critical R packages are installed and print versions
-          crit <- c("knitr", "rmarkdown", "RefManageR", "devtools")
+          crit <- c("knitr", "rmarkdown", "RefManageR", "devtools", "moments", "gridExtra")
           miss <- crit[!vapply(crit, requireNamespace, logical(1), quietly = TRUE)]
           if (length(miss)) {
             writeLines(paste0("::error::Missing critical packages: ", paste(miss, collapse = ",")))
