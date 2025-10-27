@@ -2275,7 +2275,13 @@ vertical-align: -.125em;
   <li><a href="#types-of-errors" id="toc-types-of-errors" class="nav-link" data-scroll-target="#types-of-errors">Types of Errors</a></li>
   <li><a href="#reference-materials" id="toc-reference-materials" class="nav-link" data-scroll-target="#reference-materials">Reference Materials</a></li>
   </ul></li>
-  <li><a href="#confidence-intervals-p-values-and-statistical-tests" id="toc-confidence-intervals-p-values-and-statistical-tests" class="nav-link" data-scroll-target="#confidence-intervals-p-values-and-statistical-tests">Confidence intervals, p-values, and statistical tests</a></li>
+  <li><a href="#confidence-intervals-p-values-and-statistical-tests" id="toc-confidence-intervals-p-values-and-statistical-tests" class="nav-link" data-scroll-target="#confidence-intervals-p-values-and-statistical-tests">Confidence Intervals, P-Values, and Statistical Tests</a>
+  <ul>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals">Confidence Intervals</a></li>
+  <li><a href="#p-values" id="toc-p-values" class="nav-link" data-scroll-target="#p-values">P-Values</a></li>
+  <li><a href="#common-statistical-tests" id="toc-common-statistical-tests" class="nav-link" data-scroll-target="#common-statistical-tests">Common Statistical Tests</a></li>
+  <li><a href="#interconnections" id="toc-interconnections" class="nav-link" data-scroll-target="#interconnections">Interconnections</a></li>
+  </ul></li>
   <li><a href="#inferential-statistics-1" id="toc-inferential-statistics-1" class="nav-link" data-scroll-target="#inferential-statistics-1">Inferential statistics</a></li>
   </ul></li>
   <li><a href="#predictive-analytics" id="toc-predictive-analytics" class="nav-link" data-scroll-target="#predictive-analytics">Predictive analytics</a>
@@ -2328,7 +2334,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">27.10.2025 09:19</p>
+      <p class="date">27.10.2025 15:50</p>
     </div>
   </div>
   
@@ -3076,8 +3082,54 @@ vertical-align: -.125em;
 </section>
 </section>
 <section id="confidence-intervals-p-values-and-statistical-tests" class="level2">
-<h2 class="anchored" data-anchor-id="confidence-intervals-p-values-and-statistical-tests">Confidence intervals, p-values, and statistical tests</h2>
-<p>xy</p>
+<h2 class="anchored" data-anchor-id="confidence-intervals-p-values-and-statistical-tests">Confidence Intervals, P-Values, and Statistical Tests</h2>
+<p>Confidence intervals, p-values, and statistical tests are interconnected concepts in inferential statistics that work together to support evidence-based decision-making and quantify uncertainty in business analytics.</p>
+<section id="confidence-intervals" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h3>
+<p><strong>Confidence intervals (CIs)</strong> provide a range of plausible values for population parameters based on sample data, expressing uncertainty around point estimates with a specified confidence level (typically 95%).</p>
+<p><strong>Interpretation:</strong> - A 95% CI means that if we repeatedly sampled from the population and calculated confidence intervals, approximately 95% of those intervals would contain the true population parameter - Wider intervals indicate greater uncertainty; narrower intervals suggest more precise estimates - The interval provides both a point estimate (usually the center) and a margin of error</p>
+<p><strong>Common Types:</strong> - <strong>CI for means</strong>: Estimates average values (e.g., average customer satisfaction score: 7.2 ± 0.5) - <strong>CI for proportions</strong>: Estimates percentages (e.g., conversion rate: 12% ± 2%) - <strong>CI for differences</strong>: Compares groups (e.g., A/B test difference: 3.5% ± 1.2%) - <strong>CI for regression coefficients</strong>: Quantifies predictor effects with uncertainty</p>
+<p><strong>Business application:</strong> A marketing team tests a new email campaign and observes a 15% click-through rate in a sample of 500 customers. The 95% CI is [12.3%, 17.7%], indicating they can be 95% confident the true population click-through rate lies within this range.</p>
+</section>
+<section id="p-values" class="level3">
+<h3 class="anchored" data-anchor-id="p-values">P-Values</h3>
+<p><strong>P-values</strong> quantify the strength of evidence against the null hypothesis, representing the probability of observing results as extreme as or more extreme than those obtained, assuming the null hypothesis is true.</p>
+<p><strong>Interpretation Guidelines:</strong> - <strong>p &lt; 0.01</strong>: Very strong evidence against H₀ (highly significant) - <strong>p &lt; 0.05</strong>: Strong evidence against H₀ (statistically significant) - <strong>p &lt; 0.10</strong>: Moderate evidence against H₀ (marginally significant) - <strong>p ≥ 0.10</strong>: Insufficient evidence to reject H₀ (not significant)</p>
+<p><strong>Key Considerations:</strong> - P-values do NOT measure the probability that the null hypothesis is true - P-values do NOT measure effect size or practical importance - Smaller p-values indicate stronger evidence, but don’t guarantee meaningful effects - Statistical significance (small p-value) ≠ practical significance (meaningful effect) - P-values can be influenced by sample size: large samples may yield significant p-values for trivial effects</p>
+<p><strong>Common Misinterpretations to Avoid:</strong> - ❌ “p = 0.03 means there’s a 3% chance the null hypothesis is true” - ❌ “p &gt; 0.05 proves the null hypothesis is correct” - ✓ “p = 0.03 means that if the null hypothesis were true, we’d see results this extreme only 3% of the time”</p>
+<p><strong>Business application:</strong> Testing whether a new product feature increases user engagement, researchers obtain p = 0.02, indicating that if the feature had no effect, results this extreme would occur only 2% of the time—strong evidence the feature has an impact.</p>
+</section>
+<section id="common-statistical-tests" class="level3">
+<h3 class="anchored" data-anchor-id="common-statistical-tests">Common Statistical Tests</h3>
+<p>Statistical tests evaluate hypotheses about population parameters, each suited for specific data types and research questions.</p>
+<p><strong>Tests for Means:</strong></p>
+<p><strong>t-test:</strong> - <strong>One-sample t-test</strong>: Compare sample mean to known value (e.g., Is average satisfaction score different from 7.0?) - <strong>Independent samples t-test</strong>: Compare means between two groups (e.g., Do customers in Region A spend more than Region B?) - <strong>Paired samples t-test</strong>: Compare means for related observations (e.g., Before/after treatment comparisons)</p>
+<p><strong>ANOVA (Analysis of Variance):</strong> - Compares means across three or more groups - Identifies whether at least one group differs significantly - Example: Comparing sales performance across four sales regions</p>
+<p><strong>Tests for Proportions:</strong></p>
+<p><strong>Z-test for proportions:</strong> - Compare sample proportion to known value - Compare proportions between two groups - Example: Is conversion rate significantly higher for Treatment A vs. Control?</p>
+<p><strong>Chi-square test:</strong> - Tests independence between categorical variables - Example: Is customer satisfaction level related to product category?</p>
+<p><strong>Tests for Associations:</strong></p>
+<p><strong>Correlation test:</strong> - Evaluates significance of correlation coefficients - Tests whether observed correlation differs from zero - Example: Is there a significant relationship between advertising spend and revenue?</p>
+<p><strong>Regression F-test:</strong> - Tests overall model significance - Evaluates whether predictors collectively explain variance - Example: Do customer demographics significantly predict purchase behavior?</p>
+<p><strong>Non-parametric Tests:</strong></p>
+<p>When data violates normality assumptions, use distribution-free alternatives: - <strong>Mann-Whitney U test</strong>: Non-parametric alternative to independent t-test - <strong>Wilcoxon signed-rank test</strong>: Non-parametric alternative to paired t-test - <strong>Kruskal-Wallis test</strong>: Non-parametric alternative to ANOVA</p>
+</section>
+<section id="interconnections" class="level3">
+<h3 class="anchored" data-anchor-id="interconnections">Interconnections</h3>
+<p>These concepts work together in hypothesis testing:</p>
+<p><strong>Relationship between CIs and p-values:</strong> - If a 95% CI for a difference excludes zero, the corresponding p-value will be &lt; 0.05 - If a 95% CI includes zero, the p-value will be &gt; 0.05 - CIs provide more information than p-values: they show effect size, direction, and precision</p>
+<p><strong>Relationship between p-values and significance level (α):</strong> - If p &lt; α (commonly 0.05), reject the null hypothesis - If p ≥ α, fail to reject the null hypothesis - The α level defines Type I error rate (false positive rate)</p>
+<p><strong>Choosing the Right Test:</strong> Consider: 1. <strong>Data type</strong>: Continuous, categorical, ordinal? 2. <strong>Number of groups</strong>: One, two, or more? 3. <strong>Independence</strong>: Related or unrelated samples? 4. <strong>Assumptions</strong>: Normality, equal variances? 5. <strong>Research question</strong>: Difference, association, or prediction?</p>
+<p><strong>Business Decision Framework:</strong></p>
+<ol type="1">
+<li><strong>Statistical Significance</strong>: Does the p-value indicate a real effect? (p &lt; 0.05)</li>
+<li><strong>Effect Size</strong>: Is the magnitude practically meaningful? (examine CIs and Cohen’s d)</li>
+<li><strong>Business Impact</strong>: Does this translate to meaningful outcomes? (revenue, retention, satisfaction)</li>
+<li><strong>Cost-Benefit</strong>: Do benefits outweigh implementation costs?</li>
+</ol>
+<p><strong>Example Integration:</strong> An e-commerce company tests a new checkout design: - <strong>Sample data</strong>: 1,000 users per version (old vs. new) - <strong>Conversion rates</strong>: Old = 12.0%, New = 14.5% - <strong>Statistical test</strong>: Two-proportion z-test - <strong>Results</strong>: - Difference: 2.5 percentage points - 95% CI: [0.8%, 4.2%] - p-value: 0.004 - <strong>Interpretation</strong>: - <strong>Statistically significant</strong>: p = 0.004 &lt; 0.05 (strong evidence of a difference) - <strong>Effect size</strong>: 2.5 percentage point increase (20.8% relative improvement) - <strong>Precision</strong>: 95% confident the true improvement is between 0.8% and 4.2% - <strong>Business decision</strong>: Implement new design; with 100,000 monthly users, this represents an estimated 2,500 additional conversions monthly</p>
+<p>This integrated approach ensures decisions are statistically sound, practically meaningful, and aligned with business objectives.</p>
+</section>
 </section>
 <section id="inferential-statistics-1" class="level2">
 <h2 class="anchored" data-anchor-id="inferential-statistics-1">Inferential statistics</h2>
