@@ -201,7 +201,7 @@ jobs:
       - name: Verify critical R packages
         run: |
           set -euo pipefail
-          echo "Verifying critical R packages (knitr, rmarkdown, RefManageR, devtools, moments, gridExtra)"
+          echo "Verifying critical R packages (knitr, rmarkdown, RefManageR, devtools)"
           cat > /tmp/verify_critical_packages.R <<'R_EOF'
           # Verify critical R packages are installed and print versions
           crit <- c("knitr", "rmarkdown", "RefManageR", "devtools", "moments", "gridExtra")
