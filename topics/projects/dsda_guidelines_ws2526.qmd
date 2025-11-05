@@ -1,0 +1,148 @@
+---
+title: "Project Guidelines"
+subtitle: "Data Science and Data Analytics  (WS 2025/26)"
+duedate: October 22, 2025
+
+author:
+    - name: "Prof. Dr. Stephan Huber"
+      email: stephan.huber@hs-fresenius.de
+      affiliations: Fresenius University of Applied Science
+    - name: "Benjamin Groß"
+      email: benjamin.gross@ext.hs-fresenius.de
+      affiliations: Fresenius University of Applied Science
+      corresponding: true
+
+abstract: "This document outlines the requirements for successfully contributing to the course through a presentation and a project report. It introduces the process, establishes the standards, and provides tips how students can effectively meet the expectations."
+
+wordcount-banner: true
+filters:
+  - wordcount
+  
+format:
+  apaquarto-pdf:
+    documentmode: doc
+    include-in-header:
+      text: |
+        \linespread{1.5}
+        <!-- This equals 1.5 linespacing in Word -->
+  apaquarto-html:
+    toc: true
+    embed-resources: true
+
+
+a4paper: true
+
+
+bibliography: "/home/sthu/Dropbox/LIT/LIT_full.bib"
+csl: "/home/sthu/Dropbox/LIT/apa.csl"
+
+
+reference-location: document
+number-sections: true
+
+---
+
+Word count: {{wordcount}} 
+
+# Assessment methods and criteria 
+
+Students complete this module with a presentation and a project report. 
+The presentation will take place during the lecture period, with the exact dates set by the lecturer. Each presentation lasts 5 to 10 minutes per student. The report must be submitted some weeks after the lecture period has ended. The report should span about 10 to 15 pages per student.  
+
+Group work is permitted. In case of group work, it must be possible to clearly define and assess each student's individual performance on the basis of specified sections, page numbers, or other objective criteria.
+
+The presentation contributes 65% to the module grade, while the handout contributes 35%. A passing grade for this module is achieved when the overall grade is greater than or equal to 4.0.
+
+
+# Topics and procedure
+
+This year's project is designed to showcase your ability to work with and analyze data using the programming language R. You are expected to demonstrate your mastery of empirical research methodologies and proficiency with key data science tools, including Markdown, Quarto, git, GitHub, and BibTeX.
+
+You are responsible for selecting and designing your project topic, finding suitable data, and analyzing the data to answer an economically relevant question.
+
+### Procedure: {-}
+
+1. Formulate a topic and a brief description what you intend to discuss empirically.
+2. Find an accessible dataset to work with. 
+1. Send your topic title and description to Benjamin Groß via email. 
+1. Receive feedback on your topic and plan during class.
+1. Presentation dates will be set by the lecturer and published on ILIAS.
+1. Present your work.
+1. Finalize your project report.
+1. Submit your presentation and your report on ILIAS.
+
+Mr. Benjamin Groß will organize and communicate the exact timing of these steps.
+
+::: {.callout-important appearance="default"}
+The presentation day is an official examination date. Failure to attend will result in a grade of 5.0. Ensure you are present. Moreover, please inform yourself about the deadline for submitting your work on ILIAS.
+:::
+
+# The presentation 
+
+Create a presentation using Quarto, and publish it as a website through GitHub. Ensure the HTML file is a standalone website (HTML), and also provide a PDF version of your presentation. For guidance on creating a standalone HTML file, refer to [Quarto HTML Publishing](https://quarto.org/docs/output-formats/html-publishing.html#standalone-html).  Upload both files to GitHub and share the URLs with the audience so they can access your presentation during class.
+
+The design and the layout of the presentation slides are your choice. However, please avoid trying to impress with elaborate layouts or extraneous details. This is an academic presentation, and distracting decorations are inappropriate. Your primary focus should be on effectively communicating information, facts, and insights to the reader. Feel free to include any elements that support this goal. Tables and figures do not need to be numbered according to APA standards.
+
+Given the limited presentation time, prioritize key points to ensure you stay within the given timeframe without overly promoting yourself. Briefly describe and present work and how you aim to utilize your data. The presentation should serve as a progress report, highlighting ongoing work and current challenges—not finished results. Present your outcomes in the written project report. 
+The in-class presentation is your opportunity to receive feedback and support from the lecturer and your classmates, not a showcase of your achievements. You can highlight all your successes in the final report.
+
+The presentation is not the occasion for showcasing success stories. Similar to an internal business meeting, the interest lies in understanding the hurdles you face, as this opens the door for constructive feedback and suggestions that could help overcome these challenges.
+
+
+# The report
+
+The report must be written using Quarto, contain a minimum of 3,000 words per student, and be published and submitted in both HTML standalone format and PDF format. Add a wordcount at the beginning of your report. You find a Quarto extension that works here: [https://github.com/christopherkenny/wordcount](github.com/christopherkenny/wordcount).
+
+The layout of the report should adhere to the style guide of @APA2020Publication. Therefore, I recommend using the Quarto extension, apaquarto and the 'student paper' option. You find the extension here: [https://github.com/wjschne/apaquarto](https://github.com/wjschne/apaquarto). Ensure the HTML file is a standalone website (HTML), and also provide a PDF version of your report. The PDF should be formatted for A4 paper. 
+
+::: {.callout-tip appearance="default"}
+A template for the project paper can be found here: [https://github.com/hubchev/temp_apa_stu](https://github.com/hubchev/temp_apa_stu)
+:::
+
+
+Please put some emphasize on guiding and motivating the reader. For example, the introduction is a good place to introduce the scope and content of the report. To ensure conciseness and clarity, please eliminate all unnecessary repetition. Take the time to read each sentence multiple times, asking yourself if it is concise, clear, and coherent with the surrounding text. Avoid language issues such as incorrect punctuation, incomplete sentences, or grammatical errors. I recommend using software tools to assist you in identifying and correcting these issues.
+
+Incorporate all R code relevant to reproducing the empirical findings directly into your Quarto file using code chunks. Your QMD file(s) must document the complete workflow, encompassing data import, cleaning, and analysis. While all code should be included, it's not necessary to display every message and output generated by the code in the PDF document.
+
+
+::: {.callout-important appearance="default"}
+In group work, it is essential that every student demonstrates their proficiency in writing R code.
+:::
+
+
+# Submission 
+
+Submit at least the following files on ILIAS: 
+
+- Quarto file of your report.
+- Quarto file of your presentation.
+- HTML file of your report.
+- HTML file of your presentation.
+- PDF file of your report.
+- PDF file of your presentation.
+
+Additional files that are required to understand, evaluate, and reproduce your work are welcome.
+
+At best, try to upload all files in one .zip file.
+
+::: {.callout-important appearance="default"}
+Please consider the deadline for academic papers and written assessments!
+:::
+
+# General advice
+
+We refrain from specific advice on good writing, structuring your work, or adhering to academic rules and conventions. Therefore, we recommend reading @Huber2024My and the literature cited therein. 
+Since this is an academic presentation and work, respectively, please choose your sources carefully and ensure that you cite them appropriately.
+If anything is unclear, please let us know as soon as possible. It is your responsibility to be well prepared on the day of your presentation. If you encounter any problems, let us know immediately and we will do our best to help you. However, please understand that we may have limited availability in the days or weeks leading up to your presentation and your submission deadline. Prioritise the essential tasks that are technically complex or where something is likely to go wrong.
+
+
+
+
+
+# References
+
+::: {#refs}
+
+:::
+
+
