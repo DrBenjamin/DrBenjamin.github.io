@@ -2286,7 +2286,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">05.11.2025 11:27</p>
+      <p class="date">05.11.2025 11:52</p>
     </div>
   </div>
   
@@ -2407,6 +2407,7 @@ vertical-align: -.125em;
 </ul>
 <p>The significance of business data analysis for decision-making extends beyond technical capabilities to encompass organizational transformation, cultural change, and strategic competitive positioning. Organizations that successfully integrate analytical capabilities into their decision-making processes achieve superior performance outcomes, enhanced agility, and sustainable competitive advantages in increasingly data-driven markets.</p>
 <p>For comprehensive coverage of business data analysis methodologies and applications, see <a href="./topics/Scope%20and%20Nature%20of%20Data%20Science/Business%20Data%20Analysis/978-3-031-78070-7.pdf">Advanced Business Analytics</a> and the analytical foundations outlined in <span class="citation" data-cites="Evans2020">Evans (2020)</span>.</p>
+<p>For open access resources, visit <a href="https://www.kaggle.com/">Kaggle</a>, a platform for data science competitions and datasets.</p>
 </section>
 </section>
 <section id="emerging-trends" class="level2">
@@ -2731,7 +2732,7 @@ vertical-align: -.125em;
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DrBenjamin/ourdata&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>── R CMD build ─────────────────────────────────────────────────────────────────
-* checking for file ‘/tmp/RtmpoaagmP/remotes3b3b42a0d6b9/DrBenjamin-ourdata-3403a65/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpgE0ubO/remotes3b2c608c6e77/DrBenjamin-ourdata-3403a65/DESCRIPTION’ ... OK
 * preparing ‘ourdata’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
@@ -3153,7 +3154,14 @@ Using the first match ...</code></pre>
 </section>
 <section id="data-visualization-principles" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualization-principles">Data Visualization Principles</h2>
-<p><strong>Choose encodings appropriate to variable types:</strong> - Continuous (Quantitative) variables → Position, Length Examples: x/y coordinates in scatter plots, bar heights, line positions - Categorical (Nominal) variables → Color hue, Shape, Facets Examples: different colors for groups, point shapes, separate panels - Ordinal variables → Ordered position, Color saturation Examples: ordered categories on axis, gradient colors from light to dark - Temporal variables → Position along x-axis, Line connections Examples: time on horizontal axis, connected points showing progression - Compositional (Part-to-whole) → Stacked position, Area Examples: stacked bars, proportional areas</p>
+<p><strong>Choose encodings appropriate to variable types:</strong></p>
+<ul>
+<li>Continuous (Quantitative) variables → Position, Length Examples: x/y coordinates in scatter plots, bar heights, line positions</li>
+<li>Categorical (Nominal) variables → Color hue, Shape, Facets Examples: different colors for groups, point shapes, separate panels</li>
+<li>Ordinal variables → Ordered position, Color saturation Examples: ordered categories on axis, gradient colors from light to dark</li>
+<li>Temporal variables → Position along x-axis, Line connections Examples: time on horizontal axis, connected points showing progression</li>
+<li>Compositional (Part-to-whole) → Stacked position, Area Examples: stacked bars, proportional areas</li>
+</ul>
 <p><strong>Emphasize clarity: reduce chart junk; apply perceptual best practices:</strong></p>
 <p>Clarity in data visualization requires removing unnecessary elements that distract from the data while applying principles of human perception to enhance understanding.</p>
 <ul>
@@ -3203,9 +3211,27 @@ Using the first match ...</code></pre>
 </div>
 <p><strong>Support comparison, trend detection, and anomaly spotting:</strong></p>
 <p>Effective visualizations should facilitate three key analytical tasks: comparing values across groups, identifying trends over time, and detecting unusual patterns.</p>
-<p><em>Support comparison:</em> - Align items on common scales for direct comparison - Use small multiples (facets) for comparing across categories - Order categorical variables meaningfully (by value, alphabetically, or logically) - Keep consistent ordering across related charts</p>
-<p><em>Enable trend detection:</em> - Use connected lines for temporal data to show continuity - Add trend lines (linear, loess) to highlight overall patterns - Display sufficient time periods to establish meaningful trends - Avoid over-smoothing that hides important variations</p>
-<p><em>Facilitate anomaly spotting:</em> - Use reference lines or bands for expected ranges - Highlight outliers through color or annotation - Include context (confidence intervals, historical ranges) - Maintain consistent scales to make deviations visible</p>
+<p><strong>Support comparison:</strong></p>
+<ul>
+<li>Align items on common scales for direct comparison</li>
+<li>Use small multiples (facets) for comparing across categories</li>
+<li>Order categorical variables meaningfully (by value, alphabetically, or logically)</li>
+<li>Keep consistent ordering across related charts</li>
+</ul>
+<p><strong>Enable trend detection:</strong></p>
+<ul>
+<li>Use connected lines for temporal data to show continuity</li>
+<li>Add trend lines (linear, loess) to highlight overall patterns</li>
+<li>Display sufficient time periods to establish meaningful trends</li>
+<li>Avoid over-smoothing that hides important variations</li>
+</ul>
+<p><strong>Facilitate anomaly spotting:</strong></p>
+<ul>
+<li>Use reference lines or bands for expected ranges</li>
+<li>Highlight outliers through color or annotation</li>
+<li>Include context (confidence intervals, historical ranges)</li>
+<li>Maintain consistent scales to make deviations visible</li>
+</ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading necessary libraries</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
