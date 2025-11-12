@@ -2287,7 +2287,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">12.11.2025 08:11</p>
+      <p class="date">12.11.2025 08:26</p>
     </div>
   </div>
   
@@ -2733,7 +2733,7 @@ vertical-align: -.125em;
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;DrBenjamin/ourdata&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>── R CMD build ─────────────────────────────────────────────────────────────────
-* checking for file ‘/tmp/RtmpVGpi6y/remotes3b6865de69f7/DrBenjamin-ourdata-3403a65/DESCRIPTION’ ... OK
+* checking for file ‘/tmp/RtmpTsgVeY/remotes3b1b46566f3/DrBenjamin-ourdata-3403a65/DESCRIPTION’ ... OK
 * preparing ‘ourdata’:
 * checking DESCRIPTION meta-information ... OK
 * checking for LF line-endings in source and make files and shell scripts
@@ -3294,38 +3294,38 @@ Using the first match ...</code></pre>
 <section id="detecting-outliers-and-anomalies" class="level2">
 <h2 class="anchored" data-anchor-id="detecting-outliers-and-anomalies">Detecting Outliers and Anomalies</h2>
 <ul>
-<li>Rule-based methods (IQR, z-scores).</li>
-<li>Robust statistics (median, MAD).</li>
-<li>Model-based or multivariate detection (e.g., Mahalanobis distance, clustering residuals).</li>
-<li>Distinguish errors vs. novel but valid observations.</li>
+<li><p><strong>Rule-based methods (IQR, z-scores)</strong>: These classical univariate approaches identify outliers by establishing statistical thresholds, where observations falling beyond predefined boundaries (e.g., 1.5×IQR or ±3 standard deviations) are flagged as potential anomalies. While computationally efficient and interpretable, these methods assume underlying distributional properties and may overlook multivariate patterns.</p></li>
+<li><p><strong>Robust statistics (median, MAD)</strong>: Resistant measures such as the median and median absolute deviation (MAD) provide reliable central tendency and dispersion estimates that are less influenced by extreme values compared to mean and standard deviation. These statistics form the foundation for outlier detection in skewed or heavy-tailed distributions where parametric assumptions are violated.</p></li>
+<li><p><strong>Model-based or multivariate detection (e.g., Mahalanobis distance, clustering residuals)</strong>: Advanced techniques account for correlation structures and multidimensional relationships, enabling detection of outliers that appear normal in individual dimensions but are anomalous in multivariate space. Mahalanobis distance measures how many standard deviations an observation is from the distribution center, while clustering residuals identify observations that deviate from expected cluster membership patterns.</p></li>
+<li><p><strong>Distinguish errors vs. novel but valid observations</strong>: Critical analytical judgment is required to differentiate between measurement errors, data entry mistakes, and legitimate extreme values that represent rare but genuine phenomena. This distinction has profound implications for data quality management and scientific discovery, as premature removal of valid outliers may obscure important patterns or emerging trends.</p></li>
 </ul>
 </section>
 <section id="dimensionality-reduction" class="level2">
 <h2 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality Reduction</h2>
 <ul>
-<li>Motivation: mitigate multicollinearity, noise, and curse of dimensionality.</li>
-<li>Techniques: Principal Component Analysis (PCA), Factor Analysis, (optionally) t-SNE / UMAP (for exploration).</li>
-<li>Interpretability vs. compression trade-offs.</li>
+<li><p><strong>Motivation: mitigate multicollinearity, noise, and curse of dimensionality</strong>: High-dimensional datasets present computational challenges and statistical complications, including increased sparsity, model overfitting, and reduced discriminatory power of distance-based methods. Dimensionality reduction addresses these issues by transforming data into lower-dimensional representations while preserving essential variance and structural relationships.</p></li>
+<li><p><strong>Techniques: Principal Component Analysis (PCA), Factor Analysis, (optionally) t-SNE / UMAP (for exploration)</strong>: PCA identifies orthogonal linear combinations of variables that maximize variance, creating uncorrelated components suitable for regression and classification tasks. Factor Analysis assumes latent constructs underlying observed variables, focusing on shared variance and theoretical interpretation, while non-linear methods like t-SNE and UMAP preserve local neighborhood structures for exploratory visualization of complex data manifolds.</p></li>
+<li><p><strong>Interpretability vs. compression trade-offs</strong>: Dimensionality reduction inherently balances the competing objectives of achieving parsimonious data representations and maintaining interpretable relationships to original variables. While aggressive compression maximizes computational efficiency and reduces noise, it may obscure meaningful features and complicate domain-specific interpretation of analytical results.</p></li>
 </ul>
 </section>
 <section id="data-exploration-and-mining" class="level2">
 <h2 class="anchored" data-anchor-id="data-exploration-and-mining">Data Exploration and Mining</h2>
 <ul>
-<li>Structured EDA workflow: question → visualize → quantify → refine.</li>
-<li>PCA for variance structure.</li>
-<li>Factor Analysis for latent constructs.</li>
-<li>Regression Analysis for relationships and predictive structure.</li>
-<li>Clustering (k-means, hierarchical) for pattern discovery (if included).</li>
+<li><p><strong>Structured EDA workflow: question → visualize → quantify → refine</strong>: Exploratory Data Analysis follows a systematic iterative process that begins with research questions, employs visualization to generate hypotheses, quantifies patterns through statistical measures, and refines understanding through successive analytical cycles. This disciplined approach prevents data dredging while ensuring comprehensive investigation of data characteristics and relationships.</p></li>
+<li><p><strong>PCA for variance structure</strong>: Principal Component Analysis reveals the underlying variance-covariance structure of multivariate data, identifying dimensions of maximum variability and reducing redundancy among correlated variables. By examining eigenvalues and component loadings, analysts determine the effective dimensionality of the dataset and detect dominant patterns in the data.</p></li>
+<li><p><strong>Factor Analysis for latent constructs</strong>: This technique assumes that observed variables are manifestations of unobservable latent factors, making it particularly valuable for psychometric research and construct validation. Unlike PCA, Factor Analysis models measurement error explicitly and focuses on shared rather than total variance, facilitating theoretical interpretation of underlying psychological or economic constructs.</p></li>
+<li><p><strong>Regression Analysis for relationships and predictive structure</strong>: Linear and non-linear regression models quantify relationships between dependent and independent variables, enabling both explanatory analysis of associations and predictive modeling of outcomes. These methods provide parameter estimates, statistical inference, and diagnostic tools to assess model adequacy and identify influential observations.</p></li>
+<li><p><strong>Clustering (k-means, hierarchical) for pattern discovery (if included)</strong>: Unsupervised clustering algorithms partition observations into homogeneous groups based on similarity metrics, revealing natural taxonomies and segment structures within data. K-means optimizes within-cluster variance through iterative assignment, while hierarchical methods create nested groupings that can be visualized through dendrograms to inform cluster selection.</p></li>
 </ul>
 </section>
 <section id="causal-inference-with-regression-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="causal-inference-with-regression-analysis">Causal Inference with Regression Analysis</h2>
 <ul>
-<li>Distinguish association vs. causation.</li>
-<li>Model specification and confounding control.</li>
-<li>Assumptions: linearity, independence, homoskedasticity, exogeneity.</li>
-<li>Interpretation of coefficients and marginal effects.</li>
-<li>Sensitivity and robustness checks.</li>
+<li><p><strong>Distinguish association vs. causation</strong>: Statistical association measures correlation between variables without implying directionality, whereas causal inference attempts to establish that changes in one variable directly produce changes in another. Demonstrating causality requires careful consideration of temporal precedence, theoretical mechanisms, and elimination of alternative explanations through research design and statistical controls.</p></li>
+<li><p><strong>Model specification and confounding control</strong>: Proper model specification identifies relevant covariates and functional forms to isolate the causal effect of interest while controlling for confounding variables that influence both treatment and outcome. Omitted variable bias, measurement error, and incorrect functional forms threaten causal identification, necessitating theory-driven variable selection and specification testing.</p></li>
+<li><p><strong>Assumptions: linearity, independence, homoskedasticity, exogeneity</strong>: Valid causal inference from regression requires that relationships are linear in parameters, observations are independent, error variance is constant across predictor levels, and explanatory variables are uncorrelated with the error term. Violations of these assumptions bias coefficient estimates, invalidate standard errors, and compromise hypothesis tests, requiring diagnostic assessment and remedial measures.</p></li>
+<li><p><strong>Interpretation of coefficients and marginal effects</strong>: Regression coefficients represent the expected change in the dependent variable associated with a one-unit change in the independent variable, holding other factors constant. Marginal effects extend this interpretation to non-linear models and interaction terms, quantifying how the impact of one variable varies across levels of another variable.</p></li>
+<li><p><strong>Sensitivity and robustness checks</strong>: Assessing the stability of causal conclusions across alternative model specifications, sample restrictions, and analytical choices strengthens inference and identifies fragile results dependent on specific assumptions. Techniques include varying control variables, testing different functional forms, examining subgroup effects, and conducting placebo tests to validate identification strategies.</p></li>
 </ul>
 </section>
 </section>
