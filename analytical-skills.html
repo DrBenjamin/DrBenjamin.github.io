@@ -2333,7 +2333,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">14.11.2025 10:51</p>
+      <p class="date">14.11.2025 13:00</p>
     </div>
   </div>
   
@@ -2933,15 +2933,43 @@ vertical-align: -.125em;
 <section id="categorical-data" class="level3">
 <h3 class="anchored" data-anchor-id="categorical-data">Categorical Data</h3>
 <p><strong>Categorical data</strong> represents discrete groups or categories without inherent numerical ordering (nominal) or with meaningful ordering (ordinal). Visualization and exploration focus on frequency distributions and group comparisons.</p>
-<p><strong>Common visualizations:</strong> - <strong>Bar charts</strong>: Compare frequencies or proportions across categories - <strong>Pie charts</strong>: Show part-to-whole relationships for categorical breakdowns - <strong>Stacked bar charts</strong>: Display multiple categorical variables simultaneously - <strong>Tree maps</strong>: Visualize hierarchical categorical data with nested rectangles - <strong>Mosaic plots</strong>: Show relationships between multiple categorical variables</p>
-<p><strong>Exploratory techniques:</strong> - Frequency tables and cross-tabulations - Mode identification - Chi-square tests for independence - Contingency analysis</p>
+<p><strong>Common visualizations:</strong></p>
+<ul>
+<li><strong>Bar charts</strong>: Compare frequencies or proportions across categories</li>
+<li><strong>Pie charts</strong>: Show part-to-whole relationships for categorical breakdowns</li>
+<li><strong>Stacked bar charts</strong>: Display multiple categorical variables simultaneously</li>
+<li><strong>Tree maps</strong>: Visualize hierarchical categorical data with nested rectangles</li>
+<li><strong>Mosaic plots</strong>: Show relationships between multiple categorical variables</li>
+</ul>
+<p><strong>Exploratory techniques:</strong></p>
+<ul>
+<li>Frequency tables and cross-tabulations</li>
+<li>Mode identification</li>
+<li>Chi-square tests for independence</li>
+<li>Contingency analysis</li>
+</ul>
 <p><strong>Business example:</strong> Visualizing customer segments by region using bar charts, analyzing product category preferences with pie charts, or exploring the relationship between customer type and purchase channel using mosaic plots.</p>
 </section>
 <section id="numerical-data" class="level3">
 <h3 class="anchored" data-anchor-id="numerical-data">Numerical Data</h3>
 <p><strong>Numerical data</strong> consists of quantitative measurements on continuous or discrete scales. Visualization emphasizes distributions, central tendencies, variability, and relationships between variables.</p>
-<p><strong>Common visualizations:</strong> - <strong>Histograms</strong>: Display distribution of continuous variables - <strong>Box plots</strong>: Show median, quartiles, and outliers for comparison - <strong>Violin plots</strong>: Combine box plots with density curves - <strong>Scatter plots</strong>: Reveal relationships between two numerical variables - <strong>Line graphs</strong>: Track changes over ordered sequences - <strong>Heatmaps</strong>: Display correlation matrices or intensity patterns</p>
-<p><strong>Exploratory techniques:</strong> - Summary statistics (mean, median, standard deviation) - Distribution analysis (skewness, kurtosis) - Outlier detection - Correlation analysis - Trend identification</p>
+<p><strong>Common visualizations:</strong></p>
+<ul>
+<li><strong>Histograms</strong>: Display distribution of continuous variables</li>
+<li><strong>Box plots</strong>: Show median, quartiles, and outliers for comparison</li>
+<li><strong>Violin plots</strong>: Combine box plots with density curves</li>
+<li><strong>Scatter plots</strong>: Reveal relationships between two numerical variables</li>
+<li><strong>Line graphs</strong>: Track changes over ordered sequences</li>
+<li><strong>Heatmaps</strong>: Display correlation matrices or intensity patterns</li>
+</ul>
+<p><strong>Exploratory techniques:</strong></p>
+<ul>
+<li>Summary statistics (mean, median, standard deviation)</li>
+<li>Distribution analysis (skewness, kurtosis)</li>
+<li>Outlier detection</li>
+<li>Correlation analysis</li>
+<li>Trend identification</li>
+</ul>
 <p><strong>Business example:</strong> Using histograms to analyze revenue distributions, box plots to compare sales performance across quarters, scatter plots to examine the relationship between marketing spend and customer acquisition, or heatmaps to visualize product sales correlations.</p>
 </section>
 <section id="time-series-data" class="level3">
@@ -2973,29 +3001,127 @@ vertical-align: -.125em;
 <p>Real-world data is rarely clean or analysis-ready. Data quality issues compromise analytical accuracy and business decisions. Handling messy data involves identifying, understanding, and resolving various data quality problems through systematic cleaning and transformation processes.</p>
 <section id="common-data-quality-issues" class="level3">
 <h3 class="anchored" data-anchor-id="common-data-quality-issues">Common Data Quality Issues</h3>
-<p><strong>Missing Values:</strong> - <strong>Complete absence</strong>: Entire records or fields are missing - <strong>Implicit missingness</strong>: Represented as NULL, NA, empty strings, or placeholder values (e.g., 999, -1) - <strong>Patterns</strong>: Missing Completely At Random (MCAR), Missing At Random (MAR), or Missing Not At Random (MNAR)</p>
-<p><strong>Handling strategies:</strong> - Deletion (listwise or pairwise) when data is MCAR and missing percentage is low - Imputation: mean/median/mode for numerical data, forward/backward fill for time series - Model-based imputation: regression, k-nearest neighbors (KNN), multiple imputation - Flag creation: adding indicator variables to preserve information about missingness</p>
-<p><strong>Inconsistent Data:</strong> - <strong>Format variations</strong>: “New York” vs. “NY” vs. “new york” - <strong>Unit inconsistencies</strong>: mixing metric and imperial measurements - <strong>Date format variations</strong>: “MM/DD/YYYY” vs. “DD-MM-YYYY” - <strong>Encoding issues</strong>: character encoding problems (UTF-8, ASCII)</p>
-<p><strong>Handling strategies:</strong> - Standardization: converting to consistent formats and units - Text normalization: lowercasing, trimming whitespace, removing special characters - Date parsing with explicit format specifications - Encoding conversion and validation</p>
-<p><strong>Duplicate Records:</strong> - <strong>Exact duplicates</strong>: Identical records across all fields - <strong>Near duplicates</strong>: Records representing the same entity with slight variations - <strong>Logical duplicates</strong>: Same entity with different identifiers</p>
-<p><strong>Handling strategies:</strong> - Exact match removal using unique identifiers - Fuzzy matching for near duplicates (Levenshtein distance, Jaccard similarity) - Record linkage and deduplication algorithms - Master data management (MDM) approaches</p>
-<p><strong>Outliers and Anomalies:</strong> - <strong>Statistical outliers</strong>: Values beyond expected range (e.g., 3 standard deviations from mean) - <strong>Domain outliers</strong>: Values impossible or implausible in business context (negative ages, future dates) - <strong>Data entry errors</strong>: Typos or transposition errors</p>
-<p><strong>Handling strategies:</strong> - Detection: Z-score, IQR method, isolation forests, DBSCAN clustering - Investigation: determine if outliers are errors or valid extreme values - Treatment: removal, capping/winsorizing, transformation, or separate analysis - Domain validation: implementing business rules and constraints</p>
-<p><strong>Structural Issues:</strong> - <strong>Wrong data types</strong>: Numbers stored as text, dates as strings - <strong>Improper granularity</strong>: Data too aggregated or too detailed for analysis - <strong>Denormalized structures</strong>: Redundant or poorly organized data - <strong>Schema mismatches</strong>: Incompatible structures when merging datasets</p>
-<p><strong>Handling strategies:</strong> - Type conversion with validation - Aggregation or disaggregation to appropriate levels - Normalization and restructuring (wide-to-long, long-to-wide transformations) - Schema mapping and harmonization</p>
+<p><strong>Missing Values:</strong></p>
+<ul>
+<li><strong>Complete absence</strong>: Entire records or fields are missing</li>
+<li><strong>Implicit missingness</strong>: Represented as NULL, NA, empty strings, or placeholder values (e.g., 999, -1)</li>
+<li><strong>Patterns</strong>: Missing Completely At Random (MCAR), Missing At Random (MAR), or Missing Not At Random (MNAR)</li>
+</ul>
+<p><strong>Handling strategies:</strong></p>
+<ul>
+<li>Deletion (listwise or pairwise) when data is MCAR and missing percentage is low</li>
+<li>Imputation: mean/median/mode for numerical data, forward/backward fill for time series</li>
+<li>Model-based imputation: regression, k-nearest neighbors (KNN), multiple imputation</li>
+<li>Flag creation: adding indicator variables to preserve information about missingness</li>
+</ul>
+<p><strong>Inconsistent Data:</strong></p>
+<ul>
+<li><strong>Format variations</strong>: “New York” vs. “NY” vs. “new york”</li>
+<li><strong>Unit inconsistencies</strong>: mixing metric and imperial measurements</li>
+<li><strong>Date format variations</strong>: “MM/DD/YYYY” vs. “DD-MM-YYYY”</li>
+<li><strong>Encoding issues</strong>: character encoding problems (UTF-8, ASCII)</li>
+</ul>
+<p><strong>Handling strategies:</strong></p>
+<ul>
+<li>Standardization: converting to consistent formats and units</li>
+<li>Text normalization: lowercasing, trimming whitespace, removing special characters</li>
+<li>Date parsing with explicit format specifications</li>
+<li>Encoding conversion and validation</li>
+</ul>
+<p><strong>Duplicate Records:</strong></p>
+<ul>
+<li><strong>Exact duplicates</strong>: Identical records across all fields</li>
+<li><strong>Near duplicates</strong>: Records representing the same entity with slight variations</li>
+<li><strong>Logical duplicates</strong>: Same entity with different identifiers</li>
+</ul>
+<p><strong>Handling strategies:</strong></p>
+<ul>
+<li>Exact match removal using unique identifiers</li>
+<li>Fuzzy matching for near duplicates (Levenshtein distance, Jaccard similarity)</li>
+<li>Record linkage and deduplication algorithms</li>
+<li>Master data management (MDM) approaches</li>
+</ul>
+<p><strong>Outliers and Anomalies:</strong></p>
+<ul>
+<li><strong>Statistical outliers</strong>: Values beyond expected range (e.g., 3 standard deviations from mean)</li>
+<li><strong>Domain outliers</strong>: Values impossible or implausible in business context (negative ages, future dates)</li>
+<li><strong>Data entry errors</strong>: Typos or transposition errors</li>
+</ul>
+<p><strong>Handling strategies:</strong></p>
+<ul>
+<li>Detection: Z-score, IQR method, isolation forests, DBSCAN clustering</li>
+<li>Investigation: determine if outliers are errors or valid extreme values</li>
+<li>Treatment: removal, capping/winsorizing, transformation, or separate analysis</li>
+<li>Domain validation: implementing business rules and constraints</li>
+</ul>
+<p><strong>Structural Issues:</strong></p>
+<ul>
+<li><strong>Wrong data types</strong>: Numbers stored as text, dates as strings</li>
+<li><strong>Improper granularity</strong>: Data too aggregated or too detailed for analysis</li>
+<li><strong>Denormalized structures</strong>: Redundant or poorly organized data</li>
+<li><strong>Schema mismatches</strong>: Incompatible structures when merging datasets</li>
+</ul>
+<p><strong>Handling strategies:</strong></p>
+<ul>
+<li>Type conversion with validation</li>
+<li>Aggregation or disaggregation to appropriate levels</li>
+<li>Normalization and restructuring (wide-to-long, long-to-wide transformations)</li>
+<li>Schema mapping and harmonization</li>
+</ul>
 </section>
 <section id="data-cleaning-workflow" class="level3">
 <h3 class="anchored" data-anchor-id="data-cleaning-workflow">Data Cleaning Workflow</h3>
-<p><strong>1. Profiling and Assessment:</strong> - Examine data distributions, completeness, and patterns - Generate data quality reports - Identify specific issues and their prevalence</p>
-<p><strong>2. Validation:</strong> - Define business rules and constraints - Implement validation checks (range checks, format checks, logical consistency) - Flag violations for review</p>
-<p><strong>3. Cleaning:</strong> - Apply correction strategies systematically - Document all transformations - Maintain audit trails</p>
-<p><strong>4. Verification:</strong> - Validate cleaned data against quality criteria - Compare before/after statistics - Conduct spot checks and sample reviews</p>
-<p><strong>5. Documentation:</strong> - Record all cleaning decisions and rationale - Create data dictionaries - Document assumptions and limitations</p>
+<p><strong>1. Profiling and Assessment:</strong></p>
+<ul>
+<li>Examine data distributions, completeness, and patterns</li>
+<li>Generate data quality reports</li>
+<li>Identify specific issues and their prevalence</li>
+</ul>
+<p><strong>2. Validation:</strong></p>
+<ul>
+<li>Define business rules and constraints</li>
+<li>Implement validation checks (range checks, format checks, logical consistency)</li>
+<li>Flag violations for review</li>
+</ul>
+<p><strong>3. Cleaning:</strong></p>
+<ul>
+<li>Apply correction strategies systematically</li>
+<li>Document all transformations</li>
+<li>Maintain audit trails</li>
+</ul>
+<p><strong>4. Verification:</strong></p>
+<ul>
+<li>Validate cleaned data against quality criteria</li>
+<li>Compare before/after statistics</li>
+<li>Conduct spot checks and sample reviews</li>
+</ul>
+<p><strong>5. Documentation:</strong></p>
+<ul>
+<li>Record all cleaning decisions and rationale</li>
+<li>Create data dictionaries</li>
+<li>Document assumptions and limitations</li>
+</ul>
 </section>
 <section id="tools-and-techniques-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="tools-and-techniques-in-r">Tools and Techniques in R</h3>
-<p><strong>R packages for data cleaning:</strong> - <code>tidyverse</code> (dplyr, tidyr): Data manipulation and reshaping - <code>janitor</code>: Data cleaning utilities and tabulation - <code>naniar</code>, <code>mice</code>: Missing data visualization and imputation - <code>stringr</code>, <code>stringi</code>: Text cleaning and manipulation - <code>lubridate</code>: Date-time parsing and manipulation - <code>validate</code>, <code>assertr</code>: Data validation - <code>dedupr</code>, <code>RecordLinkage</code>: Deduplication</p>
-<p><strong>Business example:</strong> A retail company discovers that their customer database contains 15% missing email addresses, duplicate customer records with slight name variations (e.g., “John Smith” vs. “J. Smith”), inconsistent country codes (“USA” vs. “US” vs. “United States”), and impossible birth dates (e.g., year 1899). The data cleaning process involves: 1. Flagging missing emails for targeted collection campaigns 2. Using fuzzy matching to merge duplicate customer profiles while preserving transaction history 3. Standardizing country codes using ISO standards 4. Validating and correcting birth dates using business rules (customers must be 18+ years old) 5. Creating a cleaned, analysis-ready dataset that improves customer segmentation accuracy and marketing campaign targeting.</p>
+<p><strong>R packages for data cleaning:</strong></p>
+<ul>
+<li><code>tidyverse</code> (dplyr, tidyr): Data manipulation and reshaping</li>
+<li><code>janitor</code>: Data cleaning utilities and tabulation</li>
+<li><code>naniar</code>, <code>mice</code>: Missing data visualization and imputation</li>
+<li><code>stringr</code>, <code>stringi</code>: Text cleaning and manipulation</li>
+<li><code>lubridate</code>: Date-time parsing and manipulation</li>
+<li><code>validate</code>, <code>assertr</code>: Data validation</li>
+<li><code>dedupr</code>, <code>RecordLinkage</code>: Deduplication</li>
+</ul>
+<p><strong>Business example:</strong> A retail company discovers that their customer database contains 15% missing email addresses, duplicate customer records with slight name variations (e.g., “John Smith” vs. “J. Smith”), inconsistent country codes (“USA” vs. “US” vs. “United States”), and impossible birth dates (e.g., year 1899). The data cleaning process involves:</p>
+<ol type="1">
+<li>Flagging missing emails for targeted collection campaigns</li>
+<li>Using fuzzy matching to merge duplicate customer profiles while preserving transaction history</li>
+<li>Standardizing country codes using ISO standards</li>
+<li>Validating and correcting birth dates using business rules (customers must be 18+ years old)</li>
+<li>Creating a cleaned, analysis-ready dataset that improves customer segmentation accuracy and marketing campaign targeting.</li>
+</ol>
 </section>
 </section>
 <section id="association-measuring-relationships-between-variables" class="level2">
@@ -3005,42 +3131,157 @@ vertical-align: -.125em;
 <h3 class="anchored" data-anchor-id="correlation-analysis">Correlation Analysis</h3>
 <p><strong>Correlation</strong> measures the strength and direction of linear relationships between two variables, producing coefficients ranging from -1 (perfect negative correlation) to +1 (perfect positive correlation), with 0 indicating no linear relationship.</p>
 <p><strong>Types of Correlation Coefficients:</strong></p>
-<p><strong>Pearson Correlation (r):</strong> - Measures linear relationships between continuous variables - Assumes normally distributed data - Sensitive to outliers - Interpretation: r = 0.7-1.0 (strong), 0.4-0.7 (moderate), 0.1-0.4 (weak)</p>
-<p><strong>Spearman Rank Correlation (ρ):</strong> - Measures monotonic relationships (not necessarily linear) - Non-parametric alternative to Pearson - Works with ordinal data - Robust to outliers and non-normal distributions</p>
-<p><strong>Kendall’s Tau (τ):</strong> - Measures ordinal associations - Better for small sample sizes - More robust than Spearman for tied ranks</p>
-<p><strong>Key Considerations:</strong> - <strong>Correlation ≠ Causation</strong>: Strong correlation doesn’t imply one variable causes changes in another - <strong>Spurious correlations</strong>: Unrelated variables may correlate due to confounding factors or coincidence - <strong>Non-linear relationships</strong>: Correlation coefficients may miss curved or complex patterns - <strong>Range restrictions</strong>: Limited variable ranges can artificially reduce correlation</p>
+<p><strong>Pearson Correlation (r):</strong></p>
+<ul>
+<li>Measures linear relationships between continuous variables</li>
+<li>Assumes normally distributed data</li>
+<li>Sensitive to outliers</li>
+<li>Interpretation: r = 0.7-1.0 (strong), 0.4-0.7 (moderate), 0.1-0.4 (weak)</li>
+</ul>
+<p><strong>Spearman Rank Correlation (ρ):</strong></p>
+<ul>
+<li>Measures monotonic relationships (not necessarily linear)</li>
+<li>Non-parametric alternative to Pearson</li>
+<li>Works with ordinal data</li>
+<li>Robust to outliers and non-normal distributions</li>
+</ul>
+<p><strong>Kendall’s Tau (τ):</strong></p>
+<ul>
+<li>Measures ordinal associations</li>
+<li>Better for small sample sizes</li>
+<li>More robust than Spearman for tied ranks</li>
+</ul>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li><strong>Correlation ≠ Causation</strong>: Strong correlation doesn’t imply one variable causes changes in another</li>
+<li><strong>Spurious correlations</strong>: Unrelated variables may correlate due to confounding factors or coincidence</li>
+<li><strong>Non-linear relationships</strong>: Correlation coefficients may miss curved or complex patterns</li>
+<li><strong>Range restrictions</strong>: Limited variable ranges can artificially reduce correlation</li>
+</ul>
 <p><strong>Business example:</strong> Analyzing the correlation between advertising spend and sales revenue (r = 0.82) suggests a strong positive linear relationship, but further analysis is needed to establish causality and account for seasonal effects, competitor actions, and other factors.</p>
 </section>
 <section id="regression-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="regression-analysis">Regression Analysis</h3>
 <p><strong>Regression</strong> models relationships between variables to predict outcomes, estimate effects, and understand dependencies. It quantifies how changes in independent variables (predictors) relate to changes in dependent variables (outcomes).</p>
-<p><strong>Simple Linear Regression:</strong> - Models relationship between one predictor and one outcome - Equation: Y = β₀ + β₁X + ε - β₀ (intercept): predicted Y when X = 0 - β₁ (slope): change in Y for one-unit increase in X - ε (error term): unexplained variation</p>
-<p><strong>Multiple Linear Regression:</strong> - Models relationships with multiple predictors - Equation: Y = β₀ + β₁X₁ + β₂X₂ + … + βₙXₙ + ε - Controls for confounding variables - Allows estimation of partial effects</p>
+<p><strong>Simple Linear Regression:</strong></p>
+<ul>
+<li>Models relationship between one predictor and one outcome</li>
+<li>Equation: Y = β₀ + β₁X + ε</li>
+<li>β₀ (intercept): predicted Y when X = 0</li>
+<li>β₁ (slope): change in Y for one-unit increase in X</li>
+<li>ε (error term): unexplained variation</li>
+</ul>
+<p><strong>Multiple Linear Regression:</strong></p>
+<ul>
+<li>Models relationships with multiple predictors</li>
+<li>Equation: Y = β₀ + β₁X₁ + β₂X₂ + … + βₙXₙ + ε</li>
+<li>Controls for confounding variables</li>
+<li>Allows estimation of partial effects</li>
+</ul>
 <p><strong>Model Evaluation Metrics:</strong></p>
-<p><strong>R-squared (R²):</strong> - Proportion of variance explained by the model (0 to 1) - Higher values indicate better fit - Can be inflated by adding predictors</p>
-<p><strong>Adjusted R-squared:</strong> - Penalizes model complexity - Preferred for comparing models with different numbers of predictors</p>
-<p><strong>Root Mean Squared Error (RMSE):</strong> - Average prediction error in original units - Lower values indicate better predictions</p>
-<p><strong>Residual Analysis:</strong> - Examining prediction errors to validate assumptions - Checking for patterns, heteroscedasticity, and normality</p>
-<p><strong>Key Assumptions:</strong> - <strong>Linearity</strong>: Relationship between variables is linear - <strong>Independence</strong>: Observations are independent - <strong>Homoscedasticity</strong>: Constant variance of errors - <strong>Normality</strong>: Residuals are normally distributed - <strong>No multicollinearity</strong>: Predictors are not highly correlated (for multiple regression)</p>
+<p><strong>R-squared (R²):</strong></p>
+<ul>
+<li>Proportion of variance explained by the model (0 to 1)</li>
+<li>Higher values indicate better fit</li>
+<li>Can be inflated by adding predictors</li>
+</ul>
+<p><strong>Adjusted R-squared:</strong></p>
+<ul>
+<li>Penalizes model complexity</li>
+<li>Preferred for comparing models with different numbers of predictors</li>
+</ul>
+<p><strong>Root Mean Squared Error (RMSE):</strong></p>
+<ul>
+<li>Average prediction error in original units</li>
+<li>Lower values indicate better predictions</li>
+</ul>
+<p><strong>Residual Analysis:</strong></p>
+<ul>
+<li>Examining prediction errors to validate assumptions</li>
+<li>Checking for patterns, heteroscedasticity, and normality</li>
+</ul>
+<p><strong>Key Assumptions:</strong></p>
+<ul>
+<li><strong>Linearity</strong>: Relationship between variables is linear</li>
+<li><strong>Independence</strong>: Observations are independent</li>
+<li><strong>Homoscedasticity</strong>: Constant variance of errors</li>
+<li><strong>Normality</strong>: Residuals are normally distributed</li>
+<li><strong>No multicollinearity</strong>: Predictors are not highly correlated (for multiple regression)</li>
+</ul>
 <p><strong>Types of Relationships:</strong></p>
-<p><strong>Positive Association:</strong> - Both variables increase together - Example: Education level and income</p>
-<p><strong>Negative Association:</strong> - One variable increases as the other decreases - Example: Price and demand</p>
-<p><strong>No Association:</strong> - Variables are unrelated - Changes in one don’t predict changes in the other</p>
-<p><strong>Non-linear Association:</strong> - Curved or complex relationships - May require polynomial regression or transformation</p>
+<p><strong>Positive Association:</strong></p>
+<ul>
+<li>Both variables increase together</li>
+<li>Example: Education level and income</li>
+</ul>
+<p><strong>Negative Association:</strong></p>
+<ul>
+<li>One variable increases as the other decreases</li>
+<li>Example: Price and demand</li>
+</ul>
+<p><strong>No Association:</strong></p>
+<ul>
+<li>Variables are unrelated</li>
+<li>Changes in one don’t predict changes in the other</li>
+</ul>
+<p><strong>Non-linear Association:</strong></p>
+<ul>
+<li>Curved or complex relationships</li>
+<li>May require polynomial regression or transformation</li>
+</ul>
 <p><strong>Practical Applications in Business:</strong></p>
-<p><strong>Predictive Modeling:</strong> - Sales forecasting based on historical data - Customer lifetime value prediction - Demand estimation</p>
-<p><strong>Risk Assessment:</strong> - Credit scoring models - Insurance premium calculation - Investment risk evaluation</p>
-<p><strong>Optimization:</strong> - Pricing strategies - Resource allocation - Marketing mix optimization</p>
-<p><strong>Causal Inference:</strong> - Treatment effect estimation - A/B testing analysis - Policy impact evaluation</p>
+<p><strong>Predictive Modeling:</strong></p>
+<ul>
+<li>Sales forecasting based on historical data</li>
+<li>Customer lifetime value prediction</li>
+<li>Demand estimation</li>
+</ul>
+<p><strong>Risk Assessment:</strong></p>
+<ul>
+<li>Credit scoring models</li>
+<li>Insurance premium calculation</li>
+<li>Investment risk evaluation</li>
+</ul>
+<p><strong>Optimization:</strong></p>
+<ul>
+<li>Pricing strategies</li>
+<li>Resource allocation</li>
+<li>Marketing mix optimization</li>
+</ul>
+<p><strong>Causal Inference:</strong></p>
+<ul>
+<li>Treatment effect estimation</li>
+<li>A/B testing analysis</li>
+<li>Policy impact evaluation</li>
+</ul>
 <p><strong>Business example:</strong> A subscription-based software company builds a multiple regression model to predict customer churn:</p>
 <pre><code>Churn Probability = β₀ + β₁(Login_Frequency) + β₂(Support_Tickets) + β₃(Feature_Usage) + β₄(Contract_Length) + ε</code></pre>
-<p>Results show: - Login frequency has a strong negative effect (β₁ = -0.35): more active users are less likely to churn - Support tickets have a positive effect (β₂ = 0.18): customers with issues are more likely to leave - Feature usage has a moderate negative effect (β₃ = -0.22) - Contract length has a strong negative effect (β₄ = -0.41): longer commitments reduce churn</p>
+<p>Results show:</p>
+<ul>
+<li>Login frequency has a strong negative effect (β₁ = -0.35): more active users are less likely to churn</li>
+<li>Support tickets have a positive effect (β₂ = 0.18): customers with issues are more likely to leave</li>
+<li>Feature usage has a moderate negative effect (β₃ = -0.22)</li>
+<li>Contract length has a strong negative effect (β₄ = -0.41): longer commitments reduce churn</li>
+</ul>
 <p>The model achieves R² = 0.67, explaining 67% of churn variance. These insights inform retention strategies: improving onboarding to increase feature adoption, proactively addressing support issues, and incentivizing longer contracts.</p>
 </section>
 <section id="correlation-vs.-regression" class="level3">
 <h3 class="anchored" data-anchor-id="correlation-vs.-regression">Correlation vs. Regression</h3>
-<p><strong>Correlation:</strong> - Symmetric relationship (X-Y same as Y-X) - No distinction between dependent and independent variables - Describes strength and direction only - Single coefficient summarizes relationship</p>
-<p><strong>Regression:</strong> - Asymmetric relationship (predicting Y from X) - Clear dependent and independent variables - Provides prediction equation - Estimates effect sizes and intercepts - Allows statistical inference about relationships</p>
+<p><strong>Correlation:</strong></p>
+<ul>
+<li>Symmetric relationship (X-Y same as Y-X)</li>
+<li>No distinction between dependent and independent variables</li>
+<li>Describes strength and direction only</li>
+<li>Single coefficient summarizes relationship</li>
+</ul>
+<p><strong>Regression:</strong></p>
+<ul>
+<li>Asymmetric relationship (predicting Y from X)</li>
+<li>Clear dependent and independent variables</li>
+<li>Provides prediction equation</li>
+<li>Estimates effect sizes and intercepts</li>
+<li>Allows statistical inference about relationships</li>
+</ul>
 <p>Both techniques complement each other in comprehensive data analysis, with correlation providing initial relationship exploration and regression enabling detailed modeling and prediction.</p>
 <div style="page-break-after: always;"></div>
 </section>

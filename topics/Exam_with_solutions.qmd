@@ -23,6 +23,7 @@ This document contains example exam questions with detailed solutions for the An
 **Questions:** 7 sections
 :::
 
+\newpage
 # Version Control Systems: Git and GitHub {#sec-git-github}
 
 **Points: 15**
@@ -40,12 +41,14 @@ c) (5 points) Explain the difference between merging and rebasing in Git. When w
 ### Part a: Git vs. GitHub
 
 **Git** is a distributed version control system that tracks changes in files and coordinates work among multiple contributors. It:
+
 - Operates locally on your computer
 - Maintains a complete project history
 - Enables offline work
 - Provides branching and merging capabilities
 
 **GitHub** is a web-based hosting service for Git repositories that adds collaboration features:
+
 - Provides remote repository storage
 - Offers pull request workflows for code review
 - Includes issue tracking and project management
@@ -65,12 +68,14 @@ c) (5 points) Explain the difference between merging and rebasing in Git. When w
 ### Part c: Merging vs. Rebasing
 
 **Merging** creates a new commit that combines the histories of two branches:
+
 - Preserves complete history including all branch points
 - Creates merge commits
 - Shows the actual development timeline
 - Safer for shared/public branches
 
 **Rebasing** rewrites the commit history to create a linear sequence:
+
 - Creates a cleaner, linear project history
 - Avoids merge commits
 - Makes history easier to follow
@@ -78,6 +83,7 @@ c) (5 points) Explain the difference between merging and rebasing in Git. When w
 
 **When to use**: Use merging for integrating changes in shared branches and when preserving the complete development history is important. Use rebasing for cleaning up local commits before pushing or when a linear history is preferred for feature branches.
 
+\newpage
 # Programming Languages and Development Environments {#sec-programming}
 
 **Points: 12**
@@ -93,14 +99,17 @@ b) (6 points) Explain three elements of programming languages (from: syntax, lib
 ### Part a: Programming Languages Comparison
 
 **R**: A programming language specifically designed for statistical computing and graphics. Widely used among statisticians and data miners for developing statistical software and data analysis.
+
 - **Primary use**: Statistical analysis, data visualization, academic research
 - **Example**: Creating complex visualizations with ggplot2, performing regression analysis, conducting hypothesis tests
 
 **Python**: A versatile general-purpose programming language with a rich ecosystem for data science. Uses an object-oriented programming paradigm.
+
 - **Primary use**: Data manipulation, machine learning, software development, automation
 - **Example**: Building machine learning models with scikit-learn, data processing with Pandas, creating web applications for data products
 
 **SQL**: The standard language for managing and querying relational databases. Essential for data extraction, transformation, and loading (ETL) processes.
+
 - **Primary use**: Database queries, data retrieval, data manipulation in relational databases
 - **Example**: Extracting customer data from PostgreSQL databases, joining multiple tables for analysis, aggregating sales data across time periods
 
@@ -113,10 +122,47 @@ b) (6 points) Explain three elements of programming languages (from: syntax, lib
 3. **Loops**: Constructs that repeat a block of code multiple times. Loops are crucial for iterating over datasets, performing batch operations, and automating repetitive tasks like processing multiple files or running simulations.
 
 **Alternative valid answers**:
+
 - **Libraries**: Collections of pre-written code providing specialized functionality, saving time and ensuring reliable implementations of complex algorithms
 - **Conditions**: Control flow statements that execute code based on criteria, enabling decision-making logic and data filtering
 - **Objects**: Instances of classes encapsulating data and behavior, enabling object-oriented programming approaches
 
+\newpage
+# Development environments and tools {#sec-development-environments}
+
+**Points: 15**
+
+## Question
+
+a) (7 points) Define what containers like Docker do in the context of software development and data analytics. Explain their benefits.
+
+b) (8 points) Explain what an IDE is and name two popular IDEs used for data analytics. Describe one key feature of each.
+
+## Solution
+
+### Part a: Containers and Docker
+
+Containers, such as those managed by Docker, are lightweight, portable, and self-sufficient environments that package an application along with its dependencies, libraries, and configuration files. This ensures that the application runs consistently across different computing environments.
+
+**Benefits of Containers**:
+
+- **Portability**: Containers can run on any system that supports the container runtime, eliminating the "it works on my machine" problem.
+- **Isolation**: Containers isolate applications from each other and the host system, improving security and stability.
+- **Efficiency**: Containers share the host system's kernel and resources, making them more lightweight and faster to start compared to virtual machines.
+- **Scalability**: Containers can be easily scaled up or down to handle varying workloads, facilitating efficient resource utilization.
+- **Reproducibility**: Containers ensure consistent environments for development, testing, and production, reducing bugs related to environment differences.
+
+### Part b: IDEs
+
+**Integrated Development Environment (IDE)**: A software application that provides comprehensive facilities to computer programmers for software development. IDEs typically include a code editor, debugger, build automation tools, and a graphical user interface (GUI).
+
+**Popular IDEs for Data Analytics**:
+
+- **Jupyter Notebook**: An open-source web application that allows you to create and share documents containing live code, equations, visualizations, and narrative text. Key feature: Interactive data exploration and visualization.
+- **RStudio**: An IDE specifically designed for R programming, providing tools to help with plotting, history, debugging, and workspace management. Key feature: Integrated support for R Markdown for dynamic report generation.
+- **Visual Studio Code** (alternative valid answer): A lightweight but powerful source code editor that supports multiple programming languages through extensions. Key feature: Extensive extension marketplace for language support and tools.
+
+\newpage
 # No-Code and Low-Code Tools {#sec-nocode-lowcode}
 
 **Points: 10**
@@ -132,18 +178,22 @@ b) (5 points) Explain the advantages of using no-code/low-code tools in business
 ### Part a: No-Code/Low-Code Tools
 
 **KNIME**: A visual workflow tool for data analytics that allows users to create data processing pipelines through drag-and-drop nodes.
+
 - Use case: Data cleaning, transformation, and machine learning without coding
 - Example: Building ETL workflows, handling missing values, performing statistical analysis
 
 **Tableau**: A data visualization platform enabling interactive dashboard creation and visual analytics.
+
 - Use case: Creating interactive business intelligence dashboards
 - Example: Building sales performance dashboards, visualizing KPIs, sharing insights with stakeholders
 
 **Power BI**: Microsoft's business intelligence platform integrated with the Microsoft ecosystem.
+
 - Use case: Enterprise reporting and data visualization
 - Example: Creating interactive reports from multiple data sources, analyzing business metrics
 
 **Alternative valid answers**:
+
 - **n8n**: Workflow automation tool for connecting services and creating data pipelines
 - **Snowflake/Streamlit**: Cloud data platform with integrated app development capabilities
 - **QGIS**: Geographic information system for spatial data analysis and mapping
@@ -163,6 +213,7 @@ b) (5 points) Explain the advantages of using no-code/low-code tools in business
 5. **Maintenance**: Visual representations make workflows easier to understand and maintain, reducing documentation burden and onboarding time.
 
 **When to Prefer No-Code/Low-Code**:
+
 - Quick prototyping and exploratory analysis
 - Business users need self-service analytics
 - Standard workflows with established patterns
@@ -171,28 +222,29 @@ b) (5 points) Explain the advantages of using no-code/low-code tools in business
 - Integration with enterprise tools is needed
 
 **When Traditional Programming is Better**:
+
 - Complex custom algorithms required
 - Performance optimization critical
 - Version control and reproducibility essential
 - Advanced statistical or ML techniques needed
 
+\newpage
 # Descriptive Statistics {#sec-descriptive-stats}
 
 **Points: 18**
 
 ## Question
 
-a) (6 points) Explain three measures of central tendency (mean, median, mode) and when each is most appropriate to use.
+a) (9 points) Explain three measures of central tendency (mean, median, mode) and when each is most appropriate to use.
 
-b) (6 points) Describe three measures of variability (range, standard deviation, IQR) and their interpretation in business contexts.
-
-c) (6 points) Distinguish between univariate, bivariate, and multivariate data analysis. Provide one business example for each.
+c) (9 points) Distinguish between univariate, bivariate, and multivariate data analysis. Provide one business example for each.
 
 ## Solution
 
 ### Part a: Central Tendency Measures
 
 **Mean (Arithmetic Average)**:
+
 - Calculation: Sum of all values divided by the number of observations
 - **When to use**: Symmetric distributions without extreme outliers
 - **Advantages**: Uses all data points, mathematically convenient
@@ -200,6 +252,7 @@ c) (6 points) Distinguish between univariate, bivariate, and multivariate data a
 - **Example**: Calculating average sales revenue when distribution is normal
 
 **Median (Middle Value)**:
+
 - Calculation: Middle value when data is sorted (50th percentile)
 - **When to use**: Skewed distributions or presence of outliers
 - **Advantages**: Robust to outliers, better represents "typical" value in skewed data
@@ -207,130 +260,34 @@ c) (6 points) Distinguish between univariate, bivariate, and multivariate data a
 - **Example**: Measuring typical household income (where billionaires skew the mean)
 
 **Mode (Most Frequent Value)**:
+
 - Calculation: Value that appears most frequently
 - **When to use**: Categorical data, identifying most common category
 - **Advantages**: Works with any data type, identifies popular values
 - **Disadvantages**: May not exist or may not be unique
 - **Example**: Finding most popular product category or preferred customer segment
 
-### Part b: Variability Measures
-
-**Range**:
-- Calculation: Maximum value minus minimum value
-- **Interpretation**: Simple spread indicator showing total data span
-- **Business context**: Quick assessment of price ranges, salary spreads, or inventory fluctuations
-- **Limitation**: Sensitive to outliers, doesn't describe middle data spread
-
-**Standard Deviation (SD)**:
-- Calculation: Square root of variance (average squared deviation from mean)
-- **Interpretation**: Average distance of values from the mean in original units
-- **Business context**: Measures risk in financial portfolios, consistency in manufacturing processes, volatility in sales
-- **Advantage**: Most commonly used, mathematically convenient, uses all data points
-
-**Interquartile Range (IQR)**:
-- Calculation: Difference between 75th percentile (Q3) and 25th percentile (Q1)
-- **Interpretation**: Spread of the middle 50% of data
-- **Business context**: Robust measure for customer lifetime value distributions, performance metrics with outliers
-- **Advantage**: Not affected by extreme values, describes typical variation
-
-### Part c: Data Analysis Types
+### Part b: Data Analysis Types
 
 **Univariate Analysis**:
+
 - **Definition**: Examines one variable at a time to understand distribution, central tendency, and variability
 - **Techniques**: Summary statistics (mean, median, SD), histograms, box plots, bar charts
 - **Business example**: Analyzing monthly sales revenue to identify typical performance, seasonality, and outliers. Answers "What is typical revenue?" and "How much does it vary?"
 
 **Bivariate Analysis**:
+
 - **Definition**: Examines relationships between two variables to identify associations, correlations, or dependencies
 - **Techniques**: Correlation coefficients, scatter plots, cross-tabulation, simple linear regression
 - **Business example**: Examining relationship between advertising spend and sales revenue to determine campaign effectiveness. Answers "How do these variables relate?" and "Does one predict the other?"
 
 **Multivariate Analysis**:
+
 - **Definition**: Examines three or more variables simultaneously to understand complex relationships and patterns
 - **Techniques**: Multiple regression, PCA, cluster analysis, correlation matrices, heatmaps
 - **Business example**: Analyzing customer demographics, purchase history, website behavior, and satisfaction scores simultaneously to identify market segments and predict customer lifetime value. Answers "How do multiple factors jointly influence outcomes?"
 
-# Inferential Statistics {#sec-inferential-stats}
-
-**Points: 15**
-
-## Question
-
-a) (5 points) Define hypothesis testing and explain the null hypothesis (H₀) and alternative hypothesis (H₁). What role do they play in statistical inference?
-
-b) (5 points) Explain what a p-value represents and how it is interpreted in hypothesis testing. Include common significance thresholds.
-
-c) (5 points) Describe the relationship between confidence intervals and p-values. If a 95% confidence interval for a difference excludes zero, what does this tell you about the corresponding p-value?
-
-## Solution
-
-### Part a: Hypothesis Testing Fundamentals
-
-**Hypothesis Testing** is a fundamental statistical method used to make inferences about population parameters based on sample data. It provides a systematic framework for evaluating claims about populations using sample evidence, enabling data-driven decision making in business contexts.
-
-**Null Hypothesis (H₀)**:
-- The status quo or default position
-- Typically represents no effect, no difference, or no relationship
-- Example: "The new marketing campaign has no effect on sales" or "μ₁ = μ₂"
-- We assume H₀ is true unless evidence strongly suggests otherwise
-
-**Alternative Hypothesis (H₁ or Hₐ)**:
-- The research hypothesis representing the effect or difference we seek to detect
-- What we aim to find evidence for
-- Example: "The new marketing campaign increases sales" or "μ₁ ≠ μ₂"
-- Can be one-sided (directional) or two-sided (non-directional)
-
-**Role in Statistical Inference**:
-The process involves calculating a test statistic from sample data and comparing it to determine a p-value. We then make decisions about rejecting or failing to reject the null hypothesis based on this evidence. This framework protects against making incorrect conclusions by requiring strong evidence before claiming an effect exists.
-
-### Part b: P-Values
-
-**P-value Definition**: The probability of observing test results at least as extreme as those obtained, assuming the null hypothesis is true.
-
-**Interpretation**:
-- A small p-value (typically ≤ 0.05) indicates strong evidence against H₀
-- A large p-value suggests insufficient evidence to reject H₀
-- **P-values do NOT measure**: The probability that H₀ is true, the size of the effect, or practical importance
-
-**Common Significance Thresholds**:
-- **p < 0.01**: Very strong evidence against H₀ (highly significant)
-- **p < 0.05**: Strong evidence against H₀ (statistically significant) - most common threshold
-- **p < 0.10**: Moderate evidence against H₀ (marginally significant)
-- **p ≥ 0.10**: Insufficient evidence to reject H₀ (not significant)
-
-**Important Note**: Statistical significance (small p-value) does not equal practical significance (meaningful effect). Large samples may yield significant p-values for trivial effects.
-
-**Example Interpretation**: If p = 0.03, this means that if the null hypothesis were true (no effect), we would see results this extreme only 3% of the time—providing strong evidence that the null hypothesis is incorrect.
-
-### Part c: Confidence Intervals and P-Values Relationship
-
-**Relationship**:
-Confidence intervals (CIs) and p-values are mathematically connected and provide complementary information:
-
-**When a 95% CI excludes zero**:
-- The corresponding two-sided p-value will be < 0.05
-- This indicates statistical significance at the α = 0.05 level
-- We reject the null hypothesis of no difference
-
-**When a 95% CI includes zero**:
-- The corresponding two-sided p-value will be > 0.05
-- This indicates lack of statistical significance at the α = 0.05 level
-- We fail to reject the null hypothesis
-
-**Why CIs are More Informative**:
-- CIs provide effect size information (magnitude and direction)
-- CIs show precision of the estimate (width indicates uncertainty)
-- CIs enable assessment of practical significance, not just statistical significance
-- P-values only indicate whether an effect is "significant" without showing how large it is
-
-**Example**: Testing a new checkout design:
-- Difference in conversion rates: 2.5 percentage points
-- 95% CI: [0.8%, 4.2%]
-- Since CI excludes zero, p < 0.05
-- We know the effect is both statistically significant AND practically meaningful (20.8% relative improvement)
-
-**Best Practice**: Report both CIs and p-values for comprehensive understanding of results.
-
+\newpage
 # Data Quality and Association {#sec-data-quality}
 
 **Points: 12**
@@ -346,6 +303,7 @@ b) (6 points) Explain the difference between correlation and regression analysis
 ### Part a: Data Quality Issues
 
 **Missing Values**:
+
 - **Problem**: Complete absence of data, represented as NULL, NA, empty strings, or placeholder values
 - **Patterns**: MCAR (Missing Completely At Random), MAR (Missing At Random), MNAR (Missing Not At Random)
 - **Handling strategies**:
@@ -356,6 +314,7 @@ b) (6 points) Explain the difference between correlation and regression analysis
   - Flag creation to preserve information about missingness
 
 **Inconsistent Data**:
+
 - **Problem**: Format variations, unit inconsistencies, date format variations, encoding issues
 - **Examples**: "New York" vs. "NY" vs. "new york"; mixing metric and imperial units
 - **Handling strategies**:
@@ -365,6 +324,7 @@ b) (6 points) Explain the difference between correlation and regression analysis
   - Encoding conversion and validation
 
 **Duplicate Records**:
+
 - **Problem**: Exact duplicates, near duplicates with variations, or same entity with different identifiers
 - **Handling strategies**:
   - Exact match removal using unique identifiers
@@ -373,8 +333,10 @@ b) (6 points) Explain the difference between correlation and regression analysis
   - Master data management (MDM) approaches
 
 **Outliers and Anomalies** (alternative valid answer):
+
 - **Problem**: Statistical outliers beyond expected range, domain outliers impossible in context, data entry errors
 - **Handling strategies**:
+
   - Detection using Z-score, IQR method, isolation forests, DBSCAN
   - Investigation to determine if errors or valid extreme values
   - Treatment: removal, capping/winsorizing, transformation, or separate analysis
@@ -383,6 +345,7 @@ b) (6 points) Explain the difference between correlation and regression analysis
 ### Part b: Correlation vs. Regression
 
 **Correlation Analysis**:
+
 - Measures strength and direction of linear relationships between two variables
 - Produces coefficient ranging from -1 (perfect negative) to +1 (perfect positive)
 - Symmetric relationship (X-Y same as Y-X)
@@ -391,6 +354,7 @@ b) (6 points) Explain the difference between correlation and regression analysis
 - Example: Pearson correlation between advertising spend and sales = 0.82 suggests strong positive relationship
 
 **Regression Analysis**:
+
 - Models relationships between variables to predict outcomes
 - Asymmetric relationship (predicting Y from X)
 - Clear dependent (outcome) and independent (predictor) variables
@@ -401,6 +365,7 @@ b) (6 points) Explain the difference between correlation and regression analysis
 **"Correlation Does Not Imply Causation"**:
 
 **Why This Is Critical**:
+
 1. **Confounding variables**: Third variables may cause both X and Y to vary together
    - Example: Ice cream sales and drowning rates both increase in summer (temperature is the confounder)
 
@@ -414,12 +379,14 @@ b) (6 points) Explain the difference between correlation and regression analysis
    - Example: Umbrella sales and flood insurance claims both respond to rainfall
 
 **Business Implications**:
+
 - Strong correlation suggests investigation is warranted but not action
 - Establishing causation requires: temporal precedence, experimental design (A/B testing), controlling confounders, theoretical justification
 - Making causal claims from correlation alone can lead to ineffective or harmful business decisions
 
 **Example**: A company observes high correlation (r = 0.85) between office size and employee productivity. Incorrectly assuming causation, they invest millions in larger offices, only to find no productivity gains. The true driver was company growth—successful growing companies both hire more productive employees AND need larger offices.
 
+\newpage
 # R Programming Practical Questions {#sec-r-programming}
 
 **Points: 8**
