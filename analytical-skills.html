@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -2232,8 +2232,7 @@ vertical-align: -.125em;
   <li><a href="#frequencies-and-percentiles" id="toc-frequencies-and-percentiles" class="nav-link" data-scroll-target="#frequencies-and-percentiles">4. Frequencies and Percentiles</a></li>
   <li><a href="#numerical-methods" id="toc-numerical-methods" class="nav-link" data-scroll-target="#numerical-methods">5. Numerical Methods</a></li>
   <li><a href="#graphical-methods" id="toc-graphical-methods" class="nav-link" data-scroll-target="#graphical-methods">6. Graphical Methods</a></li>
-  <li><a href="#measures-of-centrality-dispersion-and-concentration" id="toc-measures-of-centrality-dispersion-and-concentration" class="nav-link" data-scroll-target="#measures-of-centrality-dispersion-and-concentration">Measures of centrality, dispersion, and concentration</a></li>
-  <li><a href="#descriptive-analytics" id="toc-descriptive-analytics" class="nav-link" data-scroll-target="#descriptive-analytics">Descriptive analytics</a>
+  <li><a href="#data-types-univariate-bivariate-and-multivariate" id="toc-data-types-univariate-bivariate-and-multivariate" class="nav-link" data-scroll-target="#data-types-univariate-bivariate-and-multivariate">Data Types: Univariate, Bivariate, and Multivariate</a>
   <ul>
   <li><a href="#univariate-data" id="toc-univariate-data" class="nav-link" data-scroll-target="#univariate-data">Univariate data</a></li>
   <li><a href="#bivariate-data" id="toc-bivariate-data" class="nav-link" data-scroll-target="#bivariate-data">Bivariate data</a></li>
@@ -2334,7 +2333,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">12.11.2025 14:10</p>
+      <p class="date">14.11.2025 10:51</p>
     </div>
   </div>
   
@@ -2874,12 +2873,9 @@ vertical-align: -.125em;
 <li><p>For an accessible overview of types, methods, and examples, see <a href="https://researchmethod.net/descriptive-statistics/">ResearchMethod.net</a>.</p></li>
 </ul>
 </section>
-<section id="measures-of-centrality-dispersion-and-concentration" class="level2">
-<h2 class="anchored" data-anchor-id="measures-of-centrality-dispersion-and-concentration">Measures of centrality, dispersion, and concentration</h2>
-</section>
-<section id="descriptive-analytics" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-analytics">Descriptive analytics</h2>
-<p>Descriptive analytics examines data structures based on the number of variables analyzed simultaneously, enabling appropriate analytical techniques and visualizations for different data complexities.</p>
+<section id="data-types-univariate-bivariate-and-multivariate" class="level2">
+<h2 class="anchored" data-anchor-id="data-types-univariate-bivariate-and-multivariate">Data Types: Univariate, Bivariate, and Multivariate</h2>
+<p>Data types in business analytics can be classified based on the number of variables involved in the analysis. Understanding these classifications helps in selecting appropriate analytical techniques and visualizations.</p>
 <section id="univariate-data" class="level3">
 <h3 class="anchored" data-anchor-id="univariate-data">Univariate data</h3>
 <p><strong>Univariate analysis</strong> examines one variable at a time to understand its distribution, central tendency, and variability. It answers questions like “What is typical?” and “How much variation exists?” Common techniques include summary statistics (mean, median, mode, standard deviation), frequency distributions, and visualizations such as histograms, box plots, and bar charts. <strong>Business example:</strong> Analyzing monthly sales revenue to identify typical performance and outliers.</p>
@@ -2951,8 +2947,24 @@ vertical-align: -.125em;
 <section id="time-series-data" class="level3">
 <h3 class="anchored" data-anchor-id="time-series-data">Time Series Data</h3>
 <p><strong>Time series data</strong> represents sequential observations measured at successive time points. Visualization and exploration focus on temporal patterns, trends, seasonality, and cyclical behaviors.</p>
-<p><strong>Common visualizations:</strong> - <strong>Line charts</strong>: Display trends and patterns over time - <strong>Area charts</strong>: Show cumulative values or multiple series stacked - <strong>Candlestick charts</strong>: Represent open, high, low, close values (financial data) - <strong>Seasonal plots</strong>: Reveal recurring patterns by season or period - <strong>Autocorrelation plots</strong>: Identify temporal dependencies - <strong>Control charts</strong>: Monitor process stability and detect anomalies</p>
-<p><strong>Exploratory techniques:</strong> - Trend analysis (moving averages, smoothing) - Seasonality detection (seasonal decomposition) - Stationarity testing - Lag analysis and autocorrelation - Change point detection - Anomaly identification</p>
+<p><strong>Common visualizations:</strong></p>
+<ul>
+<li><strong>Line charts</strong>: Display trends and patterns over time</li>
+<li><strong>Area charts</strong>: Show cumulative values or multiple series stacked</li>
+<li><strong>Candlestick charts</strong>: Represent open, high, low, close values (financial data)</li>
+<li><strong>Seasonal plots</strong>: Reveal recurring patterns by season or period</li>
+<li><strong>Autocorrelation plots</strong>: Identify temporal dependencies</li>
+<li><strong>Control charts</strong>: Monitor process stability and detect anomalies</li>
+</ul>
+<p><strong>Exploratory techniques:</strong></p>
+<ul>
+<li>Trend analysis (moving averages, smoothing)</li>
+<li>Seasonality detection (seasonal decomposition)</li>
+<li>Stationarity testing</li>
+<li>Lag analysis and autocorrelation</li>
+<li>Change point detection</li>
+<li>Anomaly identification</li>
+</ul>
 <p><strong>Business example:</strong> Tracking monthly revenue trends with line charts, identifying seasonal sales patterns using seasonal decomposition, monitoring website traffic fluctuations with control charts, or analyzing stock price movements with candlestick charts to inform investment decisions.</p>
 </section>
 </section>
@@ -3036,11 +3048,23 @@ vertical-align: -.125em;
 </section>
 <section id="inferential-statistics" class="level1">
 <h1>Inferential statistics</h1>
+<p>Inferential statistics uses sample data to make generalizations about a larger population, quantifying uncertainty and supporting evidence-based decision-making in business contexts. It encompasses hypothesis testing, estimation, and prediction, forming the foundation for advanced analytics.</p>
 <section id="basic-concepts-of-statistical-inference" class="level2">
 <h2 class="anchored" data-anchor-id="basic-concepts-of-statistical-inference">Basic concepts of statistical inference</h2>
+<p>Statistical inference involves drawing conclusions about a population based on sample data, quantifying uncertainty through probability theory. Key concepts include:</p>
+<ul>
+<li><strong>Population vs. Sample</strong>: The population is the entire group of interest, while a sample is a subset used for analysis. In business, samples are often drawn from customer bases, sales data, or market segments to infer broader trends.</li>
+<li><strong>Parameters vs. Statistics</strong>: Parameters are numerical characteristics of populations (e.g., population mean), while statistics are calculated from samples (e.g., sample mean) and used to estimate parameters.</li>
+<li><strong>Sampling Distribution</strong>: The probability distribution of a statistic (e.g., sample mean) across all possible samples from the population. It forms the basis for estimating variability and constructing confidence intervals.</li>
+</ul>
 </section>
 <section id="quantification-of-probability-through-random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="quantification-of-probability-through-random-variables">Quantification of probability through random variables</h2>
+<p>Random variables are mathematical representations of uncertain outcomes in business contexts, allowing quantification of probabilities associated with different events. They can be classified as:</p>
+<ul>
+<li><strong>Discrete Random Variables</strong>: Take on countable values (e.g., number of customer purchases, number of defective products). Probability mass functions (PMFs) describe the probabilities of each outcome.</li>
+<li><strong>Continuous Random Variables</strong>: Take on an infinite number of values within a range (e.g., customer wait times, sales amounts). Probability density functions (PDFs) describe the likelihood of outcomes within intervals.</li>
+</ul>
 </section>
 <section id="hypothesis-testing" class="level2">
 <h2 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis testing</h2>
@@ -3087,39 +3111,114 @@ vertical-align: -.125em;
 <section id="confidence-intervals" class="level3">
 <h3 class="anchored" data-anchor-id="confidence-intervals">Confidence Intervals</h3>
 <p><strong>Confidence intervals (CIs)</strong> provide a range of plausible values for population parameters based on sample data, expressing uncertainty around point estimates with a specified confidence level (typically 95%).</p>
-<p><strong>Interpretation:</strong> - A 95% CI means that if we repeatedly sampled from the population and calculated confidence intervals, approximately 95% of those intervals would contain the true population parameter - Wider intervals indicate greater uncertainty; narrower intervals suggest more precise estimates - The interval provides both a point estimate (usually the center) and a margin of error</p>
-<p><strong>Common Types:</strong> - <strong>CI for means</strong>: Estimates average values (e.g., average customer satisfaction score: 7.2 ± 0.5) - <strong>CI for proportions</strong>: Estimates percentages (e.g., conversion rate: 12% ± 2%) - <strong>CI for differences</strong>: Compares groups (e.g., A/B test difference: 3.5% ± 1.2%) - <strong>CI for regression coefficients</strong>: Quantifies predictor effects with uncertainty</p>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li>A 95% CI means that if we repeatedly sampled from the population and calculated confidence intervals, approximately 95% of those intervals would contain the true population parameter</li>
+<li>Wider intervals indicate greater uncertainty; narrower intervals suggest more precise estimates</li>
+<li>The interval provides both a point estimate (usually the center) and a margin of error</li>
+</ul>
+<p><strong>Common Types:</strong></p>
+<ul>
+<li><strong>CI for means</strong>: Estimates average values (e.g., average customer satisfaction score: 7.2 ± 0.5)</li>
+<li><strong>CI for proportions</strong>: Estimates percentages (e.g., conversion rate: 12% ± 2%)</li>
+<li><strong>CI for differences</strong>: Compares groups (e.g., A/B test difference: 3.5% ± 1.2%)</li>
+<li><strong>CI for regression coefficients</strong>: Quantifies predictor effects with uncertainty</li>
+</ul>
 <p><strong>Business application:</strong> A marketing team tests a new email campaign and observes a 15% click-through rate in a sample of 500 customers. The 95% CI is [12.3%, 17.7%], indicating they can be 95% confident the true population click-through rate lies within this range.</p>
 </section>
 <section id="p-values" class="level3">
 <h3 class="anchored" data-anchor-id="p-values">P-Values</h3>
 <p><strong>P-values</strong> quantify the strength of evidence against the null hypothesis, representing the probability of observing results as extreme as or more extreme than those obtained, assuming the null hypothesis is true.</p>
-<p><strong>Interpretation Guidelines:</strong> - <strong>p &lt; 0.01</strong>: Very strong evidence against H₀ (highly significant) - <strong>p &lt; 0.05</strong>: Strong evidence against H₀ (statistically significant) - <strong>p &lt; 0.10</strong>: Moderate evidence against H₀ (marginally significant) - <strong>p ≥ 0.10</strong>: Insufficient evidence to reject H₀ (not significant)</p>
-<p><strong>Key Considerations:</strong> - P-values do NOT measure the probability that the null hypothesis is true - P-values do NOT measure effect size or practical importance - Smaller p-values indicate stronger evidence, but don’t guarantee meaningful effects - Statistical significance (small p-value) ≠ practical significance (meaningful effect) - P-values can be influenced by sample size: large samples may yield significant p-values for trivial effects</p>
-<p><strong>Common Misinterpretations to Avoid:</strong> - ❌ “p = 0.03 means there’s a 3% chance the null hypothesis is true” - ❌ “p &gt; 0.05 proves the null hypothesis is correct” - ✓ “p = 0.03 means that if the null hypothesis were true, we’d see results this extreme only 3% of the time”</p>
+<p><strong>Interpretation Guidelines:</strong></p>
+<ul>
+<li><strong>p &lt; 0.01</strong>: Very strong evidence against H₀ (highly significant)</li>
+<li><strong>p &lt; 0.05</strong>: Strong evidence against H₀ (statistically significant)</li>
+<li><strong>p &lt; 0.10</strong>: Moderate evidence against H₀ (marginally significant)</li>
+<li><strong>p ≥ 0.10</strong>: Insufficient evidence to reject H₀ (not significant)</li>
+</ul>
+<p><strong>Key Considerations:</strong></p>
+<ul>
+<li>P-values do NOT measure the probability that the null hypothesis is true</li>
+<li>P-values do NOT measure effect size or practical importance</li>
+<li>Smaller p-values indicate stronger evidence, but don’t guarantee meaningful effects</li>
+<li>Statistical significance (small p-value) ≠ practical significance (meaningful effect)</li>
+<li>P-values can be influenced by sample size: large samples may yield significant p-values for trivial effects</li>
+</ul>
+<p><strong>Common Misinterpretations to Avoid:</strong></p>
+<ul>
+<li>❌ “p = 0.03 means there’s a 3% chance the null hypothesis is true”</li>
+<li>❌ “p &gt; 0.05 proves the null hypothesis is correct”</li>
+<li>✓ “p = 0.03 means that if the null hypothesis were true, we’d see results this extreme only 3% of the time”</li>
+</ul>
 <p><strong>Business application:</strong> Testing whether a new product feature increases user engagement, researchers obtain p = 0.02, indicating that if the feature had no effect, results this extreme would occur only 2% of the time—strong evidence the feature has an impact.</p>
 </section>
 <section id="common-statistical-tests" class="level3">
 <h3 class="anchored" data-anchor-id="common-statistical-tests">Common Statistical Tests</h3>
 <p>Statistical tests evaluate hypotheses about population parameters, each suited for specific data types and research questions.</p>
-<p><strong>Tests for Means:</strong></p>
-<p><strong>t-test:</strong> - <strong>One-sample t-test</strong>: Compare sample mean to known value (e.g., Is average satisfaction score different from 7.0?) - <strong>Independent samples t-test</strong>: Compare means between two groups (e.g., Do customers in Region A spend more than Region B?) - <strong>Paired samples t-test</strong>: Compare means for related observations (e.g., Before/after treatment comparisons)</p>
-<p><strong>ANOVA (Analysis of Variance):</strong> - Compares means across three or more groups - Identifies whether at least one group differs significantly - Example: Comparing sales performance across four sales regions</p>
-<p><strong>Tests for Proportions:</strong></p>
-<p><strong>Z-test for proportions:</strong> - Compare sample proportion to known value - Compare proportions between two groups - Example: Is conversion rate significantly higher for Treatment A vs. Control?</p>
-<p><strong>Chi-square test:</strong> - Tests independence between categorical variables - Example: Is customer satisfaction level related to product category?</p>
-<p><strong>Tests for Associations:</strong></p>
-<p><strong>Correlation test:</strong> - Evaluates significance of correlation coefficients - Tests whether observed correlation differs from zero - Example: Is there a significant relationship between advertising spend and revenue?</p>
-<p><strong>Regression F-test:</strong> - Tests overall model significance - Evaluates whether predictors collectively explain variance - Example: Do customer demographics significantly predict purchase behavior?</p>
+<p><strong>Tests for Means</strong></p>
+<p><strong>t-test:</strong></p>
+<ul>
+<li><strong>One-sample t-test</strong>: Compare sample mean to known value (e.g., Is average satisfaction score different from 7.0?)</li>
+<li><strong>Independent samples t-test</strong>: Compare means between two groups (e.g., Do customers in Region A spend more than Region B?)</li>
+<li><strong>Paired samples t-test</strong>: Compare means for related observations (e.g., Before/after treatment comparisons)</li>
+</ul>
+<p><strong>ANOVA (Analysis of Variance):</strong></p>
+<ul>
+<li>Compares means across three or more groups</li>
+<li>Identifies whether at least one group differs significantly</li>
+<li>Example: Comparing sales performance across four sales regions</li>
+</ul>
+<p><strong>Tests for Proportions</strong></p>
+<p><strong>Z-test for proportions:</strong></p>
+<ul>
+<li>Compare sample proportion to known value</li>
+<li>Compare proportions between two groups</li>
+<li>Example: Is conversion rate significantly higher for Treatment A vs. Control?</li>
+</ul>
+<p><strong>Chi-square test:</strong></p>
+<ul>
+<li>Tests independence between categorical variables</li>
+<li>Example: Is customer satisfaction level related to product category?</li>
+</ul>
+<p><strong>Tests for Associations</strong></p>
+<p><strong>Correlation test:</strong></p>
+<ul>
+<li>Evaluates significance of correlation coefficients</li>
+<li>Tests whether observed correlation differs from zero</li>
+<li>Example: Is there a significant relationship between advertising spend and revenue?</li>
+</ul>
+<p><strong>Regression F-test:</strong></p>
+<ul>
+<li>Tests overall model significance</li>
+<li>Evaluates whether predictors collectively explain variance</li>
+<li>Example: Do customer demographics significantly predict purchase behavior?</li>
+</ul>
 <p><strong>Non-parametric Tests:</strong></p>
 <p>When data violates normality assumptions, use distribution-free alternatives: - <strong>Mann-Whitney U test</strong>: Non-parametric alternative to independent t-test - <strong>Wilcoxon signed-rank test</strong>: Non-parametric alternative to paired t-test - <strong>Kruskal-Wallis test</strong>: Non-parametric alternative to ANOVA</p>
 </section>
 <section id="interconnections" class="level3">
 <h3 class="anchored" data-anchor-id="interconnections">Interconnections</h3>
 <p>These concepts work together in hypothesis testing:</p>
-<p><strong>Relationship between CIs and p-values:</strong> - If a 95% CI for a difference excludes zero, the corresponding p-value will be &lt; 0.05 - If a 95% CI includes zero, the p-value will be &gt; 0.05 - CIs provide more information than p-values: they show effect size, direction, and precision</p>
-<p><strong>Relationship between p-values and significance level (α):</strong> - If p &lt; α (commonly 0.05), reject the null hypothesis - If p ≥ α, fail to reject the null hypothesis - The α level defines Type I error rate (false positive rate)</p>
-<p><strong>Choosing the Right Test:</strong> Consider: 1. <strong>Data type</strong>: Continuous, categorical, ordinal? 2. <strong>Number of groups</strong>: One, two, or more? 3. <strong>Independence</strong>: Related or unrelated samples? 4. <strong>Assumptions</strong>: Normality, equal variances? 5. <strong>Research question</strong>: Difference, association, or prediction?</p>
+<p><strong>Relationship between CIs and p-values:</strong></p>
+<ul>
+<li>If a 95% CI for a difference excludes zero, the corresponding p-value will be &lt; 0.05</li>
+<li>If a 95% CI includes zero, the p-value will be &gt; 0.05</li>
+<li>CIs provide more information than p-values: they show effect size, direction, and precision</li>
+</ul>
+<p><strong>Relationship between p-values and significance level (α):</strong></p>
+<ul>
+<li>If p &lt; α (commonly 0.05), reject the null hypothesis</li>
+<li>If p ≥ α, fail to reject the null hypothesis</li>
+<li>The α level defines Type I error rate (false positive rate)</li>
+</ul>
+<p><strong>Choosing the Right Test:</strong></p>
+<ol type="1">
+<li><strong>Data type</strong>: Continuous, categorical, ordinal?</li>
+<li><strong>Number of groups</strong>: One, two, or more?</li>
+<li><strong>Independence</strong>: Related or unrelated samples?</li>
+<li><strong>Assumptions</strong>: Normality, equal variances?</li>
+<li><strong>Research question</strong>: Difference, association, or prediction?</li>
+</ol>
 <p><strong>Business Decision Framework:</strong></p>
 <ol type="1">
 <li><strong>Statistical Significance</strong>: Does the p-value indicate a real effect? (p &lt; 0.05)</li>
@@ -3127,7 +3226,25 @@ vertical-align: -.125em;
 <li><strong>Business Impact</strong>: Does this translate to meaningful outcomes? (revenue, retention, satisfaction)</li>
 <li><strong>Cost-Benefit</strong>: Do benefits outweigh implementation costs?</li>
 </ol>
-<p><strong>Example Integration:</strong> An e-commerce company tests a new checkout design: - <strong>Sample data</strong>: 1,000 users per version (old vs. new) - <strong>Conversion rates</strong>: Old = 12.0%, New = 14.5% - <strong>Statistical test</strong>: Two-proportion z-test - <strong>Results</strong>: - Difference: 2.5 percentage points - 95% CI: [0.8%, 4.2%] - p-value: 0.004 - <strong>Interpretation</strong>: - <strong>Statistically significant</strong>: p = 0.004 &lt; 0.05 (strong evidence of a difference) - <strong>Effect size</strong>: 2.5 percentage point increase (20.8% relative improvement) - <strong>Precision</strong>: 95% confident the true improvement is between 0.8% and 4.2% - <strong>Business decision</strong>: Implement new design; with 100,000 monthly users, this represents an estimated 2,500 additional conversions monthly</p>
+<p><strong>Example Integration:</strong> An e-commerce company tests a new checkout design:</p>
+<ul>
+<li><p><strong>Sample data</strong>: 1,000 users per version (old vs. new)</p></li>
+<li><p><strong>Conversion rates</strong>: Old = 12.0%, New = 14.5%</p></li>
+<li><p><strong>Statistical test</strong>: Two-proportion z-test</p></li>
+<li><p><strong>Results</strong>:</p>
+<ul>
+<li>Difference: 2.5 percentage points</li>
+<li>95% CI: [0.8%, 4.2%]</li>
+<li>p-value: 0.004</li>
+</ul></li>
+<li><p><strong>Interpretation</strong>:</p>
+<ul>
+<li><strong>Statistically significant</strong>: p = 0.004 &lt; 0.05 (strong evidence of a difference)</li>
+<li><strong>Effect size</strong>: 2.5 percentage point increase (20.8% relative improvement)</li>
+<li><strong>Precision</strong>: 95% confident the true improvement is between 0.8% and 4.2%</li>
+</ul></li>
+<li><p><strong>Business decision</strong>: Implement new design; with 100,000 monthly users, this represents an estimated 2,500 additional conversions monthly</p></li>
+</ul>
 <p>This integrated approach ensures decisions are statistically sound, practically meaningful, and aligned with business objectives.</p>
 </section>
 </section>
@@ -3139,14 +3256,18 @@ vertical-align: -.125em;
 </section>
 <section id="predictive-analytics" class="level1">
 <h1>Predictive analytics</h1>
+<p>Predictive analytics uses statistical techniques and machine learning algorithms to analyze historical data and make predictions about future events or behaviors. It enables businesses to anticipate trends, optimize operations, and enhance decision-making.</p>
 <section id="data-mining-techniques" class="level2">
 <h2 class="anchored" data-anchor-id="data-mining-techniques">Data mining techniques</h2>
+<p>These are methods used to extract patterns and insights from large datasets.</p>
 </section>
 <section id="regression-analysis-1" class="level2">
 <h2 class="anchored" data-anchor-id="regression-analysis-1">Regression analysis</h2>
+<p>Regression analysis is a statistical technique used to model and analyze the relationships between a dependent variable and one or more independent variables. It helps in understanding how changes in the independent variables impact the dependent variable, enabling businesses to make informed predictions and decisions.</p>
 </section>
 <section id="forecasting-in-predicting-future-business-outcomes" class="level2">
 <h2 class="anchored" data-anchor-id="forecasting-in-predicting-future-business-outcomes">Forecasting in predicting future business outcomes</h2>
+<p>Forecasting involves using historical data and statistical models to make informed predictions about future business outcomes. It helps organizations anticipate trends, allocate resources, and plan strategically.</p>
 <div style="page-break-after: always;"></div>
 </section>
 </section>
