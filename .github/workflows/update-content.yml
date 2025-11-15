@@ -40,6 +40,12 @@ jobs:
           repository: DrBenjamin/Data-Science-and-Data-Analytics
           path: source-datasci
 
+      - name: Checkout Technical Applications source
+        uses: actions/checkout@v4
+        with:
+          repository: DrBenjamin/Technical-Applications-and-Data-Analysis
+          path: source-technical
+
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
         with:
@@ -70,7 +76,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: r-lib-${{ runner.os }}-${{ hashFiles('source-analytical/r-code/renv.lock', 'source-datasci/r-code/renv.lock') }}
+          key: r-lib-${{ runner.os }}-${{ hashFiles('source-analytical/r-code/renv.lock', 'source-datasci/r-code/renv.lock', 'source-technical/r-code/renv.lock') }}
           restore-keys: |
             r-lib-${{ runner.os }}-
 
@@ -78,7 +84,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: pip-${{ runner.os }}-${{ hashFiles('source-analytical/python/requirements.txt', 'source-datasci/python/requirements.txt') }}
+          key: pip-${{ runner.os }}-${{ hashFiles('source-analytical/python/requirements.txt', 'source-datasci/python/requirements.txt', 'source-technical/python/requirements.txt') }}
           restore-keys: |
             pip-${{ runner.os }}-
 
@@ -151,7 +157,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          REPOS=(source-analytical source-datasci)
+          REPOS=(source-analytical source-datasci source-technical)
 
           # Install R packages using our dedicated script
           echo "=== Installing R packages ==="
@@ -246,9 +252,10 @@ jobs:
             fi
           }
 
-          # Order matters for collision policy (second can overwrite first). Current order: analytical then datasci.
+          # Order matters for collision policy (second can overwrite first). Current order: analytical, datasci, then technical.
           merge_topics source-analytical
           merge_topics source-datasci
+          merge_topics source-technical
 
           if [ "$CHANGED" = true ]; then
             echo "Unified topic assets changed; marking CONTENT_CHANGED=true"
@@ -263,11 +270,14 @@ jobs:
 
           ANALYTICAL_QMD="Analytical_Skills_for_Business.qmd"
           DATASCI_QMD="Data_Science_and_Data_Analytics.qmd"
+          TECHNICAL_QMD="Technical_Applications_and_Data_Analytics.qmd"
 
           ANALYTICAL_HTML_SLUG="analytical-skills.html"
           DATASCI_HTML_SLUG="data-science-analytics.html"
+          TECHNICAL_HTML_SLUG="technical-applications.html"
           ANALYTICAL_PDF="Analytical_Skills_for_Business.pdf"
           DATASCI_PDF="Data_Science_and_Data_Analytics.pdf"
+          TECHNICAL_PDF="Technical_Applications_and_Data_Analytics.pdf"
 
           ANY_CHANGED=false
 
@@ -336,8 +346,9 @@ jobs:
           FAILED_COUNT=0
             render_course source-analytical "$ANALYTICAL_QMD" "$ANALYTICAL_HTML_SLUG" "$ANALYTICAL_PDF" "Analytical Skills for Business" || FAILED_COUNT=$((FAILED_COUNT+1))
             render_course source-datasci "$DATASCI_QMD" "$DATASCI_HTML_SLUG" "$DATASCI_PDF" "Data Science and Data Analytics" || FAILED_COUNT=$((FAILED_COUNT+1))
+            render_course source-technical "$TECHNICAL_QMD" "$TECHNICAL_HTML_SLUG" "$TECHNICAL_PDF" "Technical Applications and Data Analytics" || FAILED_COUNT=$((FAILED_COUNT+1))
 
-          if [ $FAILED_COUNT -ge 2 ]; then
+          if [ $FAILED_COUNT -ge 3 ]; then
             echo "::error::All course renders failed. Failing job."
             exit 1
           fi
@@ -360,8 +371,8 @@ jobs:
           fi
 
           # Add core artifacts
-          git add analytical-skills.html data-science-analytics.html \
-                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf || true
+          git add analytical-skills.html data-science-analytics.html technical-applications.html \
+                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf Technical_Applications_and_Data_Analytics.pdf || true
 
           # Add any files in topics directories from both courses
           # Add any generated resource directories (e.g. Analytical_Skills_for_Business_files)
@@ -382,6 +393,7 @@ jobs:
           Rebuilt from QMD sources using Quarto:
           - Analytical: Analytical_Skills_for_Business.qmd
           - Data Science: Data_Science_and_Data_Analytics.qmd
+          - Technical: Technical_Applications_and_Data_Analytics.qmd
 
           Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push
