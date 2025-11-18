@@ -195,6 +195,9 @@
         min-height: 265px;
       }
     }
+    /* Section headings */
+    .section-heading { font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1.25rem; letter-spacing: .5px; }
+    .section-heading:first-child { margin-top: 0; }
     /* Intro with portrait */
     .header-inner { display:flex; gap:1.25rem; align-items:flex-start; max-width:1000px; margin:0 auto; }
     .intro-image { max-height:200px; width:auto; height:auto; border-radius:10px; object-fit:cover; flex:0 0 auto; box-shadow: var(--shadow); border:1px solid var(--border); }
@@ -208,18 +211,14 @@
     <div class="header-inner">
       <img src="topics/Portrait.png" alt="Portrait" class="intro-image" />
       <div class="header-content">
-        <h1>Welcome</h1>
+        <h1>My work</h1>
         <p class="lead">I am Benjamin Gross, a Therapist, Data Scientist and Lecturer of Data Science at the Hochschule
           Fresenius - University of Applied Sciences in Cologne, Germany. On this website, I share several course handbooks. Connect with me on <a href="https://www.linkedin.com/in/ptgross/" target="_blank" rel="noopener">LinkedIn</a> or contact me directly via <a href="mailto:benjamin.gross@ext.hs-fresenius.de">email</a>.</p>
-        <div class="quick-links" aria-label="Direct course links">
-          <a class="button" href="analytical-skills.html">Analytical Skills for Business</a>
-          <a class="button" href="data-science-analytics.html">Data Science &amp; Data Analytics</a>
-          <a class="button" href="technical-applications.html">Technical Applications &amp; Data Analytics</a>
-        </div>
       </div>
     </div>
   </header>
   <main>
+    <h2 class="section-heading">Academic Courses</h2>
     <section class="grid" aria-label="Courses">
       <article class="card" aria-labelledby="c1-title">
         <span class="badge">Master</span>
@@ -264,6 +263,9 @@
             Material →</a>
         </div>
       </article>
+    </section>
+    <h2 class="section-heading">Misc</h2>
+    <section class="grid" aria-label="Resources">
       <article class="card" aria-labelledby="c4-title">
         <span class="badge" style="background:linear-gradient(90deg,#10b981,#059669)">Resource</span>
         <h2 id="c4-title">ourdata R Package</h2>
@@ -297,6 +299,9 @@
         </div>
       </article>
     </section>
+    <div style="margin-top:2.5rem; text-align:center;">
+      <a class="button" href="https://www.seriousbenentertainment.org" target="_blank" rel="noopener">My E-Health SaaS Website</a>
+    </div>
   </main>
   <footer>
     <div class="links-inline">
