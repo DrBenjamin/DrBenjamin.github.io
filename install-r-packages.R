@@ -123,6 +123,61 @@ ensure_critical_packages <- function() {
   }
 }
 
+
+# Adding helper to install GitHub packages via devtools
+install_github_package <- function(repo, package = basename(repo), ref = NULL) {
+  if (requireNamespace(package, quietly = TRUE)) {
+    cat("GitHub package", package, "already installed\n")
+    return(invisible(TRUE))
+  }
+
+  cat("Installing GitHub package", package, "from", repo, "\n")
+
+  if (!requireNamespace("devtools", quietly = TRUE)) {
+
+    # Installing devtools so install_github is available
+    install_packages_safe("devtools")
+  }
+
+  if (!requireNamespace("devtools", quietly = TRUE)) {
+    stop("Unable to load devtools required for GitHub package installs")
+  }
+
+  args <- list(repo = repo, quiet = TRUE)
+  if (!is.null(ref)) {
+    args$ref <- ref
+  }
+
+  ok <- TRUE
+  tryCatch(
+    {
+      do.call(devtools::install_github, args)
+    },
+    error = function(e) {
+      ok <<- FALSE
+      cat("Failed to install", package, "from", repo, ":", e$message, "\n")
+    }
+  )
+
+  if (!ok || !requireNamespace(package, quietly = TRUE)) {
+    stop(paste("Failed to install GitHub package:", package))
+  }
+
+  invisible(TRUE)
+}
+
+
+# Ensuring GitHub packages for course materials are installed
+ensure_github_packages <- function() {
+  github_packages <- list(
+    list(repo = "DrBenjamin/ourdata", package = "ourdata")
+  )
+
+  for (pkg in github_packages) {
+    install_github_package(pkg$repo, pkg$package)
+  }
+}
+
 # Main execution
 main <- function() {
   cat("=== R Package Installation Script ===\n")
@@ -190,6 +245,9 @@ main <- function() {
 
   # Ensure critical packages are available
   ensure_critical_packages()
+
+  # Ensuring GitHub packages are installed
+  ensure_github_packages()
 
   cat("=== Package installation complete ===\n")
 }
