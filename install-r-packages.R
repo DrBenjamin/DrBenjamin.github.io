@@ -125,6 +125,32 @@ ensure_critical_packages <- function() {
 
 
 # Adding helper to install GitHub packages via devtools
+install_github_from_tarball <- function(repo, package, ref = NULL) {
+  fallback_ref <- if (is.null(ref) || !nzchar(ref)) "main" else ref
+  tarball_url <- sprintf("https://github.com/%s/archive/refs/heads/%s.tar.gz", repo, fallback_ref)
+  dest <- tempfile(pattern = "githubpkg-", fileext = ".tar.gz")
+  on.exit(unlink(dest), add = TRUE)
+
+  cat("Downloading fallback tarball for", package, "from", tarball_url, "\n")
+
+  ok <- TRUE
+  tryCatch(
+    {
+      utils::download.file(tarball_url, dest, mode = "wb", quiet = TRUE)
+      install.packages(dest, repos = NULL, type = "source", quiet = TRUE)
+    },
+    error = function(e) {
+      ok <<- FALSE
+
+      # Reporting tarball failure for diagnostics
+      cat("Fallback tarball install failed for", package, ":", e$message, "\n")
+    }
+  )
+
+  ok && requireNamespace(package, quietly = TRUE)
+}
+
+
 install_github_package <- function(repo, package = basename(repo), ref = NULL) {
   if (requireNamespace(package, quietly = TRUE)) {
     cat("GitHub package", package, "already installed\n")
@@ -149,15 +175,24 @@ install_github_package <- function(repo, package = basename(repo), ref = NULL) {
   }
 
   ok <- TRUE
+  err_message <- NULL
   tryCatch(
     {
       do.call(devtools::install_github, args)
     },
     error = function(e) {
       ok <<- FALSE
-      cat("Failed to install", package, "from", repo, ":", e$message, "\n")
+      err_message <<- conditionMessage(e)
+      cat("Failed to install", package, "from", repo, ":", err_message, "\n")
     }
   )
+
+  if (!ok || !requireNamespace(package, quietly = TRUE)) {
+    if (!is.null(err_message) && grepl("HTTP error 401|Bad credentials", err_message, ignore.case = TRUE)) {
+      cat("GitHub authentication failed; attempting anonymous tarball install\n")
+      ok <- install_github_from_tarball(repo, package, ref)
+    }
+  }
 
   if (!ok || !requireNamespace(package, quietly = TRUE)) {
     stop(paste("Failed to install GitHub package:", package))
