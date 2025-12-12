@@ -1,0 +1,157 @@
+---
+title: "Example Exam with Solutions"
+subtitle: "Analytical Skills for Business"
+author: "© Benjamin Gross"
+date: "2025-12-05"
+format:
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-fold: show
+    theme: cosmo
+bibliography: ../literature/essential_readings.bib
+csl: ../literature/apa.csl
+---
+
+::: {.callout-note}
+## Exam Information
+This document contains example exam questions with detailed solutions for the Analytical Skills for Business course at Hochschule Fresenius.
+
+**Total Points:** 90  
+**Duration:** 90 minutes (1 point per minute)
+**Questions:** 7 sections
+:::
+
+
+# Version Control Systems: Git and GitHub {#sec-git-github}
+
+**Points: 15**
+
+## Question
+
+a) (5 points) Explain the key differences between Git and GitHub. What is the primary purpose of each?
+
+b) (5 points) Describe three core concepts in Git (repository, commit, branch) and explain their importance in collaborative analytics projects.
+
+c) (5 points) Explain the difference between merging and rebasing in Git. When would you use one approach over the other?
+
+
+# Programming Languages and Development Environments {#sec-programming}
+
+**Points: 12**
+
+## Question
+
+a) (6 points) Compare R, Python, and SQL in terms of their primary use cases in business analytics. Provide one specific example for each language.
+
+b) (6 points) Explain three elements of programming languages (from: syntax, libraries, variables, functions, objects, conditions, loops) and why they are important for data analysis.
+
+
+# Development environments and tools {#sec-development-environments}
+
+**Points: 15**
+
+## Question
+
+a) (7 points) Define what containers like Docker do in the context of software development and data analytics. Explain their benefits.
+
+b) (8 points) Explain what an IDE is and name two popular IDEs used for data analytics. Describe one key feature of each.
+
+
+# No-Code and Low-Code Tools {#sec-nocode-lowcode}
+
+**Points: 10**
+
+## Question
+
+a) (5 points) Name and briefly describe three no-code or low-code tools for data analytics covered in the course (from: n8n, Snowflake, QGIS, Tableau, Power BI, KNIME).
+
+b) (5 points) Explain the advantages of using no-code/low-code tools in business analytics contexts and when they might be preferred over traditional programming approaches.
+
+
+# Descriptive Statistics {#sec-descriptive-stats}
+
+**Points: 18**
+
+## Question
+
+a) (9 points) Explain three measures of central tendency (mean, median, mode) and when each is most appropriate to use.
+
+c) (9 points) Distinguish between univariate, bivariate, and multivariate data analysis. Provide one business example for each.
+
+
+# Data Quality and Association {#sec-data-quality}
+
+**Points: 12**
+
+## Question
+
+a) (6 points) Describe three common data quality issues (from: missing values, inconsistent data, duplicate records, outliers) and appropriate strategies for handling each.
+
+b) (6 points) Explain the difference between correlation and regression analysis. Why is it important to remember that "correlation does not imply causation"?
+
+
+# Practical R Programming {#sec-r-programming}
+
+**Points: 8**
+
+## Part a: Basic Operations
+
+**Points: 2**
+
+### Question
+
+Write R code to calculate and store the following result in a variable named `result`:
+
+$$3 + \sqrt{9} - 2^2 \cdot \frac{4}{3}$$
+
+## Part b: Working Directory
+
+**Points: 1**
+
+### Question
+
+Write the R code to get the path of your current working directory.
+
+## Part c: Package Management
+
+**Points: 1**
+
+### Question
+
+Write the R code to install the `tidyverse` package.
+
+## Part d: Getting Help
+
+**Points: 1**
+
+### Question
+
+Write the R code to access the help documentation for the `mean()` function.
+
+## Part e: Data Frame Creation
+
+**Points: 3**
+
+### Question
+
+Create a data frame in R containing the following sales data:
+
+| Region | Sales |
+|--------|-------|
+| North  | 45000 |
+| South  | 38000 |
+| East   | 52000 |
+
+Store it in a variable named `sales_data`.
+
+# References {#sec-references}
+
+Cetinkaya-Rundel, M., & Hardin, J. (2021). *Introduction to modern statistics* (2nd ed.). OpenIntro.
+
+Illowsky, B., & Dean, S. (2018). *Introductory statistics*. OpenStax.
+
+GeeksforGeeks. (2024). *Understanding hypothesis testing*. https://www.geeksforgeeks.org/software-testing/understanding-hypothesis-testing/
+
+GitHub Docs. (2024). *About GitHub and Git*. https://docs.github.com/en/get-started/start-your-journey/about-github-and-git

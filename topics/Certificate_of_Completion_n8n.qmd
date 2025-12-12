@@ -1,0 +1,71 @@
+---
+title: "Certificate of Completion"
+author:
+  - name: "**n8n Workflow Automation Training**"
+format:
+  pdf:
+    toc: false
+    number-sections: false
+    embed-resources: true
+    include-in-header: header.tex
+---
+
+<!-- Styling for certificate container and background image -->
+<style>
+. :root { --cert-border: #b6c9e9; --cert-accent: #001dd9; --cert-danger: #ff0000; }
+/* Page background for HTML/exports */
+body { background-color: var(--cert-border); }
+.cert-container {
+  max-width: 900px;
+  margin: 10px auto;
+  padding: 6px;
+  border-radius: 12px;
+  border: 8px solid var(--cert-border);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background-image: url('n8n_Badges.png');
+  background-repeat: no-repeat;
+  background-position: center calc(0px);
+  background-size: 30%;
+}
+.cert-meta { color:var(--cert-accent); }
+.cert-danger { color:var(--cert-danger); }
+.cert-id-table { width:100%; border-collapse:collapse; }
+.cert-id-table td { padding:6px 8px; }
+/* Heading/link accents */
+.cert-container h1, .cert-container h2, .cert-container h3, .cert-container h4 { color: var(--cert-accent); }
+.cert-container a { color: var(--cert-accent); text-decoration: none; }
+</style>
+
+<div class="cert-container">
+
+\vspace*{1cm}
+This certifies that
+
+## Daniel Craig
+
+has successfully completed
+
+### Skills demonstrated
+
+- Workflow design and orchestration
+- Working with built-in and community nodes
+- Triggers and scheduling
+- API integrations and credentials management
+- Data transformation and control flow
+- Error handling, retry strategies and monitoring
+- Exporting/importing workflows, sharing and publishing
+
+Source references [Level One](https://docs.n8n.io/courses/level-one/) and [Level Two](https://docs.n8n.io/courses/level-two/).
+
+\certdanger{\emph{This training is an extracurricular learning activity offered as part of the course \textbf{Analytical Skills for Business at Fresenius University}.}}
+
+\vspace*{1cm}
+**Benjamin Gross**
+
+M.Sc. Data Science, Lecturer  
+Fresenius University of Applied Sciences - Business School
+
+\vspace*{1cm}
+\certdanger{\emph{Verify this certificate by contacting \textbf{benjamin.gross@ext.hs-fresenius.de.}}}
+
+</div>
