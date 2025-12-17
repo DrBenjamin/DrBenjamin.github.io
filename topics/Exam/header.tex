@@ -1,0 +1,35 @@
+% Adding a centered background image for PDF outputs
+% Uses eso-pic to place an image on the page background and disables page numbers
+\usepackage{eso-pic,graphicx}
+% Disable page numbers for the PDF (LaTeX)
+\pagenumbering{gobble}
+
+% Define custom colours (hex) for PDF output
+\usepackage{xcolor}
+\definecolor{certborder}{HTML}{B6C9E9}
+\definecolor{certaccent}{HTML}{001DD9}
+\definecolor{certdanger}{HTML}{FF0000}
+
+% Set the whole page background to the light-blue color for PDF output
+\pagecolor{certborder}
+
+% Color headings and links to match the CSS accent
+\usepackage{sectsty}
+\sectionfont{\color{certaccent}}
+\subsectionfont{\color{certaccent}}
+\subsubsectionfont{\color{certaccent}}
+
+% Ensure links use the accent colour
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=certaccent, linkcolor=certaccent}
+
+% Place the background image centered on the page; adjust width as needed
+\AddToShipoutPictureBG*{%
+  \AtPageCenter{%
+    % raise the image slightly (0.8cm) so it appears higher on the page
+    \raisebox{0.8cm}{\includegraphics[width=0.3\paperwidth]{n8n_Badges.png}}%
+  }%
+}
+
+% Provide a simple macro to mark text in the "danger" colour in PDF
+\newcommand{\certdanger}[1]{\textcolor{certdanger}{#1}}

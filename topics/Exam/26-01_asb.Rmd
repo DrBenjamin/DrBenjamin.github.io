@@ -1,0 +1,88 @@
+---
+documentclass: exam
+classoption: [final, addpoints, a4paper] # comment to hide answers
+fontsize: 12pt
+output:
+  bookdown::pdf_document2:
+    toc: false
+    highlight: NULL
+    includes:
+      before_body: "cover_gross.tex"
+      in_header: "preamble.tex"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.height = 4, fig.width = 4, fig.align = 'center', fig.pos='H',  tab.pos='H', tab.align = 'center')
+```
+  
+# Analytical Skills for Business (01/2026) {-}
+
+
+\BQ
+
+\question{} **Version Control Systems: Git and GitHub**
+\BP
+\part[6]{} Explain the key differences between Git and GitHub. What is the primary purpose of each?
+\part[6]{} Describe three core concepts in Git—repository, commit, and branch—and explain their importance in collaborative analytics projects.
+<!-- \part[5]{} Explain the difference between merging and rebasing in Git. When would you use one approach over the other? -->
+\EP
+
+\question{} **Programming Languages and Development Environments**
+\BP
+\part[6]{} Compare Python and SQL in terms of their primary use cases in business analytics.
+\part[9]{} Explain three key elements of programming languages (choose from syntax, libraries, variables, functions, objects, conditions, loops) and describe why each is important for data analysis.
+\part[6]{} Define what containers like Docker do in software development and data analytics. Explain the main benefits they provide.
+\part[6]{} Explain the concept of an IDE and name two popular IDEs used for data analytics.
+\EP
+
+\question{}**No-Code and Low-Code Tools**
+\BP
+\part[9]{} Name and describe three no-code or low-code tools for data analytics covered in the course (choose from n8n, Snowflake, QGIS, Tableau, Power BI, KNIME).
+\part[8]{} Explain the advantages of using no-code/low-code tools in business analytics and discuss situations where these tools might be preferred over traditional programming methods.
+\EP
+
+\question{} **Statistics and Analytics**
+\BP
+\part[9]{} Explain three measures of central tendency (mean, median, mode) and when each is most appropriate to use.
+\part[9]{} Distinguish between univariate, bivariate, and multivariate data analysis. Provide one business example for each.
+\part[6]{} Describe three common data quality issues (from: missing values, inconsistent data, duplicate records, outliers) and appropriate strategies for handling each.
+<!-- \part[6]{} Explain the difference between correlation and regression analysis. Why is it important to remember that "correlation does not imply causation"? -->
+\EP
+
+\newpage
+\question{} **Practical R Programming**
+\BP
+\part[3]{} Write R code to calculate and store the following result in a variable named `result`:
+
+$$3 + \sqrt{9} - 2^2 \cdot \frac{4}{3}$$
+\part[2]{} Write the R code to get the path of your current working directory.
+<!-- \part[2]{} Write the R code to install the `tidyverse` package. -->
+\part[2]{} Write the R code to access the help documentation for the `mean()` function.
+\part[3]{} Create a data frame in R containing the following sales data:
+
+| Region | Sales |
+|--------|-------|
+| North  | 45000 |
+| South  | 38000 |
+| East   | 52000 |
+
+Store it in a variable named `sales_data`.
+\EP
+
+<!-- \question{} **Descriptive Statistics** -->
+<!-- \BP -->
+<!-- \part[9]{}  -->
+<!-- \EP -->
+
+<!-- \question{} **Descriptive Statistics** -->
+<!-- \BP -->
+<!-- \part[9]{}  -->
+<!-- \EP -->
+
+\EQ
+
+
+
+
+
+<!-- # References -->
