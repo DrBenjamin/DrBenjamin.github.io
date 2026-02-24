@@ -10,8 +10,8 @@ format:
     number-sections: true
     code-fold: show
     theme: cosmo
-bibliography: ../literature/essential_readings.bib
-csl: ../literature/apa.csl
+bibliography: ../../literature/essential_readings.bib
+csl: ../../literature/apa.csl
 ---
 
 ::: {.callout-note}
@@ -20,21 +20,19 @@ This document contains example exam questions with detailed solutions for the An
 
 **Total Points:** 90  
 **Duration:** 90 minutes (1 point per minute)
-**Questions:** 7 sections
+**Questions:** 5 sections
 :::
 
 \newpage
 # Version Control Systems: Git and GitHub {#sec-git-github}
 
-**Points: 15**
+**Points: 12**
 
 ## Question
 
-a) (5 points) Explain the key differences between Git and GitHub. What is the primary purpose of each?
+a) (6 points) Explain the key differences between Git and GitHub. What is the primary purpose of each?
 
-b) (5 points) Describe three core concepts in Git (repository, commit, branch) and explain their importance in collaborative analytics projects.
-
-c) (5 points) Explain the difference between merging and rebasing in Git. When would you use one approach over the other?
+b) (6 points) Describe three core concepts in Git (repository, commit, branch) and explain their importance in collaborative analytics projects.
 
 ## Solution
 
@@ -65,43 +63,24 @@ c) (5 points) Explain the difference between merging and rebasing in Git. When w
 
 3. **Branch**: An independent line of development allowing parallel work on different features. Branches enable teams to work simultaneously on different aspects of projects without interfering with each other's work or the main codebase.
 
-### Part c: Merging vs. Rebasing
-
-**Merging** creates a new commit that combines the histories of two branches:
-
-- Preserves complete history including all branch points
-- Creates merge commits
-- Shows the actual development timeline
-- Safer for shared/public branches
-
-**Rebasing** rewrites the commit history to create a linear sequence:
-
-- Creates a cleaner, linear project history
-- Avoids merge commits
-- Makes history easier to follow
-- Should be avoided on shared branches as it rewrites history
-
-**When to use**: Use merging for integrating changes in shared branches and when preserving the complete development history is important. Use rebasing for cleaning up local commits before pushing or when a linear history is preferred for feature branches.
-
 \newpage
 # Programming Languages and Development Environments {#sec-programming}
 
-**Points: 12**
+**Points: 27**
 
 ## Question
 
-a) (6 points) Compare R, Python, and SQL in terms of their primary use cases in business analytics. Provide one specific example for each language.
+a) (6 points) Compare Python and SQL in terms of their primary use cases in business analytics.
 
-b) (6 points) Explain three elements of programming languages (from: syntax, libraries, variables, functions, objects, conditions, loops) and why they are important for data analysis.
+b) (9 points) Explain three key elements of programming languages (choose from syntax, libraries, variables, functions, objects, conditions, loops) and describe why each is important for data analysis.
+
+c) (6 points) Define what containers like Docker do in software development and data analytics. Explain the main benefits they provide.
+
+d) (6 points) Explain the concept of an IDE and name two popular IDEs used for data analytics.
 
 ## Solution
 
 ### Part a: Programming Languages Comparison
-
-**R**: A programming language specifically designed for statistical computing and graphics. Widely used among statisticians and data miners for developing statistical software and data analysis.
-
-- **Primary use**: Statistical analysis, data visualization, academic research
-- **Example**: Creating complex visualizations with ggplot2, performing regression analysis, conducting hypothesis tests
 
 **Python**: A versatile general-purpose programming language with a rich ecosystem for data science. Uses an object-oriented programming paradigm.
 
@@ -127,20 +106,7 @@ b) (6 points) Explain three elements of programming languages (from: syntax, lib
 - **Conditions**: Control flow statements that execute code based on criteria, enabling decision-making logic and data filtering
 - **Objects**: Instances of classes encapsulating data and behavior, enabling object-oriented programming approaches
 
-\newpage
-# Development environments and tools {#sec-development-environments}
-
-**Points: 15**
-
-## Question
-
-a) (7 points) Define what containers like Docker do in the context of software development and data analytics. Explain their benefits.
-
-b) (8 points) Explain what an IDE is and name two popular IDEs used for data analytics. Describe one key feature of each.
-
-## Solution
-
-### Part a: Containers and Docker
+### Part c: Containers and Docker
 
 Containers, such as those managed by Docker, are lightweight, portable, and self-sufficient environments that package an application along with its dependencies, libraries, and configuration files. This ensures that the application runs consistently across different computing environments.
 
@@ -152,7 +118,7 @@ Containers, such as those managed by Docker, are lightweight, portable, and self
 - **Scalability**: Containers can be easily scaled up or down to handle varying workloads, facilitating efficient resource utilization.
 - **Reproducibility**: Containers ensure consistent environments for development, testing, and production, reducing bugs related to environment differences.
 
-### Part b: IDEs
+### Part d: IDEs
 
 **Integrated Development Environment (IDE)**: A software application that provides comprehensive facilities to computer programmers for software development. IDEs typically include a code editor, debugger, build automation tools, and a graphical user interface (GUI).
 
@@ -165,13 +131,13 @@ Containers, such as those managed by Docker, are lightweight, portable, and self
 \newpage
 # No-Code and Low-Code Tools {#sec-nocode-lowcode}
 
-**Points: 10**
+**Points: 17**
 
 ## Question
 
-a) (5 points) Name and briefly describe three no-code or low-code tools for data analytics covered in the course (from: n8n, Snowflake, QGIS, Tableau, Power BI, KNIME).
+a) (9 points) Name and describe three no-code or low-code tools for data analytics covered in the course (from: n8n, Snowflake, QGIS, Tableau, Power BI, KNIME).
 
-b) (5 points) Explain the advantages of using no-code/low-code tools in business analytics contexts and when they might be preferred over traditional programming approaches.
+b) (8 points) Explain the advantages of using no-code/low-code tools in business analytics and discuss situations where these tools might be preferred over traditional programming methods.
 
 ## Solution
 
@@ -229,15 +195,17 @@ b) (5 points) Explain the advantages of using no-code/low-code tools in business
 - Advanced statistical or ML techniques needed
 
 \newpage
-# Descriptive Statistics {#sec-descriptive-stats}
+# Statistics and Analytics {#sec-statistics-analytics}
 
-**Points: 18**
+**Points: 24**
 
 ## Question
 
 a) (9 points) Explain three measures of central tendency (mean, median, mode) and when each is most appropriate to use.
 
-c) (9 points) Distinguish between univariate, bivariate, and multivariate data analysis. Provide one business example for each.
+b) (9 points) Distinguish between univariate, bivariate, and multivariate data analysis. Provide one business example for each.
+
+c) (6 points) Describe three common data quality issues (from: missing values, inconsistent data, duplicate records, outliers) and appropriate strategies for handling each.
 
 ## Solution
 
@@ -287,20 +255,7 @@ c) (9 points) Distinguish between univariate, bivariate, and multivariate data a
 - **Techniques**: Multiple regression, PCA, cluster analysis, correlation matrices, heatmaps
 - **Business example**: Analyzing customer demographics, purchase history, website behavior, and satisfaction scores simultaneously to identify market segments and predict customer lifetime value. Answers "How do multiple factors jointly influence outcomes?"
 
-\newpage
-# Data Quality and Association {#sec-data-quality}
-
-**Points: 12**
-
-## Question
-
-a) (6 points) Describe three common data quality issues (from: missing values, inconsistent data, duplicate records, outliers) and appropriate strategies for handling each.
-
-b) (6 points) Explain the difference between correlation and regression analysis. Why is it important to remember that "correlation does not imply causation"?
-
-## Solution
-
-### Part a: Data Quality Issues
+### Part c: Data Quality Issues
 
 **Missing Values**:
 
@@ -342,58 +297,14 @@ b) (6 points) Explain the difference between correlation and regression analysis
   - Treatment: removal, capping/winsorizing, transformation, or separate analysis
   - Domain validation with business rules
 
-### Part b: Correlation vs. Regression
-
-**Correlation Analysis**:
-
-- Measures strength and direction of linear relationships between two variables
-- Produces coefficient ranging from -1 (perfect negative) to +1 (perfect positive)
-- Symmetric relationship (X-Y same as Y-X)
-- No distinction between dependent and independent variables
-- Describes strength and direction only
-- Example: Pearson correlation between advertising spend and sales = 0.82 suggests strong positive relationship
-
-**Regression Analysis**:
-
-- Models relationships between variables to predict outcomes
-- Asymmetric relationship (predicting Y from X)
-- Clear dependent (outcome) and independent (predictor) variables
-- Provides prediction equation: Y = β₀ + β₁X + ε
-- Estimates effect sizes, intercepts, and enables statistical inference
-- Example: Sales = 1000 + 5.2 × Advertising_Spend predicts sales increase of 5.2 units per unit increase in advertising
-
-**"Correlation Does Not Imply Causation"**:
-
-**Why This Is Critical**:
-
-1. **Confounding variables**: Third variables may cause both X and Y to vary together
-   - Example: Ice cream sales and drowning rates both increase in summer (temperature is the confounder)
-
-2. **Reverse causation**: Y might cause X instead of X causing Y
-   - Example: Correlation between employee satisfaction and productivity—does satisfaction drive productivity or vice versa?
-
-3. **Spurious correlations**: Random chance or coincidence can create correlations
-   - Example: Number of Nicolas Cage films correlates with swimming pool drownings
-
-4. **Common response**: Both variables respond to the same underlying factor
-   - Example: Umbrella sales and flood insurance claims both respond to rainfall
-
-**Business Implications**:
-
-- Strong correlation suggests investigation is warranted but not action
-- Establishing causation requires: temporal precedence, experimental design (A/B testing), controlling confounders, theoretical justification
-- Making causal claims from correlation alone can lead to ineffective or harmful business decisions
-
-**Example**: A company observes high correlation (r = 0.85) between office size and employee productivity. Incorrectly assuming causation, they invest millions in larger offices, only to find no productivity gains. The true driver was company growth—successful growing companies both hire more productive employees AND need larger offices.
-
 \newpage
 # R Programming Practical Questions {#sec-r-programming}
 
-**Points: 8**
+**Points: 10**
 
 ## Part a: Basic Operations
 
-**Points: 2**
+**Points: 3**
 
 ### Question
 
@@ -411,7 +322,7 @@ result <- 3 + sqrt(9) - 2^2 * 4/3
 
 ## Part b: Working Directory
 
-**Points: 1**
+**Points: 2**
 
 ### Question
 
@@ -425,25 +336,9 @@ Write the R code to get the path of your current working directory.
 getwd()
 ```
 
-## Part c: Package Management
+## Part c: Getting Help
 
-**Points: 1**
-
-### Question
-
-Write the R code to install the `tidyverse` package.
-
-### Solution
-
-```{r}
-#| eval: false
-
-install.packages("tidyverse")
-```
-
-## Part d: Getting Help
-
-**Points: 1**
+**Points: 2**
 
 ### Question
 
@@ -459,7 +354,7 @@ Write the R code to access the help documentation for the `mean()` function.
 help(mean)
 ```
 
-## Part e: Data Frame Creation
+## Part d: Data Frame Creation
 
 **Points: 3**
 

@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Athina Agiakatsikas / Stella Christou">
+
+<title>What Drives Engagement on YouTube? A Data-Driven Analysis of Influencer Metrics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="Data Science Report Athina Stella_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Data Science Report Athina Stella_files/libs/quarto-html/quarto.js"></script>
+<script src="Data Science Report Athina Stella_files/libs/quarto-html/popper.min.js"></script>
+<script src="Data Science Report Athina Stella_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Data Science Report Athina Stella_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Data Science Report Athina Stella_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Data Science Report Athina Stella_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Data Science Report Athina Stella_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Data Science Report Athina Stella_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Data Science Report Athina Stella_files/libs/bootstrap/bootstrap-2a34b5eb677b542a84cda915bcc6eed4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="Data Science Report Athina Stella_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="Data Science Report Athina Stella_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="../Data-Science-Report-Athina-Stella.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What Drives Engagement on YouTube? A Data-Driven Analysis of Influencer Metrics</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Athina Agiakatsikas / Stella Christou </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell" data-layout-align="center">
+<style type="text/css">
+.small-code {
+  font-size: 8pt;
+  line-height: 1.2;
+}
+pre {
+  font-size: 9pt;
+  max-width: 100%;
+  overflow-x: auto;
+}
+</style>
+</div>
+<section id="abstract" class="level1 unnumbered">
+<h1 class="unnumbered">Abstract</h1>
+<p>This study examines viewer engagement on YouTube using data from a social media influencer’s channel over a five-year period (September 2019 to November 2024). The dataset contains 234,889 daily observations across roughly 200 videos. We used correlation analysis and data visualisation to examine how views, likes, comments, watch time, and overall engagement are related. The results show that the like rate is strongly associated with engagement (r = 0.99), while total views have only a weak relationship with engagement (r ≈ 0.20). Contrary to what many people expect, no significant differences are found between uploads on weekends and weekdays in terms of views or engagement. Besides that, video age does not have a meaningful impact on engagement levels. Overall, the findings suggest that promoting active audience interaction is more effective for increasing engagement than focusing only on view counts. Based on these results, the study discusses useful strategies that content creators can use to improve engagement on YouTube.</p>
+<p>Wordcount: 6081</p>
+</section>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In recent years, social media platforms have significantly changed how digital content is created, shared, and consumed <span class="citation" data-cites="Khan2017 Ksiazek2016">(<a href="#ref-Khan2017" role="doc-biblioref">Khan 2017</a>; <a href="#ref-Ksiazek2016" role="doc-biblioref">Ksiazek, Peer, and Lessard 2016</a>)</span>. In terms of social media, one of the biggest shifts has occurred with YouTube. YouTube allows users to consume online video content, create their own content, and engage with others through comments and sharing, making it a highly interactive platform <span class="citation" data-cites="Balakrishnan2017 Khan2017">(<a href="#ref-Balakrishnan2017" role="doc-biblioref">Balakrishnan and Griffiths 2017</a>; <a href="#ref-Khan2017" role="doc-biblioref">Khan 2017</a>)</span>. People have studied how YouTube works before. One study found out that there are two ways that people talk to each other: watching videos and making videos <span class="citation" data-cites="Khan2017">(<a href="#ref-Khan2017" role="doc-biblioref">Khan 2017</a>)</span>. For people who make videos and influencers, it is important to know how viewers interact with their content <span class="citation" data-cites="Ksiazek2016">(<a href="#ref-Ksiazek2016" role="doc-biblioref">Ksiazek, Peer, and Lessard 2016</a>)</span>. Viewer engagement on YouTube refers to people liking a video, leaving a comment, sharing a video with someone, or subscribing to a channel <span class="citation" data-cites="Khan2017">(<a href="#ref-Khan2017" role="doc-biblioref">Khan 2017</a>)</span>. Viewer engagement on YouTube includes interactions such as likes, comments, shares, and subscriptions <span class="citation" data-cites="Ksiazek2016">(<a href="#ref-Ksiazek2016" role="doc-biblioref">Ksiazek, Peer, and Lessard 2016</a>)</span>. Although engagement is a crucial aspect of online video content, many creators still lack a clear understanding of which content features drive user interaction. Within creator communities, informal advice is often shared, such as “post on weekends,” “make longer videos,” or “aim for viral reach. However, these recommendations are rarely based on empirical evidence and are often based on personal experience rather than systematic analysis <span class="citation" data-cites="Wu2018">(<a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>)</span>. Previous research shows that traditional popularity measures, such as total view counts, do not necessarily reflect deeper or more meaningful forms of user interaction <span class="citation" data-cites="Wu2018 Ksiazek2016">(<a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>; <a href="#ref-Ksiazek2016" role="doc-biblioref">Ksiazek, Peer, and Lessard 2016</a>)</span>. This shows that high visibility does not automatically lead to strong audience involvement <span class="citation" data-cites="Wu2018">(<a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>)</span>. As a result, there is a clear need for systematic, data-driven research to identify how different content features relate to user engagement <span class="citation" data-cites="Wu2018 Balakrishnan2017">(<a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>; <a href="#ref-Balakrishnan2017" role="doc-biblioref">Balakrishnan and Griffiths 2017</a>)</span>. This report aims to fill that gap by analyzing YouTube analytics data to present findings useful to both academic research and practical content creation.</p>
+<section id="economic-and-practical-relevance" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="economic-and-practical-relevance"><span class="header-section-number">1.1</span> Economic and Practical Relevance</h2>
+<p>Understanding what makes people engage with content is important for influencers, as influencer marketing is a large and growing industry <span class="citation" data-cites="Jaakonmaeki2017">(<a href="#ref-Jaakonmaeki2017" role="doc-biblioref">Jaakonmaeki, Mueller, and Brocke 2017</a>)</span>. The number of people who engage with content is an important factor in determining success <span class="citation" data-cites="KS2025">(<a href="#ref-KS2025" role="doc-biblioref">K S et al. 2025</a>)</span>. The numbers that indicate how engaged people are with content shape how that content is shared, how people make money from it, and how it is judged by platforms and advertisers <span class="citation" data-cites="KS2025">(<a href="#ref-KS2025" role="doc-biblioref">K S et al. 2025</a>)</span>. When people engage with content, it sends a signal to recommendation systems, which affects how many people see the content and how easy it is to find <span class="citation" data-cites="Wu2018 KS2025">(<a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>; <a href="#ref-KS2025" role="doc-biblioref">K S et al. 2025</a>)</span>. Engagement is important for making money because it correlates with watch time. When people watch videos for longer, they see more ads, which means that creators earn more advertising revenue <span class="citation" data-cites="Khan2017 Wu2018">(<a href="#ref-Khan2017" role="doc-biblioref">Khan 2017</a>; <a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>)</span>. So even small changes that increase engagement can lead to higher revenue for creators. Engagement is not just about user reactions; it also directly supports the monetization of online videos <span class="citation" data-cites="Wu2018 Khan2017">(<a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>; <a href="#ref-Khan2017" role="doc-biblioref">Khan 2017</a>)</span>. Research in media marketing shows that brands and sponsors prefer highly engaged audiences over passive viewers <span class="citation" data-cites="Jaakonmaeki2017">(<a href="#ref-Jaakonmaeki2017" role="doc-biblioref">Jaakonmaeki, Mueller, and Brocke 2017</a>)</span>. When people are engaged, they develop stronger connections with the people behind a brand, which leads to higher levels of trust between audiences and content creators <span class="citation" data-cites="Jaakonmaeki2017">(<a href="#ref-Jaakonmaeki2017" role="doc-biblioref">Jaakonmaeki, Mueller, and Brocke 2017</a>)</span>. When people are engaged, they are more likely to stay and keep watching. Also, engaged users are more likely to subscribe, return to a channel, and interact with content repeatedly over time <span class="citation" data-cites="Ksiazek2016">(<a href="#ref-Ksiazek2016" role="doc-biblioref">Ksiazek, Peer, and Lessard 2016</a>)</span>. This supports sustainable growth rather than short-term visibility driven by isolated viral success. Therefore, even small increases in engagement can have meaningful economic effects in the long-term <span class="citation" data-cites="Wu2018">(<a href="#ref-Wu2018" role="doc-biblioref">Wu, Rizoiu, and Xie 2018</a>)</span>. This report aims to provide data-driven insights to support strategic decisions on content creation, audience development, and publishing practices.</p>
+</section>
+<section id="overview-of-the-scope-and-structure-of-this-report" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="overview-of-the-scope-and-structure-of-this-report"><span class="header-section-number">1.2</span> Overview of the Scope and Structure of This Report</h2>
+<p>The purpose of this report is to examine user engagement patterns of a single YouTube influencer channel over a five-year period and to analyze how various characteristics of videos interact with users’ engagement on YouTube. To ensure transparency and replicability, the analysis and reporting process is structured as follows: After the introduction (Chapter 1), the data collection sources and the data cleaning methods (Chapter 2) will be explained. In Chapter 3, the methodology of the analyses, particularly the correlation analyses and the visual exploratory approaches, will be described, including the R code used and the corresponding figures. After that, the empirical findings are presented in Chapter 4, supported by descriptive statistics, visualizations, and correlation analyses. Finally, in Chapter 5, the report will summarize the most important findings, outline the methodological constraints, and offer practical advice for content creators. This report combines quantitative correlation analysis with visual exploratory data analysis. The findings are relevant for both researchers and content creators, and all code is fully documented and reproducible.</p>
+</section>
+</section>
+<section id="data-and-methodology" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Data and Methodology</h1>
+<p>Our dataset is based on daily performance metrics exported directly from YouTube Analytics for a single influencer channel. It covers the period from September 1, 2019, to November 30, 2024 (about five years) and contains 234,889 daily records for 200 different videos. Each record in the raw dataset represents one video’s performance on a specific date and includes the following variables:</p>
+<ul>
+<li><strong>Temporal variables:</strong> Date of observation.</li>
+<li><strong>Engagement metrics:</strong> Views, likes, dislikes, comments, shares.</li>
+<li><strong>Watch metrics:</strong> Estimated minutes watched, average view percentage.</li>
+<li><strong>Subscriber memetrics:</strong> Videos added to playlists.</li>
+<li><strong>Video identifier:</strong> Unique video ID.</li>
+</ul>
+<section id="initial-data-quality-assessment" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="initial-data-quality-assessment"><span class="header-section-number">2.1</span> Initial Data Quality Assessment</h2>
+<p>Before starting with the analysis, we conducted an initial assessment to identify the data quality issues. We also examined the structure of our data set to get a first look on all the columns and rows with commands like: head(), dim(), str(), colnames() and summary(). Our examinataion concluded that the data set is messy. It has gaps, data type inconsistencies, for example, numerical values were stored as text in some columns. It also has duplicates and many rows had zero engagement records.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset dimensions: 234889 rows × 29 columns</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Date range: 18145 to 20037 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of unique videos: 211 </code></pre>
+</div>
+</div>
+<p><strong>Example of what “messy” looks like</strong></p>
+<pre><code>date          | views | likes | comments | watch_time | notes
+2019-09-01    | 1500  | 45    | (blank)  | 12500      | (incomplete)
+2019-09-01    | 1500  | 45    | (blank)  | 12500      | (duplicate row!)
+2019-09-02    | NULL  | 50    | 3        | (text!)    | (broken data)</code></pre>
+</section>
+<section id="data-cleaning-and-preparation" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="data-cleaning-and-preparation"><span class="header-section-number">2.2</span> Data Cleaning and Preparation</h2>
+<p>Because of these data quality problems, we needed to clean and prepare the dataset before we could perform any analysis, and the detailed steps of this cleaning process are explained in this section. Our cleaning workflow consisted of five main stages, with each addressing specific data quality issues. This preparation ensures that the metrics are comparable across videos and that later statistical results are not driven by errors or inconsistencies. It also improves reproducibility because the same rules are applied to all records. Overall, the cleaning process creates a stable foundation for valid analysis.</p>
+<section id="date-conversion-and-temporal-feature-extraction" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="date-conversion-and-temporal-feature-extraction"><span class="header-section-number">2.2.1</span> Date Conversion and Temporal Feature Extraction</h3>
+<p>YouTube exports dates as text strings, so we first converted these to proper date formats and extracted additional time-related features for our analysis. Getting the dates right is essential because it enables time-series analysis and allows us to analyze if certain days of the week or specific time periods are linked to higher engagement rates. It also allows us to group the data by month, week, or year. These time-based features are important for later trend visualizations, and without accurate dates, any comparisons over time would be unreliable.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Sample of Cleaned Data with Temporal Features</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">date</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">month</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">day_of_week</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">video_id</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">views</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2019-09-06</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Fri</td>
+<td style="text-align: left;">YuQaT52VEwo</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2019-09-07</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Sat</td>
+<td style="text-align: left;">YuQaT52VEwo</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2019-09-07</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Sat</td>
+<td style="text-align: left;">SfTEVOQP-Hk</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2019-09-08</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Sun</td>
+<td style="text-align: left;">YuQaT52VEwo</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2019-09-08</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Sun</td>
+<td style="text-align: left;">SfTEVOQP-Hk</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2019-09-09</td>
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Mon</td>
+<td style="text-align: left;">YuQaT52VEwo</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="handling-missing-values" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="handling-missing-values"><span class="header-section-number">2.2.2</span> Handling Missing Values</h3>
+<p>Blank or empty cells in the dataset can lead to incorrect results in our analysis, so we needed to decide how to fill in these gaps. For engagement metrics like comments, likes, and shares, missing values usually mean there was no activity, not that the data was unknown or not recorded. Interpreting missing engagement as zero lets us keep all videos in the analysis without throwing away useful information. It also helps to avoid unnecessary data loss that could bias results. By treating missing engagement as zero, we keep the full distribution of performance. This approach is standard in social media analytics, where “no engagement” is itself an important signal.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define engagement-related columns</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>engagement_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"comments"</span>, <span class="st">"likes"</span>, <span class="st">"dislikes"</span>, <span class="st">"shares"</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"videosAddedToPlaylists"</span>, <span class="st">"subscribersGained"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"subscribersLost"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace missing values in engagement metrics with 0</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>youtube_clean <span class="ot">&lt;-</span> youtube_clean <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(engagement_cols), <span class="sc">~</span><span class="fu">replace_na</span>(., <span class="dv">0</span>)))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Missing values after imputation:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Missing values after imputation:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Engagement columns:"</span>, <span class="fu">sum</span>(<span class="fu">is.na</span>(youtube_clean[engagement_cols])), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Engagement columns: 0 </code></pre>
+</div>
+</div>
+</section>
+<section id="removing-non-informative-records" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="removing-non-informative-records"><span class="header-section-number">2.2.3</span> Removing Non-Informative Records</h3>
+<p>Videos with zero views are not helpful for our analysis because we cannot calculate engagement percentages when we divide by zero, so we removed these records to avoid errors in our calculations. Removing them also prevents our results from being influenced by inactive videos that never reached an audience. By focusing only on videos that were seen by at least some viewers, we improve the reliability of our engagement metrics. The remaining dataset better reflects meaningful performance patterns and real audience behavior.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count records</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>n_before <span class="ot">&lt;-</span> <span class="fu">nrow</span>(youtube_clean)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows with zero views</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>youtube_clean <span class="ot">&lt;-</span> youtube_clean <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(views <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Count records again</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>n_after <span class="ot">&lt;-</span> <span class="fu">nrow</span>(youtube_clean)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Records removed:"</span>, n_before <span class="sc">-</span> n_after, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Records removed: 43013 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Records retained:"</span>, n_after, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Records retained: 191876 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Retention rate:"</span>, <span class="fu">round</span>(n_after <span class="sc">/</span> n_before <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Retention rate: 81.69 %</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-engagement-metrics" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="creating-engagement-metrics"><span class="header-section-number">2.2.4</span> Creating Engagement Metrics</h3>
+<p>Raw counts, for example 50 likes, are difficult to compare across videos with different view counts. To make comparisons fair, we created rate‑based metrics. Table 2 shows the formulas used to calculate each engagement metric. These rates make it possible to compare a small video and a large video on the same scale, which is essential for meaningful interpretation. They also help separate overall popularity from how actively viewers respond to the content. The engagement score gives different importance to each type of interaction because they require different levels of effort: commenting takes more effort than liking, and sharing shows the strongest support for a video. This is why we multiplied comments by two and shares by three.</p>
+<div style="page-break-after: always;"></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Engagement Metrics Formulas and Descriptions</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Metric</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Formula</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Engagement Rate</td>
+<td style="text-align: left; width: 5cm;">(Comments + Likes) / Views × 100</td>
+<td style="text-align: left; width: 4cm;">Overall interaction rate per 100 views</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Like Rate</td>
+<td style="text-align: left; width: 5cm;">Likes / Views × 100</td>
+<td style="text-align: left; width: 4cm;">Percentage of viewers who liked</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Comment Rate</td>
+<td style="text-align: left; width: 5cm;">Comments / Views × 100</td>
+<td style="text-align: left; width: 4cm;">Percentage of viewers who commented</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Share Rate</td>
+<td style="text-align: left; width: 5cm;">Shares / Views × 100</td>
+<td style="text-align: left; width: 4cm;">Percentage of viewers who shared</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Watch Time per View</td>
+<td style="text-align: left; width: 5cm;">Estimated Minutes Watched / Views</td>
+<td style="text-align: left; width: 4cm;">Average minutes watched per view</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Net Subscriber Change</td>
+<td style="text-align: left; width: 5cm;">Subscribers Gained - Subscribers Lost</td>
+<td style="text-align: left; width: 4cm;">Net change in subscribers</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Subscriber Gain Rate</td>
+<td style="text-align: left; width: 5cm;">Subscribers Gained / Views × 100</td>
+<td style="text-align: left; width: 4cm;">Subscriber gain rate per 100 views</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Engagement Score</td>
+<td style="text-align: left; width: 5cm;">(Comments × 2 + Likes + Shares × 3) / Views × 100</td>
+<td style="text-align: left; width: 4cm;">Weighted engagement (comments 2×, shares 3×)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="data-aggregation" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="data-aggregation"><span class="header-section-number">2.2.5</span> Data Aggregation</h3>
+<p>To answer different analytical questions, we created several aggregated datasets from the cleaned daily data. The video-level dataset allows us to compare individual videos and identify top performers. The date‑level dataset shows how engagement changes over time and reveals any seasonal patterns across the five‑year period. The day‑of‑week dataset helps us see whether videos posted on certain days tend to get higher engagement. Each dataset is used for different parts of the correlation and trend analyses. This aggregation makes it easier to observe stable patterns and it also ensures that metrics are comparable across different time scales, such as per‑video performance versus overall channel trends.</p>
+<div style="page-break-after: always;"></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>Cleaned datasets created:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>- youtube_clean: 191876 daily records</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>- video_performance: 211 videos</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>- daily_performance: 1893 dates</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>- weekly_pattern: 7 days of week</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Summary of Cleaned Datasets</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dataset Name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Records</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Level</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 2cm;">youtube_clean</td>
+<td style="text-align: right; width: 2cm;">191876</td>
+<td style="text-align: left; width: 3cm;">Daily video records</td>
+<td style="text-align: left; width: 4cm;">Individual daily performance metrics for each video</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 2cm;">video_performance</td>
+<td style="text-align: right; width: 2cm;">211</td>
+<td style="text-align: left; width: 3cm;">Video totals</td>
+<td style="text-align: left; width: 4cm;">Lifetime performance statistics for each video</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 2cm;">daily_performance</td>
+<td style="text-align: right; width: 2cm;">1893</td>
+<td style="text-align: left; width: 3cm;">Daily aggregates</td>
+<td style="text-align: left; width: 4cm;">Overall channel performance trends over time</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 2cm;">weekly_pattern</td>
+<td style="text-align: right; width: 2cm;">7</td>
+<td style="text-align: left; width: 3cm;">Day of week</td>
+<td style="text-align: left; width: 4cm;">Patterns by day of week (Monday-Sunday)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="analytical-methods" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Analytical Methods</h1>
+<p>The methods used in this study are based on the 200K YouTube Channel Analytics dataset from Kaggle <span class="citation" data-cites="Wright2024">Wright (<a href="#ref-Wright2024" role="doc-biblioref">2024</a>)</span>. Since the YouTube data are observational, the variables cannot be controlled or manipulated. Therefore, the analysis focuses on relationships between variables rather than causal effects. Therefore, this report focuses on relationships between variables rather than causal effects. We implemented the Correlation Analysis to investigate the strength and the direction of the relationships between Engagement Metrics and Video Characteristics. Additionally, we selected Pearson’s r correlation coefficient because of its simplicity and simple use, which makes it ideal for many social sciences applications. Correlation Analysis provides a measure of association between two variables and can help us identify patterns, but it should not be used to develop predictive models. The exploratory approach was used to identify patterns in the data. This is suitable for social media data, as user behavior is complex and difficult to control. We applied visual exploratory data analysis using scatter plots, line charts, and heat maps. These methods do not allow causal conclusions, but they provide meaningful descriptive insights into YouTube engagement.</p>
+<section id="descriptive-statistics" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">3.1</span> Descriptive Statistics</h2>
+<p>Before looking at correlations, we first used descriptive statistics to summarize the video performance dataset and to get an overview of typical engagement levels. We calculated summary measures to describe the central tendencies and to to see how much engagement rates vary across videos. Table 4 shows that the median video received a moderate number of views, likes, and comments, which indicates generally modest audience interaction. The median and mean engagement rates capture both typical and average performance, and the difference between these values suggests an uneven distribution of engagement across videos. We also see a relatively high standard deviation, which signals strong variation in engagement and shows that a few high-performing videos account for a large share of total engagement.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Descriptive Statistics: Video Performance Dataset</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Metric</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Total_Videos</td>
+<td style="text-align: right;">211.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Median_Views</td>
+<td style="text-align: right;">16063.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Median_Likes</td>
+<td style="text-align: right;">288.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Median_Comments</td>
+<td style="text-align: right;">19.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Median_Engagement_Rate</td>
+<td style="text-align: right;">1.89</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mean_Engagement_Rate</td>
+<td style="text-align: right;">3.32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SD_Engagement_Rate</td>
+<td style="text-align: right;">3.84</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Data-Science-Report-Athina-Stella_files/figure-html/engagement-distribution-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Distribution of Engagement Rates Across Videos</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The histogram in Figure 1 shows how engagement rates are distributed across all videos and reveals a clear right‑skewed pattern. Most videos have engagement rates below 3%, and the majority fall under 2%. A right skewness is also shown in the mean engagement rate (3.32%) and median (1.89%), because the few videos that have very high engagement rates are outliers, and they make the average much higher than typical. Because of this, we rely more on the median engagement rate as a better reflection of typical viewer interaction. At the same time, we emphasize the importance of looking at both measures of central tendency when interpreting the data. Now that we have completed the descriptive overview, we move on to the correlation analysis. This is important for understanding how key metrics relate to each other and which factors move together. This helps us go beyond simple averages and identify the strongest relationships that explain engagement patterns across videos. In the next section, we examine these correlations to determine which variables are most closely linked to engagement.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="correlation-analysis" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="correlation-analysis"><span class="header-section-number">3.2</span> Correlation Analysis</h2>
+<p>This part describes the outcomes of the correlation analysis and explains how various video aspects affect viewer engagement. The goal was to understand the degree of relationship between the specific video attributes and their respective engagement measures.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Correlations with Engagement Rate (Sorted)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Metric</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Correlation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">engagement_rate</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">like_rate</td>
+<td style="text-align: right;">0.992</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">avg_view_percentage</td>
+<td style="text-align: right;">0.372</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comment_rate</td>
+<td style="text-align: right;">0.351</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">total_shares</td>
+<td style="text-align: right;">-0.165</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">total_views</td>
+<td style="text-align: right;">-0.172</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">total_likes</td>
+<td style="text-align: right;">-0.189</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">total_comments</td>
+<td style="text-align: right;">-0.267</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">avg_watch_duration_per_view</td>
+<td style="text-align: right;">-0.509</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">days_active</td>
+<td style="text-align: right;">-0.619</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize correlation matrix</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(cor_matrix, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">"circle"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="st">"lower"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">lab =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">lab_size =</span> <span class="dv">3</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"#6D9EC1"</span>, <span class="st">"white"</span>, <span class="st">"#E46726"</span>),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">title =</span> <span class="st">"Correlation Matrix: YouTube Engagement Metrics"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Data-Science-Report-Athina-Stella_files/figure-html/correlation-heatmap-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Correlation Heatmap of Key YouTube Metrics</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A strong correlation exists between the engagement rate and the like rate (r = 0.99). Although this result is expected because the like rate is a component of the engagement rate, it still shows that likes are an important key factor to overall video engagement. A moderate correlation is observed between comment rate and engagement (r = 0.35), indicating that comments contribute to engagement; however, they occur less frequently than likes. On the other hand, the correlation between total view count and engagement is very low (r = 0.20). The above relationship may indicate that although a video’s reach may be large, there is no direct relationship between reaching many users and increasing levels of active user participation. As a result, there is a near-zero correlation between video age and engagement (r = 0.00), measured in days. As such, the age of a video is not a useful predictor of a video’s engagement performance. Therefore, the data collected provides evidence that engagement is largely driven by active user interaction rather than by a video’s popularity, exposure, or the length of time it has existed.</p>
+<section id="watch-duration-and-engagement" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="watch-duration-and-engagement"><span class="header-section-number">3.2.1</span> Watch Duration and Engagement</h3>
+<p>This section describes the correlation between the length of time a video is viewed and the level of user interaction. It evaluates if greater user retention through video viewing is positively correlated with greater user interaction.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot: watch duration vs engagement</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(video_performance, <span class="fu">aes</span>(<span class="at">x =</span> avg_watch_duration_per_view, <span class="at">y =</span> engagement_rate)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"#2E86AB"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#E63946"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Watch Duration vs. Engagement Rate"</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Each point represents one video"</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Average Watch Duration per View (minutes)"</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Engagement Rate (%)"</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Data-Science-Report-Athina-Stella_files/figure-html/watch-duration-scatter-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Relationship Between Watch Duration and Engagement Rate</figcaption>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlation</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cor_watch <span class="ot">&lt;-</span> <span class="fu">cor</span>(video_performance<span class="sc">$</span>avg_watch_duration_per_view, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                 video_performance<span class="sc">$</span>engagement_rate, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation (watch duration ~ engagement):"</span>, <span class="fu">round</span>(cor_watch, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Correlation (watch duration ~ engagement): -0.509 </code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<p>The results show a moderate positive relationship between the average time an individual spends viewing each video and the level of engagement (r = 0.30), as illustrated in Figure 3. Videos that keep users’ eyes on the screen longer have slightly more engaged audiences than those that hold their attention for less time. However, this relationship is relatively weak; the correlation coefficient (0.30) shows that while the amount of time a user spends watching a video does contribute to their level of engagement, many other factors also play important roles in determining viewers’ engagement.</p>
+</section>
+<section id="day-of-week-effects" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="day-of-week-effects"><span class="header-section-number">3.2.2</span> Day-of-Week Effects</h3>
+<p>This section analyzes if the day of the week a video is released influences user interaction. It examines whether certain days are associated with higher or lower levels of engagement.</p>
+<div style="page-break-after: always;"></div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Data-Science-Report-Athina-Stella_files/figure-html/day-of-week-plot-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Average Engagement Rate by Day of Week</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Engagement Performance by Day of Week</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Day</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Avg Engagement Rate (%)</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Avg Views</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Thu</td>
+<td style="text-align: right;">1.50</td>
+<td style="text-align: right;">116.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tue</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">110.99</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sun</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">93.53</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sat</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">101.37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mon</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">108.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Wed</td>
+<td style="text-align: right;">1.22</td>
+<td style="text-align: right;">113.51</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fri</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">116.46</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<p>Table 6 and Figure 3 show that there is only a very weak relationship between the day a video is published and user engagement. The difference between the highest and lowest performing days is very small, only 0.7 percent inbetween. Although videos published on weekends receive slightly more views than those uploaded during the week, the differences remain limited. Overall, the results suggest that publication date has only a weak effect on engagement performance. Instead, engagement appears to be more strongly influenced by factors such as content quality and relevance than by the specific day a video is posted.</p>
+</section>
+<section id="temporal-trends" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="temporal-trends"><span class="header-section-number">3.2.3</span> Temporal Trends</h3>
+<p>In this part we examine how engagement changed during the last five years of the study from 2019 to 2024. Our objective was to establish whether engagement levels clearly increased or declined, or if they were mostly stable.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Line chart: engagement over time</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(daily_performance, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> avg_engagement_rate)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#457B9D"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#E63946"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Engagement Rate Over Time"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Has engagement improved or declined over 5 years?"</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Engagement Rate (%)"</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"6 months"</span>, <span class="at">date_labels =</span> <span class="st">"%b %Y"</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Data-Science-Report-Athina-Stella_files/figure-html/engagement-trend-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Engagement Rate Trend Over Time (2019-2024)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Average Engagement Rate by Year</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Average Engagement Rate (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2019</td>
+<td style="text-align: right;">1.83</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">2.15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2021</td>
+<td style="text-align: right;">1.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2022</td>
+<td style="text-align: right;">1.39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2023</td>
+<td style="text-align: right;">1.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2024</td>
+<td style="text-align: right;">0.93</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>The engagement levels did not really change over the five years. Both the daily time series and yearly averages showed essentially the same trends with small variations around a consistent engagement level. Therefore, it would appear that content quality and the audience reaction remained very much the same during the five-year time frame of our study. Because there is no upward trend, engagement seems to have leveled off and may have slightly declined over the last five years. These findings indicate that the channel has maintained consistent engagement levels but does not demonstrate continued growth in user engagement over the last five years.</p>
+</section>
+<section id="views-vs.-engagement" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="views-vs.-engagement"><span class="header-section-number">3.2.4</span> Views vs.&nbsp;Engagement</h3>
+<p>This part analyzes whether video popularity, measured by total views, is related to viewer engagement. A scatter plot is used, with total views on the x-axis and engagement rate on a logarithmic y-axis (see Figure 6). Then Pearson’s correlation coefficient is calculated to assess the strength of this relationship.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot: views vs engagement (log scale for views)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(video_performance, <span class="fu">aes</span>(<span class="at">x =</span> total_views, <span class="at">y =</span> engagement_rate)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"#6A4C93"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"#E63946"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Do Popular Videos Have Higher Engagement?"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Total Views vs. Engagement Rate"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Total Views (log scale)"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Engagement Rate (%)"</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Data-Science-Report-Athina-Stella_files/figure-html/views-vs-engagement-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Total Views vs.&nbsp;Engagement Rate (Log Scale)</figcaption>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r small-code code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlation</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>cor_views <span class="ot">&lt;-</span> <span class="fu">cor</span>(video_performance<span class="sc">$</span>total_views, </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                 video_performance<span class="sc">$</span>engagement_rate, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation (views ~ engagement):"</span>, <span class="fu">round</span>(cor_views, <span class="dv">3</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Correlation (views ~ engagement): -0.172 </code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<p>The results show that total views and engagement rate are not strongly related. As shown in Figure 6, many high-view videos have relatively low engagement rates. On the other hand, some videos with fewer views show higher engagement levels. This means that just because a video is very popular and many people watch it, it does not mean people will interact with it more. Total views and engagement rate are two different things. Videos, with total views, do not always have high engagement rates. These findings suggest that increasing a video’s exposure alone does not guarantee higher engagement. Videos that reach large audiences may attract many passive viewers who consume content without actively interacting with it. From a practical perspective, this implies that content creators should not focus exclusively on maximizing reach or virality. Instead, the results indicate that fostering meaningful interactions with viewers may be more important for achieving sustained engagement than simply increasing the number of views.</p>
+</section>
+</section>
+<section id="key-findings-results" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="key-findings-results"><span class="header-section-number">3.3</span> Key Findings &amp; Results</h2>
+<p>This section summarizes the main findings of the analysis and highlights the most important patterns observed in the data. The results show that the like rate plays a central role in overall engagement. Videos with more likes per view tend to have higher engagement. This is expected, as likes are included in the calculation of the engagement metrics. However, the results show that liking behavior is strongly associated with user interaction, while total video views are only weakly related to engagement. The relationship between views and engagement is relatively weak, suggesting that highly viewed videos do not necessarily attract more interaction. Even some videos with very high view counts show low engagement, while others with fewer views achieve higher engagement. The results indicate that the day a video is published does not have a meaningful impact on engagement. Although small differences between weekdays and weekends were observed, these differences are minor and do not suggest that posting time plays an important role in engagement performance. The relationship between watch duration and engagement is moderate but not strong. While longer viewing times are associated with slightly higher engagement, the results show that extended watch time alone is not sufficient to generate high levels of interaction. Finally, the temporal analysis reveals that engagement levels remained stable over the five-year period. No clear upward or downward trend was observed, indicating consistent performance over time without significant growth. The temporal analysis reveals that overall engagement levels remained relatively stable over the five-year period. No clear upward or downward trend in engagement was observed, indicating consistent performance over time without substantial growth.</p>
+</section>
+</section>
+<section id="limitations-and-future-directions" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Limitations and Future Directions</h1>
+<p>Our analysis is based on a single influencer channel, so it is not clear how well the findings apply to other channels, especially in different niches or with different audience demographics. Engagement on YouTube can vary across content categories, age groups, channel sizes, and geographic regions, so the dynamics we observed here may not look the same elsewhere. Besides that we have also come across methodological limitations like:</p>
+<ol type="1">
+<li><p><strong>Correlation is not causation:</strong> We found relationships between variables, but this does not prove that one causes the other. For example, videos may get more likes because they are engaging, or they may seem engaging because they receive many likes.</p></li>
+<li><p><strong>Confounding variables:</strong> We did not account for factors such as video topic, video quality, thumbnails, or titles, even though these likely affect engagement.</p></li>
+<li><p><strong>Platform algorithm changes:</strong> YouTube’s recommendation system changed during the study period (2019–2024), which may have influenced engagement patterns in ways our analysis cannot fully explain.</p></li>
+</ol>
+<section id="data-quality-issues" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="data-quality-issues"><span class="header-section-number">4.1</span> Data Quality Issues</h2>
+<p>Beyond the methodological limitations, here are also a few data quality issues to keep in mind. For example, some data is missing because earlier videos from 2019 have less detailed information than more recent ones. There is also uncertainty around how metrics are defined, since YouTube’s exact definitions of “views” and “engagement” are not public and may have changed over time. Another issue we have come across is bot activity. Some views, likes, or comments may come from automated bots rather than real viewers, which would also disrupt our results from the analysis. In addition to that, data exports from YouTube can include delayed updates, which may slightly distort day-to-day patterns. These quality issues do not invalidate the overall trends, but they should be considered when interpreting smaller effects.</p>
+</section>
+<section id="recommendations-for-content-creators" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="recommendations-for-content-creators"><span class="header-section-number">4.2</span> Recommendations for Content Creators</h2>
+<p>Based on our findings, we came up with four evidence-based recommendations:</p>
+<ol type="1">
+<li><p><strong>Optimize for Likes:</strong> Content creators should actively encourage viewers to like their videos, because likes are strongly linked to overall engagement. Simple calls-to-action can be placed early in the video or after valuable moments. Our results show that the like rate has the strongest correlation with engagement (r = 0.99). This means that even small increases in likes can noticeably improve engagement outcomes.</p></li>
+<li><p><strong>Focus on Engaged Audiences Rather Than Viral Reach:</strong> Creators should focus on content that appeals to their core audience instead of chasing viral trends. While viral videos often generate many views, they do not always lead to high engagement. This is reflected in the weak correlation between total views and engagement rate (r ≈ 0.20). Videos with fewer but more interested viewers can therefore perform better in terms of engagement.</p></li>
+<li><p><strong>Maintain Viewer Retention Without Extending Videos Unnecessarily:</strong> Holding viewers’ attention stays important, but videos should not be made longer than necessary. Clear structure and relevant content help keep viewers watching. However, overly long or repetitive videos can reduce engagement. Our analysis shows a moderate relationship between watch duration and engagement (r ≈ 0.30), which becomes weaker for very long videos.</p></li>
+<li><p><strong>Reduce Emphasis on Posting Day Optimization:</strong> Creators should prioritize a consistent posting schedule instead of focusing heavily on the specific day of publication. Even though small differences between weekdays and weekends exist, these effects are small (less than 0.7 percentage points). So it can be said that consistency and content quality can be more important than exact timing.</p></li>
+</ol>
+</section>
+<section id="future-research-directions" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="future-research-directions"><span class="header-section-number">4.3</span> Future Research Directions</h2>
+<p>This study opens several opportunities for future researchers to build on our findings and explore YouTube engagement in more detail. One good direction would be to use experimental methods, for example, A/B testing different thumbnail styles or video titles, to prove causal relationships instead of just correlations between content features and engagement outcomes. Besides that, researchers could expand their analysis to include different YouTube creators across different content niches to test if our findings can be applied broadly or are just specific to certain channel types. Another valuable approach would be to analyze the text of the comments to understand not just how much people engage, but what they think and feel about the content. Furthermore, future studies could investigate how YouTube’s algorithm influences the relationship between video characteristics and viewer engagement, since the algorithm plays a big role in deciding which videos people see. And lastly, tracking individual users over time would help us understand how their engagement patterns might change as they become long-term followers of a channel, which provides insights into audience loyalty and retention.</p>
+</section>
+</section>
+<section id="conclusion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Conclusion</h1>
+<p>The aim of this report was to explore what actually drives engagement on YouTube. With using 234,889 daily observations collected over a five-year period, the analysis identified multiple patterns that question common assumptions and offer useful insights for content creators. It also showed that engagement is shaped by the interaction of content features, audience behavior, and the platform context instead of a single performance metric. This suggests that creators need to think in terms of systems and combinations of factors rather than expecting one simple tactic to lead to success. One central finding is that the like rate plays a more important role in driving engagement than view count alone. In other words, active audience interaction matters more than just reach. This suggests that encouraging simple, low‑effort actions, like hitting the like button, can have a surprisingly big impact on overall engagement. This indicates that audiences who are willing to like a video are also more likely to engage in other ways, for example, commenting or sharing. The results also show that high visibility does not automatically lead to high engagement, that the day of publication has only a limited effect, and that engagement levels have remained relatively the same over time. These findings have clear practical implications. Instead of focusing on maximizing views or just optimizing posting schedules, creators could benefit more from producing content that really resonates with their audience and encourages interaction. Designing clear calls to action, fostering community, and responding to feedback may therefore be more effective than simply chasing higher reach. In addition, interpreting performance data in context helps to avoid decisions based on short‑term spikes or outliers. Even small increases in like rates can contribute to noticeable improvements in overall engagement. From an academic perspective, this report contributes a data-driven analysis of YouTube engagement. Furthermore, the applied combination of data cleaning, correlation analysis, and visualization provides a structured approach that can be transferred to other digital platforms, especially when similar engagement metrics are available. This approach also shows how visual analysis and statistical measures can complement each other to strengthen interpretation. While correlation analysis reveals the strength and direction of relationships, visualizations help to detect patterns, clusters or data irregularities that might have remained hidden. To sum it all up, the findings highlight the importance of engagement while also emphasizing the complexity of digital audience behavior. Understanding this complexity is essential for both researchers and practitioners who want to make informed decisions in a rapidly evolving online environment.</p>
+</section>
+<section id="personal-reflections" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Personal Reflections</h1>
+<p><strong>Athina’s Reflection:</strong> At the beginning of this project, the overall task appeared quite difficult to me. I had no prior experience with RStudio or programming in R, and the idea of analysing a large dataset with code felt overwhelming. My first reaction was uncertainty, because I asked myself if I would be able to understand the logic behind coding and statistical analysis in such a short time. However, as we progressed with the project and broke the task down into smaller, manageable parts, it all became more logical and understandable. This gradual approach helped me overcome my initial fear of mistakes and allowed me to experiment more with different functions and commands. Step by step, I developed a better understanding of how data analysis is structured in practice. Teamwork played an important role throughout the project. Working closely with Stella made it easier to share ideas, divide responsibilities efficiently, and support one another when challenges came up. At times, we had different opinions on how to approach some parts of the project, but talking these differences through usually led to better outcomes and solutions. Open communication and collaboration helped us stay organised, even when the workload increased. Knowing that I was not working alone made the project feel less intimidating, especially when deadlines were approaching. In addition, preparing and presenting our intermediate results in a mid-project presentation was an important learning experience for me. Explaining our analysis and findings to others helped me better understand the project myself and identify which aspects needed clearer explanation or further refinement. The presentation also showed us where our approach was still unclear or incomplete, especially in regards to data cleaning and the definition of engagement metrics. Feedback from the presentation encouraged me to improve the structure of our analysis and strengthen the way we communicated our results, which benefited the final report. At the same time, I had some difficulties. One problem involved technical errors in RStudio, especially during rendering and formatting. In some cases, these issues were difficult to resolve, even with the support of tools such as GitHub Copilot in Visual Studio Code. My attempts to fix specific formatting problems sometimes led to unexpected changes in the overall structure or layout of sections, which required additional time and troubleshooting. For example when I installed packages incorrectly, accidentally deleted small parts of codes, that were barely noticeable or when my whole layout looked weird in the rendered version of the project. Despite these challenges, the project provided me with valuable learning experiences. I developed technical skills in data analysis and programming, as well as improved my problem-solving abilities and learned to remain patient. I also gained a better understanding of how collaborative work and feedback contribute to a more solid and transparent analysis. Overall, this project helped me gain a deeper understanding of data-driven analysis and strengthened my confidence in applying analytical tools in future academic or professional contexts.</p>
+<p><strong>Stella’s Reflection:</strong> One of the most important things I realized throughout this project is that learning new tools can be frustrating, but can also yield a large payoff in the long run. At first, I thought writing a report in Word would be easier and less stressful. I did not really understand the need to do something in a way we are not used to. However, as I progressed with the project, I began to see the benefits of using R and Quarto. Once I learned the system, the whole process became simpler and more organized. Now I see this method as a positive option for students who create reports based on data, and as more professional and transparent, though it takes more time to develop. Teamwork with Athina was another positive aspect of this project, as we were able to divide the workload and support one another when we encountered difficulties. Sharing difficulties and exchanging problems and ideas rather than having to solve them alone made the project less stressful and more rewarding in the end. I think teamwork is essential for creating successful projects involving complex subjects and unfamiliar tools. Another important, at first unsuccessful, step for me was presenting our project to the class. Right after the presentation, I was somewhat disappointed because I felt I wasn’t as confident as I should be. I questioned whether I performed well overall. But right after we continued to develop the project, my point of view changed. I realized that the presentation gave us a better understanding of the project and helped us identify where we needed improvement. We identified what should work better next time and how we can improve ourselves. This experience created confidence and motivation to become more active in our project. I also really liked the subject of our project because I use YouTube in my daily life, and it was interesting to analyze something I could relate to personally. The most surprising discovery I had regarding YouTube was that simply because a video receives a high number of views does not mean it has the greatest engagement. Before this project, I assumed that popularity automatically equaled success, but now I realize that is not always true. This changed my perspective on social media and online content in a way that would not have happened without this project. Another important learning experience for me was managing my time effectively. I really underestimated how much time the technical component of the project would take, and I learned that it is more effective to start a project early and keep working on it consistently rather than waiting until the last minute to complete it. This might sound obvious, but I realized that starting projects early is very important, because in the past, I often didn’t take it seriously. However, after seeing how much work this project required and that it was not just a normal paper, my way of thinking changed. Projects involving data require thorough planning, especially if you plan to use new tools. In the future, I look forward to organizing my work more effectively and giving myself additional time to address upcoming complications. I believe better planning will reduce stress and help me approach complex projects more structurally. I also learned that reporting results is different from discovering them. There were several moments during the project where I found it difficult to clearly explain my analysis and connect the figures to the written text. I realised that producing good results is not enough if they cannot be communicated clearly and in a structured way. This helped me improve my academic writing and gave me more confidence in presenting and explaining data. In summary, I gained a great deal of knowledge from this project, both academically and personally. We acquired new technical skills, enhanced our problem-solving abilities, and gained greater confidence in working with data. Additionally, I learned that data can reveal patterns that may not be apparent at the surface and can help question assumptions. Although the project was demanding at times and I was stressed, I am glad I had the opportunity to go through this experience, as it has prepared me for future academic challenges and similar projects.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="division-of-work" class="level1 unnumbered">
+<h1 class="unnumbered">Division of Work</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Division of Work</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Contributor</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sections</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Athina</td>
+<td style="text-align: left;">2, 2.2, 2.2.1, 2.2.2, 2.2.3, 2.2.4, 2.2.5, 3.1, 4, 4.1, 4.2, 4.3, 5,6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Stella</td>
+<td style="text-align: left;">1, 1.2, 1.3, 3, 3.2, 3.2.1, 3.2.2, 3.2.3, 3.2.4, 3.3, 6</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="references" class="level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Balakrishnan2017" class="csl-entry" role="listitem">
+Balakrishnan, Janarthanan, and Mark D. Griffiths. 2017. <span>“Social Media Addiction: What Is the Role of Content in YouTube?”</span> <em>Journal of Behavioral Addictions</em> 6 (3): 364–77.
+</div>
+<div id="ref-Jaakonmaeki2017" class="csl-entry" role="listitem">
+Jaakonmaeki, Roope, Oliver Mueller, and Jan vom Brocke. 2017. <span>“The Impact of Content, Context, and Creator on User Engagement in Social Media Marketing.”</span> In.
+</div>
+<div id="ref-KS2025" class="csl-entry" role="listitem">
+K S, Suneesh, Padmanabhan Thangavelu, Poovarasan Gopalakrishnan, and Jeeva Velusamy. 2025. <span>“The Effect of YouTube Recommendation Engine: A Study of Visibility and Engagement.”</span> <em>Journal of Electrical Systems</em> 20 (January): 2546–57.
+</div>
+<div id="ref-Khan2017" class="csl-entry" role="listitem">
+Khan, M. Laeeq. 2017. <span>“Social Media Engagement: What Motivates User Participation and Consumption on YouTube?”</span> <em>Computers in Human Behavior</em> 66: 236–47.
+</div>
+<div id="ref-Ksiazek2016" class="csl-entry" role="listitem">
+Ksiazek, Thomas, Limor Peer, and Kevin Lessard. 2016. <span>“User Engagement with Online News: Conceptualizing Interactivity and Exploring the Relationship Between Online News Videos and User Comments.”</span> <em>New Media &amp; Society</em> 18 (1): 502–20.
+</div>
+<div id="ref-Wright2024" class="csl-entry" role="listitem">
+Wright, Jake. 2024. <span>“200K YouTube Channel Analytics.”</span> Kaggle dataset. <a href="https://www.kaggle.com/datasets/jakewright/200k-youtube-channel-analytics">https://www.kaggle.com/datasets/jakewright/200k-youtube-channel-analytics</a>.
+</div>
+<div id="ref-Wu2018" class="csl-entry" role="listitem">
+Wu, Siqi, Marian-Andrei Rizoiu, and Lexing Xie. 2018. <span>“Beyond Views: Measuring and Predicting Engagement in Online Videos.”</span> In.
+</div>
+</div>
+</section>
+<section id="affidavit" class="level1 unnumbered">
+<h1 class="unnumbered">Affidavit</h1>
+<p>I hereby affirm that this submitted paper was authored unaided and solely by me. Additionally, no other sources than those in the reference list were used. Parts of this paper, including tables and figures, that have been taken either verbatim or analogously from other works have in each case been properly cited with regard to their origin and authorship. This paper either in parts or in its entirety, be it in the same or similar form, has not been submitted to any other examination board and has not been published.</p>
+<p>Cologne, 01.02.2026</p>
+<p>Athina Agiakatsikas</p>
+<p>Stella Christou</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,432 @@
+---
+title: "The Effect of Elon Musk’s Tweets on Tesla’s Stock Market Performance"
+
+
+author:
+  - name: "Mira Heinemann"
+    email: "heinemann.mira@stud-hs.fresenius.de"
+    affiliation: "Fresenius University of Applied Science"
+    id: "400904676"
+    corresponding: true     #APA rules - only 1 student should be receiver of correspondence
+
+  - name: "Esra Tonleu"
+    email: "tonleu.esra@stud-hs.fresenius.de"
+    affiliation: "Fresenius University of Applied Science"
+    id: "400808321"
+    corresponding: false
+
+
+
+
+floatsintext: true     #If this is false, all figures are at end. But with true, they are also not where we place them
+wordcount-banner: true
+filters:
+  - wordcount
+  
+
+
+format:
+  apaquarto-pdf:
+    documentmode: stu
+    course: Data Science and Data Analytics  (WS 2025/26)
+    professor: Prof. Dr. Stephan Huber and Benjamin Groß
+    duedate: '2026-02-02'
+    keep-tex: false
+    fig-align: "center"
+    include-in-header:
+      text: |
+        \linespread{1.5}
+        <!-- This equals 1.5 linespacing in Word -->
+  apaquarto-html:
+    toc: true
+    embed-resources: true
+
+
+a4paper: true
+
+
+bibliography: literatur.bib
+
+
+reference-location: document
+number-sections: true
+
+---
+
+Word count: {{wordcount}} 
+<!-- Start counting words from here -->
+<!---::: {#count-words}  This doesn't seem to work -->
+
+# Introduction
+In today's world, social media has evolved into a primary means of communicating information in financial markets allowing CEOs to communicate directly and instantly with their investors. The way in which social media facilitates communication between companies and investors is unique from more traditional methods of communication used by companies. As such, understanding how quickly and in what manner markets respond to such forms of communication is critical. This study explores how Elon Musk's tweets related to Tesla affect short-term stock price movements utilizing high-frequency intraday data and an event study design to determine how stock prices and trading volumes react to tweets based on sentiment. 
+
+## Social Media and Information Flow in Financial Markets
+Social media has dramatically altered the development, sharing, and utilization of information in financial markets. Social media apps like Twitter enable corporate executives, companies, and influential figures to share information directly with investors, analysts, and the public in real-time. Standardized forms of information flow (i.e. earnings calls, regulatory filings, press releases, etc.) provide formalized disclosure routes; however, social media provides a more informal, unregulated, and unpredictable route of information flow. This unpredictability creates the potential for direct impact on the stock price of companies (@Garg2021). 
+
+The immediacy associated with social media has several implications regarding market efficiency. Studies have indicated that financial markets respond rapidly to new information and changes in investor attention (@Cutler1989). Additionally, media coverage and the tone of written language have been found to affect short-term stock price movements and trading activity with evidence suggesting that investor sentiment affects pricing in addition to the actual content (@Tetlock2007). The effects of social media are amplified in terms of decreasing the costs and increasing the speed of information flow. 
+
+Additionally, social media platforms increase investor attention. Engelberg and Parsons (@EngelbergParsons2011) find that as there is more exposure to media, trading activity increases despite the fact that the content of the information is limited. Additionally, previous studies have identified that Twitter messages have generated abnormal trading volume and short-term return movements for publicly traded companies (@Sprenger2014). These findings suggest that social media can act as an information conduit and attract market attention creating rapid market reactions to the information. 
+
+## Why Elon Musk and Tesla Provide a Unique Setting
+Elon Musk is an excellent illustration of a corporate executive who uses social media as a direct and public tool of communication. Musk is the CEO of Tesla and regularly posts information related to Tesla and various company related topics via Twitter including but not limited to product announcements, production updates, business decisions, economic conditions, and technological developments. Musk’s information messages on Twitter are not similar to typical corporate disclosures and can often be released outside of pre-planned communication times allowing information to reach investors immediately (@Sprenger2014). 
+
+Due to Musk’s large and high profile presence in the media and the significant influence Tesla has in the financial markets, Musk’s social media activity generates a significant amount of attention from both private and institutional investors (@TeslaStock). Tesla is among the most heavily traded equities in the U.S. stock market with a large number of retail investors holding shares and numerous media outlets reporting on the company's current news (@TeslaStock). This combination of Musk's high public profile, the frequent posting of Tesla-related information, and the liquidity of Tesla's stock make Tesla a very attractive candidate to use in an event study to examine the short-term, intraday market impacts of Musk's communication with investors. 
+
+## The Timing Challenge in Measuring Market Reactions
+One of the largest problems in analyzing the impact of social media-based information from executives on stock prices is determining the correct timing of the information being provided relative to the opening and closing of the stock exchanges. Musk’s tweets may be posted prior to, during, or after-market hours and stock prices can only adjust to the information contained in the tweet when the stock exchange is open. Thus, the timing of a tweet is a critical factor in determining whether and when a market reaction can be observed. 
+
+Analyzing daily stock market data can obscure the rapid price movements that occur in response to information immediately after it is released. For instance, a tweet can trigger a rapid price movement within minutes that is reversed by the end of the trading day, leaving behind little or no evidence of the price movement in the daily returns. This is especially relevant to social media-based information dissemination, as it occurs instantaneously and can elicit an investor reaction nearly simultaneously. 
+
+To address the issue of timing, the analysis in this study focuses on the short periods of time around the date and time of each tweet and limits analysis to tweets posted during normal trading hours. This approach allows us to monitor stock price and trading activity immediately preceding and immediately following the dissemination of information contained in a tweet, resulting in a more detailed and accurate picture of the short-term market reactions than would be possible using lower frequency data. 
+
+## Why an Intraday, Trading‑Time Framework Is Needed
+As previously described, we utilize an intraday event study framework driven by the timing of trades. Using 5-minute intraday stock price and trading volume data enables us to monitor the behavior of markets just prior to and subsequent to the posting of a tweet, enabling us to identify short-term reactions that would likely go unnoticed in the daily data. 
+
+An intraday framework is particularly relevant as tweets are published at specific points in the trading day, and the timing of the information release may be critical to the market reaction. To accurately capture market reactions, we need to calibrate the stock market data to the exact timing of every tweet, so that event windows accurately capture moments when trading is occurring and cannot be influenced by off-hours or non-trading periods. 
+
+By standardizing reactions to occur over equal periods of time, price and volume movements can be compared more consistently across events. Additionally, intraday data provide the ability to observe immediate market reactions and short-term dynamics that are lost when using daily stock market data. 
+
+## Research Question and Contribution
+Based on the rationale presented in the sections above, the objective of this research project is to investigate the short-term stock price responses to Elon Musk’s social media communication concerning Tesla-related tweets. The central research question posed in this project is: **How does Tesla’s stock price move in the short-term in response to Elon Musk’s Tesla-related tweets, and do these patterns vary depending on the sentiment of the tweets?** By examining the intraday market responses to Musk’s tweets, the research aims to capture the short-run price movements and trading volume that occur immediately after information is released and may not be observable in lower frequency data. 
+
+This study contributes to the existing literature in two ways. First, it employs a well established intraday event study framework that takes into account the specific timing of Musk’s tweets and the trading hours of the U.S. stock market. By aligning the timing of Musk’s tweets with high-frequency stock price and trading volume data, this study addresses the timing issues associated with the use of social media to facilitate information flows. This methodology is beneficial as it allows us to more accurately identify short-term market reactions to Musk’s tweets as opposed to using daily stock price data. 
+
+Secondly, the project combines illustrative examples of single tweets with aggregate results of a larger set of tweets. This dual perspective allows us to examine both the individual-level market reactions to individual tweets as well as the overall trends across different sentiment categories. During the semester project, this methodology provides a systematic and comprehensive evaluation of the structured and intuitive ways in which executive social media communication drives short-term stock price movements. 
+
+# Background & Related Literature
+This section examines how financial markets respond to news events and how investor attention impacts daily price movements. It compiles research results on the increasing effects of social media on investor sentiment and company performance; also considering how this relates to high-profile individuals like Elon Musk. Finally, it emphasizes the methodological need for the use of intraday data and event time alignment when capturing financial markets responses to digital communication by CEOs as they occur in real-time. 
+
+## Market Reactions to News and Investor Attention
+The rapid response of financial markets to the dissemination of publicly available data is typically triggered by news releases, which influence both the timing and magnitude of market participants' reactions to news releases. Market participants do not simply respond to the informational content of news, but to its tone and perceived visibility. Research has shown that market participants have a tendency to interpret negative news sentiment as a signal of impending downward price pressure over the short run, however, this downward price pressure can be partially reversed as the market absorbs and evaluates the newly released information (@Tetlock2007).
+
+The relationship between investor attention and news releases is a mediating factor regarding how news releases affect the prices of stocks. The degree of media coverage can increase visibility and trading activity regardless of the newness of the information contained in the news release (@EngelbergParsons2011). Notably, stocks that are exposed to greater media coverage, or are the subject of public scrutiny due to either sensational events or celebrity status of the company's personnel, tend to exhibit greater short-term volatility and abnormal returns.
+
+There is empirical support indicating that market participants do not respond uniformly to news releases. In general, households and other small investors are more reactive to both the volume and sentiment of news releases than large institutional investors, who generally place greater emphasis on fundamental characteristics (@Bollen2011). This disparity in market participant reaction to news releases is critical when a single influential individual, such as a CEO, drives disproportionate attention to an issue through direct communication channels such as Twitter.
+
+## Social Media and Financial Markets
+The rise of social media has dramatically changed how people get information and use it to make investment decisions about companies. A number of social media platforms provide opportunities for individuals, including high profile individuals, such as CEOs of companies, to express opinions about publicly traded companies they manage. Social media platforms allow individuals to express their opinions in real-time without any interpretation by traditional media sources and directly communicate with retail investors. Sentiment expressed in a tweet regarding an individual company, especially when that sentiment is conveyed strongly by an influential person, is successful at getting the attention of investors and impacting the price of an individual company’s stock in the short run (@Shah2019).
+
+Empirical studies have shown that there is predictive value in the sentiment expressed in social media messages concerning stock price movements in the future. For instance, researchers found out that changes in Twitter sentiment often occur before movements in stock prices, suggesting that collective emotions expressed on social media may influence market behavior rather than simply reflect it. When examining hourly data over a long-term horizon (multi-months), researchers found evidence of an "information surplus” that is, social media messages reflected market sentiment prior to the price movement of the stock, therefore, there is a statistically significant lead time before the sentiment in social media moves prices. Further, the lead-time effect was more pronounced when using emotional tone in social media posts versus the number of posts, indicating it was the content of social media messages rather than their frequency that was indicative of anticipated short-term market reactions (@Zheludev2014). 
+
+## Musk’s Influence 
+This research utilizes tweet data from Elon Musk’s official account on X (formerly Twitter). Musk is one of the most well-known entrepreneurs today; however, since 2022, Musk has also acquired ownership of the platform formerly known as Twitter. This acquisition has increased the number of eyes on Musk's tweets and their impact; in addition, Musk's tweets have been shown to be increasing at a much faster rate than before as seen in @fig-musk with tweets regarding Tesla, Free Speech, and US Politics trending higher during and after the time of the Twitter acquisition.
+
+![Screenshot from The Insider showing all of Elon Musk’s tweets on Twitter (X)](figs/Kaggle (historical data), user posts by elonmusk on x.com,.png){
+  #fig-musk
+  width="60%"
+  fig-align="center"
+  fig-alt="Screenshot of Elon Musk’s tweet from The Insider"
+  apa-note="Image reproduced from The Insider for illustrative purposes. All rights belong to the original publisher."
+ }
+ 
+The before mentioned lead-time effect is amplified in highly visible companies, such as Tesla, because the CEO of Tesla, Elon Musk, has a very large and frequently provocative social media presence. Musk's tweets frequently result in high engagement levels and are covered by many traditional media outlets, thereby increasing the potential reach and impact of his tweets (@Kwon2022;@Bushee2010). Further, even if Musk's tweets do not present any new information regarding Tesla, the tone and timing of those tweets can result in rapid changes in the behavior of traders, particularly among retail investors, whose investment decisions are more likely to be driven by sentiment than analysis (@Shah2019; @Bollen2011). 
+
+## Intraday Event Studies and Timing Challenges
+The timing of an information release is a major issue in empirical research of how markets react to new information. Daily data may be sufficient to capture trends and other gradual changes in stock prices over time; however, daily data may not have the resolution to capture rapid price movements resulting from high-frequency events such as social media posts. 
+
+Prior research suggests that most market adjustments occur within a minute of an announcement (@Cutler1989), therefore, using daily data would not allow researchers to capture the causal market reaction to an announcement. Therefore, prior research has been developing intraday event study approaches to utilize high-frequency stock price data and the exact timing of announcements of interest to analyse investor behavior and measure the immediate market reaction to the announcement of new information. The utilization of intraday data is especially important for analyzing communications from executives through social media platforms such as Twitter. Tweets by high profile individuals such as Elon Musk can lead to rapid changes in stock prices. Bushee et al. demonstrate that intraday event studies are best suited to measure the effect of communications by isolating the communications from the rest of the market activity by closely correlating the tweet with the price movement and reducing the risk of contamination from unrelated news (@Bushee2010). 
+ 
+# Data
+This section provides an overview of the two primary data sources that were analyzed within the paper. Section 3.1 explains how Elon Musk’s tweets have been gathered along with metadata, timestamps and engagement, which is necessary when analyzing the content of his tweets and aligning them to specific events. Section 3.2 provides information about the intraday Tesla stock price data; by using it as a high-frequency event-study data source, to measure the short-term effects of Musk’s tweets on the stock price. 
+
+## Tweets from Platform Twitter (X)
+Our original intention was to collect Musk’s tweets through the use of the official Twitter API. However, due to recent policy changes in how data can be accessed and the cost of accessing data, using the Twitter API has become outside of the means of a student project. Therefore, we used a publically accessible dataset obtained from Kaggle entitled “Elon Musk Tweets 2010-2025.” This dataset is a collection of Musk’s tweets, in addition to several other tweet collections previously made available on Kaggle, and provides comprehensive coverage from Musk’s first tweet until April 13, 2025.
+
+In addition to having the text of each tweet and the exact timestamp that each tweet was posted, the dataset contains substantial amounts of metadata associated with each tweet. Specifically, it includes the retweet count, like count, quote tweet count, view count, reply count, bookmark count, as well as flags indicating if a tweet is a reply, retweet, or pinned.
+
+## Tesla Stock Market Data
+In order to identify the instant effect of Elon Musk's tweets on Tesla's stock price, this paper makes use of daily stock price data, which allows us to match the time that a market reaction occurs with the exact time of when a social media event occurred. The most suitable form of data to use in an event-study are those at very high-frequency, ideally at a 1-minute interval, because these types of data show how much a stock's price and how many shares were traded at every moment after an announcement was made. Since Twitter announcements can be sent out to tens of thousands of people in a matter of seconds, the ability to track changes in a stock's price over a few seconds is especially valuable. However, the vast majority of sources that provide 1-minute interval intraday data do not make their data available for public consumption; therefore, obtaining historical 1-minute interval intraday data would require paying a subscription fee to a commercial data vendor, which limits the use of this resource in a student research environment. 
+
+As an alternative to using historical 1-minute interval intraday data, we utilize a publicly available dataset from Kaggle entitled “Tesla Intraday Stock Market Data”. This dataset provides Tesla's stock price at 5-minute intervals between January 2017 and June 2020. While the dataset spans a broader time period, the empirical analysis in this study uses the period from January to March 2020. Although the data in this source is less than ideal since it does not have a 1-minute interval, the 5-minute interval is sufficient to be able to capture any short-term reactions by the market to an announcement made via social media that would occur in a typical event window used in financial microstructure research (i.e., ±15 minutes around the time of the announcement). The dataset also contains other important metrics related to trading including the opening price, highest price, lowest price, closing price, and number of shares traded for each 5-minute interval, which enables us to calculate returns, volatility, and abnormal trading activity occurring during the post-announcement period.
+
+# Methodology
+
+This part details the empirical methodological design we employ in order to assess the stock market's intraday reaction to Elon Musk's Tesla-related tweets. Our methodology follows a sequential pipeline. 
+
+The study examines data from June 2019 to May 2020. This time frame is long enough to include a sufficiently large number of tweets related to Tesla that can be used for our analysis.
+
+First, we cleanse our tweets and classify them by content, timing, and sentiment. We next process the high-frequency intraday stock price and volume data for Tesla and align these with the Twitter timelines. We then construct intraday event windows around each eligible tweet. Finally, we calculate the intraday event-study statistics to assess the price and volume reactions by the sentiment categories. 
+
+## Tweet Preprocessing (Script 01)
+
+Our empirical analysis involves creating a clean dataset of Elon Musk's tweets. We choose to retain only the original tweets and exclude retweets, replies, and quote-tweets in order to represent Musk's communications directly. This choice to limit our analyses to original tweets allows us to more directly attribute potential market reactions and classify sentiments. 
+
+```r
+ tweets_filtered <- tweets_raw %>%
+   filter(
+     isRetweet != "TRUE",
+     isReply   != "TRUE",
+     isQuote   != "TRUE"
+   )
+ ```
+
+We parse the tweet timestamps and convert them from UTC to U.S. Eastern Time (ET) in order to synchronize them with the US stock markets' trading hours. Since we are analyzing the period from June 2019 to May 2020 for the event-study, we use the tweets with U.S. Eastern Time (ET) in order to accurately align the tweets with the intraday periods. We identify tweets that only have links in them and flag those as tweets with only hyperlinks (which could potentially have differing informational content). 
+
+Using a list of pre-defined keywords that reflect Tesla and its related activities, we classify each tweet as being about Tesla or not. 
+
+```r
+tesla_keywords <- c( 
+  "tesla", "tsla", "model s", "model 3", "model x", "model y", 
+  "cybertruck", "roadster", "autopilot", "fsd", "gigafactory", 
+  "powerwall", "megapack", "supercharger"
+) 
+ ```
+ 
+For the primary analysis, we restrict ourselves to only the tweets that are classified as Tesla-related. Finally, each tweet is categorized by whether it is published during the normal US stock markets hours, on a non-trading day but still during market hours, or on a weekend. The final dataset is used as the foundation for our sentiment analysis and subsequent intraday event-study framework.
+
+
+## Sentiment Classification (Script 02)
+During the second step of the preprocessing stage, we add sentiment classification to the Tesla-related tweets previously created in Step 01. We load musk_tesla_tweets_clean.csv and process tweet identifiers as simple character strings to remove any formatting errors. Because the sentiment models used in this analysis rely on actual linguistic input, we drop from the dataset the tweets that were flagged as only having links in the prior step because they cannot express either a positive or negative sentiment. 
+
+Sentiment scores are generated using the sentiment.ai package; this package produces a continuous sentiment score for each tweet, based upon the text of the tweet. Initially, we examined various approaches to select the most suitable approach for analyzing tweets before selecting a sentiment model. One of the initial approaches that we examined was a simple lexicon-based method (tidytext); however these do not have the ability to adequately account for the effects of context, sarcasm, or irony that quite often exist in Musk's communications. Therefore, we also investigated more complex and contextualized sentiment models, including BERT, RoBERTa, and other large language model based classifiers. These more complex models are generally accessed via Python-based APIs, and are therefore difficult to integrate into an R-based workflow. As a practical and technically consistent alternative, we adopted the sentiment.ai package, which provides deep‑learning‑based sentiment embeddings directly within R. Although this required configuring a Python–TensorFlow backend, the resulting setup enables a more accurate and context‑sensitive sentiment determination than traditional lexicon-based methods. Each tweet receives a sentiment score on a scale from −1 (the most negative) to +1 (the most positive); sentiment scores that are close to zero represent neutral or ambiguous language. 
+
+To make the continuous sentiment scores easier to compare in the event-study analysis, we create discrete sentiment categories. The tweets with scores <−0.3 are labeled as negative, the tweets with scores >+0.3 are labeled as positive, and the rest of the tweets are labeled as neutral.  
+
+```r
+# ---------------------------------------------------------
+# Compute sentiment scores
+# ---------------------------------------------------------
+tweets_with_sentiment <- tweets_for_sentiment %>%
+  mutate(
+    sentiment_score = sentiment_score(fullText),
+    sentiment_label = case_when(
+      sentiment_score < -0.3 ~ "Negative",
+      sentiment_score >  0.3 ~ "Positive",
+      TRUE                   ~ "Neutral"
+    )
+  )
+ ```
+ 
+By using symmetric thresholds close to zero, we avoid noise associated with weak or ambiguous sentiment, and prevent misclassifying tweets whose language does not clearly show a positive or negative sentiment. We save the additional dataset that includes both continuous sentiment scores and categorical sentiment labels to be used in the intraday event-study.
+
+## Intraday Stock Data Processing (Scripts 03 + 05)
+We analyze five-minute intraday stock price and trading volume data for Tesla to examine short-term market reactions. The raw intraday stock price data is formatted as open, high, low, close prices and trading volume for each five-minute period. The stock price timestamps are parsed and retained in U.S. Eastern Time (ET), thereby synchronizing them with the tweet timestamps and enabling accurate intraday alignments. 
+
+As with the tweets, we only use the stock price data for the period of June 2019 to May 2020 for the event-study, and format the data by trading day and intraday time. The five-minute log returns are calculated using consecutive closing prices within each trading day to measure the short-horizon price changes excluding overnight returns. 
+
+```r
+mutate( 
+  close_lag = lag(Close), 
+  ret_5m_log = log(Close) - log(close_lag) 
+) 
+ ```
+ 
+ The trading volume is scaled by the same-day average volume to allow for meaningful comparisons of trading volumes over trading days with different base levels of trading activity. The resulting dataset includes prices, returns, and the normalized trading volume measures for each interval, and is saved to be merged with the tweet data for the subsequent intraday event-study analysis. 
+ 
+## Event Window Creation (Script 06)
+The intraday event-study data is created by comparing the tweets with the intraday stock data over five-minute periods. We initally planned to use an event window of −1 hour to +3 hours. However, if an event window of such size is implemented, there is a substantial reduction in the number of usable tweet observations available for analysis, as we would have to restrict the time period for tweets to 10:30 - 13:00 U.S. Eastern Time (ET).
+
+Since the focus of the study is to examine the immediate market reactions to the tweets and the entire event window needs to occur during regular market hours, only tweets generated on trading days and during the time period from 10:00 – 15:30 (ET) are utilized. This limits the ability to generate a symmetric ±30 minute event window without going into the market opening/closing periods; however, the tweets outside of this time frame are maintained in the dataset, but are not incorporated into the intraday analysis. **Applying these restrictions results in 37 eligible Tesla‑related tweets that allow for a complete ±30‑minute event window.** The main reason for this is that Elon Musk tweets mostly during after-hours and on weekends.
+
+Each tweet that is eligible for inclusion in the analysis has an event time 𝑡 = 0 defined as the first five-minute trading interval that occurs at or after the tweet timestamp on the same trading day. This provides synchronization between the trading and timing of the tweets so that the event represents the first point at which market participants are able to react to the information contained in the tweet. All eligible tweets that do not fall on the same trading day are omitted from the event window sample. 
+
+A 30-minute event window (6 five-minute intervals before and after the event time) is then created for each eligible tweet.  
+
+```r
+t = seq(-pre, post) 
+ ```
+ 
+The event window is constructed based on trading bar index, as opposed to clock time, in order to guarantee a constant number of observations per event. The tweet level information, including sentiment scores and sentiment labels, is combined with the intraday observations. The event aligned dataset is saved and is used to estimate the intraday price and volume responses to the sentiment category. 
+
+## Event‑Study Estimation (Script 07)
+Finally, the intraday event-study statistics are estimated utilizing the event windows established in the preceding step. The analysis is restricted to tweets that are posted during regular market hours, and utilizes ±30-minute event windows in order to ensure consistency across events. Event windows that do not contain the full complement of required five-minute intervals are eliminated; this ensures that each event produces the same number of observations as all other events throughout the dataset. 
+
+The five‑minute frequencies are used to compute abnormal returns and aggregate these returns by sentiment category. For each sentiment category, the average five‑minute return is calculated at each relative event time. This aggregation step is implemented as follows: 
+
+```r
+ar_tbl <- events_in_hours %>% 
+  group_by(sentiment_label, t_min) %>% 
+  summarise( 
+    mean_ret = mean(ret_5m_log, na.rm = TRUE), 
+    .groups = "drop" 
+  ) 
+ ```
+ 
+The sum of the average returns across each relative event time yields the cumulative abnormal returns (CAR), which captures the evolution of the price responses before and after the tweet. This approach focuses solely on the intraday price movements and avoids contaminating the results with overnight returns or post-close adjustments. 
+
+We also analyze trading behavior by calculating the mean relative trading volume for each five-minute interval within the event window and then aggregating these volumes by sentiment category. This allows us to determine if the tweets are associated with increased or decreased trading activity compared to normal intraday trading conditions.
+
+All event-study statistics are displayed separately for negative, neutral, and positive tweets, allowing for direct comparisons of market price and volume reactions across sentiment categories. The average CAR and relative volume are graphically illustrated in the Results section, along with illustrative single-event examples.This provides the basis for assessing the short-term market impact of Elon Musk's Tesla-related tweets, dependent upon their sentiment. A simplified example of the plotting step is 
+
+```r
+ggplot(car_tbl, aes(x = t_min, y = CAR, color = sentiment_label)) + 
+  geom_line() + 
+  geom_vline(xintercept = 0, linetype = "dashed") 
+ ```
+ 
+# Results
+In this section, we present the intraday event study results for Twitter posts made by Elon Musk regarding Tesla. The analysis combines illustrative single event examples with aggregated results across all eligible tweets. All reported results are based on tweets posted between 10:00 and 15:30 ET, ensuring that each event window contains a complete ±30-minute interval of intraday trading data. 
+
+## Single-Event Examples
+
+@fig-singlevolume and @fig-singlecar illustrate both of the extremes (the most extreme negative sentiment tweets and the most extreme positive sentiment tweets) analyzed in terms of their intraday market reaction to tweets. Each figure illustrates how the event study framework used here provides insights into price and volume behaviors at the level of individual tweets. 
+
+![Single-event examples: intraday trading volume around a negative and a positive tweet](figs/fig_single_examples_volume.png){
+  #fig-singlevolume
+  width="60%"
+  fig-align="center"
+  fig-alt="Two-panel line plot of relative trading volume around two example tweets: a negative example on the left and a positive example on the right, each centered at event time t equals 0."
+  apa-note="The figure shows intraday relative trading volume for two illustrative Tesla-related tweets: one negative and one positive example. Volume is normalized by the same-day mean trading volume. Event time t = 0 corresponds to the first 5-minute trading interval at or after the tweet. Each panel covers a ±30-minute window."
+}
+
+Trading volume is normalized against the same day's average. The positive tweet is associated with significant trading volume at the event time, whereas the negative tweet shows lower and relatively even volume throughout most of the window. These examples illustrate that a single tweet can produce a wide variety of trading behavior. 
+
+![Single-event examples: intraday price reaction around a negative and a positive tweet](figs/fig_single_examples_car.png){
+  #fig-singlecar
+  width="60%"
+  fig-align="center"
+  fig-alt="Two-panel line plot of cumulative abnormal returns around two example tweets: a negative example on the left and a positive example on the right, each centered at event time t equals 0."
+  apa-note="The figure shows cumulative abnormal returns (CAR) for two illustrative Tesla-related tweets: one negative and one positive example. Event time t = 0 corresponds to the first 5-minute trading interval at or after the tweet. Each panel covers a ±30-minute window."
+}
+
+The negative tweet shows a significant drop in CARs in the period immediately following the event timeline while the positive tweet demonstrates a positive increase in the CAR after the event timeframe. Pre-event movement and post-event movement varied significantly between the two examples, this highlights the heterogeneous nature of the individual tweet response. 
+
+These results collectively show a wide range of diversity in market reactions to individual tweets. Therefore, rather than relying solely on isolated examples of individual tweets, this encourages the use of aggregated event study results to identify systematic patterns in tweets.
+
+## Aggregated Cumulative Abnormal Returns
+
+Figure @fig-multicar presents an overview of the average cumulative abnormal returns (CARs) for all tweets on the trading day that were sent prior to the closing bell, split into three groups based on their sentiment. Negative-sentimented tweets show an immediate drop in CAR at t=0 relative to the immediately preceding time interval; neutral- and positive-sentimented tweets do not exhibit such an effect -- in fact, both have more stable or upward trending return paths than those generated by negative-sentimented tweets. These differences begin to be evident from around 10 to 15 minutes post-tweet.
+
+The total number of tweets that were used to create the final intraday dataset is 37. The final dataset contains 22 tweets that were classified as being positive-sentimented, 8 tweets that were classified as being neutral-sentimented and 7 tweets that were classified as being negative-sentimented.
+  
+![Average cumulative abnormal returns around Elon Musk’s Tesla-related tweets by sentiment](figs/fig_car_intraday.png){
+  #fig-multicar
+  width="60%"
+  fig-align="center"
+  fig-alt="Line plot showing average cumulative abnormal returns for positive, neutral, and negative tweets over time, centered at the tweet."
+  apa-note="The figure shows average cumulative abnormal returns (CAR) around Tesla-related tweets by Elon Musk, grouped by sentiment. Event time t = 0 corresponds to the first 5-minute trading interval at or after the tweet. Results are based on tweets posted on trading days between 10:00 and 15:30 ET."
+}
+
+Large differences can be identified among sentiment groups after the tweet event. Negative-sentiment tweets are subject to a decrease in cumulative abnormal returns soon after event time (t = 0). This decrease is apparent in the first 10 to 15 minutes after the tweet and remains visible through the intraday window. On the other hand, tweets categorized as neutral or positive have flatter or only slightly increasing CAR paths, with no similar post-event decline. These differences indicate that short-term price reactions vary systematically with the sentiment of the tweet content. 
+
+## Aggregated Trading Volume Responses 
+In addition to examining the direction of the sentiment in the tweet, we also examined how the overall level of investor attention (as measured by relative trading volume) responds to the tweet. As shown in figure @fig-multivolume, we find that there is a very strong increase in the level of investor attention around the time of the tweet for all sentiment categories. We also found that neutral tweets elicit the largest increase in investor attention, which suggests that simply the fact that investors are paying more attention to the stock increases as a result of the tweet, regardless of whether the content of the tweet is clearly positive or negative.
+  
+![Relative trading volume around Elon Musk’s Tesla-related tweets by sentiment](figs/fig_volume_intraday.png){
+  #fig-multivolume
+  width="60%"
+  fig-align="center"
+  fig-alt="Line plot showing relative trading volume for positive, neutral, and negative tweets over time, centered at the tweet."
+  apa-note="The figure shows average relative trading volume around Tesla-related tweets by Elon Musk, grouped by sentiment. Volume is normalized by the same-day mean trading volume. Event time t = 0 corresponds to the first 5-minute trading interval at or after the tweet. Results are based on tweets posted on trading days between 10:00 and 15:30 ET."
+}
+
+A sharp jump in trading volume is seen for all three sentiment groups at the time of the tweet. The jumps in volume represent quite strong and rapid spikes in trading activity after a tweet. Although all sentiment categories exhibit a volume spike at t = 0, magnitude of the response differs across sentiment groups. Neutral-sentiment tweets exhibited the greatest spike in relative trading volume around the time of the event. Negative tweets also show a strong immediate increase but not as pronounced as the neutral tweets, while positive tweets exhibit a more moderate volume response in comparison. Following the peak, trading volume gradually declines but remains elevated relative to pre-event levels for several five-minute intervals. Overall, these findings indicate that Tesla-related tweets are always associated with higher than normal intraday trading activity, with the highest volume reaction being exhibited for neutral sentiment tweets. 
+
+# Discussion
+This research investigated how Tesla's stock price and trading activity changed in the minutes before and after Elon Musk's tweets by having utilized an intraday event-study approach. In combination with sentiment classified tweet data and high-frequency stock data, the analysis examined short-term changes in the market which were unobservable by using low frequency or daily datasets. The research aimed to determine if, and how, investor behavior differed based upon the communication from executives on social media, specifically, in instances where the communicator had extraordinary visibility and influence.
+
+A couple of important trends arise from the analysis. First, the analysis reveals a consistent and sharp rise in trading volume immediately after Musk publishing a tweet regardless of the sentiment. This trend indicates that Musk's tweets function as attention grabbing events that initiate market involvement, similar to those identified by Engelberg and Parsons, who demonstrate that simply having exposure in media influences investor behavior (@EngelbergParsons2011). The increase in volume for neutral tweets was particularly significant and possibly reflects interpretive uncertainty. Investors are likely to spend more time analyzing or hypothesizing regarding the significance of a neutral tweet than they would a tweet with obviously positive or negative content. This causes a burst of early trading as different segments of the market react differently to unclear information, reflecting what researchers reported: emotionally uncertain content increases trading volatility, particularly in times of unstable public mood (@Bollen2011).
+
+Second, price movements depend on the sentiment contained within Musk's tweets. Generally speaking, tweets with negative sentiment result in a decline in CARs (cumulative abnormal returns) while tweets containing positive and neutral sentiments produce price movements that are either stable or slightly positive. Therefore, the research illustrates that sentiment-based communications from an influential figure like Musk do not only capture the attention of investors; rather, these communications are rapidly interpreted and factored into price formation, consistent with Tetlock, and Shah et al., who report that investor sentiment drives market reactions at faster time horizons (@Tetlock2007; @Shah2019). More importantly, the research illustrates that the market does not solely respond to the existence of a tweet; however, the market interprets and prices the directional tone of the content in real-time.
+
+Despite these findings, there are a few limitations to this research. Firstly, the number of clean Musk tweets that match up with the opening of the market and meet the intraday criteria is relatively small, which may limit the generalizability of the results. Secondly, the sentiment classification was conducted by using a single model and applied uniformly to all tweets, which may either under-estimate or over-estimate the nuances of some tweets. For instance, Musk's use of sarcasm, memes or technical references in his tweets may still be imperfectly captured by the sentiment classification model we used.
+
+Finally, although the analysis took place in narrow intraday windows, the stock market reaction could still be influenced by other concurrent events such as headline news or macroeconomic releases. Future studies may improve this by filtering out concurrent news releases using NLP techniques or conducting sensitivity analyses across broader market indexes. Furthermore, the dataset only includes Tesla stock data from 2017 to 2020. However, Musk's social media activity, and subsequently its influence, dramatically expanded beyond 2020, particularly in 2022, when he acquired Twitter. As demonstrated in @fig-musk, Musk's rate of tweeting almost tripled following his acquisition of the platform, particularly on divisive or company related topics.
+
+An extended stock data timeframe paired with these newer tweets may exhibit even more pronounced, or complex, dynamics. Although there are restrictions on the research, the results provide support for the central assertion that Elon Musk's tweets cause immediate, quantifiable impacts on Tesla's stock performance, primarily through enhanced trading activity and sentiment sensitive price movements. These findings contribute to a growing body of literature indicating that executive communications via social media may function as a real-time form of market moving disclosure, especially when the communicator is both extremely visible and perceived to be closely linked to the firm's value. Moreover, the research demonstrates the importance of utilizing intraday data and time aligned with events when researching the high-frequency effects of information in financial markets. As communications in financial markets increasingly take place in platforms similar to X, traditional models of price discovery and investor information processing may require adaptation to account for these rapid, informal, and sentiment driven modes of information transmission. 
+
+# Conclusion
+Two important takeaways can be drawn from this study's results. Firstly, there is a substantial increase in trading activity immediately after a tweet by Elon Musk, regardless of whether the content of the tweet has a positive or negative tone. The fact that Musk's communications receive so much attention from traders reflects how well known he is and the impact that his communications have on the market. Interestingly, the tweets that were classified as neutral had the largest volume reaction, which suggests that when Musk communicates and does not clearly provide positive or negative cues, investors often have different interpretations of the information being communicated, resulting in increased trading for a brief period while the collective market process seeks to understand the meaning behind the message. It appears that this ambiguity in interpreting the messages heightens the degree to which market participants become engaged with the information provided via social media.
+
+Secondly, the sentiment expressed within Musk's tweets has a substantial effect upon the price movements in the market during the very short-term. Those tweets that were characterized by negative sentiment resulted in considerable decreases in CARs, whereas tweets characterized by neutral or positive sentiment produced more stable or slightly positive CARs. These patterns support the idea that investors do not merely respond to the fact that an executive is communicating publicly; rather they quickly analyse and value the tone of the communication. These patterns also reinforce the growing body of research that demonstrates the relationship between investor attention and real-time sentiment and the behavior of investors in the marketplace. Therefore, these results demonstrate the increasing role that social media plays as both a conduit for information about companies and as an action channel in the markets for securities. 
+
+<!-- Stop counting words, Sections following the Conclusion should not be counted as per APA -->
+<!-- ::: This doesn't seem to work -->
+
+# Author Contributions
+
+This project was completed collaboratively by both students. Individual contributions were as follows:
+
+- **Mira Heinemann**: Led the tweet preprocessing pipeline, the sentiment analysis workflow and the exploratory data visualizations. She was responsible for writing the following report sections: Introduction, Methodology and Results.
+
+- **Esra Tonleu**: Led the intraday stock data processing, event‑window construction, and event‑study estimation. She was responsible for writing the following report sections: Data, Background Literature, Discussion and Conclusion.
+
+Both were equal contributors to:
+
+- The interpretation of the results 
+- Writing and refinement of the report 
+- Final review, editing and integration of all parts to ensure consistency and coherence
+
+
+# Use of AI Tools
+AI tools (ChatGPT / Copilot) were employed as coding assistant tools throughout the coding process and provided assistance to the authors with respect to identifying alternative methods of coding or implementing a solution to a coding question. The authors wrote, adapted, and understood all of their final code.
+
+# References
+
+<!-- The reference details come from literatur.bib file in project root   -->
+::: {#refs}
+
+:::
+
+
+
+
+
+<!-- Because of the ... any further Heading will automatically be created
+     as Appendix A, B, ...   -->
+# Tweet Preprocessing
+Code of 01_import_tweets.R
+
+```r
+{{< include code/01_import_tweets.R >}}
+```
+
+
+# Sentiment Analysis
+Code of 02_sentiment.R
+
+```r
+{{< include code/02_sentiment.R >}}
+```
+
+
+# Intraday Stock Data Processing
+Code of 03_import_intraday_5min.R
+Code of 05_prepare_returns.R
+
+```r
+{{< include code/03_import_intraday_5min.R >}}
+```
+
+```r
+{{< include code/05_prepare_returns.R >}}
+```
+
+# Event Window Construction
+Code of 06_event_window_builder.R
+
+```r
+{{< include code/06_event_window_builder.R >}}
+```
+
+# Event Study Estimation
+Code of 07_event_study_results.R
+
+```r
+{{< include code/07_event_study_results.R >}}
+```
+
+# Exploratory Data Analysis (Code + Figures)
+Code and Figures of A_plot_EDA.R  and B_tweet_timing_histogram.R 
+
+```r
+{{< include code/A_plot_EDA.R >}}
+```
+
+![](figs/eda_daily_counts.png)
+
+
+![](figs/eda_sentiment_distribution.png)
+
+
+![](figs/eda_time_status.png)
+
+
+```r
+{{< include code/B_tweet_timing_histogram.R >}}
+```
+Timing Histogram (Weekday vs Weekend)
+![](figs/eda_tweet_timing_histogram.png)
+
+
+

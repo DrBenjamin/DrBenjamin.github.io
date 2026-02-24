@@ -1,0 +1,505 @@
+---
+title: "An Empirical Analysis of Danceability and Energy as Predictors of Song Popularity on Spotify"
+
+author:
+  - name: "Leonie Wegeler"
+    email: "wegeler.leonie@stud.hs-fresenius.de"
+    affiliations: [1]
+    corresponding: true
+
+  - name: "Jill Safarli"
+    email: "safarli.jill@stud.hs-fresenius.de"
+    affiliations: [1]
+    corresponding: true
+
+  - name: "Isabel Vilela Wetz"
+    email: "vilela_wetz.isabel@stud.hs-fresenius.de"
+    affiliations: [1]
+    corresponding: true
+
+affiliations:
+  - id: 1
+    name: "Fresenius University of Applied Sciences"
+    city: "Köln"
+    country: "Germany"
+
+bibliography: references.bib
+reference-location: document
+number-sections: true
+
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    embed-resources: true
+
+
+include-in-header:
+  text: |
+  
+---     
+
+**Abstract:** This study investigates whether the Spotify audio features *danceability* and *energy* are related to a song's commercial success, measured through Spotify popularity scores.As music consumption increasingly takes place on data-driven streaming platforms,it becomes important to understand how measurable music characteristics might be connected to patterns of success. From both a data science and a platform perspective, Spotify offers a relevant context because musical content is systematically translated into quantifiable features that can be analyzed statistically. The analysis is based on a dataset of Spotify tracks obtained from Kaggle and processed in R. Several analytical approaches are combined, including exploratory data analysis, correlation analysis, visual modeling and multiple linear regression. The distribution of audio features indicates sufficient variability for statistical investigation. Correlation and scatterplot analyses reveal weak but positive relationships between both danceability and energy and song popularity, while other features show little to no association. Additional visualizations suggest that more popular songs tend to display slightly higher danceability and more consistent energy levels. However, the regression results show that audio features explain only a small proportion of the variance in popularity, reflected in a low R² value.Overall, the findings suggest that although certain musical characteristics are statistically related to commercial performance, they are not sufficient to predict success on their own. Song popularity on Spotify appears to be influenced by a broader combination of factors, including genre trends, release timing, marketing exposure and playlist placement. The study therefore highlights both the potential and the limitations of using audio features as predictors within data-driven music platforms.
+
+------------------------------------------------------------------------
+
+The music industry has undergone a fundamental transformation through the rise of digital streaming platforms. Services such as Spotify have shifted music consumption from physical sales and downloads to on-demand access driven by algorithmic recommendation systems. In this environment, commercial success is no longer determined only by artistic recognition or traditional promotion, but increasingly by data-driven platform structures that influence how music is distributed, recommended and consumed. Popularity on streaming platforms therefore reflects not only listener preferences, but also the interaction between musical characteristics and algorithmic visibility mechanisms. Spotify represents a particularly relevant context for investigating this transformation. As a data-driven platform, Spotify translates both user behaviour and musical content into quantifiable data. Songs are described through standardized audio features such as *danceability* and *energy*, which allow music to be processed computationally and integrated into recommendation systems. These features do not only describe musical properties but function as operational variables within Spotify's algorithmic infrastructure. This raises an important question: if musical content is transformed into measurable data, can these characteristics help explain why some songs become commercially successful while others do not? Previous research in music data science shows that features related to rhythm and intensity are often linked to how much listeners engage with songs.the same time, commercial success in music is a complex outcome that depends on many different factors. These include genre trends, marketing strategies, playlist placements and broader social influences. Audio features may therefore contribute to popularity, but their explanatory power remains uncertain. From a data science perspective, this makes Spotify an ideal case to examine how measurable music characteristics relate to observable market outcomes within a real platform environment.The central aim of this study is therefore to analyze whether the Spotify audio features danceability and energy are related to a song's commercial success, operationalized through Spotify's popularity metric. The guiding research question is: *To what extent do the audio features danceability and energy predict a song's commercial success on Spotify?* To answer this question, the study uses a large Spotify dataset obtained from Kaggle and processed in R. The analysis combines descriptive statistics, correlation analysis, visual exploration through scatterplots and boxplots and multiple linear regression modeling. This stepwise approach allows for an examination of both simple relationships and more complex interactions between audio features.The findings provide insights not only for data science applications, but also for artists, producers and platforms seeking to understand the role of audio characteristics in the field of digital music success. **(Leonie Wegeler)**
+
+# Theoretical Background
+
+This chapter presents the theoretical framework necessary to understand the role of Spotify audio features in relation to commercial success within the digital music streaming environment. In contemporary streaming platforms, musical success is no longer determined only by artistic or cultural factors, but increasingly by platform-based structures and algorithmic processes. The focus therefore lies on how Spotify structures musical access through its platform logic, how audio features become quantifiable indicators within this system and why they are relevant for analysing commercial success in the streaming context.
+
+## Spotify as a Data-Driven Music Platform
+
+Spotify represents a central example of how digital platforms transform cultural industries through processes of datafication. The platform functions not only as a distributer of music but as a digital platform structure that continuously collects, processes and utilizes user data. Listening to music on Spotify is therefore not only a cultural activity but also a process of data generation. Interactions such as playing or skipping songs, adding tracks to playlists or listening frequency are systematically recorded and transformed into structured datasets that serve as a foundation for further analysis and optimization [@adenuga2023spotify; @schwarz2020spotify]. What distinguishes Spotify from earlier digital music services is its data-based structure. The platform does not simply provide access to music but operates through the constant evaluation of user behaviour and musical characteristics. As a result, Spotify functions more as a predictive system than as a passive streaming service. By analysing behavioural data in combination with quantified descriptions of musical content, the platform can generate personalized recommendations and influence how users discover music [@adenuga2023spotify; @schwarz2020spotify]. A central component of this system is the computational representation of musical features. Songs are described through structured musical parameters, which make music processable within algorithmic systems. These quantitative representations allow tracks to be categorized and matched to listening contexts at scale [@adenuga2023spotify]. Together with behavioural data, this creates a dual data structure consisting of user interaction data and music-related feature data. These two data sources form the basis for Spotify’s recommendation rankings and visibility mechanisms [@schwarz2020spotify]. From a platform perspective, this data-driven logic enables multiple forms of value creation. The use of data generates value not only for the company itself but also for advertisers, users and artists. Personalization increases user engagement, targeted advertising becomes more efficient and the platform can continuously optimize its services based on aggregated usage patterns [@adenuga2023spotify]. Spotify therefore illustrates how digital platforms compute user behaviour to generate economic value. At the same time, these data structures influence how music circulates and becomes visible. Playlists and algorithmic recommendation systems function as gatekeeping mechanisms that determine which tracks receive attention and commercial relevance [@schwarz2020spotify]. Popularity on Spotify is therefore not only the result of musical quality or individual preferences but is embedded in platform logics of categorization and algorithmic mediation.For this reason, Spotify was deliberately chosen as the empirical context for this project. The platform is particularly suitable because it integrates musical characteristics into a data-driven system structure. Audio features are not only descriptive attributes of music but are part of algorithmic processes that influence the visibility and recommendation of songs. This creates a direct connection between musical characteristics and popularity metrics within a data-driven platform environment. Since quantified musical features are integrated into recommendation and visibility processes, audio features become operational components of Spotify’s data system [@adenuga2023spotify]. Characteristics or so called audiofeatures, such as danceability or energy are therefore not only descriptive but form part of the data-driven logic that shapes how music circulates on the platform. Investigating their relationship with popularity makes it possible to analyse whether specific musical properties align with Spotify’s data-based mechanisms of ranking and visibility. **(Leonie Wegeler)**
+
+## Commercial Success in the Music Industry
+
+Commercial success in the music industry has undergone a profound transformation with the rise of music streaming platforms, most notably Spotify see, for example [@musiversal2024]. While commercial success in the past was measured by physical record sales, radio play, and concert attendance due to advertisement, the current measure of success is being measured through digital metrics such as streaming numbers, playlist positions, and algorithmic reach [@aguiar2021playlisting]. These developments have fundamentally changed how artists, producers, and record labels evaluate performance and allocate resources.The streaming platforms provide the listeners with access to their favorite music atany given time and from any location. This has created a dynamic and data-driven market environment. For instance, on Spotify, every song is assigned a popularity score ranging from 0 to 100 based on recent listener engagement, such as the number of plays, skips, saves, and repeats. The popularity score is based on a proprietary algorithm that favors recent activity. This indicates that the popularity score can easily react to changes in listener behavior. The popularity score of a song increases the likelihood of the song being featured in the algorithmic and human- curated playlist recommendations, thus increasing the potential for greater visibility and commercial success [@musosoup2024]. Economically, the key to sustainability of the music industry is commercial success.The more streams, the more royalties paid to artists and rights holders, and the higher the chances of earning more money through other sources such as live performances, merchandise, and brand partnerships [@musiversal2024]. However, the level of competition within the industry has increased, as digital distribution has made it easier for more artists to release their work and compete for the attention of listeners [@aguiar2021playlisting]. As a result, only a few songs reach a high level of popularity. This pattern is also reflected in the Spotify data set used for this project, where the popularity scores are spread out but only a few songs reach the top of the popularity scale [@rami2019]. Against this background, data provided by streaming platforms has become an important analytical resource. Spotify offers detailed information not only on popularity but also on measurable audio characteristics, such as danceability and energy, which are made available through the Spotify Web API and reflected in publicly accessible data sets as used in [@rami2019]. These features make it possible to empirically examine whether certain musical attributes are systematically associated with higher commercial success. For students at an introductory level of data science, this context provides a suitable and realistic application of quantitative analysis to business-relevant questions.However, it should be noted that commercial success is not only dependent on the content of the music. Such aspects as marketing, playlist promotion, and social media exposure also play a critical role in determining the extent to which the public is exposed to the commercial success of the song [@aguiar2021playlisting ; [@renownedforsound2025]. Audio features, on the other hand, are critical aspects to consider when considering the relationship between commercial success and the content of the music, as they represent the intrinsic value of the music. The relationship between audio features on Spotify and commercial success will be the focus of this project, while noting that audio features only account for part of the whole process. **(Isabel Vilela Wetz)**
+
+### Definition and Operationalization of Popularity
+
+In this project, commercial success is operationalized using the popularity metric offered by Spotify. The popularity metric is offered as a numerical value, ranging from 0 to 100, where higher values indicate that the track is being streamed relatively more frequently in recent times compared to other tracks on the platform, as indicated by [@musiversal2024]. Higher values indicate tracks that are currently streamed more frequently relative to others on the platform. Operationalization is the process by which the abstract concept under study is converted to a concrete variable that can be used for analysis. The use of the popularity metric is particularly appropriate for this introductory data science project, as it is readily available in the data set and directly correlates with actual user behavior, as indicated by the data generated by the platform itself [@rami2019]. By relying on this metric, it allows the analysis to avoid the use of a composite indicator, which would be too complex for the scope of this project.For certain descriptive analyses, the concept of popularity is further simplified by dividing the data set at the median of the “popularity” scores. In this case, the songs that have a “popularity” score higher than the median are referred to as “hits”, while those below the median are referred to as “non-hits”. This approach is commonly used in exploratory empirical research to support transparent group-based comparisons. This technique is particularly useful in the early stages of research. Although the level of detail in the data is compromised, the technique is useful in improving the interpretability of the data. Despite the advantages, the popularity metric has limitations as well. Because the score places greater weight on recent streams, older songs may receive lower values even if they are widely recognized as classics. In addition, genre-specific listening patterns, release timing and promotional strategies cannot be controlled for in the scope of this project and might impact the popularity outcome [@aguiar2021playlisting]. However, the popularity variable varies significantly, making it a useful dependent variable for regression and trend analyses. In the subsequent regression models, popularity will be the outcome variable that danceability and energy are expected to predict. The regression is implemented in R using standard functions from base R and tidyverse, documenting the full workflow in Quarto as required by the course guidelines and recommended best practices for reproducible data analysis [@wickham2019; @huberRegression]. Such an approach is consistent with the overall structure of the analysis, which begins with the general discussion of commercial success and proceeds to the more specific investigation of particular audio features. **(Isabel Vilela Wetz)**
+
+## Audio Features as Predictors of Music Success
+
+While the popularity metrics captures the outcome of commercial success, they do not explain why certain songs achieve higher levels of attention than others. Research, as conducted by Saraghi 2023, identifies one potential explanatory approach in the analysis of music characteristics such as audio features, as the availability of streaming data such as audio features has enabled researchers to investigate weather music properties contribute to a songs commercial success. Audio features provided by platforms like Spotify are "numerical representations of various characteristics of a music track derived trough advanced audio analysis algorithms" [@kumar2024spotify]. The key Spotify audio features are categorized in acousticness, danceability, energy, liveness, instrumentalness, loudness, mode, speechiness, tempo and valence, allowing systematic comparison across music catalogues within the Spotify database [@kumar2024spotify; @spotifyAudioFeatures].From a theoretical perspective, the assumption that audio features can predict music success can be found in music psychology and consumer behavior research [@northHargreaves1999consumer; @janata2012groove]. Musical attributes such as rhythm, intensity and emotional tone have been shown to influence listener engagement, affective responses and repeated consumption [@kawase2024groove]. Among Spotifys audio features, energy and danceability capture central dynamics of rhythmic movement and perceived intensity [@spotifyAudioFeatures]. Since previous research already examined that audio features positively influence popularity, this recording points out the relevance of danceability and energy in music streaming context and is making them theoretically well suited for explaining variance in music success [@wu2025danceability]. Danceability refers to the extent to which a song is perceived as suitable for dancing based on its rhythmic and temporal characteristics and captures the degree to which a music track encourages body movements [@wu2025danceability]. According to Spotifys conceptualization, this feature reflects a combination of tempo, stability, rhythmic regularity and beat strength, predicted by a value reaching from 0.0 as least danceable and 1.00 as most danceable [@spotifyAudioFeatures].Energy describes, according to Spotifys conceptualization, the perceived intensity and activity level of a song, predicted by a value 0.0 for low energy and 1.00 for high energy. It reflects how fast, loud and sonically dense a song feels to the listener. Furthermore, it is commonly associated with musical features such as tempo, dynamic range and overall loudness. Unlike danceability which primary relates to rhythmic movement, energy is capturing the degree of emotional perception caused by music [@spotifyAudioFeatures]. Empirical research supports the theoretical relevance of danceability and energy in music success, as studies report that songs with higher danceability tend to perform better in streaming environments, achieve more plays, appear in more popular playlists and especially in the case of danceability have an increased visibility on streaming platforms such as TikTok and Spotify. These findings suggests that danceability and energy is not only a technical musical characteristic but also influence how listeners interact with and share music in algorithm based environments [@saragih2023predicting; @wu2025danceability]. At the same time, music success is not only determined by musical content, but it is also shaped through social influence, algorithmic recommendation systems and contextual factors such as marketing and artist reputation. As a result, musical characteristics that are captured by audio features should be understood as probabilistic predictors that can partially explain variation in popularity rather than deterministic predictors [@salganik2006cultural; @saragih2023predicting; @wu2025danceability].
+
+------------------------------------------------------------------------
+
+# Data and Methodology
+
+This chapter describes the data and methodological approach used in this study. It outlines the data sources, the preprocessing steps and the technical challenges that had to be addressed before the analysis could be conducted. In particular, it explains how the dataset was prepared, which transformations were necessary, and how methodological and technical constraints were managed in order to obtain reliable results.
+
+## Data Collection and Technical Constraints
+
+Empirical analysis of the data is conducted in the current project, relying on a secondary data set provided through the online data platform Kaggle. Specifically, the data set named “19,000 Spotify Songs”, published by @rami2019, is the only source of data for the analysis. Kaggle is commonly used in academic teaching as well as in data analysis, since it provides publicly available data that is appropriate for exploratory analysis, visualization, and basic modeling. The selected data set contains information on approximately 19,000 tracks available on Spotify and includes both a popularity indicator and a set of standardized audio features provided through the Spotify Web API.The data set was selected based on the fact that it is highly similar to the research question of this project. It is centered on the relationship between the characteristics of the music and the success of the music in a streaming-based context. The data set is a combination of the popularity of the songs on Spotify, as well as the danceability and energy of the songs, which are critical for the analysis of the data, as seen in chapter 1. The use of a single data set is important for the internal consistency of the data, which could otherwise be affected by the issue of comparability.Despite the fact that the data set is publicly accessible and easy to access, some technical limitations were observed during the data preparation stage. The data set was downloaded from Kaggle, and it has to be first examined and transformed in order to be used in the analysis workflow, which is based on the R programming language and used in this project, as shown in the group presentation. The data was first processed using the Python programming language in order to ensure proper data formatting, encoding, and structure. This intermediate step allowed for a smooth transition into R, where the main analysis was conducted.This process is similar to the common practices in applied data science. Different programming languages are used for different tasks depending on their strengths.Python was primarily used for initial data handling and file conversion, while R was chosen for data cleaning, visualization and statistical analysis due to its strong support for tidy data principles and reproducible workflows. Although working with two programming languages adds a layer of complexity, it is a realistic process that is commonly encountered in the real world.Another significant technical constraint has to do with the type of variables that Spotify makes available. It is important to note that both the popularity score and the audio features are the result of a proprietary algorithm. Although Spotify has offered a general explanation of the methods used to calculate these metrics, the actual process has not been made clear [@musiversal2024; @musosoup2024]. As a result, the analysis necessarily relies on the assumption that these measures validly capture listener behavior and musical characteristics. This is a limitation that has been taken into account while analyzing the data. **(Isabel Vilela Wetz)**
+
+## Data Cleaning and Standardization
+
+Prior to any statistical analysis, a systematic data cleaning and standardization procedure was applied to the data set. Data cleaning is an essential component of empirical work, as data sets tend to have inconsistencies, formatting problems, or values that are not directly suitable for analysis. For this project, all aspects of data cleaning were accomplished in R using base R functionality and tools from the tidyverse package [@wickham2019].The first step was an examination of the overall structure of the data. The names of the variables, the data types, and the ranges of the data were all examined for consistency with the documentation of the data on the Kaggle website. Special attention was paid to the core variables used in the analysis, which are popularity, danceability, and energy. The range of the data for the popularity variable is expected to be between 0 and 100. The data for the danceability and energy variables, which are audio features, are standardized by Spotify to be between 0 and 1. Any data outside of this expected range was verified not to be caused by and error during the import of the data.Moving forward, the names of the variables were standardized to promote clarity and consistency in the analysis. Using clear and descriptive names in naming conventions enhances readability and prevents confusion when dealing with multiple transformations and visualizations. This process also promotes reproducibility, because it makes the code more understandable to a third party assessing the analysis.In addition, the data was filtered to include only variables that are of importance in answering the research question. Although the original data set contains a broad range of audio features and metadata, this project is specifically interested in popularity, danceability, and energy. The decision to limit the analysis to these variables ensures that the focus of the analysis remains clear and does not introduce unnecessary complexity beyond the scope of an introductory data science project. All data transformation was done through the tidyverse package functions, such as mutate(), select(), and summarize(). These functions support a transparent, step-by- step workflow that is well suited for exploratory analysis and aligns with recommended best practices for reproducible data analysis in R [@wickham2019]. **(Isabel Vilela Wetz)**
+
+## Handling of Missing and Inconsistent Values
+
+Another important aspect that formed part of the data preparation process is the assessment and management of missing values. Missing values may affect the descriptive statistics and model estimates if not managed properly. For this reason, the entire data set was checked to identify missing values on all the variables that were used in the analysis. From the examination, it was evident that the main variables of interest, such as popularity, danceability, and energy, had a few missing values. Since the total sample size is very large, the missing values were managed by employing the listwise deletion strategy, meaning that observations with missing values in the relevant variables were deleted from the analysis. This approach was chosen because the proportion of missing data was small and unlikely to substantially affect the results.Inconsistent values were addressed by verifying that all observations fell within the expected theoretical ranges defined by Spotify. As Spotify audio features are normalized and generated algorithmically, extreme or implausible values were rare. Where necessary, values were cross-checked against the data set documentation to confirm their validity.It should be noted that no imputation techniques were used in this project. Although imputation techniques may be useful in more complex analyses, they involve additional assumptions and methodological reasoning. In light of the exploratory nature of this project and the limited scope of missing data, simple exclusion was considered the most transparent and appropriate course of action.In conclusion, all filtering and cleaning choices were recorded in the analysis code.This allowed for the easy reproducibility of results and helped to maintain methodological clarity. By explicitly recording the treatment of missing and inconsistent data, this project follows good empirical practice and meets the methodological requirements outlined in the course guidelines. This strengthens the credibility, transparency, and academic rigor of the overall analysis.**(Isabel Vilela Wetz)**
+
+------------------------------------------------------------------------
+
+# Empirical Analysis and Results
+
+This chapter presents the core empirical analysis of the study. It examines how Spotify audio features are related to commercial success and how these characteristics change across different levels of popularity. The analysis begins with descriptive statistics to outline the structure of the dataset, followed by visual explorations using scatter plots and box plots to identify patterns and differences. Special attention is given to interaction effects between danceability and energy, as well as to trends showing how audio features evolve with increasing popularity. Finally, multiple linear regression models are applied to test whether these features can predict song success. Together, these analyses provide a structured understanding of how musical attributes are associated with popularity on Spotify.
+
+## Distribution of Spotify Audio Features
+
+To analyse whether danceability and energy can predict commercial success, the first step was to understand how these features are distributed in the dataset. Before any predictive modelling, descriptive analysis is essential to assess variability, central tendencies and the suitability of variables for further statistical investigation.The data used in this study originate from a large public Spotify dataset available on Kaggle, containing more than 170,000 tracks with associated audio features and popularity scores. The dataset includes variables such as danceability, energy, valence, loudness, tempo, and Spotify’s popularity metric, making it suitable for analysing relationships between musical characteristics and commercial success.The dataset was initially explored within a Python environment, where the original structure was designed for Pandas-based analysis. Since the analytical framework of this project is based on R and Quarto, a direct continuation of the Python workflow was not feasible. To ensure compatibility between environments, the cleaned Pandas DataFrame was exported from Python into a neutral exchange format using: to_csv(). The dataset was then imported into R using read_csv(). Within R, the tidyverse framework was used for preprocessing, only numeric Spotfiy audio features relevant for analysis were retained, missing values were removed to ensure statistical consistency and the data structure was reshaped to allow comparative visualisation of multiple features. Figur 1 presents the distributions of danceability, energy and popularity using histograms generated with ggplot2.
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Rplot.pdf}
+
+\textbf{Figure 1.} Distribution of Spotify Audio Features. Own visualization based on the dataset songs\_normalize.csv.
+\end{center}
+```
+
+The visualisation provides an overview of central tendencies of the variables.The distribution of danceability appears relatively balanced across mid to higher values, indicating that most songs in the dataset possess moderate to high rhythmic stability and beat strength. This suggests that contemporary Spotify tracks are generally produced with movement and accessibility in mind. Similarly, energy shows a broad spread, with a concentration in medium-to-high intensity ranges. This reflects the dominance of loud and rhythmically active tracks in modern streaming environments. Importantly, neither danceability or energy are concentrated at only one or two values. Instead, both features show noticeable variation across their full range. This variation is important because only variables that actually differ between songs can help explain differences in popularity. The popularity values are also spread across a wide range instead of being concentrated at one specific level. This dispersion of popularity scores similarly confirms the suitability of the dependent variable for regression analysis. If most songs had the same popularity score, it would be impossible to examine how features like danceability and energy relate to commercial success. The observed distribution patterns are consistent with findings from recent research on Spotify audio features and music popularity. Several studies analysing large-scale Spotify datasets identify *danceability* and *energy* as central musical attributes that are frequently associated with listening behaviour and song success. For instance, [@saragih2023predicting] demonstrates that energy and related rhythmic features are among the most influential variables in machine-learning models predicting song popularity. The study shows that these attributes vary substantially across tracks, supporting their use as explanatory variables rather than fixed background characteristics. This aligns with the present dataset, where both danceability and energy exhibit broad distributions rather than narrow clusters. Similarly, [@terroso2023evolution] analyse global Spotify trends across multiple countries and highlight that mood-related features such as intensity (energy) and movement-related properties play a major role in shaping listening patterns. Their results suggest that modern streaming environments favor songs with moderate to high intensity levels, which corresponds with the concentration of medium-to-high energy values observed in Figure 1. .Research in music data mining further emphasizes that feature variability is a requirement for predictive modelling.The clear spread in danceability and energy therefore confirms that these variables meet basic statistical requirements for use as predictors.In addition, previous studies examining Spotify’s popularity metric report a similarly broad distribution rather than extreme clustering. This supports the methodological assumption that popularity functions as a suitable dependent variable in regression-based approaches [@saragih2023predicting]. The present findings, where popularity scores are widely dispersed, therefore align with established empirical patterns.Taken together,the descriptive analysis not only provides an overview of the dataset but also shows that its structure is comparable to datasets used in current scientific research on music success prediction. The noticeable variability of danceability and energy, combined with a sufficiently broad distribution of popularity values, indicates that the dataset meets the key statistical requirements for further modelling. These characteristics ensure that meaningful relationships between audio features and commercial success can be examined. **(Leonie Wegeler)**
+
+## Statistical Correlation Analysis
+
+The descriptive distribution analysis demonstrated that danceability,energy and popularity vary considerably across the dataset. This finding is methodologically crucial, as statistical modelling requires dispersion in both predictors and outcome variables. While the histograms provided insight into the structure and spread of the variables, they did not yet clarify whether these musical features are systematically related to commercial success. Descriptive statistics answer the question of how variables behave individually, but they do not address how variables behave in relation to one another.To move from structural understanding to relational understanding, the next logical step was therefore a correlation analysis. Building on the cleaned Kaggle Spotify dataset, a correlation heat map figure 2 was created to examine the linear relationships between popularity and key audio features, including danceability, energy, loudness, valence, tempo, acousticness, speechiness and liveness.
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Rplot01.pdf}
+
+\textbf{Figure 2.} Correlation matrix of Spotify audio features and popularity. Own visualization based on the dataset songs\_normalize.csv.
+\end{center}
+```
+
+Only numeric variables retained during preprocessing were included to ensure statistical validity. Pearson correlation coefficients were calculated in R and visualised in a heat map, which makes it possible to see both the direction and the strength. This methodological step directly builds on the distribution analysis: only because danceability and energy showed sufficient spread could meaningful correlations be computed.[@wu2025danceability] explains that modelling music-related outcomes requires differences between songs, since predictive systems learn patterns from variability in musical features. The earlier distribution results therefore form the basis for the correlation analysis.The heat map reveals that most Spotify audio features exhibit weak to moderate relationships with popularity, which is typical in behavioural and cultural datasets where outcomes arise from multiple interacting influences rather than single dominant factors. [@wu2025danceability] also points out that predicting danceability is difficult because musical characteristics interact in complex ways,which means individual features rarely have strong effects on their own. Energy shows one of the strongest associations with popularity, suggesting that intensity-related musical properties contribute to streaming performance. Danceability displays a positive but comparatively weaker relationship, indicating that rhythmic suitability may support engagement but does not independently determine commercial success. Acousticness is negatively correlated with both energy and popularity, implying that highly acoustic tracks tend to be less intense and may perform differently in algorithmically curated streaming environments.In contrast, valence shows almost no relationship with popularity, suggesting that emotional positivity alone is not a reliable predictor of success.These findings align with contemporary research in music data science. Large-scale Spotify studies identify energy and rhythm-related features as influential in predictive models of popularity [@wu2025danceability]. Similarly, quantitative analyses of streaming trends show that high-intensity tracks dominate modern listening environments, particularly in algorithmically curated playlists [@chaudry2023determinants]. At the same time, these studies emphasize that single-feature effects are typically modest because music preference is shaped by situational and cultural influences rather than isolated acoustic measures.The modest coefficients observed in the heat map are therefore not a limitation but an expected characteristic of real-world music consumption data. In the context of this project, the heat map Figure 2. represents the conceptual bridge between descriptive statistics and predictive modelling. The correlation analysis now demonstrates how these variables relate to popularity and to each other, revealing potential predictors and interdependencies.Together, these steps follow a clear and logical process: first, we understand how the data are structured; second, we explore how the variables are related to each other; and third, these findings provide the basis for moving on to more advanced multivariate modelling. Overall, the results suggest that Spotify popularity is more strongly connected to energetic and production-related characteristics than to purely emotional qualities. The fact that energy appears more relevant than valence indicates that streaming success may depend more on intensity or rhythmic drive, than simply on whether a song sounds “happy” or positive. This fits with the idea that modern algorithmic listening environments favour tracks that match activity-based and engagement-driven listening situations, such as workouts or background listening. By combining the distributional patterns with the relationships between variables, the analysis shows that the dataset not only meets statistical requirements but is also meaningful and provides a solid foundation for further investigating how musical audio features relate to commercial success. **(Leonie Wegeler)**
+
+## Scatterplot Analysis
+
+To complement the distributional overview (Figure 1) and the correlation heat map (Figure 2), Figure 3. applies scatterplots to examine how *danceability* and *energy* relate to Spotify popularity at the track level. This step is methodologically important because correlations summarise linear association in a single coefficient, but they can hide non-linear patterns, clustering, outliers and unequal variance. Scatterplots therefore provide a more diagnostic view of whether a relationship is practically interpretable and whether a linear regression specification is plausible before moving to multivariate modelling [@wu2025danceability; @saragih2023predicting]. In addition, prior work using Spotify features emphasises that popularity is shaped by multiple interacting influences, so visual inspection helps to avoid over-interpreting weak average effects and instead focuses on how effects appear across the full range of the data [@chaudry2023determinants; @terroso2023evolution]. Figure 3. contains two panels. The left panel (“Relationship Between Danceability and Popularity”) shows a slight upward tendency across the danceability range, but the point cloud remains widely dispersed. This pattern is consistent with the expectation that movement-related attributes can support engagement, while still being insufficient to explain commercial success on their own [@duman2022music; @wu2025danceability]. Importantly,the scatter suggests that many tracks with similar danceability achieve very different popularity values, which visually reinforces the interpretation already implied by the modest correlations in Figure 2: *danceability* may be supportive but not *deterministic* [@saragih2023predicting].The right panel (“Relationship Between Energy and Popularity”) indicates a clearer positive association compared with danceability, aligning with research that identifies intensity-related features (including energy and closely related production characteristics) as comparatively more informative predictors in popularity modelling [@saragih2023predicting; @chaudry2023determinants]. At the same time, the relationship is still far from tight: high-energy songs are often popular, but many are not, which is compatible with streaming research arguing that contemporary listening environments favour energetic tracks while preference remains context-dependent and culturally mediated [@terroso2023evolution; @duman2022music]. Another important observation from Figure 3. is that the points do not form a tight line but rather appear in dense horizontal clusters, while still showing a large vertical spread at almost every level of danceability and energy. In other words, many songs share similar values for these audio features, even if their popularity differs strongly.
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Rplot02.pdf}
+
+\textbf{Figure 3.} Relationship between Danceability and Song Popularity. Own visualization based on the dataset songs\_normalize.csv.
+\end{center}
+
+\vspace{0.8cm}
+
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Rplot03.pdf}
+
+\textbf{Figure 4.} Relationship between Energy and Song Popularity. Own visualization based on the dataset songs\_normalize.csv.
+\end{center}
+```
+
+This means that tracks with nearly the same danceability or energy can perform very differently in the market, which visually highlights that these features alone cannot fully explain commercial success.This visual structure signals that (a) the outcome variable is not explained by a single feature and (b) regression models will likely show limited explanatory power unless multiple predictors and interactions are considered, an observation repeatedly emphasised in machine-learning and statistical studies of Spotify popularity [@wu2025danceability; @saragih2023predicting].Research based on Spotify data also shows that the relationship between audio features and popularity is not the same for all kinds of music. It can change depending on things like genre, time of release, or market. This means that when we look at all songs together, the overall relationship can appear weak, even though certain features may be quite important within specific groups of songs [@singh2021analyzing]. Related applied analytics work also illustrates that exploratory visual diagnostics (including scatterplots) are a practical bridge from descriptive summaries to predictive modelling because they reveal whether a linear signal is present and where model assumptions might be strained [@ochi_sap_spotify]. Overall, Figure 3. is the final exploratory step before the regression analysis. The plot shows that energy displays the clearest positive tendency with popularity, while danceability appears to have only a weak relationship at most. At the same time, there is a large spread of points that cannot be explained by a single variable alone. This means that a simple two-variable view (for example, only danceability vs. popularity) is not sufficient. Therefore, a multiple regression approach is needed, where several audio features are analysed together and their interrelationships (as seen earlier in Figure 2) are taken into account [@wu2025danceability; @chaudry2023determinants]. **(Leonie Wegeler)**
+
+## Boxplot Comparison Hits vs Non Hits
+
+To obtain initial staboxplotl insights into differences between hits and non hits with respect to popularity, we conducted a boxplot comparison. Boxplots are widely used in scientific contexts and provide a concise summary of the statistical distribution of a quantitative variable by visualizing the lower and upper quartiles as a rectangular box, with the median represented by a line within the box. This type of representation allows for a superficial comparison of central tendencies and variability across distributions [@salkind2007boxplot; @streit2014barcharts]. In our project, the boxplot comparison was used to illustrate how the two audio features danceability and energy differentiate between hits and non hits. To create the boxplot comparison, we first loaded the tidyverse package in R, which includes several tools for data manipulation and visualization such as ggplot2.
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Boxplot.pdf}
+
+\textbf{Figure 5.} Boxplot comparison of danceability and energy between hit and non-hit songs. The figure illustrates differences in central tendency and variability of the two audio features across popularity groups. Own visualization based on the dataset songs\_data.csv.
+\end{center}
+```
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Regression.pdf}
+
+\textbf{Figure 6.} Linear regression model predicting song popularity from danceability and energy (including interaction effect). Own analysis based on the dataset song\_data.csv.
+\end{center}
+```
+
+These descriptive findings align with the boxplotving the two groups from the dataset popularity variable by splitting the values at the median. The popularity score in our dataset extends from 0 to 100, with lower values indicating lower popularity and higher values indicating higher popularity. Subsequently, the data was reshaped into the long format. Before we reshaped the data into the long format, each row contained separate columns for the audio features danceability and energy. After converting the data into the long format, each row represents a single audio feature value either danceability or energy for each song, which enabled us to facet the plots by feature. Finally, we visualized the boxplots using the ggplot function. In our Boxplot visualization, the x axes display the hit versus non hit category while the y axes capture the audio feature value between 0.0 and 1.0 for energy and danceability each.The boxplots show a visual comparison of the differences between hits and non hits regarding the separated audio features danceability and energy. The visualization suggests a essential overlap between the two groups, which is an indicator that these audio features alone may not strongly distinguish hit songs from non hit songs. While hit songs appear to show a slightly higher central tendency in danceability, the energy levels are largely comparable across both categories. To analyze the boxplots statistically, we used descriptive statistics to capture the mean and median as measures of central tendency as well as the standard deviation as a measure of dispersion by creating a table in R [@hayes2025descriptive].Regarding danceability, the results show that hit songs show a higher central tendency than non hit songs. The median danceability of 0.65 for hit songs exceeds the median of non hit songs at 0.63. The same pattern can be observed for the mean wehre hit songs a mean of 0.64 and non hit songs show a mean of 0.62. This indicates that commercially successful songs tend to be more danceable on average. In terms of variability, danceability shows a slightly lower standard deviation of 0.15 for hit songs compared to 0.16 for non hit songs, which suggests that danceability is not only higher but also more consistent among successful songs.A similar but weaker pattern emerges for energy. Hit songs show a higher median of 0.67 versus 0.68 and higher mean values with 0.65 versus 0.64 in comparison to non hit songs, which indicates that successful songs tend to be slightly more energetic. However, energy displays greater overall variability, particularly among non hit songs with a standard deviation of 0.22 relative to the standard deviation of 0.21 for hit songs. This suggests that while higher energy is associated with success, it is less consistent as a distinguishing feature than danceability.Overall, the descriptive statistical analysis indicates that hit songs are on average more danceable and more energetic than non hit songs, with the difference being more pronounced for danceability. Additionally, the lower variability among hits, especially with respect to danceability, indicates a higher degree of consistency among commercially successful songs. These descriptive findings align with the boxplot visualization and provide an empirical basis for subsequent inferential analysis, which we conducted to examine the predictive role of danceability and energy in a songs popularity.**(Jill Safarli)**
+
+## Multiple Linear Regression Analysis
+
+Our previous descriptive analysis indicated that both danceability and energy are associated with a songs commercial success. In particular, danceability emerged as the stronger distinguishing feature between hit songs and non hit songs. These findings provide empirical justification for including both audio features in a subsequent multiple linear regression analysis to evaluate their statistical predictive value for the variable song popularity.A regression analysis is a statistical approach that is used to determine and model the relationship between a dependent variable and one or more independent variables, with the goal of explaining or predicting the dependent variable based on the independent variables [@mohr2022regression]. In the scope of our research, we aim to predict a songs popularity from danceability and energy and their interaction, with popularity as the dependent variable and danceability and energy as the independent variables. Therefore, we choose to conduct a multiple linear regression analysis, which enabled us to assess the effects of more than one independent variable [@kutner2005applied]. The multiple linear regression analysis provides several statistical operators to analyze the interaction. The estimated regression coefficient represents the expected change in the dependent variable resulting from an increase of one unit in the specified independent variable, while holding all other variables constant [@kutner2005applied]. The F statistic captures a models statistical significance through comparing the variance between two or more groups [@kutner2005applied].
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Regression2.pdf}
+
+\textbf{Figure 7.} Multiple linear regression predicting song popularity from danceability, energy, and their interaction. Energy and the interaction term are statistically significant ($p < .001$), while danceability alone is not significant. The model explains a small proportion of variance ($R^2 = 0.013$).
+\end{center}
+```
+
+The p value shows the statistical significance of the relationship between variables by representing the probability that the estimated regression coefficient appears due to random chance, rather than reflecting a true underlying relationship. According to this approach p greater or equal to 0.05 is considered statistically insignificant and p less than 0.05 is considered statistically significant [@huberRegression].Before the multiple linear regression analysis was conducted, the dataset was inspected to assess the structure of the data set, examine variable distribution and identify potential deviations. Following this preliminary data screening, a multiple linear regression model was fitted using the lm function in R to estimate the relationship between the independent and dependent variables. Furthermore, a comprehensive summary of the model was generated that reports regression coefficients, standard errors, t values and significance levels. To facilitate interpretation, we presented the results in a concise table to display regression coefficients, confidence intervals and significance levels in a standardized way.As introduced, in our multiple linear regression model, we aimed to predict a songs popularity from danceability and energy and their interaction, with popularity as the dependent variable and danceability and energy as independent variables. Therefore, me model the variable song popularity by the following function: popularity equals intercept plus danceability plus energy plus the interaction between danceability and energy plus error term. The regression model was estimated by the usage of 18835 observations. Starting with the, overall F statistic, this statistic shows a value of 83.34 with p less than 0.001, indicating that the model explains a statistically significant portion of variance in song popularity. The intercept that was estimated at 53.666, represents the predicted popularity score for a song with a danceability and energy value of zero and is therefore representing the base line [@kutner2005applied]. The intercept is statistically significant, but its practical interpretation is limited as these zero values are probably not meaningful in our observed context of the scope of audio features as predictors of popularity.Danceability showed an estimated regression coefficient of minus 2.655. This indicates that, when energy is held constant at zero, higher danceability is associated with a slight increase in popularity. Although this effect reached statistical significance with p equal to 0.035, the effect size is small, so consequently this suggests that danceability alone does not appear to be a reliable predictor of song popularity within this model. Energy showed an estimated regression coefficient of minus 16.422. This large negative coefficient indicates that when danceability is held at zero, songs with higher energy tend to have lower popularity scores. This effect is statistically significant with p less than 0.001 and essentially stronger than the main effect of danceability. However, as with the intercept, the interpretation of only one variable is limited in the context of our project, because it reflects a scenario in which danceability equals zero. Finally, the interaction between danceability and energy showed a large positive coefficient of 28.291, which is large and positive. This highly significant interaction with p less than 0.001, indicates that the effect of danceability on popularity depends on the level of energy and vice versa.In practical terms it can be implemented that when energy scores a low value, danceability has a little or even negative impact on popularity. In contrast, at higher levels of energy, the effect of danceability becomes strongly positive which leads to higher predicted popularity scores. This pattern suggests an interdependent relationship between the two audio features, where no single variable alone can reliably explain a songs popularity, but their combination is meaningful.Despite the statistical significance of the regression model, several limitations have be acknowledged. Since the R square value between 0 and 1 explains how much of the variance of the dependent variable cn be explained by the independent variable, the R squared value of 0.0131 and the adjusted R squared value of 0.01295 indicate that the model explains only a small proportion of the variance in song popularity. The values suggest that approximately 1.3 percent of the variability can be explained by the audio features danceability and energy and their interaction [@huberRegression; @kutner2005applied]. This low explanatory power suggests the presence of omitted variables. Many relevant factors influencing popularity were not included, such as genre, artist popularity, marketing efforts, playlist placement and broader social or cultural influences [@mccall2014omitted]. Potential omitted variables could include genre, artist popularity, playlist placements, marketing efforts and broader social or cultural influences.For our project, the regression results are indicating that danceability alone is not a significant predictor of a songs popularity, while energy as a single variable is associated with lower popularity only when danceability is low. The interaction between danceability and energy can be seen as the most important predictor, demonstrating that highly danceable songs tend to become more popular when they are also energetic. Overall, These findings indicate that a songs popularity depends more on the combination of audio features rather than on any single audio feature alone.**(Jill Safarli)**
+
+## Popularity Analysis
+
+To further understand the relationship between audio features and commercial success, this section examines how average danceability and energy vary across different levels of popularity. Rather than analyzing individual observations only,popularity is divided into ten equally sized quantiles, ranging from the least popular songs to the most popular ones. This approach is implemented in R using the ntile()function from the tidyverse package @wickham2019 on the popularity variablefrom the Kaggle data set @rami2019. For each quantile, mean values of danceability and energy are calculated.This trend analysis shows a gradual rise in average danceability as popularity increases. It is noticeable that songs with lower popularity quantiles have slightly lower danceability values. Conversely, songs with higher popularity quantiles are more danceable on average. Although the trend is not significant in terms of the rise in danceability, the direction of the trend is consistent and indicates that danceability is more common among popular songs. This visual pattern is clearly visible in the danceability trend plot derived from our code, where the line slowly increases from the lowest to the highest popularity quantile. Energy displays a different pattern.
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Popularity.pdf}
+
+\textbf{Figure 8.} Relationship between energy, danceability, and song popularity. Own visualization based on the dataset songs\_data.csv.
+\end{center}
+```
+
+Across popularity quantiles, average energy levels remain relatively stable, but they are consistently higher among more popular tracks. In contrast to danceability, the key distinction lies less in a steady increase and more in the reduced variability among highly popular songs. This implies that successful songs tend to have a minimum level of energy, whereas less popular songs tend to vary significantly on this dimension. This observation is consistent with the music psychology studies, which indicate that more energetic songs are more strongly linked with movement- and dance-related listening contexts @grahn2022music.This further illustrated the line plots created for each of the features. Trend lines, inparticular, reduce the noise of individual data points to reveal trends more easily than the scatter plots. Although the trends do not suggest causality, they do suggest the existence of trends between musical characteristics and popularity.From a methodology standpoint, the use of quantiles is a good balance between providing too much data and providing too little. Although some data is lost in the process, the overall trends are made clear. For the purpose of this project, this trade-off is considered appropriate.Taken together, the trend analysis complements the regression results by providing an intuitive visualization of how audio features behave across popularity levels. This descriptive perspective helps bridge statistical findings and substantive interpretation, making the observed relationships more accessible and easier to contextualize within the broader discussion of music success on streaming platforms.These descriptive patterns motivate a more detailed examination of how specific audio features behave across increasing levels of popularity,which is explored in the following section. **(Isabel Vilela Wetz)**
+
+## How Audio Features Change with Increasing Popularity
+
+This section explores how average danceability and energy vary across increasing levels of song popularity. Instead of analyzing individual songs, popularity is divided into ten equal sized groups ranging from the least popular songs to the most popular songs. For each group, average danceability and energy values are calculated. This approach reduces the influence of outliers and random variation and makes broader trends easier to identify than in a scatterplot [@wickham2019].The resulting trend plots show clear patterns.
+
+```{=latex}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Trend.pdf}
+
+\textbf{Figure 9.} Trend of danceability and energy across popularity quantiles. The left panel shows that average danceability increases with higher popularity levels, while the right panel indicates that energy follows a weaker and less consistent pattern across popularity groups. Own visualization based on the dataset songs\_data.csv.
+\end{center}
+```
+
+For danceability, there is a general increase from lower to higher popularity groups. Songs in the least popular group have an average danceability of approximately zero point six one, while songs in the most popular group reach values close to zero point six eight or zero point six nine. Although the difference is relatively small, the step by step increase confirms a positive relationship between danceability and popularity, consistent with previous scatterplot, boxplot, and correlation analyses of the same dataset [@rami2019].Energy follows a different pattern. Average energy values do not show a strong upward or downward trend across popularity groups. However, variability differs noticeably. Popular songs tend to cluster within a narrower range of energy values, while less popular songs display a wider range. This suggests that extreme energy levels are not required for popularity, but that a moderate to high energy level is common among successful tracks. This interpretation is supported by research linking energetic music to movement related listening contexts such as dancing and exercising [@grahn2022music].Taken together, the trend analysis confirms and extends findings from previous sections. Danceability appears to be slightly more relevant than energy in distinguishing popularity levels, as its average values increase more consistently across groups. Energy instead functions as a threshold factor, where popular songs tend to meet a minimum level, but higher energy does not necessarily imply higher popularity. Neither feature alone guarantees commercial success, as substantial overlap exists between popularity groups, highlighting the limited explanatory power of audio features [@rami2019].From a methodological perspective, the quantile based approach demonstrates the usefulness of grouped trend analysis in an introductory data science setting. Grouping observations balances simplicity and interpretability while still revealing meaningful patterns. Visualizations were produced using tidyverse tools in R, ensuring transparency and reproducibility through clearly documented code [@wickham2019]. Although external factors such as marketing, playlist placement, and genre distribution are not considered, this analysis provides a clear link between exploratory data analysis and statistical modeling. In conclusion, danceability shows a steady increase with popularity, while energy remains relatively stable but exhibits lower variability among popular songs. These findings contribute directly to answering the research question and form the basis for the discussion of practical implications in the following section. **(Isabel Vilela Wetz)**
+
+------------------------------------------------------------------------
+
+# Discussion and Implications
+
+This chapter discusses the broader meaning of the results and places the findings in a wider practical and theoretical context. The analysis does not only reveal statistical relationships between audio features and popularity but also provides insights into how platform structures influence musical visibility and success in streaming environments.Based on these findings, implications are considered at different levels of the music ecosystem. First results are interpreted from the perspective of artists and music producers. Finally, the chapter reflects on the methodological and data-related limitations of the study in order to contextualize the findings and identify directions for future research.
+
+## Implications for Music Streaming Platforms
+
+The findings from the descriptive and inferential analysis paired with the theoretical background conducted are indicating several implications for music streaming platforms. First the interaction between audio features, in the scope of our research, specified for energy and danceability, stands out as a more relevant predictor of popularity than the individual factors on their own. This indicates that platforms could enhance their recommendations algorithms by incorporating feature interactions, rather than relying only on single audio feature. Through this pattern, streaming services such as music streaming platforms, could more accurately identify songs with a higher commercial potential and align recommendations with user preferences. This is supported by previous research that has displayed that considering multiple audio features at the same time can improve the predictive accuracy of recommendation systems and better reflect listener preferences [@gong2020reranking].Regarding the regression analysis, despite the statistical significance of the multiple linear regression model, the low R square value indicates that audio features alone account only for a small proportion of the variance in a song’s popularity. This undermines the complex nature of music success and highlights the need of the integration of additional factors such as artist reputation, marketing efforts, playlist placements, social media trends and boarder social and cultural influences, into predictive models. Consequently, while audio features can provide useful insights, they should be considered as one component of a multidimensional recommendation framework rather than as the only determinant of a song’s commercial success. Finally, the observed importance of feature interaction suggests opportunities for the development of more elaborate machine learning models that account explicit for non linear relationships between audio features. Techniques such as combining features and modeling more complex relationships may enhance the predictive capacity of algorithms to enable platforms to identify emerging hits more accurately and tailor personalized recommendations strategically to ultimately enhance to a more dynamic and personalized user experience [@liu2024dlmusic; @jiWu2025recsys].In Summary, our current findings indicate that a successful prediction and promotion of music on streaming platforms require a broad approach that takes both, individual audio features and their interaction into account and is complemented by external factors that influence listener behaviors. Such approaches are potentially improving the predictive power of algorithms which allows platforms to identify emerging hits, tailor personalized recommendations and strategically promote content to maximize user engagement and commercial success.**(Jill Safarli)**
+
+## Implications for Artists and Music Producers
+
+The empirical findings of this project offer several practical implications for artists and music producers operating in a streaming-dominated environment. Most notably, it appears that energy and danceability are correlated with greater levels of popularity on Spotify, although with small effect sizes. This conclusion is based on the correlation matrix, the boxplots for hits and non-hits, and the regression model including an interaction term for danceability and energy. This means that while audio features are important, they should be seen as supportive factors rather than key factors for success.For producers, it also appears that having a strong level of energy is important because popular tracks tend to be concentrated within a small range of energy levels. Danceability appears to increase gradually with popularity, suggesting that rhythm and beat structure may help a track’s danceability in playlist and repeated listening scenarios such as a workout routine or social events. These results align with research indicating that dance music tends to be high in both energy and danceability and is frequently used in movement-related contexts [@grahn2022music]. On the other hand, the limited explanatory capability of regression models also underscores the dangers of over-optimizing music solely based on data. There are many external factors affecting a song’s commercial success, such as marketing strategies, playlist promotion, and social media promotion [@aguiar2021playlisting; @renownedforsound2025]. Audio features may help a song achieve algorithmic visibility, but it does not guarantee originality or promotion.These pieces of knowledge, especially for new artists and small labels, can be a good starting point in making strategic decision.For instance, examining the audio features of the released songs may help in identifying trends, which can be a good guide in making decisions, especially if combined with analytics tools provided by each platform. However, art should be the primary focus, and data should be a additional tool.Thus, the overall findings underscore the need to balance creativity with analytical thinking. Although data-driven methods may be conductive to commercial success, the music industry’s long-term success is ultimately a function of a variety of factors involving both the quality and visibility of the music.Finally, for the students and teachers, the implications reach well beyond the music industry. The project showcases how relatively simple data methods can be used to produce insights that are useful for real-world decision making, even when using publicly available data and simple statistical models. This reflects the overall aim of the Data Science and Data Analytics course, which is to provide students with the skills to ask relevant questions, structure empirical analyses, and present results in a transparent and academically sound way. Though its integration of audio characteristics, popularity measures, and real-world implications for artists, the project shows how quantitative analysis and business understanding can be combined at an introductory level. **(Isabel Vilela Wetz)**
+
+## Limitations of the Analysis
+
+Although this project provides useful insights into the relationship between audio features and song popularity on Spotify, several limitations need to be considered when interpreting the results. These limitations do not reduce the value of the findings but help to place them in the broader context of how digital music platforms work.First, music success on Spotify does not develop in a neutral environment. Digital platforms actively shape what becomes visible and popular through algorithms, curated playlists and recommendation systems. Research on platformization shows that platforms like Spotify influence cultural production by deciding which content is promoted and how users discover music [@ta_platformization_tiktok_spotify]. This means that the correlations we found between danceability, energy and popularity may partly reflect platform logic rather than only listener preferences.Second, music consumption today is strongly influenced by other platforms, especially TikTok. Studies show that trends from short-video platforms can affect streaming numbers on services like Spotify and that popularity can spread across platforms [@ta_platformization_tiktok_spotify; @winkler_tiktok_streaming_2026]. Since our analysis only uses Spotify data, we cannot capture external effects such as viral challenges, social media exposure or cross-platform attention. Therefore, some factors that influence popularity are outside the scope of our dataset.Another important limitation relates to how streaming markets are structured. Music streams and online engagement usually follow very unequal distributions, where a small number of viral songs receive a large share of total attention [@winkler_tiktok_streaming_2026]. In such settings, statistical models often show relatively small effect sizes for individual variables, even when they are meaningful. The limited explanatory power of our regression models should therefore not be seen as a weakness of the project, but as a reflection of the complex world of digital music markets.In addition, our study uses a cross-sectional approach and publicly available data. This means that we can identify correlations but cannot prove causal relationships. While danceability and energy are associated with higher popularity, we cannot say that these features directly cause success. Other factors, such as marketing, playlist placement or label resources, may also play a major role. Despite these limitations, the project makes valuable contributions. By combining descriptive statistics, visualizations and regression analysis, we were able to identify consistent patterns in real-world platform data. The finding that *danceability* and *energy* are systematically connected to higher popularity levels suggests that audio characteristics interact with platform environments in meaningful ways. Rather than presenting a simple “formula for hits,” the study shows that audio features function as supportive elements within a much larger system that includes platform algorithms, social influence and market concentration. **(Leonie Wegeler)**
+
+# Conclusion and Outlook
+
+Our project aimed to examine the relationship between the Spotify audio features danceability and energy and the commercial success of a songs. Within this scope, the research question *To what extend do the audio features danceability and energy predict a songs commercial success?* guided the empirical analysis. To address the research question, the report first establishes a comprehensive theoretical framework. This farmwork provides an overview of Spotify as a data driven music streaming platform and conceptualizes commercial success in the modern music industry, operationalized trough Sportifies popularity metrics. The theoretical framework further introduces audio features as potential predictors of music success, with a specific focus on danceability and energy, putting them into perspective as suitable variables for the overall project scope. In advance to the empirical analysis the paper continues with an overview of the used Kaggle data set for the empirical analysis that was conducted using the R programming language, including a description of the data cleaning process and general constraints of the data. Building on this foundation, both descriptive and inferential statistical methods were applied. This empirical analysis included a correlation and scatterplot analysis, boxplots comparisons, a multiple linear regression analysis and a trend analysis across popularity quantiles.Alongside the empirical analysis, several key findings emerged that contributed to a systematic response to the research question. The descriptive analysis indicated that songs that scored a higher popularity tend to be slightly more danceable and maintain moderate to high energy levels, with danceability increasing gradually across popularity quantiles. The regression results, however reveled that no feature alone strongly predicts popularity, but the interaction between danceability and energy stands out as the most meaningful predictor of commercial success. However, the model explains only a small proportion of the variance emphasizing the influence of additional factors such as marketing, playlist placement artist reputation and social and cultural contexts. To conclude, danceability and energy partially predict a songs commercial success, with their combination being more relevant than the individual effects. These findings emphasize that audio features should be considered as supportive indicators rather than deterministic predictors. Future research could expand these findings by incorporating additional audio features and explore how audio features interact with external social and cultural variables, like marketing and social medial trends, to influence a songs popularity. Additionally, deeper insight could be provided by further research that examines how the predictive relevance of audio features evolves over time, across genres and different listener demographics. Furthermore, based on our findings, further research in advanced machine learning approaches that take non linear interactions among multiple features and contextual variables into account could offer further practical implication for streaming platforms artists and producers regarding the identification of emerging hits and optimization of music promotion. **(Jill Safarli)**
+
+# References
+
+\appendix
+
+# Distribution of Spotify Audio Features Code
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+songs <- read_csv("songs_normalize.csv", show_col_types = FALSE)
+
+features_long <- songs %>%
+  select(popularity, danceability, energy, loudness,
+         speechiness, acousticness, liveness, valence, tempo) %>%
+  pivot_longer(cols = everything(),
+               names_to = "feature",
+               values_to = "value")
+
+ggplot(features_long, aes(x = value)) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "white") +
+  facet_wrap(~ feature, scales = "free") +
+  theme_minimal(base_size = 12) +
+  labs(title = "Feature Distribution",
+       x = "Value",
+       y = "Count")
+
+```
+
+# Heatmap Correlation Analysisis Code
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(corrplot)
+
+songs <- read_csv("songs_normalize.csv", show_col_types = FALSE)
+
+features <- songs %>%
+  select(popularity, danceability, energy, loudness,
+         speechiness, acousticness, liveness, valence, tempo)
+
+corr_matrix <- cor(features, use = "complete.obs")
+
+corrplot(corr_matrix,
+         method = "color",
+         type = "lower",
+         tl.col = "black",
+         tl.srt = 45,
+         addCoef.col = "black",
+         number.cex = 0.7)
+
+```
+
+# Scatterplot Analysis Code
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(patchwork)
+
+songs <- read_csv("songs_normalize.csv", show_col_types = FALSE)
+
+p1 <- ggplot(songs, aes(x = danceability, y = popularity)) +
+  geom_point(alpha = 0.3, color = "skyblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkblue") +
+  theme_minimal() +
+  labs(title = "Danceability vs Popularity",
+       x = "Danceability",
+       y = "Popularity")
+
+p2 <- ggplot(songs, aes(x = energy, y = popularity)) +
+  geom_point(alpha = 0.3, color = "lightcoral") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkred") +
+  theme_minimal() +
+  labs(title = "Energy vs Popularity",
+       x = "Energy",
+       y = "Popularity")
+
+p1 + p2
+```
+
+# Boxplot Comparison: Hits vs. Non-Hits Songs Code
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyverse)
+
+songs <- read_csv("song_data.csv", show_col_types = FALSE)
+
+songs <- songs %>%
+  mutate(hit = ifelse(song_popularity >= 70, "Hit", "Non-Hit"))
+
+box_data <- songs %>%
+  select(hit, danceability, energy) %>%
+  pivot_longer(cols = c(danceability, energy),
+               names_to = "feature",
+               values_to = "value")
+
+ggplot(box_data, aes(x = hit, y = value, fill = hit)) +
+  geom_boxplot(alpha = 0.8, outlier.alpha = 0.3) +
+  facet_wrap(~ feature, scales = "free_y") +
+  theme_minimal(base_size = 12) +
+  labs(x = "Song Category",
+       y = "Audio Feature Value") +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+install.packages("dplyr")
+install.packages("knitr")
+
+
+library(dplyr)
+library(knitr)
+
+
+descriptives %>%
+  kable(
+    format = "pandoc",
+    digits = 2,
+    col.names = c(
+      "Song Category",
+      "Danceability Median", "Danceability Mean", "Danceability SD",
+      "Energy Median", "Energy Mean", "Energy SD"
+    ),
+    caption = "Table 1. Descriptive Statistics for Danceability and Energy by Song Category."
+  )
+```
+
+# Regression Model Code
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(sjPlot)
+
+Call:
+Im(formula = song_popularity ~ danceability * energy, data = song_data)
+
+Residuals:
+Min 1Q  Median 3Q Max 
+-60.562 -12.484 2.716 15.846 46.214
+
+Coefficients:
+              Estimate Std. Error t value Pr(>Itl)
+(Intercept)   53.666   1.693  31.708 < 2e-16 ***
+danceability  -2.655  2.840  -0.935   0.35 
+energy        -16.422  2.582  -6.359  2.08e-10 ***
+danceability:  28.291. 4.350  6.503 8.06e-11 ***
+energy
+—--
+
+Signif. codes: 0 ***’ 0.001 ***' 0.01 '*' 0.05 '' 0.1' ' 1
+
+Residual standard error: 21.76 on 18831 degrees of freedom
+Multiple R-squared: 0.0131,
+Adjusted R-squared: 0.01295
+F-statistic: 83.34 on 3 and 18831 DF, p-value: < 2.2e-16
+```
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(sjPlot)
+
+song_data <- read.csv("song_data.csv")
+
+m3 <- lm(song_popularity ~ danceability * energy, data = song_data)
+summary(m3)
+tab_model(m3)
+```
+
+# Popularity Trend Code
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(patchwork)
+
+songs <- read_csv("song_data.csv", show_col_types = FALSE)
+
+songs_clean <- songs %>%
+  select(song_popularity, energy, danceability) %>%
+  drop_na()
+
+p_energy <- ggplot(songs_clean, aes(x = energy, y = song_popularity)) +
+  geom_point(alpha = 0.3, color = "#1f77b4") +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  theme_minimal(base_size = 12) +
+  labs(title = "Energy vs Popularity",
+       x = "Energy",
+       y = "Popularity")
+
+p_dance <- ggplot(songs_clean, aes(x = danceability, y = song_popularity)) +
+  geom_point(alpha = 0.3, color = "#2ca02c") +
+  geom_smooth(method = "lm", color = "black", se = FALSE) +
+  theme_minimal(base_size = 12) +
+  labs(title = "Danceability vs Popularity",
+       x = "Danceability",
+       y = "Popularity")
+
+p_energy + p_dance
+```
+
+# How Audio Features change with increasing Popularity Code
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+song_data <- read.csv("song_data.csv")
+
+spotify_quantile <- song_data %>%
+  mutate(pop_quantile = ntile(song_popularity, 10)) %>%
+  group_by(pop_quantile) %>%
+  summarise(
+    avg_dance  = mean(danceability, na.rm = TRUE),
+    avg_energy = mean(energy, na.rm = TRUE)
+  )
+
+ggplot(spotify_quantile, aes(pop_quantile, avg_dance)) +
+  geom_line(color = "#33a02c", linewidth = 1.4) +
+  geom_point(color = "#33a02c", size = 3) +
+  theme_minimal() +
+  labs(
+    title = "Trend of Danceability Across Popularity Levels",
+    x = "Popularity Quantile (Low → High)",
+    y = "Average Danceability"
+  )
+
+ggplot(spotify_quantile, aes(pop_quantile, avg_energy)) +
+  geom_line(color = "#1f78b4", linewidth = 1.4) +
+  geom_point(color = "#1f78b4", size = 3) +
+  theme_minimal() +
+  labs(
+    title = "Trend of Energy Across Popularity Levels",
+    x = "Popularity Quantile (Low → High)",
+    y = "Average Energy"
+  )
+
+```
+
+<div>
+
+</div>
