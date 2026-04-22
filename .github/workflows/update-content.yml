@@ -130,10 +130,20 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             libcurl4-openssl-dev \
             libxml2-dev \
+            libssl-dev \
+            libicu-dev \
+            libzip-dev \
+            zlib1g-dev \
+            libbz2-dev \
+            liblzma-dev \
+            libpcre2-dev \
             libfontconfig1-dev \
             libfreetype6-dev \
             libharfbuzz-dev \
             libfribidi-dev \
+            libcairo2-dev \
+            libxt-dev \
+            libx11-dev \
             libpng-dev \
             libjpeg-dev \
             libtiff5-dev
@@ -162,6 +172,9 @@ jobs:
       - name: Install repository dependencies (R via renv.lock or critical only, Python via requirements.txt)
         run: |
           set -euo pipefail
+
+          # Reducing lock-related install failures on cached/shared CI libraries
+          export R_INSTALL_STAGED=FALSE
 
           REPOS=(source-analytical source-datasci source-technical source-dissertation)
 
@@ -215,10 +228,10 @@ jobs:
       - name: Verify critical R packages
         run: |
           set -euo pipefail
-          echo "Verifying critical R packages (knitr, rmarkdown, RefManageR, devtools)"
+          echo "Verifying critical R packages (knitr, rmarkdown, RefManageR, tidyverse, treemap, remotes, moments, gridExtra)"
           cat > /tmp/verify_critical_packages.R <<'R_EOF'
           # Verify critical R packages are installed and print versions
-          crit <- c("knitr", "rmarkdown", "RefManageR", "devtools", "moments", "gridExtra")
+          crit <- c("knitr", "rmarkdown", "RefManageR", "tidyverse", "treemap", "remotes", "moments", "gridExtra")
           miss <- crit[!vapply(crit, requireNamespace, logical(1), quietly = TRUE)]
           if (length(miss)) {
             writeLines(paste0("::error::Missing critical packages: ", paste(miss, collapse = ",")))
