@@ -270,7 +270,7 @@ jobs:
               echo "Found topics in $SRC_REPO_DIR; merging into $DEST_ROOT/"
               # Capture rsync output; if non-empty, treat as change. -i itemizes only actual changes.
               # No --delete so deletions in a source repo don't remove files from the unified set.
-              RSYNC_OUTPUT=$(rsync -a -i "$SRC_TOPICS/" "$DEST_ROOT/" 2>&1 || true)
+              RSYNC_OUTPUT=$(rsync -a -i --no-links "$SRC_TOPICS/" "$DEST_ROOT/" 2>&1 || true)
               if [ -n "$RSYNC_OUTPUT" ]; then
                 echo "$RSYNC_OUTPUT" | sed 's/^/  rsync: /'
                 CHANGED=true
@@ -436,6 +436,14 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
+      - name: Remove broken symlinks
+        run: |
+          set -euo pipefail
+          echo "Removing broken symlinks from workspace to avoid Jekyll errors"
+          # Find and delete symlinks whose targets do not exist
+          find . -type l ! -exec test -e {} \; -print -delete || true
+          echo "Removed broken symlinks (if any)."
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
