@@ -8,13 +8,23 @@
 CRAN_MIRROR <- Sys.getenv("CRAN_MIRROR", "https://cloud.r-project.org")
 
 
+# Ensure a usable CRAN entry exists in a repos vector; fall back to CRAN_MIRROR
+ensure_cran_repos <- function(repos = getOption("repos")) {
+  if (is.null(repos) || length(repos) == 0) repos <- character()
+  cran_url <- NULL
+  if (length(repos) && !is.null(repos)) cran_url <- repos[["CRAN"]]
+  # Treat '@CRAN@' or any string containing '@CRAN' as unset
+  invalid <- is.null(cran_url) || !nzchar(cran_url) || (is.character(cran_url) && grepl("@CRAN", cran_url, fixed = TRUE))
+  if (invalid) {
+    repos <- c(CRAN = CRAN_MIRROR)
+  }
+  repos
+}
+
+
 # Configuring resilient defaults for network/package installation in CI
 configure_install_defaults <- function() {
-  repos <- getOption("repos")
-  cran_repo <- repos[["CRAN"]]
-  if (is.null(cran_repo) || !nzchar(cran_repo) || identical(cran_repo, "@CRAN")) {
-    options(repos = c(CRAN = "https://cloud.r-project.org"))
-  }
+  options(repos = ensure_cran_repos(getOption("repos")))
 
   timeout <- getOption("timeout")
   if (is.null(timeout) || timeout < 600) {
@@ -76,11 +86,7 @@ cleanup_library_locks <- function(lib) {
 # Installing a single package with retries and lock cleanup
 install_single_package <- function(pkg, repos, lib, attempts = 3L) {
   # Ensure repos is valid and contains a CRAN mirror
-  repos_local <- repos
-  if (is.null(repos_local) || length(repos_local) == 0) repos_local <- getOption("repos")
-  cran_url <- NULL
-  if (length(repos_local) && !is.null(repos_local)) cran_url <- repos_local[["CRAN"]]
-  if (is.null(cran_url) || !nzchar(cran_url) || identical(cran_url, "@CRAN")) repos_local <- c(CRAN = CRAN_MIRROR)
+  repos_local <- ensure_cran_repos(repos)
 
   for (attempt in seq_len(attempts)) {
     cleanup_library_locks(lib)
@@ -134,10 +140,7 @@ install_packages_safe <- function(
   cleanup_library_locks(lib)
 
   # Normalise repos parameter to ensure a CRAN mirror is always set
-  if (is.null(repos) || length(repos) == 0) repos <- getOption("repos")
-  cran_url <- NULL
-  if (length(repos) && !is.null(repos)) cran_url <- repos[["CRAN"]]
-  if (is.null(cran_url) || !nzchar(cran_url) || identical(cran_url, "@CRAN")) repos <- c(CRAN = CRAN_MIRROR)
+  repos <- ensure_cran_repos(repos)
 
   failed <- character()
   # Attempt vectorised install first for dependency resolution efficiency
@@ -209,7 +212,7 @@ install_from_renv_lock <- function(lock_file) {
   if (!requireNamespace("jsonlite", quietly = TRUE)) {
     install.packages(
       "jsonlite",
-      repos = getOption("repos"),
+      repos = ensure_cran_repos(getOption("repos")),
       lib = getOption("ci.install.lib", .libPaths()[1]),
       quiet = FALSE,
       dependencies = c("Depends", "Imports", "LinkingTo")
