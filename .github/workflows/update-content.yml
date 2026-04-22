@@ -62,6 +62,8 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -146,7 +148,13 @@ jobs:
             libx11-dev \
             libpng-dev \
             libjpeg-dev \
-            libtiff5-dev
+            libtiff5-dev \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-xetex \
+            texlive-pictures \
+            texlive-fonts-extra
           echo "Installing git + libgit2 for usethis/gert"
           sudo apt-get install -y --no-install-recommends \
             git \
