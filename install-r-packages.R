@@ -4,6 +4,10 @@
 # This script installs packages from renv.lock files in source repositories
 
 
+# Default CRAN mirror used when no mirror is configured
+CRAN_MIRROR <- Sys.getenv("CRAN_MIRROR", "https://cloud.r-project.org")
+
+
 # Configuring resilient defaults for network/package installation in CI
 configure_install_defaults <- function() {
   repos <- getOption("repos")
@@ -71,6 +75,13 @@ cleanup_library_locks <- function(lib) {
 
 # Installing a single package with retries and lock cleanup
 install_single_package <- function(pkg, repos, lib, attempts = 3L) {
+  # Ensure repos is valid and contains a CRAN mirror
+  repos_local <- repos
+  if (is.null(repos_local) || length(repos_local) == 0) repos_local <- getOption("repos")
+  cran_url <- NULL
+  if (length(repos_local) && !is.null(repos_local)) cran_url <- repos_local[["CRAN"]]
+  if (is.null(cran_url) || !nzchar(cran_url) || identical(cran_url, "@CRAN")) repos_local <- c(CRAN = CRAN_MIRROR)
+
   for (attempt in seq_len(attempts)) {
     cleanup_library_locks(lib)
     cat(sprintf("Installing %s (attempt %d/%d)\n", pkg, attempt, attempts))
@@ -79,7 +90,7 @@ install_single_package <- function(pkg, repos, lib, attempts = 3L) {
       {
         install.packages(
           pkg,
-          repos = repos,
+          repos = repos_local,
           lib = lib,
           quiet = FALSE,
           dependencies = c("Depends", "Imports", "LinkingTo")
@@ -121,6 +132,12 @@ install_packages_safe <- function(
   cat("Target library:", lib, "\n")
 
   cleanup_library_locks(lib)
+
+  # Normalise repos parameter to ensure a CRAN mirror is always set
+  if (is.null(repos) || length(repos) == 0) repos <- getOption("repos")
+  cran_url <- NULL
+  if (length(repos) && !is.null(repos)) cran_url <- repos[["CRAN"]]
+  if (is.null(cran_url) || !nzchar(cran_url) || identical(cran_url, "@CRAN")) repos <- c(CRAN = CRAN_MIRROR)
 
   failed <- character()
   # Attempt vectorised install first for dependency resolution efficiency
