@@ -1,0 +1,139 @@
+---
+title: "Example Delayed Exam"
+subtitle: "Analytical Skills for Business"
+author: "© Benjamin Gross"
+date: "2026-04-09"
+format:
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-fold: show
+    theme: cosmo
+bibliography: ../../literature/essential_readings.bib
+csl: ../../literature/apa.csl
+---
+
+::: {.callout-note}
+## Exam Information
+This document contains an alternative delayed exam for the Analytical Skills for Business course at Hochschule Fresenius.
+
+**Total Points:** 90  
+**Duration:** 90 minutes (1 point per minute)  
+**Questions:** 7 sections
+:::
+
+
+# Collaborative Analytics Workflow and Reproducibility {#sec-collab-repro}
+
+**Points: 14**
+
+## Question
+
+a) (6 points) In an analytics team, two analysts are working on the same forecasting project. Describe a simple collaboration workflow with Git branches and pull requests.
+
+b) (4 points) Explain briefly how commit messages and repository history support reproducibility in business analytics projects.
+
+c) (4 points) Give two concrete risks for analytics projects when version control is not used.
+
+
+# Data Types and Suitable Visualizations {#sec-data-viz}
+
+**Points: 16**
+
+## Question
+
+a) (8 points) Distinguish between categorical, numerical, and time series data. For each type, name one suitable visualization and explain why it fits.
+
+b) (8 points) A company wants to communicate weekly sales performance to PR managers. Propose two visualizations and explain which business question each visualization answers.
+
+
+# Data Quality Management Process {#sec-data-quality-process}
+
+**Points: 14**
+
+## Question
+
+a) (6 points) Describe the five-step data cleaning workflow (profiling, validation, cleaning, verification, documentation) and explain the goal of each step.
+
+b) (8 points) Choose two of the following data issues and explain one detection method plus one treatment strategy for each: missing values, inconsistent formats, duplicate records, outliers.
+
+
+# Association and Model Interpretation {#sec-association-interpretation}
+
+**Points: 14**
+
+## Question
+
+a) (7 points) Explain what correlation measures.
+
+b) (7 points) Give one business example where correlation is useful and one business example where linear regression is useful.
+
+
+# Regression Quality and Assumptions {#sec-regression-assumptions}
+
+**Points: 12**
+
+## Question
+
+a) (6 points) Explain the meaning of R-squared in simple terms.
+
+b) (6 points) Name an assumption of linear regression and explain a practical consequence if theis assumption is violated.
+
+
+# No-Code/Low-Code in Analytics Strategy {#sec-nocode-strategy}
+
+**Points: 10**
+
+## Question
+
+a) (5 points) Select two tools from the course (for example n8n, Tableau, Power BI, KNIME, QGIS, Streamlit on Snowflake). For each tool, describe one realistic business use case.
+
+b) (5 points) Explain one situation where no-code/low-code is preferable to custom programming, and one situation where custom programming is preferable.
+
+
+# Practical R Programming and Data Wrangling {#sec-r-practical-alt}
+
+**Points: 10**
+
+## Part a: Tibble and Summary
+
+**Points: 4**
+
+### Question
+
+Write R code to create a tibble named `kpi_data` with two columns:
+
+- `month` = Jan, Feb, Mar, Apr
+- `revenue` = 42, 50, 47, 55
+
+Then calculate and print:
+
+- mean revenue
+- standard deviation of revenue
+
+## Part b: Percentiles
+
+**Points: 3**
+
+### Question
+
+Write R code to compute the 25th, 50th, and 75th percentiles of the `revenue` column in `kpi_data`.
+
+## Part c: Simple Visualization
+
+**Points: 3**
+
+### Question
+
+Write R code with `ggplot2` to create a line chart of revenue by month.
+
+# References {#sec-references}
+
+Cetinkaya-Rundel, M., & Hardin, J. (2021). *Introduction to modern statistics* (2nd ed.). OpenIntro.
+
+Illowsky, B., & Dean, S. (2018). *Introductory statistics*. OpenStax.
+
+GitHub Docs. (2024). *About GitHub and Git*. https://docs.github.com/en/get-started/start-your-journey/about-github-and-git
+
+KNIME. (2024). *Analytics Platform*. https://www.knime.com

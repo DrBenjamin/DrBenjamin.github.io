@@ -16,7 +16,7 @@ csl: ../literature/apa.csl
 
 ::: {.callout-note}
 ## Exam Information
-This document contains example exam questions with detailed solutions for the Analytical Skills for Business course at Hochschule Fresenius.
+This document contains example exam questions for the Analytical Skills for Business course at Hochschule Fresenius.
 
 **Total Points:** 90  
 **Duration:** 90 minutes (1 point per minute)
