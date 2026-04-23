@@ -243,8 +243,8 @@ install_from_renv_lock <- function(lock_file) {
 # Function to ensure critical packages are available
 ensure_critical_packages <- function() {
   # Add RefManageR (bibliography), treat as critical for render
-  critical_packages <- c("knitr", "rmarkdown", "RefManageR", "moments", "gridExtra", "tidyverse", "dplyr", "ggplot2", "lmtest", "treemap", "reshape2", "remotes")
-  optional_packages <- c("devtools")
+  critical_packages <- c("knitr", "rmarkdown", "RefManageR", "moments", "gridExtra")
+  optional_packages <- c("devtools", "tidyverse", "dplyr", "ggplot2", "lmtest", "treemap", "reshape2", "remotes")
 
   cat("Verifying critical packages for Quarto:", paste(critical_packages, collapse = ", "), "\n")
   cat("Optional packages:", paste(optional_packages, collapse = ", "), "\n")
