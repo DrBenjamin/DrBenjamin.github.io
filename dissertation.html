@@ -25,6 +25,7 @@ margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
+margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
 margin-left:2em;
@@ -2215,7 +2216,7 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#experimental-setup" id="toc-experimental-setup" class="nav-link" data-scroll-target="#experimental-setup">4.1 Experimental setup</a></li>
   <li><a href="#training-pipeline" id="toc-training-pipeline" class="nav-link" data-scroll-target="#training-pipeline">4.2 Training pipeline</a></li>
-  <li><a href="#inference-pipeline-and-deployment-artefacts" id="toc-inference-pipeline-and-deployment-artefacts" class="nav-link" data-scroll-target="#inference-pipeline-and-deployment-artefacts">4.3 Inference pipeline and deployment artefacts</a></li>
+  <li><a href="#inference-pipeline-and-deployment-artifacts" id="toc-inference-pipeline-and-deployment-artifacts" class="nav-link" data-scroll-target="#inference-pipeline-and-deployment-artifacts">4.3 Inference pipeline and deployment artifacts</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">5. Results</a>
   <ul>
@@ -2272,7 +2273,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">23.04.2026 10:45</p>
+      <p class="date">24.04.2026 09:48</p>
     </div>
   </div>
   
@@ -2292,21 +2293,23 @@ vertical-align: -.125em;
 
 <section id="msc-in-data-science-for-health-and-social-care" class="level1">
 <h1>MSc in Data Science for Health and Social Care</h1>
-<p>Examination Number: B248593 First reviewer: Dr. Ahmar Shah Second reviewer: John Wilson</p>
+<p><strong>Examination Number:</strong> B248593</p>
+<p><strong>First reviewer:</strong> Dr. Ahmar Shah</p>
+<p><strong>Second reviewer:</strong> John Wilson</p>
 <section id="dissertation-title" class="level2">
 <h2 class="anchored" data-anchor-id="dissertation-title">Dissertation Title</h2>
-<p>Detecting Movement Imbalances using a custom TensorFlow Lite Model utilizing Google MediaPipe framework.</p>
+<p>Detecting Movement Imbalances using custom TensorFlow Lite Models utilizing the Google MediaPipe framework.</p>
 </section>
 </section>
 <section id="introduction" class="level1">
 <h1>1. Introduction</h1>
-<p>Healthcare is increasingly recognizing the importance of movement quality and postural balance in preventing injury, managing chronic conditions, and optimizing physical performance. However, traditional methods for assessing posture and movement often rely on subjective clinical observation or expensive motion capture systems, limiting their accessibility and consistency. Advances in artificial intelligence (AI) and computer vision offer promising avenues for developing objective, scalable tools to analyze human movement patterns. This dissertation explores the application of Convolutional Neural Networks (CNNs) within the Google MediaPipe framework to detect and analyze habitual patterns of imbalance in head-neck-torso alignment, with a focus on transfer learning to adapt pre-trained models for clinical relevance.</p>
+<p>Healthcare is increasingly recognizing the importance of movement quality and postural balance in preventing injury, managing chronic conditions, and optimizing physical performance <span class="citation" data-cites="Whittaker2017">(<a href="#ref-Whittaker2017" role="doc-biblioref">Whittaker et al., 2017</a>)</span>. However, <span class="citation" data-cites="Wijekulasuriya">(<a href="#ref-Wijekulasuriya" role="doc-biblioref"><strong>Wijekulasuriya?</strong></a>)</span> found in there extensive actual meta analysis that traditional methods for assessing posture and movement often rely on subjective clinical observations, limiting their accessibility and consistency. Advances in artificial intelligence (AI) and computer vision offer promising avenues for developing objective, scalable tools to analyze human movement patterns. This dissertation explores the application of Convolutional Neural Networks (CNNs) within the Google MediaPipe framework to detect and analyze habitual patterns of imbalance in head-neck-torso alignment, with a focus on transfer learning to adapt pre-trained models for clinical relevance.</p>
 <section id="background-and-rationale" class="level2">
 <h2 class="anchored" data-anchor-id="background-and-rationale">1.1 Background and rationale</h2>
-<p>Human posture and coordination are central to both health and performance. Impairments such as muscular tension, poor motor control, or postural imbalance contribute significantly to discomfort, injury, and reduced physical performance in daily and professional life [1]. Advanced motor skills rely on precise kinesthetic differentiation, including fine motor control, proprioceptive sensitivity, accurate force regulation, coordinated timing, and the economy of movement. These elements form the basis of effective movement in sports, rehabilitation, and everyday function [2]. Recent research highlights that chronic low back pain and other movement system impairments are closely associated with sustained postural deviations and maladaptive movement patterns that often develop gradually and may not be apparent during isolated clinical assessments [3], [4].</p>
-<p>Traditional approaches to assessing posture and coordination rely on subjective evaluations, clinical observation, expensive motion analysis systems, or extensive practitioner expertise. While commercial software for posture assessment exists, these solutions often require professional oversight and remain limited in their ability to capture subtle or habitual patterns of imbalance consistently [5]. This highlights a clear gap between the qualitative nature of clinical assessments and the potential for more objective, data-driven methods enabled by modern machine learning techniques.</p>
-<p>Recent advances in computer vision and artificial intelligence provide opportunities to bridge these limitations. Convolutional Neural Networks (CNNs) have demonstrated high accuracy in identifying patterns within image and video data and are increasingly applied in gait analysis, posture detection, and motion tracking [6]. Among available frameworks, the Google MediaPipe framework brings a lightweight approach that can be run in the browser or on mobile devices, utilizing a statistical 3D human shape modeling pipeline offered as a trainable and modular deep learning framework. It can accurately represent full-body details to detect pose and posture [7], [8].</p>
-<p>From my perspective as a physiotherapist with a professional focus on movement quality, these gaps are not purely academic but deeply practical. It required years of training and clinical experience to develop the ability to assess movement with precision. The possibility of using lightweight AI to complement clinical expertise, enhance rehabilitation outcomes, and support performance improvement is therefore highly compelling.</p>
+<p>Human posture and coordination are central to both health and performance. Impairments such as muscular tension, poor motor control, or postural imbalance contribute significantly to discomfort, injury, and reduced physical performance in daily and professional life <span class="citation" data-cites="Kubalek-Schrder2013">(<a href="#ref-Kubalek-Schrder2013" role="doc-biblioref">Kubalek-Schröder &amp; Dehler, 2013</a>)</span>. Advanced motor skills rely on precise kinesthetic differentiation, including fine motor control, proprioceptive sensitivity, accurate force regulation, coordinated timing, and the economy of movement. These elements form the basis of effective movement in sports, rehabilitation, and everyday function <span class="citation" data-cites="ZauckerP2010">(<a href="#ref-ZauckerP2010" role="doc-biblioref">P., 2010</a>)</span>. Recent research highlights that chronic low back pain and other movement system impairments are closely associated with sustained postural deviations and maladaptive movement patterns that often develop gradually and may not be apparent during isolated clinical assessments <span class="citation" data-cites="Sahrmann2017">(<a href="#ref-Sahrmann2017" role="doc-biblioref">Sahrmann et al., 2017</a>)</span>, <span class="citation" data-cites="Ge2022">(<a href="#ref-Ge2022" role="doc-biblioref">Ge et al., 2022</a>)</span>.</p>
+<p>Traditional approaches to assessing posture and coordination rely on subjective evaluations, clinical observation, expensive motion analysis systems, or extensive practitioner expertise. While commercial software for posture assessment exists, these solutions often require professional oversight and remain limited in their ability to capture subtle or habitual patterns of imbalance consistently <span class="citation" data-cites="Badhe2018">(<a href="#ref-Badhe2018" role="doc-biblioref">Badhe &amp; Kulkarni, 2018</a>)</span>. This highlights a clear gap between the qualitative nature of clinical assessments and the potential for more objective, data-driven methods enabled by modern machine learning techniques.</p>
+<p>Recent advances in computer vision and artificial intelligence provide opportunities to bridge these limitations. Convolutional Neural Networks (CNNs) have demonstrated high accuracy in identifying patterns within image and video data and are increasingly applied in gait analysis, posture detection, and motion tracking <span class="citation" data-cites="Jiang2023">(<a href="#ref-Jiang2023" role="doc-biblioref">Jiang et al., 2023</a>)</span>. Among available frameworks, the Google MediaPipe framework brings a lightweight approach that can be run in the browser or on mobile devices, utilizing a statistical 3D human shape modeling pipeline offered as a trainable and modular deep learning framework. It can accurately represent full-body details to detect pose and posture <span class="citation" data-cites="Xu2020">(<a href="#ref-Xu2020" role="doc-biblioref">Xu et al., 2020</a>)</span>, <span class="citation" data-cites="Bazarevsky2020">(<a href="#ref-Bazarevsky2020" role="doc-biblioref">Bazarevsky et al., 2020</a>)</span>.</p>
+<p>As a physiotherapist with focus on movement quality, I found these gaps were not purely academic but deeply practical in my clinical practice. To reach a level of good understanding of movement (patterns) it required years of training and clinical experience to develop. For instance the ability to accurately assess the quality of movement based on key indicators such as the passive rotatory mobility of the fifth thoracic vertebra (Th5) and adjacent vertebrae <span class="citation" data-cites="Tachihara2019">(<a href="#ref-Tachihara2019" role="doc-biblioref">Tachihara &amp; Hamada, 2019</a>)</span>. The possibility of using lightweight AI to complement clinical expertise, enhance rehabilitation outcomes, and support performance improvement is therefore highly compelling.</p>
 </section>
 <section id="research-question-aim-and-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="research-question-aim-and-objectives">1.2 Research question, aim, and objectives</h2>
@@ -2328,9 +2331,9 @@ Finetuning and evaluation of a machine learning model for posture and movement q
 </section>
 <section id="literature-review" class="level1">
 <h1>2. Literature Review</h1>
-<p>However, recent validation studies comparing MediaPipe with gold-standard motion capture systems reveal measurable discrepancies in landmark accuracy, particularly for subtle postural features, highlighting the need for domain-specific refinement for clinical use [9]. More broadly, current pose estimation models remain limited by sensitivity to noise and 2D–3D estimation gaps, reducing their reliability for detecting the subtle asymmetries critical to movement imbalance analysis [9], [10]. Fairness and representativeness in pose estimation systems are also important concerns: current Pose Estimation Models (PEMs) exhibit performance disparities across demographic groups, with reduced accuracy for underrepresented populations in training datasets [10]. Available datasets often focus on males and light-skinned subjects in age groups 19–50 and under-represent females, older adults, and people with darker skin tones, creating the possibility of systematic errors in movement analysis.</p>
-<p>Consequently, while MediaPipe Pose serves as a robust foundation for pose detection, it does not inherently capture the fine-grained symmetry metrics, sagittal and coronal balance indicators, or compensatory movement patterns that are essential for clinical postural and movement analysis. AI-based markerless systems nonetheless represent an important step towards closing the gap between theoretical research and practical implementation in remote clinical assessment [11], [12].</p>
-<p>This project uses transfer learning [9] to adapt a pre-trained Google MediaPipe CNN model, originally trained on extensive ImageNet data, to a new Kaggle dataset with more relevant and higher-quality images for posture imbalance detection. By utilizing pre-learned feature representations, the model can achieve faster convergence and improved accuracy even with a comparatively smaller or domain-specific dataset.</p>
+<p>However, recent validation studies comparing MediaPipe with gold-standard motion capture systems reveal measurable discrepancies in landmark accuracy, particularly for subtle postural features, highlighting the need for domain-specific refinement for clinical use [9]. More broadly, current pose estimation models remain limited by sensitivity to noise and 2D–3D estimation gaps, reducing their reliability for detecting the subtle asymmetries critical to movement imbalance analysis <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span>, <span class="citation" data-cites="Lachance2023">(<a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Fairness and representativeness in pose estimation systems are also important concerns: current Pose Estimation Models (PEMs) exhibit performance disparities across demographic groups, with reduced accuracy for underrepresented populations in training datasets [10]. Available datasets often focus on males and light-skinned subjects in age groups 19–50 and under-represent females, older adults, and people with darker skin tones, creating the possibility of systematic errors in movement analysis.</p>
+<p>Consequently, while MediaPipe Pose serves as a robust foundation for pose detection, it does not inherently capture the fine-grained symmetry metrics, sagittal and coronal balance indicators, or compensatory movement patterns that are essential for clinical postural and movement analysis. AI-based markerless systems nonetheless represent an important step towards closing the gap between theoretical research and practical implementation in remote clinical assessment <span class="citation" data-cites="Wagh2024">(<a href="#ref-Wagh2024" role="doc-biblioref">Wagh et al., 2024</a>)</span>, <span class="citation" data-cites="UltralyticsInc2025">(<a href="#ref-UltralyticsInc2025" role="doc-biblioref">Inc., 2025</a>)</span>.</p>
+<p>This project uses transfer learning <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span> to adapt a pre-trained Google MediaPipe CNN model, originally trained on extensive ImageNet data, to a new Kaggle dataset with more relevant and higher-quality images for posture imbalance detection. By utilizing pre-learned feature representations, the model can achieve faster convergence and improved accuracy even with a comparatively smaller or domain-specific dataset.</p>
 <p>Lore Ypsum placeholder text: This section will be expanded with a deeper synthesis of related work, critical comparison of methods, and identification of research gaps.</p>
 </section>
 <section id="methodology" class="level1">
@@ -2338,7 +2341,7 @@ Finetuning and evaluation of a machine learning model for posture and movement q
 <p>In this work, we will apply a quantitative, observational design to explore the feasibility of using transfer learning on a pre-trained TensorFlow Lite model for posture and movement imbalance detection. The study will involve secondary data analysis of an existing image dataset curated for posture analysis, with a focus on evaluating the performance of a finetuned CNN model within the Google MediaPipe framework.</p>
 <section id="study-design-and-setting" class="level2">
 <h2 class="anchored" data-anchor-id="study-design-and-setting">3.1 Study design and setting</h2>
-<p>This study is a secondary data analysis exploring postural and movement imbalance detection using artificial intelligence. The project applies a quantitative, observational design, analysing existing image data through supervised machine learning, specifically Convolutional Neural Networks (CNNs) implemented via TensorFlow Lite within the Google MediaPipe framework. The aim is to evaluate whether lightweight AI models can detect subtle patterns of imbalance in posture and coordination and to adapt them for potential clinical use through transfer learning on a posture-specific dataset.</p>
+<p>This study is a secondary data analysis exploring postural and movement imbalance detection using artificial intelligence. The project applies a quantitative, observational design, analyzing existing image data through supervised machine learning, specifically Convolutional Neural Networks (CNNs) implemented via TensorFlow Lite within the Google MediaPipe framework. The aim is to evaluate whether lightweight AI models can detect subtle patterns of imbalance in posture and coordination and to adapt them for potential clinical use through transfer learning on a posture-specific dataset.</p>
 <p>The study will be conducted remotely using a secondary dataset. All data analysis will be performed on secured infrastructure provided by the University of Edinburgh. No new data collection or participant interaction is planned.</p>
 </section>
 <section id="data-source-and-characteristics" class="level2">
@@ -2389,7 +2392,7 @@ Finetuning and evaluation of a machine learning model for posture and movement q
 </section>
 <section id="implementation" class="level1">
 <h1>4. Implementation</h1>
-<p>Lore Ypsum placeholder text: This chapter will detail the final implementation of the model, including the training pipeline, inference pipeline, and deployment artefacts.</p>
+<p>Lore Ypsum placeholder text: This chapter will detail the final implementation of the model, including the training pipeline, inference pipeline, and deployment artifacts.</p>
 <section id="experimental-setup" class="level2">
 <h2 class="anchored" data-anchor-id="experimental-setup">4.1 Experimental setup</h2>
 <p>Lore Ypsum placeholder text: This section will describe the final implementation environment, hardware/software configuration, and reproducible execution setup.</p>
@@ -2398,9 +2401,9 @@ Finetuning and evaluation of a machine learning model for posture and movement q
 <h2 class="anchored" data-anchor-id="training-pipeline">4.2 Training pipeline</h2>
 <p>Lore Ypsum placeholder text: This section will document the final end-to-end training workflow, including dataset split strategy, augmentation settings, and training schedules.</p>
 </section>
-<section id="inference-pipeline-and-deployment-artefacts" class="level2">
-<h2 class="anchored" data-anchor-id="inference-pipeline-and-deployment-artefacts">4.3 Inference pipeline and deployment artefacts</h2>
-<p>Lore Ypsum placeholder text: This section will present the final inference pipeline, exported TensorFlow Lite artefacts, and deployment considerations.</p>
+<section id="inference-pipeline-and-deployment-artifacts" class="level2">
+<h2 class="anchored" data-anchor-id="inference-pipeline-and-deployment-artifacts">4.3 Inference pipeline and deployment artifacts</h2>
+<p>Lore Ypsum placeholder text: This section will present the final inference pipeline, exported TensorFlow Lite artifacts, and deployment considerations.</p>
 </section>
 </section>
 <section id="results" class="level1">
@@ -2415,7 +2418,7 @@ Finetuning and evaluation of a machine learning model for posture and movement q
 </section>
 <section id="error-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="error-analysis">5.3 Error analysis</h2>
-<p>Lore Ypsum placeholder text: This section will analyse misclassifications, edge cases, and expected failure modes.</p>
+<p>Lore Ypsum placeholder text: This section will analyze misclassifications, edge cases, and expected failure modes.</p>
 </section>
 </section>
 <section id="discussion" class="level1">
@@ -2441,13 +2444,13 @@ Finetuning and evaluation of a machine learning model for posture and movement q
 </section>
 <section id="impact-and-dissemination" class="level1">
 <h1>8. Impact and Dissemination</h1>
-<p>The primary expected output is a proof-of-concept lightweight AI model, built with TensorFlow Lite and integrated with Google MediaPipe Pose, capable of detecting and analysing subtle postural and movement imbalances in upper-body alignment. Supporting outputs include annotated code, workflow documentation, and visual examples of pose-based analysis.</p>
+<p>The primary expected output is a proof-of-concept lightweight AI model, built with TensorFlow Lite and integrated with Google MediaPipe Pose, capable of detecting and analyzing subtle postural and movement imbalances in upper-body alignment. Supporting outputs include annotated code, workflow documentation, and visual examples of pose-based analysis.</p>
 <p>The intended impact is to advance accessible, low-cost, and non-invasive approaches for posture and movement assessment, with potential relevance for physiotherapy, sports science, education, and digital health.</p>
 <p>Dissemination will prioritize practitioner- and public-facing channels, including open repository documentation, blog-style communication, and concise visual explanations.</p>
 </section>
 <section id="conclusion-and-future-work" class="level1">
 <h1>9. Conclusion and Future Work</h1>
-<p>Lore Ypsum placeholder text: This chapter will summarise the final contributions, reflect on research objectives, and define priorities for future work.</p>
+<p>Lore Ypsum placeholder text: This chapter will summarize the final contributions, reflect on research objectives, and define priorities for future work.</p>
 </section>
 <section id="appendix-a.-figures" class="level1">
 <h1>Appendix A. Figures</h1>
@@ -2468,8 +2471,49 @@ Finetuning and evaluation of a machine learning model for posture and movement q
 </section>
 <section id="references" class="level1">
 <h1>References</h1>
-<div id="refs" role="list">
-
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Badhe2018" class="csl-entry" role="listitem">
+Badhe, P. C., &amp; Kulkarni, V. (2018). A review on posture assessment. In <em>https://www.iosrjournals.org/iosr-jspe/papers/Vol-5Issue5/Version-1/B05050815.pdf</em>. <a href="https://www.researchgate.net/publication/328981577_A_Review_on_Posture_Assessment">https://www.researchgate.net/publication/328981577_A_Review_on_Posture_Assessment</a>
+</div>
+<div id="ref-Bazarevsky2020" class="csl-entry" role="listitem">
+Bazarevsky, V., Grishchenko, I., Raveendran, K., Zhu, T., Zhang, F., &amp; Grundmann, M. (2020). BlazePose: On-device real-time body pose tracking. <em>Google</em>. <a href="https://arxiv.org/pdf/2006.10204">https://arxiv.org/pdf/2006.10204</a>
+</div>
+<div id="ref-Ge2022" class="csl-entry" role="listitem">
+Ge, L., Pereira, M. J., Yap, C. W., &amp; Heng, B. H. (2022). Chronic low back pain and its impact on physical function, mental health, and health-related quality of life: A cross-sectional study in singapore. <em>Scientific Reports</em>, <em>12</em>. <a href="https://doi.org/10.1038/S41598-022-24703-7">https://doi.org/10.1038/S41598-022-24703-7</a>
+</div>
+<div id="ref-UltralyticsInc2025" class="csl-entry" role="listitem">
+Inc., U. (2025). Pose estimation - ultralytics YOLO docs. In <em>ultralytics</em>. <a href="https://docs.ultralytics.com/tasks/pose/">https://docs.ultralytics.com/tasks/pose/</a>
+</div>
+<div id="ref-Jiang2023" class="csl-entry" role="listitem">
+Jiang, X., Hu, Z., Wang, S., &amp; Zhang, Y. (2023). A survey on artificial intelligence in posture recognition. <em>Computer Modeling in Engineering &amp; Sciences</em>, <em>137</em>, 35–82. <a href="https://doi.org/10.32604/cmes.2023.027676">https://doi.org/10.32604/cmes.2023.027676</a>
+</div>
+<div id="ref-Kakuta2022" class="csl-entry" role="listitem">
+Kakuta, K. C., Kikawa, T., Kumagai, Y., Gupta, J., Pathak, S., &amp; Kumar, G. (2022). Deep learning (CNN) and transfer learning: A review. <em>Journal of Physics: Conference Series</em>, <em>2273</em>, 012029. <a href="https://doi.org/10.1088/1742-6596/2273/1/012029">https://doi.org/10.1088/1742-6596/2273/1/012029</a>
+</div>
+<div id="ref-Kubalek-Schrder2013" class="csl-entry" role="listitem">
+Kubalek-Schröder, S., &amp; Dehler, F. (2013). Funktionsabhängige beschwerdebilder des bewegungssystems. <em>Funktionsabhängige Beschwerdebilder Des Bewegungssystems</em>. <a href="https://doi.org/10.1007/978-3-642-35151-8">https://doi.org/10.1007/978-3-642-35151-8</a>
+</div>
+<div id="ref-Lachance2023" class="csl-entry" role="listitem">
+Lachance, J. M., Thong, W., Shruti, N., &amp; Xiang, A. (2023). A case study in fairness evaluation: Current limitations and challenges for human pose estimation. <em>Sony</em>. <a href="https://r2hcai.github.io/AAAI-23/files/CameraReadys/21.pdf">https://r2hcai.github.io/AAAI-23/files/CameraReadys/21.pdf</a>
+</div>
+<div id="ref-ZauckerP2010" class="csl-entry" role="listitem">
+P., Z. (2010). <em>Ballkoordination bei schülern mit unterschiedlicher sporterfahrung</em>.
+</div>
+<div id="ref-Sahrmann2017" class="csl-entry" role="listitem">
+Sahrmann, S., Azevedo, D. C., &amp; Dillen, L. V. (2017). Diagnosis and treatment of movement system impairment syndromes. <em>Brazilian Journal of Physical Therapy</em>, <em>21</em>, 391. <a href="https://doi.org/10.1016/J.BJPT.2017.08.001">https://doi.org/10.1016/J.BJPT.2017.08.001</a>
+</div>
+<div id="ref-Tachihara2019" class="csl-entry" role="listitem">
+Tachihara, H., &amp; Hamada, J. (2019). Characteristic movement of the ribs, thoracic vertebrae while elevating the upper limbs - influences of age and gender on movements. <em>The Open Orthopaedics Journal</em>, <em>13</em>, 170–176. <a href="https://doi.org/10.2174/1874325001913010170">https://doi.org/10.2174/1874325001913010170</a>
+</div>
+<div id="ref-Wagh2024" class="csl-entry" role="listitem">
+Wagh, V., Scott, M. W., &amp; Kraeutner, S. N. (2024). Quantifying similarities between MediaPipe and a known standard to address issues in tracking 2D upper limb trajectories: Proof of concept study. <em>JMIR Formative Research</em>, <em>8</em>, e56682. <a href="https://doi.org/10.2196/56682">https://doi.org/10.2196/56682</a>
+</div>
+<div id="ref-Whittaker2017" class="csl-entry" role="listitem">
+Whittaker, J. L., Booysen, N., Motte, S. D. L., Dennett, L., Lewis, C. L., Wilson, D., McKay, C., Warner, M., Padua, D., Emery, C. A., &amp; Stokes, M. (2017). Predicting sport and occupational lower extremity injury risk through movement quality screening: A systematic review. <em>British Journal of Sports Medicine</em>, <em>51</em>, 580–585. <a href="https://doi.org/10.1136/BJSPORTS-2016-096760">https://doi.org/10.1136/BJSPORTS-2016-096760</a>
+</div>
+<div id="ref-Xu2020" class="csl-entry" role="listitem">
+Xu, H., Bazavan, E. G., Zanfir, A., Freeman, W. T., Sukthankar, R., &amp; Sminchisescu, C. (2020). GHUM GHUML: Generative 3D human shape and articulated pose models. <em>Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition</em>, 6183–6192. <a href="https://doi.org/10.1109/CVPR42600.2020.00622">https://doi.org/10.1109/CVPR42600.2020.00622</a>
+</div>
 </div>
 </section>
 
