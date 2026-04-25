@@ -83,14 +83,49 @@ cleanup_library_locks <- function(lib) {
 }
 
 
+# Detecting load failures that typically indicate a broken compiled dependency
+is_shared_object_load_failure <- function(error_message) {
+  if (is.null(error_message) || !nzchar(error_message)) {
+    return(FALSE)
+  }
+
+  grepl(
+    "unable to load shared object|lazy loading failed|undefined symbol",
+    error_message,
+    ignore.case = TRUE
+  )
+}
+
+
+# Extracting package names from shared-object load failures
+extract_broken_packages <- function(error_message) {
+  if (is.null(error_message) || !nzchar(error_message)) {
+    return(character())
+  }
+
+  matches <- regmatches(
+    error_message,
+    gregexpr("/([^/]+)/libs/[^/]+\\.so", error_message, perl = TRUE)
+  )[[1]]
+
+  if (!length(matches) || identical(matches, character(0)) || matches[1] == "") {
+    return(character())
+  }
+
+  unique(sub(".*/([^/]+)/libs/[^/]+\\.so.*", "\\1", matches, perl = TRUE))
+}
+
+
 # Installing a single package with retries and lock cleanup
-install_single_package <- function(pkg, repos, lib, attempts = 3L) {
+install_single_package <- function(pkg, repos, lib, attempts = 3L, allow_repair = TRUE) {
   # Ensure repos is valid and contains a CRAN mirror
   repos_local <- ensure_cran_repos(repos)
 
   for (attempt in seq_len(attempts)) {
     cleanup_library_locks(lib)
     cat(sprintf("Installing %s (attempt %d/%d)\n", pkg, attempt, attempts))
+
+    error_message <- NULL
 
     tryCatch(
       {
@@ -103,12 +138,39 @@ install_single_package <- function(pkg, repos, lib, attempts = 3L) {
         )
       },
       error = function(e) {
-        cat("Install error for", pkg, ":", conditionMessage(e), "\n")
+        error_message <<- conditionMessage(e)
+        cat("Install error for", pkg, ":", error_message, "\n")
       }
     )
 
     if (requireNamespace(pkg, quietly = TRUE)) {
       return(TRUE)
+    }
+
+    if (allow_repair && is_shared_object_load_failure(error_message)) {
+      repair_targets <- unique(c(pkg, extract_broken_packages(error_message)))
+      if (length(repair_targets)) {
+        cat("Repairing package load failure for:", paste(repair_targets, collapse = ", "), "\n")
+        for (repair_pkg in repair_targets) {
+          cleanup_library_locks(lib)
+          pkg_dir <- file.path(lib, repair_pkg)
+          if (dir.exists(pkg_dir)) {
+            cat("Removing broken package directory before repair:", pkg_dir, "\n")
+            unlink(pkg_dir, recursive = TRUE, force = TRUE)
+          }
+          install_single_package(
+            repair_pkg,
+            repos = repos,
+            lib = lib,
+            attempts = max(1L, attempts - 1L),
+            allow_repair = FALSE
+          )
+        }
+
+        if (requireNamespace(pkg, quietly = TRUE)) {
+          return(TRUE)
+        }
+      }
     }
 
     pkg_dir <- file.path(lib, pkg)
@@ -225,9 +287,9 @@ install_from_renv_lock <- function(lock_file) {
 
   cat("Found", length(package_names), "packages in renv.lock\n")
 
-  # Get currently installed packages
-  installed <- rownames(installed.packages())
-  missing <- setdiff(package_names, installed)
+  # Reinstall packages that are missing or load-failed, not just absent from the library index
+  loadable <- vapply(package_names, requireNamespace, logical(1), quietly = TRUE)
+  missing <- package_names[!loadable]
 
   if (length(missing) > 0) {
     cat("Installing", length(missing), "missing packages\n")
@@ -243,7 +305,7 @@ install_from_renv_lock <- function(lock_file) {
 # Function to ensure critical packages are available
 ensure_critical_packages <- function() {
   # Add RefManageR (bibliography), treat as critical for render
-  critical_packages <- c("knitr", "rmarkdown", "RefManageR", "moments", "gridExtra")
+  critical_packages <- c("knitr", "rmarkdown", "RefManageR", "moments", "gridExtra", "rlang")
   optional_packages <- c("devtools", "tidyverse", "dplyr", "ggplot2", "lmtest", "treemap", "reshape2", "remotes")
 
   cat("Verifying critical packages for Quarto:", paste(critical_packages, collapse = ", "), "\n")
@@ -253,7 +315,19 @@ ensure_critical_packages <- function() {
 
   if (length(missing_critical) > 0) {
     cat("Installing missing critical packages:", paste(missing_critical, collapse = ", "), "\n")
-    failed <- install_packages_safe(missing_critical)
+    bootstrap_packages <- intersect(c("rlang"), missing_critical)
+    if (length(bootstrap_packages)) {
+      cat("Bootstrapping core dependency packages first:", paste(bootstrap_packages, collapse = ", "), "\n")
+      for (pkg in bootstrap_packages) {
+        install_single_package(pkg, repos = getOption("repos"), lib = getOption("ci.install.lib", .libPaths()[1]))
+      }
+    }
+
+    remaining_critical <- setdiff(missing_critical, bootstrap_packages)
+    failed <- character()
+    if (length(remaining_critical) > 0) {
+      failed <- install_packages_safe(remaining_critical)
+    }
     # Report any failed critical installs
     if (length(failed)) {
       cat("Warning: failed to install critical packages:", paste(failed, collapse = ", "), "\n")
