@@ -83,6 +83,80 @@ cleanup_library_locks <- function(lib) {
 }
 
 
+# Remove a package directory and any compiled libraries for it
+remove_package_dir <- function(pkg, lib) {
+  pkg_dir <- file.path(lib, pkg)
+  if (dir.exists(pkg_dir)) {
+    cat("Removing package directory:", pkg_dir, "\n")
+    unlink(pkg_dir, recursive = TRUE, force = TRUE)
+  }
+  libs_dir <- file.path(lib, pkg, "libs")
+  if (dir.exists(libs_dir)) {
+    cat("Removing compiled libs for:", pkg, "->", libs_dir, "\n")
+    unlink(libs_dir, recursive = TRUE, force = TRUE)
+  }
+}
+
+
+# Scan an installation library for packages that fail to load due to
+# compiled/shared-object problems and remove them so they can be rebuilt.
+check_and_remove_broken_packages <- function(lib) {
+  inst <- tryCatch(installed.packages(lib.loc = lib), error = function(e) NULL)
+  if (is.null(inst) || nrow(inst) == 0) return(invisible(character()))
+
+  broken <- character()
+  for (pkg in rownames(inst)) {
+    err_msg <- NULL
+    ok <- TRUE
+    tryCatch({
+      requireNamespace(pkg, quietly = TRUE)
+    }, error = function(e) {
+      ok <<- FALSE
+      err_msg <<- conditionMessage(e)
+    })
+
+    if (!ok && is_shared_object_load_failure(err_msg)) {
+      cat("Detected broken compiled package:", pkg, "->", err_msg, "\n")
+      remove_package_dir(pkg, lib)
+      broken <- c(broken, pkg)
+    }
+  }
+
+  invisible(unique(broken))
+}
+
+
+# Ensure a package can be loaded; if not, attempt to install it (with a
+# special GitHub fallback for `rlang` which commonly affects lazy-loading).
+ensure_package_loaded_or_install <- function(pkg, repos = getOption("repos"), lib = getOption("ci.install.lib", .libPaths()[1])) {
+  if (requireNamespace(pkg, quietly = TRUE)) return(TRUE)
+
+  # Remove any on-disk remnants before attempting a clean install
+  remove_package_dir(pkg, lib)
+
+  install_single_package(pkg, repos = repos, lib = lib, attempts = 3, allow_repair = TRUE)
+  if (requireNamespace(pkg, quietly = TRUE)) return(TRUE)
+
+  # Special-case fallback: try GitHub for rlang if CRAN build keeps failing
+  if (identical(pkg, "rlang")) {
+    cat("Attempting fallback installation of rlang from GitHub (r-lib/rlang)\n")
+    if (!requireNamespace("remotes", quietly = TRUE)) {
+      install_packages_safe("remotes", repos = repos, lib = lib)
+    }
+    if (requireNamespace("remotes", quietly = TRUE)) {
+      tryCatch({
+        remotes::install_github("r-lib/rlang", upgrade = FALSE, quiet = TRUE)
+      }, error = function(e) {
+        cat("remotes::install_github fallback for rlang failed:", conditionMessage(e), "\n")
+      })
+    }
+    if (requireNamespace(pkg, quietly = TRUE)) return(TRUE)
+  }
+
+  FALSE
+}
+
+
 # Detecting load failures that typically indicate a broken compiled dependency
 is_shared_object_load_failure <- function(error_message) {
   if (is.null(error_message) || !nzchar(error_message)) {
