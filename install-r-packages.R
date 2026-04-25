@@ -535,6 +535,19 @@ main <- function() {
   options(ci.install.lib = install_lib)
   cleanup_library_locks(install_lib)
 
+  # Detect and remove any broken compiled packages (e.g., rlang built against
+  # a different R ABI) before attempting restores/installs.
+  broken_pkgs <- check_and_remove_broken_packages(install_lib)
+  if (length(broken_pkgs)) {
+    cat("Removed broken packages:", paste(broken_pkgs, collapse = ", "), "\n")
+  }
+
+  # Ensure core compiled dependency `rlang` is present and loadable early so
+  # packages that lazy-load it do not fail the build.
+  if (!ensure_package_loaded_or_install("rlang", repos = getOption("repos"), lib = install_lib)) {
+    cat("Warning: could not bootstrap 'rlang' before other installs; continuing and reporting later.\n")
+  }
+
   cat("Library paths:\n")
   cat(paste("  -", .libPaths()), sep = "\n")
   cat("\n")
