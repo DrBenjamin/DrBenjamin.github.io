@@ -177,6 +177,9 @@ jobs:
           export R_PROFILE_USER=/dev/null
           export R_ENVIRON_USER=/dev/null
           export RENV_CONFIG_AUTOLOAD=FALSE
+          # Pre-install critical compiled dependency rlang to avoid cascading lazy-load failures
+          echo "Pre-installing rlang and remotes into ${HOME}/R-library (vanilla)"
+          Rscript --vanilla -e "options(repos='https://cloud.r-project.org'); dir.create(Sys.getenv('R_LIBS_USER'), recursive=TRUE, showWarnings=FALSE); install.packages(c('rlang','remotes'), lib=Sys.getenv('R_LIBS_USER'), dependencies=TRUE)"
           RENV_LOCK_FILES=""
           for r in "${REPOS[@]}"; do
             if [ -d "$r" ] && [ -f "$r/r-code/renv.lock" ]; then
