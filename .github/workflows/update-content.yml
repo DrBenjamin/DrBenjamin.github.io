@@ -173,6 +173,10 @@ jobs:
 
           # Install R packages using our dedicated script
           echo "=== Installing R packages ==="
+          # Neutralize user and project startup files to avoid RStudio-only code
+          export R_PROFILE_USER=/dev/null
+          export R_ENVIRON_USER=/dev/null
+          export RENV_CONFIG_AUTOLOAD=FALSE
           RENV_LOCK_FILES=""
           for r in "${REPOS[@]}"; do
             if [ -d "$r" ] && [ -f "$r/r-code/renv.lock" ]; then
@@ -185,10 +189,10 @@ jobs:
           if [ -n "$RENV_LOCK_FILES" ] && [ "${USE_RENV}" = "true" ]; then
             echo "USE_RENV=true -> passing lockfiles to install script"
             export RENV_LOCK_FILES
-            Rscript install-r-packages.R $RENV_LOCK_FILES
+            Rscript --vanilla install-r-packages.R $RENV_LOCK_FILES
           else
             echo "Skipping lockfile-driven install (either no lockfiles or USE_RENV != true); installing critical packages only"
-            Rscript install-r-packages.R
+            Rscript --vanilla install-r-packages.R
           fi
 
           # Install Python packages
@@ -233,7 +237,9 @@ jobs:
           cat("All critical packages present:\n")
           for (p in crit) cat(p, ": ", as.character(packageVersion(p)), "\n", sep = "")
           R_EOF
-          Rscript /tmp/verify_critical_packages.R
+          Rscript --vanilla /tmp/verify_critical_packages.R
+          # Ensure startup profiles are not sourced for this verification run
+          # (useful if project/user profiles contain RStudio-only calls)
 
       - name: Sync topic asset folders
         run: |
@@ -325,7 +331,7 @@ jobs:
             # Set GitHub PAT for devtools::install_github() calls in QMD
             export GITHUB_PAT="${{ secrets.GITHUB_TOKEN }}"
             # Ensure critical packages are installed in global lib (idempotent)
-            Rscript -e "crit<-c('knitr','rmarkdown','RefManageR'); miss<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(miss)) install.packages(miss,repos='https://cloud.r-project.org'); left<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(left)) { quit(status=1) }"
+            Rscript --vanilla -e "crit<-c('knitr','rmarkdown','RefManageR'); miss<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(miss)) install.packages(miss,repos='https://cloud.r-project.org'); left<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(left)) { quit(status=1) }"
             echo "Running: quarto render ${QMD} (renv disabled)"
             if ! RENV_CONFIG_AUTOLOAD=FALSE quarto render "${QMD}"; then
               echo "::error::Quarto render failed for ${QMD}"

@@ -530,6 +530,26 @@ main <- function() {
   cat("=== R Package Installation Script ===\n")
   cat("R version:", R.version.string, "\n")
 
+  # If not already running under a vanilla invocation in CI, re-exec
+  # the script with `Rscript --vanilla` to avoid sourcing user/site profiles
+  # that may contain RStudio-only calls (e.g. rstudioapi::applyTheme()).
+  if (identical(Sys.getenv("CI_RSCRIPT_VANILLA"), "1") == FALSE) {
+    # Attempt to locate the script file from commandArgs
+    full_args <- commandArgs(trailingOnly = FALSE)
+    file_arg <- full_args[grepl("^--file=", full_args)]
+    if (length(file_arg) == 1L) {
+      script_path <- sub("^--file=", "", file_arg)
+      trailing <- commandArgs(trailingOnly = TRUE)
+      cat("Re-executing with --vanilla to avoid sourcing user/site R profiles...\n")
+      bin <- file.path(R.home("bin"), "Rscript")
+      res <- system2(bin, args = c("--vanilla", script_path, trailing), env = c("CI_RSCRIPT_VANILLA=1"))
+      if (!is.na(res) && res != 0) {
+        stop("Re-exec with --vanilla failed (exit ", res, ")")
+      }
+      quit(status = res)
+    }
+  }
+
   configure_install_defaults()
   install_lib <- ensure_writable_library()
   options(ci.install.lib = install_lib)
