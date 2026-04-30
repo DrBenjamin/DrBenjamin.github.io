@@ -2317,8 +2317,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">30.04.2026 09:29<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: added Github link</em></p>
+      <p class="date">30.04.2026 14:11<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: added workflow dispatch trigger</em></p>
     </div>
   </div>
   
@@ -2422,7 +2422,7 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <li><p>“slumped posture” (middle)</p></li>
 <li><p>“normal posture” (right)</p></li>
 </ul>
-<p>The author manually annontated and applied the 300 images to one of these classes according to his clinical experience in the field of orthopaedics and functional movement therapy.</p>
+<p>The author manually annotated and applied the 300 images to one of these classes according to his clinical experience in the field of orthopaedics and functional movement therapy.</p>
 <p><strong>Primary outcomes</strong></p>
 <ul>
 <li>Head-neck-torso alignment: Angular relationships and relative positioning of the head, cervical spine, and torso.</li>
@@ -2468,15 +2468,17 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <section id="research-setup" class="level2">
 <h2 class="anchored" data-anchor-id="research-setup">4.1 Research setup</h2>
 <ul>
-<li><p>Hardware and runtime: local development was performed on a macOS workstation for editing and lightweight test runs; heavier training runs were executed on a cloud VM.</p></li>
+<li><p><strong>Hardware and runtime</strong></p>
+<p>The development was performed on a remote virtual machine with 8GB RAM and 4 CPU Cores. For editing Python scripts, a Jyputer Notebook was used, for editing the Quarto project file a RStudio Server. Next to this, a Streamlit WebApp was developed and used to test re-trained models manually. Both the Jupyter notebook and the Streamlit WebApp were deployed via a Docker container on the remote server to manage heavy Python library dependencies of MediaPipe Model Maker (Python 3.10) respective of MediaPipe / TensorFlow Lite (Python 3.13).</p></li>
 <li><p><strong>Representative software stack</strong></p>
 <ul>
-<li>Python 3.10 for MediaPipe model maker, Python 3.13 for inference of the TFLite model</li>
-<li>TensorFlow 2.x with TFLite support</li>
-<li>MediaPipe (python bindings or containerised MediaPipe runtime)</li>
-<li>OpenCV, NumPy, pandas, scikit-learn, Matplotlib</li>
+<li>Python 3.10 or Python 3.13</li>
+<li>TensorFlow 2.19.1 with TFLite support and Keras (3.12.1)</li>
+<li>MediaPipe (0.10.21) and MediaPipe Model Maker (0.2.1.3)</li>
+<li>OpenCV, NumPy, pandas, Matplotlib</li>
 <li>Jupyter notebook</li>
-<li>Quarto (for rendering <code>Dissertation.qmd</code>)</li>
+<li>Quarto (for rendering <code>Dissertation.qmd</code>) on RStudio Server</li>
+<li>Streamlit (Python WebApp)</li>
 <li>Docker &amp; Docker Compose</li>
 <li>Jenkins (CI server)</li>
 <li>n8n (automation/workflows)</li>
@@ -2525,29 +2527,19 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <p>- Start development services:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose <span class="at">-f</span> code/docker-compose.yml up <span class="at">--build</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>CI/CD</strong></p>
-<p>Jenkins webhook for heavy builds and notebook images - Jenkins is used for build a Jupyter environment on a server to run model training and it also builds an Streamlit Webapp for inference testing of (build) models:</p>
-<ol type="1">
-<li><p>Configure a GitHub webhook to post push events to the Jenkins pipeline endpoint.</p></li>
-<li><p>Jenkins uses the pipeline-as-code defined in <code>code/Jenkinsfile</code> to:</p>
-<p>- Checkout the commit.</p>
-<p>- Build and run Docker containers</p></li>
-</ol>
-<p><strong>CI/CD</strong></p>
-<p>GitHub Actions for Quarto artifacts</p>
-<p>- A GitHub Actions workflow (run manually) renders the dissertation via Quarto:</p>
-<p>- Checkout repository. - Install Quarto and LaTeX (for PDF rendering).</p>
-<p>- Run <code>quarto render Dissertation.qmd --to html</code> and <code>--to pdf</code>.</p>
-<p>- Upload the generated HTML and PDF as workflow artifacts or deploy to <code>gh-pages</code>.</p>
-<p>- This ensures the dissertation site and PDF are rebuilt and archived automatically on changes.</p>
-<p>Automation orchestration (n8n) - <code>n8n</code> runs as a containerized service and hosts the augmentation workflow. Responsibilities:</p>
-<p>- Orchestrate MediaPipe API calls and rendering.</p>
-<p>- Persist augmented images and artifacts on a MinIO file storage.</p>
-<p>For Reproducibility — developer quick-start to set up and run locally:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> code/environment.yml</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate dissertation</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> code/requirements.txt  <span class="co"># normally done by conda script before!</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose <span class="at">-f</span> code/docker-compose.yml build</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose <span class="at">-f</span> code/docker-compose.yml up <span class="at">-d</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Jenkins is used for build a Jupyter environment on a server to run model training and also builds a Streamlit Webapp for inference testing of previously build models.</p>
+<p>GitHub Actions of a GitHub Pages repository is trigged to render the Quarto artifacts:</p>
+<ul>
+<li><p>Checkout repository - Installs Quarto and LaTeX (for PDF rendering).</p></li>
+<li><p>Deploys the dissertation project as HTML on <a href="https://drbenjamin.github.io/dissertation.html" class="uri">https://drbenjamin.github.io/dissertation.html</a></p></li>
+</ul>
+<p><strong>Automation orchestration</strong> (n8n)</p>
+<p><code>A n8n</code> server run as a containerized service (two container) and to hosts the augmentation workflows. Responsibilities:</p>
+<ul>
+<li><p>n8n instance (container one)</p></li>
+<li><p>Orchestrate MediaPipe API (container two) calls and rendering.</p></li>
+<li><p>Persist augmented images and artifacts on a MinIO file storage.</p></li>
+</ul>
 </section>
 </section>
 <section id="results" class="level1">
