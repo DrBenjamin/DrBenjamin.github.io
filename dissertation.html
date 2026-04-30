@@ -2228,7 +2228,7 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#msc-in-data-science-for-health-and-social-care" id="toc-msc-in-data-science-for-health-and-social-care" class="nav-link active" data-scroll-target="#msc-in-data-science-for-health-and-social-care">MSc in Data Science for Health and Social Care</a>
+  <li><a href="#msc.-in-data-science-for-health-and-social-care" id="toc-msc.-in-data-science-for-health-and-social-care" class="nav-link active" data-scroll-target="#msc.-in-data-science-for-health-and-social-care">MSc. in Data Science for Health and Social Care</a>
   <ul>
   <li><a href="#dissertation-title" id="toc-dissertation-title" class="nav-link" data-scroll-target="#dissertation-title">Dissertation Title</a></li>
   </ul></li>
@@ -2317,8 +2317,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">30.04.2026 15:21<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: improving the versioning</em></p>
+      <p class="date">30.04.2026 20:15<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: added docker exec command</em></p>
     </div>
   </div>
   
@@ -2336,8 +2336,8 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="msc-in-data-science-for-health-and-social-care" class="level1">
-<h1>MSc in Data Science for Health and Social Care</h1>
+<section id="msc.-in-data-science-for-health-and-social-care" class="level1">
+<h1>MSc. in Data Science for Health and Social Care</h1>
 <p>Examination Number: B248593</p>
 <p>First reviewer: Dr. Ahmar Shah</p>
 <p>Second reviewer: John Wilson</p>
@@ -2384,7 +2384,7 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 </section>
 <section id="literature-review" class="level1">
 <h1>2. Literature Review</h1>
-<p>Recent validation studies comparing MediaPipe with gold-standard motion capture systems reveal measurable discrepancies in landmark accuracy, particularly for subtle postural features, highlighting the need for domain-specific refinement for clinical use <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span>. Here, “subtle” means inapropiate muscular tension with small or no movement of (the) body(-parts). More broadly, current pose estimation models remain limited by sensitivity to noise and 2D–3D estimation gaps, reducing their reliability for detecting the named tensions and asymmetries critical to movement and pose imbalance analysis <span class="citation" data-cites="Kakuta2022 Lachance2023">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>; <a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Fairness and representativeness in pose estimation systems are also important concerns: current Pose Estimation Models (PEMs) exhibit performance disparities across demographic groups, with reduced accuracy for under-represented populations in training datasets <span class="citation" data-cites="Lachance2023">(<a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Available datasets frequently focus on male and predominantly white participants between the ages of 19 and 50, while under-representing females, older adults, and individuals with darker skin tones, thereby increasing the risk of systematic bias and reduced generalizability in movement and posture analysis.”</p>
+<p>Recent validation studies comparing MediaPipe with gold-standard motion capture systems reveal measurable discrepancies in landmark accuracy, particularly for subtle postural features, highlighting the need for domain-specific refinement for clinical use <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span>. Here, “subtle” means inappropriate muscular tension with small or no movement of (the) body(-parts). More broadly, current pose estimation models remain limited by sensitivity to noise and 2D–3D estimation gaps, reducing their reliability for detecting the named tensions and asymmetries critical to movement and pose imbalance analysis <span class="citation" data-cites="Kakuta2022 Lachance2023">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>; <a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Fairness and representativeness in pose estimation systems are also important concerns: current Pose Estimation Models (PEMs) exhibit performance disparities across demographic groups, with reduced accuracy for under-represented populations in training datasets <span class="citation" data-cites="Lachance2023">(<a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Available datasets frequently focus on male and predominantly white participants between the ages of 19 and 50, while under-representing females, older adults, and individuals with darker skin tones, thereby increasing the risk of systematic bias and reduced generalizability in movement and posture analysis.”</p>
 <p>Consequently, while MediaPipe Pose serves as a robust foundation for pose detection, in its standard configuration of training it does not inherently capture the fine-grained symmetry metrics, sagittal and coronal balance indicators, or compensatory movement patterns that rely on hyper- and hypo-tension that are essential for clinical postural and even more for movement analysis. Computer-vision-based deep learning markerless systems nonetheless represent an important step towards closing the gap between theoretical research, that can be even a century old like the principle of primary control of human movement by <span class="citation" data-cites="AlexanderFM2017">F.M. Alexander (<a href="#ref-AlexanderFM2017" role="doc-biblioref">2017</a>)</span>, and practical implementation in remote clinical assessment <span class="citation" data-cites="Wagh2024 UltralyticsInc2025">(<a href="#ref-UltralyticsInc2025" role="doc-biblioref">Ultralytics, 2025</a>; <a href="#ref-Wagh2024" role="doc-biblioref">Wagh et al., 2024</a>)</span>.</p>
 <p>This project uses transfer learning <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span> to adapt a pre-trained Google MediaPipe CNN model, originally trained on extensive image data, to a new small Kaggle dataset but with more relevant and higher-quality images for posture imbalance detection. By utilizing pre-learned feature representations, the model can achieve faster convergence and improved accuracy even with a comparatively smaller or domain-specific dataset.</p>
 <section id="market-research" class="level2">
@@ -2450,7 +2450,7 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <section id="model-development-and-transfer-learning" class="level2">
 <h2 class="anchored" data-anchor-id="model-development-and-transfer-learning">3.4 Model development and transfer learning</h2>
 <p>This study employs a transfer learning approach to develop a domain-specific TensorFlow Lite model suitable for clinical posture and movement analysis. Transfer learning enables the adaptation of pre-trained CNN architectures—such as those used within MediaPipe and trained on large-scale datasets like ImageNet—to the focused task of detecting head-neck-torso imbalances. In practice, base model weights are kept frozen or partially frozen, while classification and selected high-level layers are retrained using the Kaggle posture dataset.</p>
-<p>Deploying the resulting model as a quantized TensorFlow Lite artefact supports real-time, on-device inference on mobile and edge devices, reducing latency and preserving user privacy by processing data locally.</p>
+<p>Deploying the resulting model as a quantized TensorFlow Lite artifact supports real-time, on-device inference on mobile and edge devices, reducing latency and preserving user privacy by processing data locally.</p>
 </section>
 <section id="analysis-and-performance-evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-and-performance-evaluation">3.5 Analysis and performance evaluation</h2>
@@ -2469,7 +2469,7 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <h2 class="anchored" data-anchor-id="research-setup">4.1 Research setup</h2>
 <ul>
 <li><p><strong>Hardware and runtime</strong></p>
-<p>The development was performed on a remote virtual machine with 8GB RAM and 4 CPU Cores. For editing Python scripts, a Jyputer Notebook was used, for editing the Quarto project file a RStudio Server. Next to this, a Streamlit WebApp was developed and used to test re-trained models manually. Both the Jupyter notebook and the Streamlit WebApp were deployed via a Docker container on the remote server to manage heavy Python library dependencies of MediaPipe Model Maker (Python 3.10) respective of MediaPipe / TensorFlow Lite (Python 3.13).</p></li>
+<p>The development was performed on a remote virtual machine with 8GB RAM and 4 CPU Cores. For editing Python scripts, a Jupyter Notebook was used, for editing the Quarto project file a RStudio Server. Next to this, a Streamlit WebApp was developed and used to test re-trained models manually. Both the Jupyter notebook and the Streamlit WebApp were deployed via a Docker container on the remote server to manage heavy Python library dependencies of MediaPipe Model Maker (Python 3.10) respective of MediaPipe / TensorFlow Lite (Python 3.13).</p></li>
 <li><p><strong>Representative software stack</strong></p>
 <ul>
 <li>Python 3.10 (Model Maker) or Python 3.13 (Inference)</li>
@@ -2516,7 +2516,7 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <h2 class="anchored" data-anchor-id="inference-pipeline-containerization-and-cicd">4.3 Inference pipeline, containerization and CI/CD</h2>
 <p>Inference packaging - Inference scripts live in <code>scripts/</code> (for example <code>custom_tflite_image_classifier.py</code> and <code>custom_tflite_pose.py</code>) and operate against quantized <code>.tflite</code> models exported to <code>data/models/</code>. - Local inference example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/custom_tflite_image_classifier.py <span class="at">--model</span> data/models/<span class="op">&lt;</span>run<span class="op">&gt;</span>/model.tflite <span class="at">--image</span> data/images/example.jpg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Containerisation and compose</strong></p>
+<p><strong>Containerization and compose</strong></p>
 <p>- The project maintains two primary Dockerfile artifacts:</p>
 <p>- <code>code/Dockerfile</code> — training and utilities image.</p>
 <ul>
@@ -2527,7 +2527,7 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <p>- Start development services:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> compose <span class="at">-f</span> code/docker-compose.yml up <span class="at">--build</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>CI/CD</strong></p>
-<p>Jenkins is used for build a Jupyter environment on a server to run model training and also builds a Streamlit Webapp for inference testing of previously build models.</p>
+<p>Jenkins is used for build a Jupyter environment on a server to run model training and also builds a Streamlit WebApp for inference testing of previously build models.</p>
 <p>GitHub Actions of a GitHub Pages repository is trigged to render the Quarto artifacts:</p>
 <ul>
 <li><p>Checkout repository - Installs Quarto and LaTeX (for PDF rendering).</p></li>
@@ -2547,7 +2547,7 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <p>These results are from four model builds with Keras and TensorFlow, and evaluated on the same image data set and with identical preprocessing steps and configuration.</p>
 <section id="dataset-and-preprocessing-outcomes" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-and-preprocessing-outcomes">5.1 Dataset and preprocessing outcomes</h2>
-<p>The dataset and splits used across all runs were consistent. The training set contained 1,890 images distributed across three classes, and both the validation and test splits contained 199 images each. To achieve this number from 300 original images, augmentation was applied. First, a subset of duplicated 300 images with body landmarks as overlay were added. This was achieved by an existing MediaPipe Pose model which was adding these annotations. Second, the images were duplicated several times and processed via random image editing utilizing the OpenCV framework. For instance, the colour-theme or background colour were changed, images were cropped or tilted. For each augmented image, 2 changes were applied. The final class counts were as follows:</p>
+<p>The dataset and splits used across all runs were consistent. The training set contained 1,890 images distributed across three classes, and both the validation and test splits contained 199 images each. To achieve this number from 300 original images, augmentation was applied. First, a subset of duplicated 300 images with body landmarks as overlay were added. This was achieved by an existing MediaPipe Pose model which was adding these annotations. Second, the images were duplicated several times and processed via random image editing utilizing the OpenCV framework. For instance, the color-theme or background color were changed, images were cropped or tilted. For each augmented image, 2 changes were applied. The final class counts were as follows:</p>
 <ul>
 <li>Train split (total = 1890):
 <ul>
