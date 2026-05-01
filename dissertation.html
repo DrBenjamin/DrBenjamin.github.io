@@ -2228,10 +2228,7 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#msc.-in-data-science-for-health-and-social-care" id="toc-msc.-in-data-science-for-health-and-social-care" class="nav-link active" data-scroll-target="#msc.-in-data-science-for-health-and-social-care">MSc. in Data Science for Health and Social Care</a>
-  <ul>
-  <li><a href="#dissertation-title" id="toc-dissertation-title" class="nav-link" data-scroll-target="#dissertation-title">Dissertation Title</a></li>
-  </ul></li>
+  <li><a href="#contribution" id="toc-contribution" class="nav-link active" data-scroll-target="#contribution">Contribution</a></li>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">1. Introduction</a>
   <ul>
   <li><a href="#background-and-rationale" id="toc-background-and-rationale" class="nav-link" data-scroll-target="#background-and-rationale">1.1 Background and rationale</a></li>
@@ -2241,6 +2238,7 @@ vertical-align: -.125em;
   <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review">2. Literature Review</a>
   <ul>
   <li><a href="#market-research" id="toc-market-research" class="nav-link" data-scroll-target="#market-research">2.1 Market research</a></li>
+  <li><a href="#current-research-on-convolutional-neural-networks" id="toc-current-research-on-convolutional-neural-networks" class="nav-link" data-scroll-target="#current-research-on-convolutional-neural-networks">2.2 Current Research on Convolutional Neural Networks</a></li>
   </ul></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">3. Methodology</a>
   <ul>
@@ -2317,8 +2315,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">30.04.2026 20:15<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: added docker exec command</em></p>
+      <p class="date">01.05.2026 12:05<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: added contributions section</em></p>
     </div>
   </div>
   
@@ -2336,15 +2334,9 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="msc.-in-data-science-for-health-and-social-care" class="level1">
-<h1>MSc. in Data Science for Health and Social Care</h1>
-<p>Examination Number: B248593</p>
-<p>First reviewer: Dr. Ahmar Shah</p>
-<p>Second reviewer: John Wilson</p>
-<section id="dissertation-title" class="level2">
-<h2 class="anchored" data-anchor-id="dissertation-title">Dissertation Title</h2>
-<p><em>Detecting Movement Imbalances using custom TensorFlow Lite Models utilizing the Google MediaPipe framework.</em></p>
-</section>
+<section id="contribution" class="level2">
+<h2 class="anchored" data-anchor-id="contribution">Contribution</h2>
+<p>The development of this dissertation incorporated the selective use of generative artificial intelligence (AI) tools as supportive research and technical assistance instruments. GitHub GitHub Copilot and Posit Assistant were utilized to assist in troubleshooting Python dependency conflicts, resolving CI/CD configuration issues involving Jenkins and Docker, and supporting administrative setup tasks related to RStudio Server. In addition, Perplexity was used for targeted literature discovery and contextual identification of relevant academic sources and references. All critical analysis, interpretation, methodological decisions, and written academic content were independently evaluated, verified, and finalized by the author.</p>
 </section>
 <section id="introduction" class="level1">
 <h1>1. Introduction</h1>
@@ -2374,8 +2366,8 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <p>The present work is structured as follows:</p>
 <p>Chapter 2 provides a comprehensive literature review of the current state of AI-based posture and movement analysis, with a focus on the capabilities and limitations of existing pose estimation frameworks such as Google MediaPipe.</p>
 <p>Chapter 3 outlines the methodology, including the study design, data sources, variable definitions, model development approach, and performance evaluation strategy.</p>
-<p>Chapter 4 details the implementation of the training and inference pipelines.</p>
-<p>Chapter 5 presents the results of model performance and error analysis.</p>
+<p>Chapter 4 details the implementation of the training and inference pipelines with a complex CD/CI integration.</p>
+<p>Chapter 5 presents the results of model performance and error analysis and shows the challenges of training a custom CNN model.</p>
 <p>Chapter 6 discusses the findings in relation to existing literature, strengths and limitations, and clinical implications.</p>
 <p>Chapter 7 addresses ethical considerations, information governance, and data management.</p>
 <p>Chapter 8 outlines the expected impact and dissemination plans, while</p>
@@ -2392,6 +2384,10 @@ Finetuning and evaluation of a deep learning model for posture and movement qual
 <p>Modern video analysis with the purpose of detecting pose, movement, and specific markers in sports activities has undergone a paradigm shift, moving from subjective clinical intuition to high-fidelity, data-driven kinematic quantification. Commercial ecosystems like <span class="citation" data-cites="MAR-Systems-Ltd2026">RUNRIGHT 3D (<a href="#ref-MAR-Systems-Ltd2026" role="doc-biblioref">2026</a>)</span> leverage dual-camera 3D reconstruction to analyze over 40 biomechanical metrics without intrusive markers, targeting retail efficiency and rapid, evidence-based footwear recommendations. Similarly, <span class="citation" data-cites="RunDNA2026">RunDNA (<a href="#ref-RunDNA2026" role="doc-biblioref">2026</a>)</span> employs advanced motion capture to track kinetic and kinematic variables from foot strike to toe-off, providing practitioners with a granular, 3D anatomical breakdown of movement asymmetries. For integrated clinical environments, the <span class="citation" data-cites="Medical-XPRT2026">TecnoBody Walker View (<a href="#ref-Medical-XPRT2026" role="doc-biblioref">2026</a>)</span> combines 3D camera technology with a sensorized, load-cell-equipped treadmill to provide real-time biofeedback and synchronized gait analysis. Supplementing these laboratory-grade tools, <span class="citation" data-cites="Running-Reborn-20262026">ViMove2 (<a href="#ref-Running-Reborn-20262026" role="doc-biblioref">2026</a>)</span> utilizes wearable inertial measurement units (IMUs) to provide continuous, longitudinal monitoring of temporal outcomes like ground contact time and cadence, albeit with sensitivity to speed-dependent discrepancies. At the vanguard of performance capture, <span class="citation" data-cites="Move-AI-Ltd2026">Move AI (<a href="#ref-Move-AI-Ltd2026" role="doc-biblioref">2026</a>)</span> offers sophisticated, markerless motion capture solutions that utilize computer vision to extract high-fidelity skeletal data from multi-camera footage, facilitating biomechanical analysis outside of traditional studio settings.</p>
 <p>The overarching advantage of these commercial approaches lies in their ability to translate complex, high-frequency spatial-temporal data into actionable clinical diagnostics. They reduce inter-rater variability, the differences between multiple assessors, and enable objective longitudinal tracking. Such standardization of classification, may improve the reliability of qualitative (and quantitative) movement assessments in evidence-based rehabilitation settings. Conversely, the disadvantages often involve high capital expenditure, the requirement for controlled capture environments, and often a reliance on proprietary pipelines that can be difficult to consistently integrate into existing clinical (analytical) workflows.</p>
 <p>When evaluated against image classification models, the advantages of the latter become apparent: low-cost, low-latency identification of specific postural states and movement patterns, albeit at the expense of the quantitative kinematic precision provided by advanced motion-capture and biomechanical analysis systems.</p>
+</section>
+<section id="current-research-on-convolutional-neural-networks" class="level2">
+<h2 class="anchored" data-anchor-id="current-research-on-convolutional-neural-networks">2.2 Current Research on Convolutional Neural Networks</h2>
+<p><span class="citation" data-cites="Cao2024">Cao et al. (<a href="#ref-Cao2024" role="doc-biblioref">2024</a>)</span> state that human posture recognition are machine extractions simulating the eyefunction and human learning via feature extraction. They divde this recognition into static and dynamic posture detection, whereby latter one extracts continuous frame sequences and this more widely used. Using images for training and for inference, this approach is static posture classification.</p>
 </section>
 </section>
 <section id="methodology" class="level1">
@@ -3196,6 +3192,9 @@ Badhe, P. C., &amp; Kulkarni, V. (2018). A review on posture assessment. In <em>
 </div>
 <div id="ref-Bazarevsky2020" class="csl-entry" role="listitem">
 Bazarevsky, V., &amp; Grishchenko, I. (2020). <em>On-device, real-time body pose tracking with MediaPipe BlazePose</em>. <a href="https://research.google/blog/on-device-real-time-body-pose-tracking-with-mediapipe-blazepose/">https://research.google/blog/on-device-real-time-body-pose-tracking-with-mediapipe-blazepose/</a>
+</div>
+<div id="ref-Cao2024" class="csl-entry" role="listitem">
+Cao, X., Wang, X., Geng, X., Wu, D., &amp; An, H. (2024). An approach for human posture recognition based on the fusion PSE-CNN-BiGRU model. <em>CMES - Computer Modeling in Engineering and Sciences</em>, <em>140</em>, 385–408. <a href="https://doi.org/10.32604/CMES.2024.046752">https://doi.org/10.32604/CMES.2024.046752</a>
 </div>
 <div id="ref-AlexanderFM2017" class="csl-entry" role="listitem">
 F.M. Alexander. (2017). Methode mit großem betriebsmedizinischem potential eigene, die berufsfähigkeit existentieller bedrohende probleme mit der stimme führten. <em>Institut Für Arbeits-, Sozial- Und Umweltmedizin</em>. <a href="https://doi.org/10.&#39;2017">https://doi.org/10.&#39;2017</a>
