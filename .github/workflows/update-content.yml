@@ -58,6 +58,13 @@ jobs:
           repository: DrBenjamin/Bachelor
           path: source-bachelor
 
+
+      - name: Checkout Business source
+        uses: actions/checkout@v5
+        with:
+          repository: DrBenjamin/Businessplan
+          path: source-business
+
       - name: Setup R
         id: setup-r
         uses: r-lib/actions/setup-r@v2
@@ -298,17 +305,20 @@ jobs:
           TECHNICAL_QMD="Technical_Applications_and_Data_Analytics.qmd"
           DISSERTATION_QMD="Dissertation.qmd"
           BACHELOR_QMD="Bachelor.qmd"
+          BUSINESS_QMD="Businessplan_Therapy_Center.qmd"
 
           ANALYTICAL_HTML_SLUG="analytical-skills.html"
           DATASCI_HTML_SLUG="data-science-analytics.html"
           TECHNICAL_HTML_SLUG="technical-applications.html"
           DISSERTATION_HTML_SLUG="dissertation.html"
           BACHELOR_HTML_SLUG="bachelor.html"
+          BUSINESS_HTML_SLUG="businessplan-therapy-center.html"
           ANALYTICAL_PDF="Analytical_Skills_for_Business.pdf"
           DATASCI_PDF="Data_Science_and_Data_Analytics.pdf"
           TECHNICAL_PDF="Technical_Applications_and_Data_Analytics.pdf"
           DISSERTATION_PDF="Dissertation.pdf"
           BACHELOR_PDF="Bachelor.pdf"
+          BUSINESS_PDF="Businessplan_Therapy_Center.pdf"
 
           ANY_CHANGED=false
 
@@ -375,13 +385,13 @@ jobs:
           }
 
           FAILED_COUNT=0
-          TOTAL_COURSES=5
+          TOTAL_COURSES=6
             render_course source-analytical "$ANALYTICAL_QMD" "$ANALYTICAL_HTML_SLUG" "$ANALYTICAL_PDF" "Analytical Skills for Business" || FAILED_COUNT=$((FAILED_COUNT+1))
             render_course source-datasci "$DATASCI_QMD" "$DATASCI_HTML_SLUG" "$DATASCI_PDF" "Data Science and Data Analytics" || FAILED_COUNT=$((FAILED_COUNT+1))
             render_course source-technical "$TECHNICAL_QMD" "$TECHNICAL_HTML_SLUG" "$TECHNICAL_PDF" "Technical Applications and Data Analytics" || FAILED_COUNT=$((FAILED_COUNT+1))
             render_course source-dissertation "$DISSERTATION_QMD" "$DISSERTATION_HTML_SLUG" "$DISSERTATION_PDF" "My CNN Dissertation Project" || FAILED_COUNT=$((FAILED_COUNT+1))
             render_course source-bachelor "$BACHELOR_QMD" "$BACHELOR_HTML_SLUG" "$BACHELOR_PDF" "My Bachelor Thesis Project" || FAILED_COUNT=$((FAILED_COUNT+1))
-
+            render_course source-business "$BUSINESS_QMD" "$BUSINESS_HTML_SLUG" "$BUSINESS_PDF" "My Business Plan Project" || FAILED_COUNT=$((FAILED_COUNT+1))
           if [ $FAILED_COUNT -ge $TOTAL_COURSES ]; then
             echo "::error::All content renders failed. Failing job."
             exit 1
@@ -405,8 +415,8 @@ jobs:
           fi
 
           # Add core artifacts
-          git add analytical-skills.html data-science-analytics.html technical-applications.html dissertation.html bachelor.html \
-                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf Technical_Applications_and_Data_Analytics.pdf Dissertation.pdf Bachelor.pdf || true
+          git add analytical-skills.html data-science-analytics.html technical-applications.html dissertation.html bachelor.html businessplan-therapy-center.html \
+                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf Technical_Applications_and_Data_Analytics.pdf Dissertation.pdf Bachelor.pdf Businessplan_Therapy_Center.pdf || true
 
           # Add any files in topics directories from all source repositories
           # Add any generated resource directories (e.g. Analytical_Skills_for_Business_files)
@@ -430,6 +440,7 @@ jobs:
           - Technical: Technical_Applications_and_Data_Analytics.qmd
           - Dissertation: Dissertation.qmd
           - Bachelor: Bachelor.qmd
+          - Business: Businessplan_Therapy_Center.qmd
 
           Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push
@@ -437,7 +448,7 @@ jobs:
       - name: Remove temporary source checkouts before Pages build
         run: |
           set -euo pipefail
-          rm -rf source-analytical source-datasci source-technical source-dissertation source-bachelor
+          rm -rf source-analytical source-datasci source-technical source-dissertation source-bachelor source-business
 
       - name: Configure Pages
         uses: actions/configure-pages@v6
