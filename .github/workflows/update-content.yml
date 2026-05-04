@@ -305,7 +305,7 @@ jobs:
           TECHNICAL_QMD="Technical_Applications_and_Data_Analytics.qmd"
           DISSERTATION_QMD="Dissertation.qmd"
           BACHELOR_QMD="Bachelor.qmd"
-          BUSINESS_QMD="Businessplan_Therapy_Center.qmd"
+          BUSINESS_QMD="Businessplan.qmd"
 
           ANALYTICAL_HTML_SLUG="analytical-skills.html"
           DATASCI_HTML_SLUG="data-science-analytics.html"
@@ -318,7 +318,7 @@ jobs:
           TECHNICAL_PDF="Technical_Applications_and_Data_Analytics.pdf"
           DISSERTATION_PDF="Dissertation.pdf"
           BACHELOR_PDF="Bachelor.pdf"
-          BUSINESS_PDF="Businessplan_Therapy_Center.pdf"
+          BUSINESS_PDF="Businessplan.pdf"
 
           ANY_CHANGED=false
 
@@ -416,7 +416,7 @@ jobs:
 
           # Add core artifacts
           git add analytical-skills.html data-science-analytics.html technical-applications.html dissertation.html bachelor.html businessplan-therapy-center.html \
-                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf Technical_Applications_and_Data_Analytics.pdf Dissertation.pdf Bachelor.pdf Businessplan_Therapy_Center.pdf || true
+                  Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf Technical_Applications_and_Data_Analytics.pdf Dissertation.pdf Bachelor.pdf Businessplan.pdf || true
 
           # Add any files in topics directories from all source repositories
           # Add any generated resource directories (e.g. Analytical_Skills_for_Business_files)
@@ -440,7 +440,7 @@ jobs:
           - Technical: Technical_Applications_and_Data_Analytics.qmd
           - Dissertation: Dissertation.qmd
           - Bachelor: Bachelor.qmd
-          - Business: Businessplan_Therapy_Center.qmd
+          - Business: Businessplan.qmd
 
           Date: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push
