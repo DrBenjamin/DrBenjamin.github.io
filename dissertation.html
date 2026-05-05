@@ -2273,14 +2273,18 @@ vertical-align: -.125em;
   <li><a href="#training-2-efficientnet-lite2-architecture" id="toc-training-2-efficientnet-lite2-architecture" class="nav-link" data-scroll-target="#training-2-efficientnet-lite2-architecture"><span class="header-section-number">7.2.2</span> Training 2 (EfficientNet-Lite2 architecture)</a></li>
   <li><a href="#training-3-efficientnet-lite4-architecture" id="toc-training-3-efficientnet-lite4-architecture" class="nav-link" data-scroll-target="#training-3-efficientnet-lite4-architecture"><span class="header-section-number">7.2.3</span> Training 3 (EfficientNet-Lite4 architecture)</a></li>
   <li><a href="#training-4-mobilenet-v2-architecture" id="toc-training-4-mobilenet-v2-architecture" class="nav-link" data-scroll-target="#training-4-mobilenet-v2-architecture"><span class="header-section-number">7.2.4</span> Training 4 (MobileNet-V2 architecture)</a></li>
+  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis"><span class="header-section-number">7.2.5</span> Error analysis</a></li>
   </ul></li>
-  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis"><span class="header-section-number">7.3</span> Error analysis</a></li>
-  <li><a href="#class-training" id="toc-class-training" class="nav-link" data-scroll-target="#class-training"><span class="header-section-number">7.4</span> 2-Class Training</a>
+  <li><a href="#class-training" id="toc-class-training" class="nav-link" data-scroll-target="#class-training"><span class="header-section-number">7.3</span> 2-Class Training</a>
   <ul>
-  <li><a href="#model-performance---2-class-problem" id="toc-model-performance---2-class-problem" class="nav-link" data-scroll-target="#model-performance---2-class-problem"><span class="header-section-number">7.4.1</span> Model performance - 2-class problem</a>
+  <li><a href="#model-performance---2-class-problem" id="toc-model-performance---2-class-problem" class="nav-link" data-scroll-target="#model-performance---2-class-problem"><span class="header-section-number">7.3.1</span> Model performance - 2-class problem</a>
   <ul class="collapse">
-  <li><a href="#training-2-class-problem-1" id="toc-training-2-class-problem-1" class="nav-link" data-scroll-target="#training-2-class-problem-1"><span class="header-section-number">7.4.1.1</span> Training 2-class problem 1</a></li>
-  <li><a href="#training-2-class-problem-2-extra-body-landmark-overlay-image-set" id="toc-training-2-class-problem-2-extra-body-landmark-overlay-image-set" class="nav-link" data-scroll-target="#training-2-class-problem-2-extra-body-landmark-overlay-image-set"><span class="header-section-number">7.4.1.2</span> Training 2-class problem 2 <strong>(extra body landmark overlay image-set)</strong></a></li>
+  <li><a href="#training-2-class-problem-1" id="toc-training-2-class-problem-1" class="nav-link" data-scroll-target="#training-2-class-problem-1"><span class="header-section-number">7.3.1.1</span> Training 2-class problem 1</a></li>
+  <li><a href="#training-2-class-problem-2-extra-body-landmark-overlay-image-set" id="toc-training-2-class-problem-2-extra-body-landmark-overlay-image-set" class="nav-link" data-scroll-target="#training-2-class-problem-2-extra-body-landmark-overlay-image-set"><span class="header-section-number">7.3.1.2</span> Training 2-class problem 2 (extra body landmark overlay image-set)</a></li>
+  <li><a href="#error-analysis-1" id="toc-error-analysis-1" class="nav-link" data-scroll-target="#error-analysis-1"><span class="header-section-number">7.3.1.3</span> Error analysis</a>
+  <ul class="collapse">
+  <li><a href="#comparison-of-results-to-3-class-training" id="toc-comparison-of-results-to-3-class-training" class="nav-link" data-scroll-target="#comparison-of-results-to-3-class-training"><span class="header-section-number">7.3.1.3.1</span> Comparison of results to 3-class training</a></li>
+  </ul></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -2331,8 +2335,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">05.05.2026 11:04<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: minor changes</em></p>
+      <p class="date">05.05.2026 12:06<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: changed hirachy of error analysis down</em></p>
     </div>
   </div>
   
@@ -2363,19 +2367,19 @@ vertical-align: -.125em;
 </section>
 <section id="design" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="design"><span class="header-section-number">2.2</span> Design</h2>
-<p>Lore Ypsum placeholder text: This section will summarize the design details.</p>
+<p>Quantitative, observational secondary data analysis evaluating transfer learning on lightweight convolutional neural networks (CNNs) within the Google MediaPipe/TensorFlow Lite ecosystem for static posture classification. Through comparing multiple compact model architectures and deployment-friendly pipelines to assess feasibility for low-cost, on-device, low-latency clinical screening. Model performance is measured on a test set to gauge discrimination across three posture classes and also a binary reformulation of the training was conducted.</p>
 </section>
 <section id="methods" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="methods"><span class="header-section-number">2.3</span> Methods</h2>
-<p>Lore Ypsum placeholder text: This section will summarize the methods used in the dissertation.</p>
+<p>A curated Kaggle side‑view posture image set (n=300) was manually labelled into three classes (normal, slumped, tensed) and expanded via deterministic augmentation to yield around 1900 training images with validation/test splits. Transfer learning fine‑tuned classification layers on EfficientNet‑Lite0/2/4 and MobileNet‑V2 backbones; preprocessing included resizing/normalization and clinically conservative augmentations (small rotations/crops, brightness/contrast jitter, keypoint overlays). Models were exported fully as well as quantized TFLite artifacts and evaluated using accuracy, precision, recall, F1, confusion matrices, and balanced accuracy. A binary “normal vs non‑normal” task was also trained to probe clinical interpretability and potential performance gains.</p>
 </section>
 <section id="results" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="results"><span class="header-section-number">2.4</span> Results</h2>
-<p>Lore Ypsum placeholder text: This section will briefly discuss the results.</p>
+<p>Across three‑class experiments, model architecture EfficientNet‑Lite4 achieved the highest test accuracy (41.2%; balanced accuracy 41.7%), followed by EfficientNet‑Lite2 (39.2%; 39.8%). Confusion patterns showed over‑prediction of “slumped” and frequent misclassification of “normal,” consistent with class overlap and subtle boundary cases. Reformulating as a binary task improved accuracy to 55.9% (with landmark overlays; 56.2% balanced) and 53.2% (without), indicating modest gains and clearer clinical framing, though still below targets for deployment.</p>
 </section>
 <section id="conclusion" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.5</span> Conclusion</h2>
-<p>Lore Ypsum placeholder text: This section will conclude the project in a concise way.</p>
+<p>Transfer learning on compact CNNs within the MediaPipe/TFLite stack is feasible for posture imbalance screening, but current performance is limited by small sample size, class ambiguity, and domain subtlety. Targeted data growth (especially boundary and “normal” exemplars), refined labels, posture‑aware augmentation, calibration/thresholding, and fairness checks are recommended. With these improvements and expanded validation, a lightweight, on‑device tool could support objective posture assessment alongside clinical judgement.</p>
 </section>
 </section>
 <section id="introduction" class="level1" data-number="3">
@@ -2462,11 +2466,9 @@ vertical-align: -.125em;
 <li>“normal posture” (right)</li>
 </ul>
 <p>The author manually annotated and applied the 300 images to one of these classes according to his clinical experience in the field of orthopaedics and functional movement therapy.</p>
-<p><strong>Primary outcomes</strong></p>
+<p><strong>Primary outcome</strong></p>
 <ul>
-<li>Head-neck-torso alignment: Angular relationships and relative positioning of the head, cervical spine, and torso.</li>
-<li>Postural coordination: Upper-body skeletal alignment patterns derived from keypoints and CNN feature maps.</li>
-<li>Movement imbalance indicators: Detection of asymmetries, misalignments, or inefficient posture as inferred from pose landmarks.</li>
+<li>Head-neck-torso alignment: Angular relationships and relative positioning of the head, cervical spine, and torso regarding the 3-class model by Klein-Vogelbach.</li>
 </ul>
 <p><strong>Exposures/independent variables</strong></p>
 <ul>
@@ -3167,9 +3169,8 @@ vertical-align: -.125em;
 </figure>
 </div>
 </section>
-</section>
-<section id="error-analysis" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="error-analysis"><span class="header-section-number">7.3</span> Error analysis</h2>
+<section id="error-analysis" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="error-analysis"><span class="header-section-number">7.2.5</span> Error analysis</h3>
 <p>Across all experiments a consistent pattern of misclassification is apparent. The models show relatively high recall for the <code>slumped posture</code> class but lower precision, indicating a tendency to predict <code>slumped</code> for a wide range of inputs. <code>Normal posture</code> is frequently misclassified (low recall in several runs), and <code>tensed posture</code> predictions vary by architecture: deeper Lite variants tended to improve overall discrimination.</p>
 <ul>
 <li>Best overall accuracy and balanced recall were achieved by EfficientNet-Lite4 (accuracy 0.4121, balanced accuracy 0.4167).</li>
@@ -3189,15 +3190,16 @@ vertical-align: -.125em;
 <li>Further work should include qualitative review of misclassified examples to identify systematic annotation or dataset issues and targeted augmentation or re-labelling where necessary.</li>
 </ul>
 </section>
-<section id="class-training" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="class-training"><span class="header-section-number">7.4</span> 2-Class Training</h2>
+</section>
+<section id="class-training" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="class-training"><span class="header-section-number">7.3</span> 2-Class Training</h2>
 <p>The best-performing model achieved an accuracy of 41%. To improve performance and enhance clinical interpretability, the task will also be reformulated as a binary classification problem (normal vs. non-normal posture) using the same labeled and annotated image dataset. The objective is to reach an accuracy of approximately 80–90%, which is generally considered strong performance for practical detection tasks in applied machine learning settings and for the Google MediaPipe model architecture.</p>
-<section id="model-performance---2-class-problem" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="model-performance---2-class-problem"><span class="header-section-number">7.4.1</span> Model performance - 2-class problem</h3>
+<section id="model-performance---2-class-problem" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="model-performance---2-class-problem"><span class="header-section-number">7.3.1</span> Model performance - 2-class problem</h3>
 <p>The same base dataset was used for both experiments. To address class imbalance, data augmentation was applied with an 8× multiplication for normal posture images and a 4× multiplication for non-normal posture images, resulting in a balanced dataset of 1,580 synthetically augmented images.</p>
 <p>Two training runs were conducted. The first used the full augmented dataset of 1,580 images. The second extended this dataset by an additional 300 images, which were augmented using body landmark overlays generated with the Google MediaPipe Pose framework to incorporate explicit skeletal structure information.</p>
-<section id="training-2-class-problem-1" class="level4" data-number="7.4.1.1">
-<h4 data-number="7.4.1.1" class="anchored" data-anchor-id="training-2-class-problem-1"><span class="header-section-number">7.4.1.1</span> Training 2-class problem 1</h4>
+<section id="training-2-class-problem-1" class="level4" data-number="7.3.1.1">
+<h4 data-number="7.3.1.1" class="anchored" data-anchor-id="training-2-class-problem-1"><span class="header-section-number">7.3.1.1</span> Training 2-class problem 1</h4>
 <p>Prediction-derived overall accuracy: 0.5316</p>
 <p>Model evaluate() loss/accuracy on dataset_obj: 0.421809/0.854430</p>
 <p>Confusion matrix (rows=true, cols=pred):</p>
@@ -3306,8 +3308,8 @@ vertical-align: -.125em;
 </figure>
 </div>
 </section>
-<section id="training-2-class-problem-2-extra-body-landmark-overlay-image-set" class="level4" data-number="7.4.1.2">
-<h4 data-number="7.4.1.2" class="anchored" data-anchor-id="training-2-class-problem-2-extra-body-landmark-overlay-image-set"><span class="header-section-number">7.4.1.2</span> Training 2-class problem 2 <strong>(extra body landmark overlay image-set)</strong></h4>
+<section id="training-2-class-problem-2-extra-body-landmark-overlay-image-set" class="level4" data-number="7.3.1.2">
+<h4 data-number="7.3.1.2" class="anchored" data-anchor-id="training-2-class-problem-2-extra-body-landmark-overlay-image-set"><span class="header-section-number">7.3.1.2</span> Training 2-class problem 2 (extra body landmark overlay image-set)</h4>
 <p>Prediction-derived overall accuracy: 0.5585</p>
 <p>Model evaluate() loss/accuracy on dataset_obj: 0.454466/0.840426</p>
 <p>Confusion matrix (rows=true, cols=pred):</p>
@@ -3416,30 +3418,54 @@ vertical-align: -.125em;
 </figure>
 </div>
 </section>
+<section id="error-analysis-1" class="level4" data-number="7.3.1.3">
+<h4 data-number="7.3.1.3" class="anchored" data-anchor-id="error-analysis-1"><span class="header-section-number">7.3.1.3</span> Error analysis</h4>
+<p>Model 1 (no overlays) performs with an accuracy of 0.5316 (balanced 0.5358), where as Model 2 (with landmark overlays) with 0.5585. (balanced 0.5562). Landmark overlays yield a modest overall gain and meaningfully improve sensitivity to non‑normal cases, with a small trade‑off in normal recall. Both models perform only slightly above the 50% chance baseline.</p>
+<section id="comparison-of-results-to-3-class-training" class="level5" data-number="7.3.1.3.1">
+<h5 data-number="7.3.1.3.1" class="anchored" data-anchor-id="comparison-of-results-to-3-class-training"><span class="header-section-number">7.3.1.3.1</span> Comparison of results to 3-class training</h5>
+<p>Chance levels for the 3-class =1/3 (33.3%)=1/3(33.3%); 2-class =1/2 (50%)=1/2(50%).</p>
+<ul>
+<li><p>3-class (EfficientNet-Lite4): balanced accuracy =0.4167=0.4167.</p>
+<ul>
+<li>κ∗=0.4167−1/31−1/3=0.08340.6667≈0.125κ∗=1−1/30.4167−1/3​=0.66670.0834​≈0.125.</li>
+</ul></li>
+<li><p>2-class (with overlays): balanced accuracy =0.562=0.562.</p>
+<ul>
+<li>κ∗=0.562−0.51−0.5=0.0620.5=0.124κ∗=1−0.50.562−0.5​=0.50.062​=0.124.</li>
+</ul></li>
+</ul>
+<p>Adjusted for chance, 3-class and 2-class models perform essentially the same; the 3-class model is marginally higher (≈0.125 vs 0.124), a difference that’s practically negligible and likely not statistically significant with these sample sizes. In raw terms, binary shows higher accuracy (≈56% vs 41%), but that’s expected given its higher chance baseline.</p>
+</section>
+</section>
 </section>
 </section>
 </section>
 <section id="discussion" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Discussion</h1>
+<p>This study demonstrates that compact CNNs within the MediaPipe/TFLite stack can learn posture‑relevant features, but current discrimination is limited.</p>
 <section id="interpretation-of-findings" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="interpretation-of-findings"><span class="header-section-number">8.1</span> Interpretation of findings</h2>
-<p>Lore Ypsum placeholder text: This section will interpret the main findings in relation to posture science and AI-based movement analysis.</p>
+<p>The strongest three‑class model (EfficientNet‑Lite4) reached 41.2% accuracy (41.7% balanced accuracy). Reformulating the task as binary improved raw accuracy to 55.9% (55.6% balanced) with landmark overlays, indicating that explicit skeletal cues modestly aid detection.To compare the results of the 3-class and 2-class training, we can look at the overall accuracy and balanced accuracy (macro recall) for each model. The 3-class model achieved an overall accuracy of 41.21% and a balanced accuracy of 41.67%, while the 2-class model with landmark overlays achieved an overall accuracy of 55.85% and a balanced accuracy of 55.62%. Also the overall low performances of both CNN model training approaches (2-class as well as 3-class only slightly above chance) suggest that the task is challenging and that further improvements in data quality, model architecture, or training strategy may be needed to achieve clinically useful performance.</p>
 </section>
 <section id="strengths-and-limitations" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="strengths-and-limitations"><span class="header-section-number">8.2</span> Strengths and limitations</h2>
-<p>Lore Ypsum placeholder text: This section will critically discuss methodological strengths, data limitations, and generalisability constraints.</p>
+<p>The strongest three‑class model (EfficientNet‑Lite4) reached 41.2% accuracy (41.7% balanced accuracy). Reformulating the task as binary improved raw accuracy to 55.9% (55.6% balanced) with landmark overlays, indicating that explicit skeletal cues modestly aid detection. However, because the binary chance level is higher (1/2 vs 1/3), these gains largely reflect problem simplification; after accounting for chance, both formulations perform only slightly above baseline. Persistent confusions—especially “normal” misclassified as “slumped”—suggest real class overlap, subtle posture cues, and probable label noise. Given the small dataset and static imagery, these findings point to feasibility rather than readiness for clinical deployment. Priorities for improvement include targeted data growth at class boundaries, refined and possibly multi‑rater labels, posture‑aware augmentation and sampling, and post‑hoc calibration or thresholds to balance sensitivity and specificity for clinically meaningful use.</p>
 </section>
 <section id="clinical-and-practical-implications" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="clinical-and-practical-implications"><span class="header-section-number">8.3</span> Clinical and practical implications</h2>
-<p>Lore Ypsum placeholder text: This section will explain implications for physiotherapy, rehabilitation, and digital health applications.</p>
+<p>Given current performance (balanced accuracy ≈41% for three‑class), the model’s most appropriate near‑term role is as a clinician‑in‑the‑loop decision support tool rather than a standalone diagnostic. Keeping in mind that n=300, further annotation and data expansion are needed to train the model to a better overall performance. In practice, the system can assist screening by flagging potentially “non‑normal” cases for closer review, standardize documentation via landmark/angle overlays, and track an individual’s progress over time under consistent capture conditions. Safe deployment requires confidence calibration with an “abstain/needs review” state, threshold tuning to the intended use (e.g., sensitivity‑oriented screening), and clear presentation of uncertainty. To enhance reliability and equity, future work should expand and re‑balance labeled data—particularly at class boundaries—adopt multi‑rater labeling, incorporate interpretable posture‑aware features (e.g., craniovertebral angle), and validate externally across sites, devices, and demographic subgroups. On‑device TFLite inference supports privacy and low latency, but any clinical use should be governed by explicit intended‑use documentation, bias and robustness monitoring.</p>
 </section>
 </section>
 <section id="conclusion-and-future-work" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Conclusion and Future Work</h1>
-<p>Lore Ypsum placeholder text: This chapter will summarize the final contributions, reflect on research objectives, and define priorities for future work.</p>
-<p>The primary expected output is a proof-of-concept lightweight AI model, built with TensorFlow Lite and integrated with Google MediaPipe Pose, capable of detecting and analyzing subtle postural and movement imbalances in upper-body alignment. Supporting outputs include annotated code, workflow documentation, and visual examples of pose-based analysis.</p>
-<p>The intended impact is to advance accessible, low-cost, and non-invasive approaches for posture and movement assessment, with potential relevance for physiotherapy, sports science, education, and digital health.</p>
-<p>Dissemination will prioritize practitioner- and public-facing channels, including open repository documentation, blog-style communication, and concise visual explanations.</p>
+<p>This dissertation demonstrates that transfer learning on compact CNNs within the MediaPipe/TFLite stack is feasible for static upper‑body posture assessment, but current performance does not yet meet clinical decision thresholds. The strongest three‑class model (EfficientNet‑Lite4) achieved 41.2% accuracy (41.7% balanced accuracy). Persistent confusions—particularly over‑prediction of “slumped” and low recall for “normal”—likely reflect subtle class boundaries, label noise, and the small, static dataset. Practically, the present system is best positioned as clinician‑in‑the‑loop decision support for screening, standardized documentation (landmark/angle overlays), and within‑subject progress tracking under a consistent capture protocol. On‑device TFLite supports privacy and low latency, but safe use requires calibrated confidence, explicit uncertainty, and clear guardrails around intended use.</p>
+<p>Priorities for future work will center on prospective clinical image collection, expert annotation, and retraining the three‑class model to improve discrimination and equity.</p>
+<p><strong>Clinical data collection:</strong> Acquire a larger, prospectively captured, side‑view image set in real clinical settings under a standardized protocol (camera height ≈ shoulder level, fixed distance, lateral stance, neutral footwear, uncluttered background, even lighting). Ensure representative demographics and obtain informed consent/ethics approvals; record capture metadata (device, view angle, lighting).</p>
+<p><strong>Expert annotation:</strong> Use multi‑rater labeling (≥2 clinicians) with an explicit rubric aligned to the Klein‑Vogelbach classes (“normal/slumped/tensed”) and adjudication for disagreements. Track inter‑rater agreement (e.g., Cohen’s κ) and maintain a gold‑standard subset for calibration and regression testing.</p>
+<p><strong>Retraining the 3‑class model:</strong> Retrain with class‑balanced sampling and posture‑aware augmentation focused on boundary cases. Integrate interpretable posture features from landmarks (e.g., craniovertebral angle, thoracic kyphosis proxy) and consider a multi‑task head (class + angles) to improve both accuracy and interpretability. Calibrate probabilities and set operating thresholds to match screening use.</p>
+<p><strong>Evaluation and fairness:</strong> Perform external validation on a held‑out site/device; report subgroup performance (sex, age bands, skin tone) and confusion patterns. Use learning‑curve analyses to quantify data needs and guide additional collection.</p>
+<p><strong>Deployment readiness:</strong> Keep inference on‑device; implement confidence gating with “abstain/needs review,” version datasets/models, and monitor for drift post‑deployment with periodic recalibration.</p>
+<p><strong>Milestones:</strong> Pilot n≈1000 newly collected, class‑balanced clinical images; target three‑class balanced accuracy ≥0.60–0.65 on an external test split.</p>
 </section>
 <section id="appendix-a.-figures" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Appendix A. Figures</h1>
