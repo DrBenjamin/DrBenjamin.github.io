@@ -2248,7 +2248,6 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#market-research" id="toc-market-research" class="nav-link" data-scroll-target="#market-research"><span class="header-section-number">4.1</span> Market research</a></li>
   <li><a href="#current-research-on-convolutional-neural-networks" id="toc-current-research-on-convolutional-neural-networks" class="nav-link" data-scroll-target="#current-research-on-convolutional-neural-networks"><span class="header-section-number">4.2</span> Current Research on Convolutional Neural Networks</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.3</span> Summary</a></li>
   </ul></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">5</span> Methodology</a>
   <ul>
@@ -2302,11 +2301,10 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#clinical-data-collection" id="toc-clinical-data-collection" class="nav-link" data-scroll-target="#clinical-data-collection"><span class="header-section-number">9.1</span> Clinical data collection</a></li>
   <li><a href="#expert-annotation" id="toc-expert-annotation" class="nav-link" data-scroll-target="#expert-annotation"><span class="header-section-number">9.2</span> Expert annotation</a></li>
-  <li><a href="#klein-vogelbach-informed-overlay-annotation" id="toc-klein-vogelbach-informed-overlay-annotation" class="nav-link" data-scroll-target="#klein-vogelbach-informed-overlay-annotation"><span class="header-section-number">9.3</span> Klein-Vogelbach informed overlay annotation</a></li>
-  <li><a href="#retraining-the-3class-model" id="toc-retraining-the-3class-model" class="nav-link" data-scroll-target="#retraining-the-3class-model"><span class="header-section-number">9.4</span> Retraining the 3‑class model</a></li>
-  <li><a href="#evaluation-and-fairness" id="toc-evaluation-and-fairness" class="nav-link" data-scroll-target="#evaluation-and-fairness"><span class="header-section-number">9.5</span> Evaluation and fairness</a></li>
-  <li><a href="#deployment-readiness" id="toc-deployment-readiness" class="nav-link" data-scroll-target="#deployment-readiness"><span class="header-section-number">9.6</span> Deployment readiness</a></li>
-  <li><a href="#milestones" id="toc-milestones" class="nav-link" data-scroll-target="#milestones"><span class="header-section-number">9.7</span> Milestones</a></li>
+  <li><a href="#retraining-the-3class-model" id="toc-retraining-the-3class-model" class="nav-link" data-scroll-target="#retraining-the-3class-model"><span class="header-section-number">9.3</span> Retraining the 3‑class model</a></li>
+  <li><a href="#evaluation-and-fairness" id="toc-evaluation-and-fairness" class="nav-link" data-scroll-target="#evaluation-and-fairness"><span class="header-section-number">9.4</span> Evaluation and fairness</a></li>
+  <li><a href="#deployment-readiness" id="toc-deployment-readiness" class="nav-link" data-scroll-target="#deployment-readiness"><span class="header-section-number">9.5</span> Deployment readiness</a></li>
+  <li><a href="#milestones" id="toc-milestones" class="nav-link" data-scroll-target="#milestones"><span class="header-section-number">9.6</span> Milestones</a></li>
   </ul></li>
   <li><a href="#appendix-a.-figures" id="toc-appendix-a.-figures" class="nav-link" data-scroll-target="#appendix-a.-figures"><span class="header-section-number">10</span> Appendix A. Figures</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">11</span> References</a></li>
@@ -2348,8 +2346,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">07.05.2026 13:44<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: cli: add --no-label flag to hide overlay title banner in annotated outputs</em></p>
+      <p class="date">07.05.2026 14:19<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: minor changes</em></p>
     </div>
   </div>
   
@@ -2445,10 +2443,6 @@ vertical-align: -.125em;
 <section id="current-research-on-convolutional-neural-networks" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="current-research-on-convolutional-neural-networks"><span class="header-section-number">4.2</span> Current Research on Convolutional Neural Networks</h2>
 <p><span class="citation" data-cites="Cao2024">Cao et al. (<a href="#ref-Cao2024" role="doc-biblioref">2024</a>)</span> state that human posture recognition are machine extractions simulating the eye-function and human learning via feature extraction. They divide this recognition into static and dynamic posture detection, whereby latter one extracts continuous frame sequences and this more widely used. Using images for training and for inference, this approach is static posture classification.</p>
-</section>
-<section id="summary" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.3</span> Summary</h2>
-<p>Lore Ypsum placeholder text: This section will conclude the literature review in a concise way.</p>
 </section>
 </section>
 <section id="methodology" class="level1" data-number="5">
@@ -3617,26 +3611,21 @@ vertical-align: -.125em;
 <p>For expert annotation, future work should implement a multi-rater labeling protocol with at least two independent clinicians to ensure annotation reliability, in contrast to the present study where annotations were performed by a single rater (the author). All annotations should follow a clearly defined rubric aligned with the Klein-Vogelbach posture classes (normal, slumped/hypotonic, tensed/hypertonic), including explicit decision criteria to reduce subjective variability. Disagreements between raters should be resolved through a structured adjudication process, ideally involving a third expert reviewer.</p>
 <p>Inter-rater agreement should be quantified using metrics such as Cohen’s κ to monitor consistency and identify ambiguous cases. In addition, a stable <strong>gold-standard</strong> subset should be maintained and periodically reused for model calibration and regression testing to ensure annotation quality and temporal consistency across dataset iterations.</p>
 </section>
-<section id="klein-vogelbach-informed-overlay-annotation" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="klein-vogelbach-informed-overlay-annotation"><span class="header-section-number">9.3</span> Klein-Vogelbach informed overlay annotation</h2>
-<p>Instead of 33 body landmarks, a <strong>4-body-block</strong> detection model should be trained. This can lead to overlay-prepared images that represent the posture as a structured higher-level abstraction rather than isolated joint points. By aggregating landmarks into four functional segments (head, thorax, pelvis, and lower extremities), the model can capture inter-segment relationships consistent with Klein-Vogelbach’s posture classification. This enables clearer representation of global postural organisation, such as integrated alignment in normal posture, anterior-posterior dissociation in hypotonic posture, and global anterior load shift in hypertonic posture, thereby improving interpretability and potentially enhancing class discrimination for CNN-based classification.</p>
-<p>This could also render the efforts of training the classification model obsolete, as the system would instead be deployed as a pose model that directly estimates the configuration and relative alignment of the four body blocks, allowing posture categories to be derived deterministically from these relationships rather than learned via a separate classification step. But this would also limit the capabilities, as a pose-only model constrains inference to geometric body configurations and therefore reduces the diversity of detectable patterns compared to a classification model, which can learn higher-level, context-dependent and appearance-based cues beyond skeletal alignment, including subtle compensatory strategies and non-linear visual markers that are often relevant in clinical assessment.</p>
-</section>
-<section id="retraining-the-3class-model" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="retraining-the-3class-model"><span class="header-section-number">9.4</span> Retraining the 3‑class model</h2>
+<section id="retraining-the-3class-model" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="retraining-the-3class-model"><span class="header-section-number">9.3</span> Retraining the 3‑class model</h2>
 <p>To retrain the model using class-balanced sampling to mitigate class imbalance and apply posture-aware augmentation, boundary cases between normal, slumped, and tensed postures should be carefully handled rather than inadvertently reinforced. Training should incorporate more discriminative and clinically consistent examples, with targeted augmentation that preserves posture semantics while increasing variability in non-ambiguous cases.</p>
 <p>In addition, interpretable posture-derived features extracted from landmarks (e.g., craniovertebral angle and thoracic kyphosis proxies) could be integrated to complement image-based learning with clinically meaningful structure. A multi-task architecture, jointly predicting posture class and continuous postural angles, may further improve both classification performance and interpretability by enforcing consistency between categorical and geometric representations of posture. Finally, probability calibration should be applied, and operating thresholds should be explicitly defined for a screening use case to prioritize sensitivity for non-normal postures while controlling false-positive rates.</p>
 </section>
-<section id="evaluation-and-fairness" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="evaluation-and-fairness"><span class="header-section-number">9.5</span> Evaluation and fairness</h2>
+<section id="evaluation-and-fairness" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="evaluation-and-fairness"><span class="header-section-number">9.4</span> Evaluation and fairness</h2>
 <p>Future work should include external validation on a held-out site or device to assess generalisability beyond the current data source test data-set. In addition, model performance should be reported across relevant subgroups (e.g., sex, age bands, and skin tone), including an analysis of confusion patterns to identify systematic biases or failure modes. Learning-curve analyses should further be conducted to quantify data requirements and inform targeted data collection for improving model robustness and fairness.</p>
 </section>
-<section id="deployment-readiness" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="deployment-readiness"><span class="header-section-number">9.6</span> Deployment readiness</h2>
+<section id="deployment-readiness" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="deployment-readiness"><span class="header-section-number">9.5</span> Deployment readiness</h2>
 <p>For deployment readiness, inference should be performed on-device to ensure low latency and preserve user privacy within the authors E-Health SaaS service <em>Serious Ben Entertainment</em> for the German health market, where posture detection is embedded in a digital serious back school game. To enhance reliability in this preventive context, the system should implement confidence gating, allowing the model to abstain or flag cases as “needs review” when prediction certainty is low. In addition, datasets and model versions should be systematically tracked to ensure reproducibility and regulatory transparency. Post-deployment, continuous monitoring for data drift is required, with periodic recalibration to maintain performance as usage conditions, devices, and user populations evolve.</p>
 </section>
-<section id="milestones" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="milestones"><span class="header-section-number">9.7</span> Milestones</h2>
+<section id="milestones" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="milestones"><span class="header-section-number">9.6</span> Milestones</h2>
 <p>As a concrete milestone, a on-site pilot study should be conducted creating approximately 1,000 newly class-balanced clinical images. Model performance should be evaluated on an external test split, with a target balanced accuracy (three-class, macro recall) in the range of <strong>0.60–0.65</strong> to demonstrate improved generalisability and clinically meaningful classification performance.</p>
 <p>Further future work should prioritize the transition to a structured four-body-block pose detection approach aligned with Klein-Vogelbach’s framework. This involves training models to estimate the relative position and orientation of the head, thorax, pelvis, and lower extremities, enabling direct modelling of inter-segment relationships rather than relying on high-dimensional joint inputs. Such an approach may improve robustness and interpretability. Model development should be accompanied by clinically informed annotation protocols and validated against expert-labelled reference data to ensure alignment with functional movement assessment standards.</p>
 <p>Last but not least, a dedicated iOS application should be developed to deploy the trained models on Apple’s A-series chip architecture, leveraging the integrated Neural Engine for efficient on-device inference. This would enable real-time posture analysis with low latency, reduced energy consumption, and enhanced privacy through local processing, while also supporting scalable deployment within mobile E-Health and serious gaming applications.</p>
