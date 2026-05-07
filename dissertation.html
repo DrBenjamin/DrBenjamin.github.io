@@ -2348,8 +2348,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">06.05.2026 16:06<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: minor improvements on Klein-Vogelbach sub-chapter</em></p>
+      <p class="date">07.05.2026 09:07<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: minor improvements on Methodology chapter</em></p>
     </div>
   </div>
   
@@ -2453,7 +2453,7 @@ vertical-align: -.125em;
 </section>
 <section id="methodology" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Methodology</h1>
-<p>In this work, we will apply a quantitative, observational design to explore the feasibility of using transfer learning on a pre-trained TensorFlow Lite model for posture and movement imbalance detection. The study will involve secondary data analysis of an existing image dataset curated for posture analysis, with a focus on evaluating the performance of a finetuned CNN model within the Google MediaPipe framework.</p>
+<p>In this work, a quantitative observational design is applied to explore the feasibility of using transfer learning on a pre-trained TensorFlow Lite model for posture and movement imbalance detection. The study involves secondary analysis of an existing image dataset curated for posture assessment, with a particular focus on evaluating the performance of a fine-tuned CNN model within the Google MediaPipe framework. This technology was selected because it provides a reproducible and cross-platform environment for rapid prototyping, model deployment, and iterative optimization of computer-vision applications, while enabling efficient integration of pre-existing perception components and consistent performance evaluation across different devices and platforms <span class="citation" data-cites="Lugaresi2019">(<a href="#ref-Lugaresi2019" role="doc-biblioref">Lugaresi et al., 2019</a>)</span>.</p>
 <section id="study-design-and-setting" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="study-design-and-setting"><span class="header-section-number">5.1</span> Study design and setting</h2>
 <p>This study is a secondary data analysis exploring postural and movement imbalance detection using artificial intelligence. The project applies a quantitative, observational design, analyzing existing image data through supervised machine learning, specifically Convolutional Neural Networks (CNNs) implemented via TensorFlow Lite within the Google MediaPipe framework. The aim is to evaluate whether lightweight AI models can detect subtle patterns of imbalance in posture and coordination and to adapt them for potential clinical use through transfer learning on a posture-specific dataset.</p>
@@ -2479,7 +2479,7 @@ vertical-align: -.125em;
 <li>“slumped posture” (middle)</li>
 <li>“normal posture” (right)</li>
 </ul>
-<p>The author manually annotated and applied the 300 images to one of these classes according to his clinical experience in the field of orthopaedics and functional movement therapy.</p>
+<p>The author manually annotated and applied the 300 images to one of these classes according to his clinical experience in the field of orthopedics and functional movement therapy.</p>
 <p><strong>Primary outcome</strong></p>
 <ul>
 <li>Head-neck-torso alignment: Angular relationships and relative positioning of the head, cervical spine, and torso regarding the 3-class model by Klein-Vogelbach.</li>
@@ -2519,7 +2519,7 @@ vertical-align: -.125em;
 </section>
 <section id="implementation" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Implementation</h1>
-<p>To utilze the Google MediaPipe framework, extended pipelines and automation were used to prepare the data, train and evaluate models, and produce deployable inference artifacts. The research environment and reproducible steps to build the training pipeline and maintain a production ready data-engineering workflow (including the n8n augmentation workflow) are described.</p>
+<p>To utilize the Google MediaPipe framework, extended pipelines and automation were used to prepare the data, train and evaluate models, and produce deployable inference artifacts. The research environment and reproducible steps to build the training pipeline and maintain a production ready data-engineering workflow (including the n8n augmentation workflow) are described.</p>
 <section id="research-setup" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="research-setup"><span class="header-section-number">6.1</span> Research setup</h2>
 <ul>
@@ -3633,7 +3633,8 @@ vertical-align: -.125em;
 <section id="milestones" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="milestones"><span class="header-section-number">9.7</span> Milestones</h2>
 <p>As a concrete milestone, a on-site pilot study should be conducted creating approximately 1,000 newly class-balanced clinical images. Model performance should be evaluated on an external test split, with a target balanced accuracy (three-class, macro recall) in the range of <strong>0.60–0.65</strong> to demonstrate improved generalisability and clinically meaningful classification performance.</p>
-<p>Further future work should prioritise the transition to a structured four-body-block pose detection approach aligned with Klein-Vogelbach’s framework. This involves training models to estimate the relative position and orientation of the head, thorax, pelvis, and lower extremities, enabling direct modelling of inter-segment relationships rather than relying on high-dimensional joint inputs. Such an approach may improve robustness and interpretability. Model development should be accompanied by clinically informed annotation protocols and validated against expert-labelled reference data to ensure alignment with functional movement assessment standards.</p>
+<p>Further future work should prioritize the transition to a structured four-body-block pose detection approach aligned with Klein-Vogelbach’s framework. This involves training models to estimate the relative position and orientation of the head, thorax, pelvis, and lower extremities, enabling direct modelling of inter-segment relationships rather than relying on high-dimensional joint inputs. Such an approach may improve robustness and interpretability. Model development should be accompanied by clinically informed annotation protocols and validated against expert-labelled reference data to ensure alignment with functional movement assessment standards.</p>
+<p>Last but not least, a dedicated iOS application should be developed to deploy the trained models on Apple’s A-series chip architecture, leveraging the integrated Neural Engine for efficient on-device inference. This would enable real-time posture analysis with low latency, reduced energy consumption, and enhanced privacy through local processing, while also supporting scalable deployment within mobile E-Health and serious gaming applications.</p>
 </section>
 </section>
 <section id="appendix-a.-figures" class="level1" data-number="10">
@@ -3684,6 +3685,9 @@ Kubalek-Schröder, S., &amp; Dehler, F. (2013). Funktionsabhängige beschwerdebi
 </div>
 <div id="ref-Lachance2023" class="csl-entry" role="listitem">
 Lachance, J. M., Thong, W., Shruti, N., &amp; Xiang, A. (2023). A case study in fairness evaluation: Current limitations and challenges for human pose estimation. <em>Sony</em>. <a href="https://r2hcai.github.io/AAAI-23/files/CameraReadys/21.pdf">https://r2hcai.github.io/AAAI-23/files/CameraReadys/21.pdf</a>
+</div>
+<div id="ref-Lugaresi2019" class="csl-entry" role="listitem">
+Lugaresi, C., Tang, J., Nash, H., Mcclanahan, C., Uboweja, E., Hays, M., Zhang, F., Chang, C.-L., Yong, M. G., Lee, J., Chang, W.-T., Hua, W., Georg, M., Grundmann, M., &amp; Research, G. (2019). MediaPipe: A framework for building perception pipelines. <em>Google</em>. <a href="https://arxiv.org/pdf/1906.08172">https://arxiv.org/pdf/1906.08172</a>
 </div>
 <div id="ref-Move-AI-Ltd2026" class="csl-entry" role="listitem">
 Move AI. (2026). Move AI - markerless motion capture &amp; 3D animation. In <em>https://move.ai</em>. <a href="https://move.ai/">https://move.ai/</a>
