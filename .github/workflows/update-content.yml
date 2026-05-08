@@ -335,6 +335,7 @@ jobs:
             local HTML_SLUG=$3
             local PDF_NAME=$4
             local LABEL=$5
+            local FORMAT_OVERRIDE=${6:-}
 
             echo "--- Rendering ${LABEL} (${QMD}) ---"
             if [ ! -f "${SRC_DIR}/${QMD}" ]; then
@@ -354,8 +355,15 @@ jobs:
             export GITHUB_PAT="${{ secrets.GITHUB_TOKEN }}"
             # Ensure critical packages are installed in global lib (idempotent)
             Rscript --vanilla -e "crit<-c('knitr','rmarkdown','RefManageR'); miss<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(miss)) install.packages(miss,repos='https://cloud.r-project.org'); left<-crit[!vapply(crit,requireNamespace,logical(1),quietly=TRUE)]; if(length(left)) { quit(status=1) }"
-            echo "Running: quarto render ${QMD} (renv disabled)"
-            if ! RENV_CONFIG_AUTOLOAD=FALSE quarto render "${QMD}"; then
+            # Allow forcing a single output format (e.g., html) to avoid PDF hangs
+            local RENDER_ARGS=""
+            if [ -n "${FORMAT_OVERRIDE}" ]; then
+              RENDER_ARGS="--to ${FORMAT_OVERRIDE}"
+              echo "Format override detected for ${LABEL}: ${FORMAT_OVERRIDE}"
+            fi
+
+            echo "Running: quarto render ${QMD} ${RENDER_ARGS} (renv disabled)"
+            if ! RENV_CONFIG_AUTOLOAD=FALSE quarto render "${QMD}" ${RENDER_ARGS}; then
               echo "::error::Quarto render failed for ${QMD}"
               popd >/dev/null
               return 1
@@ -398,7 +406,8 @@ jobs:
             render_course source-technical "$TECHNICAL_QMD" "$TECHNICAL_HTML_SLUG" "$TECHNICAL_PDF" "Technical Applications and Data Analytics" || FAILED_COUNT=$((FAILED_COUNT+1))
             render_course source-dissertation "$DISSERTATION_QMD" "$DISSERTATION_HTML_SLUG" "$DISSERTATION_PDF" "My CNN Dissertation Project" || FAILED_COUNT=$((FAILED_COUNT+1))
             render_course source-bachelor "$BACHELOR_QMD" "$BACHELOR_HTML_SLUG" "$BACHELOR_PDF" "My Bachelor Thesis Project" || FAILED_COUNT=$((FAILED_COUNT+1))
-            render_course source-business "$BUSINESS_QMD" "$BUSINESS_HTML_SLUG" "$BUSINESS_PDF" "My Business Plan Project" || FAILED_COUNT=$((FAILED_COUNT+1))
+            # Force HTML-only for Businessplan to avoid PDF render hang on CI
+            render_course source-business "$BUSINESS_QMD" "$BUSINESS_HTML_SLUG" "$BUSINESS_PDF" "My Business Plan Project" html || FAILED_COUNT=$((FAILED_COUNT+1))
           if [ $FAILED_COUNT -ge $TOTAL_COURSES ]; then
             echo "::error::All content renders failed. Failing job."
             exit 1
