@@ -312,7 +312,7 @@ jobs:
           TECHNICAL_HTML_SLUG="technical-applications.html"
           DISSERTATION_HTML_SLUG="dissertation.html"
           BACHELOR_HTML_SLUG="bachelor.html"
-          BUSINESS_HTML_SLUG="businessplan-therapy-center.html"
+          BUSINESS_HTML_SLUG="businessplan.html"
           ANALYTICAL_PDF="Analytical_Skills_for_Business.pdf"
           DATASCI_PDF="Data_Science_and_Data_Analytics.pdf"
           TECHNICAL_PDF="Technical_Applications_and_Data_Analytics.pdf"
@@ -415,7 +415,7 @@ jobs:
           fi
 
           # Add core artifacts
-          git add analytical-skills.html data-science-analytics.html technical-applications.html dissertation.html bachelor.html businessplan-therapy-center.html \
+          git add analytical-skills.html data-science-analytics.html technical-applications.html dissertation.html bachelor.html businessplan.html \
                   Analytical_Skills_for_Business.pdf Data_Science_and_Data_Analytics.pdf Technical_Applications_and_Data_Analytics.pdf Dissertation.pdf Bachelor.pdf Businessplan.pdf || true
 
           # Add any files in topics directories from all source repositories
