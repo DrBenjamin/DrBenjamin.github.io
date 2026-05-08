@@ -117,3 +117,25 @@ Technical-Applications-and-Data-Analysis: Technical_Applications_and_Data_Analyt
 Dissertation: Dissertation.qmd
 Bachelor: Bachelor.qmd
 ```
+
+## 🔔 Remote Trigger (repository_dispatch)
+
+This repository supports remote triggering of the unified workflow using the GitHub API `repository_dispatch` event with a custom type `fetch_webpage`.
+
+Example curl request:
+
+```bash
+curl -X POST \
+   -H "Accept: application/vnd.github+json" \
+   -H "Authorization: token <PERSONAL_ACCESS_TOKEN_OR_GITHUB_APP_TOKEN>" \
+   https://api.github.com/repos/DrBenjamin/DrBenjamin.github.io/dispatches \
+   -d '{
+      "event_type": "fetch_webpage",
+      "client_payload": {"source": "external-webhook", "note": "optional metadata"}
+   }'
+```
+
+Notes:
+- Use a token with `repo` scope (or a GitHub App installation token) that has access to this repository.
+- The same workflow also supports `event_type: content-update` for existing automations.
+- The workflow logs `github.event.action` and `github.event.client_payload` for diagnostics.
