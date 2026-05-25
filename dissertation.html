@@ -2258,7 +2258,14 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">4</span> Implementation</a>
   <ul>
-  <li><a href="#research-setup" id="toc-research-setup" class="nav-link" data-scroll-target="#research-setup"><span class="header-section-number">4.1</span> Research setup</a></li>
+  <li><a href="#research-setup" id="toc-research-setup" class="nav-link" data-scroll-target="#research-setup"><span class="header-section-number">4.1</span> Research setup</a>
+  <ul>
+  <li><a href="#hardware-and-runtime" id="toc-hardware-and-runtime" class="nav-link" data-scroll-target="#hardware-and-runtime"><span class="header-section-number">4.1.1</span> Hardware and runtime</a></li>
+  <li><a href="#softwareframeworkservice-stack" id="toc-softwareframeworkservice-stack" class="nav-link" data-scroll-target="#softwareframeworkservice-stack"><span class="header-section-number">4.1.2</span> <strong>Software/framework/service stack</strong></a></li>
+  <li><a href="#environment-manifests-used-in-this-project-congested-by-dockerfiles" id="toc-environment-manifests-used-in-this-project-congested-by-dockerfiles" class="nav-link" data-scroll-target="#environment-manifests-used-in-this-project-congested-by-dockerfiles"><span class="header-section-number">4.1.3</span> <strong>Environment manifests used in this project (congested by Dockerfiles)</strong></a></li>
+  <li><a href="#example-reproducible-local-environment" id="toc-example-reproducible-local-environment" class="nav-link" data-scroll-target="#example-reproducible-local-environment"><span class="header-section-number">4.1.4</span> <strong>Example reproducible local environment</strong></a></li>
+  <li><a href="#streamlit-web-app-interface" id="toc-streamlit-web-app-interface" class="nav-link" data-scroll-target="#streamlit-web-app-interface"><span class="header-section-number">4.1.5</span> Streamlit Web App Interface</a></li>
+  </ul></li>
   <li><a href="#training-pipeline-and-data-engineering" id="toc-training-pipeline-and-data-engineering" class="nav-link" data-scroll-target="#training-pipeline-and-data-engineering"><span class="header-section-number">4.2</span> Training pipeline and data engineering</a></li>
   <li><a href="#inference-pipeline-containerization-and-cicd" id="toc-inference-pipeline-containerization-and-cicd" class="nav-link" data-scroll-target="#inference-pipeline-containerization-and-cicd"><span class="header-section-number">4.3</span> Inference pipeline, containerization and CI/CD</a></li>
   </ul></li>
@@ -2345,8 +2352,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">22.05.2026 10:53<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: improved literature research chapter</em></p>
+      <p class="date">25.05.2026 07:56<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: added Streamlit Web App chapter to Implementation</em></p>
     </div>
   </div>
   
@@ -2520,31 +2527,61 @@ vertical-align: -.125em;
 <p>To utilize the Google MediaPipe framework, extended pipelines and automation were used to prepare the data, train and evaluate models, and produce deployable inference artifacts. The research environment and reproducible steps to build the training pipeline and maintain a production ready data-engineering workflow (including the n8n augmentation workflow) are described.</p>
 <section id="research-setup" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="research-setup"><span class="header-section-number">4.1</span> Research setup</h2>
-<ul>
-<li><p><strong>Hardware and runtime</strong></p>
-<p>The development was mostly performed on a remote virtual machine with Ubuntu Linux and specs of 8GB RAM and 4 available CPU Cores. For editing Python scripts, a Jupyter Notebook was used for editing and running the transfer-learning script, for editing the Quarto dissertation project file a RStudio Server. Next to this, a Streamlit WebApp was developed and used to test re-trained models manually. Both the Jupyter notebook and the Streamlit WebApp were deployed via a Docker container on the remote server to manage heavy Python library dependencies of MediaPipe Model Maker (Python 3.10) respective of MediaPipe / TensorFlow Lite (Python 3.13) for the Streamlit app.</p></li>
-<li><p><strong>Software/framework/service stack</strong></p>
-<ul>
-<li>Python 3.10 (Model Maker) or Python 3.13 (Inference)</li>
-<li>Core CNN libraries: MediaPipe Pose (0.10.20), MediaPipe Model Maker (0.2.1.3), TensorFlow 2.19.1 with TFLite support and Keras (3.12.1)</li>
-<li>Important Python-libraries: OpenCV, NumPy, pandas, Matplotlib, FastAPI (for MediaPipe API), Streamlit (for WebApp)</li>
-<li>Jupyter notebook</li>
-<li>Quarto</li>
-<li>Streamlit (Python WebApp)</li>
-<li>Docker</li>
-<li>Jenkins (CI server)</li>
-<li>n8n (automation/workflows)</li>
-<li>Github Actions (dissertation artifact build and deployment)</li>
-</ul></li>
-<li><p><strong>Environment manifests used in this project (congested by Dockerfiles)</strong></p>
-<ul>
-<li><code>code/environment.yml</code></li>
-<li><code>code/environment_model-maker.yml</code></li>
-<li><code>code/requirements.txt</code></li>
-<li><code>code/requirements_model-maker.txt</code></li>
-</ul></li>
-<li><p><strong>Example reproducible local environment:</strong></p></li>
-</ul>
+<section id="hardware-and-runtime" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="hardware-and-runtime"><span class="header-section-number">4.1.1</span> Hardware and runtime</h3>
+<p>The development was mostly performed on a remote virtual machine with Ubuntu Linux and specs of 8GB RAM and 4 available CPU Cores. For editing Python scripts, a Jupyter Notebook was used for editing and running the transfer-learning script, for editing the Quarto dissertation project file a RStudio Server. Next to this, a Streamlit WebApp was developed and used to test re-trained models manually. Both the Jupyter notebook and the Streamlit WebApp were deployed via a Docker container on the remote server to manage heavy Python library dependencies of MediaPipe Model Maker (Python 3.10) respective of MediaPipe / TensorFlow Lite (Python 3.13) for the Streamlit app.</p>
+</section>
+<section id="softwareframeworkservice-stack" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="softwareframeworkservice-stack"><span class="header-section-number">4.1.2</span> <strong>Software/framework/service stack</strong></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Technologies / Services</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Programming environments</td>
+<td>Python 3.10 (Model Maker), Python 3.13 (Inference)</td>
+</tr>
+<tr class="even">
+<td>Core deep learning frameworks</td>
+<td>MediaPipe Pose 0.10.20, MediaPipe Model Maker 0.2.1.3, TensorFlow 2.19.1 (with TensorFlow Lite), Keras 3.12.1</td>
+</tr>
+<tr class="odd">
+<td>Supporting Python libraries</td>
+<td>OpenCV, NumPy, pandas, Matplotlib, FastAPI, Streamlit</td>
+</tr>
+<tr class="even">
+<td>Development and authoring tools</td>
+<td>Jupyter Notebook, Quarto</td>
+</tr>
+<tr class="odd">
+<td>Deployment and containerization</td>
+<td>Docker, Streamlit WebApp</td>
+</tr>
+<tr class="even">
+<td>CI/CD and automation</td>
+<td>Jenkins, GitHub Actions, n8n</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="environment-manifests-used-in-this-project-congested-by-dockerfiles" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="environment-manifests-used-in-this-project-congested-by-dockerfiles"><span class="header-section-number">4.1.3</span> <strong>Environment manifests used in this project (congested by Dockerfiles)</strong></h3>
+<p><code>code/</code></p>
+<p><code>├── environment.yml</code></p>
+<p><code>├── environment_model-maker.yml</code></p>
+<p><code>├── requirements.txt</code></p>
+<p><code>└── requirements_model-maker.txt</code></p>
+</section>
+<section id="example-reproducible-local-environment" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="example-reproducible-local-environment"><span class="header-section-number">4.1.4</span> <strong>Example reproducible local environment</strong></h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MediaPipe Model Maker environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> code/environment_model-maker.yml</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate dissertation-3.10</span>
@@ -2552,6 +2589,10 @@ vertical-align: -.125em;
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># MediaPipe Pose and TensorFlow Lite environment</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> code/environment.yml</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate dissertation-3.13</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="streamlit-web-app-interface" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="streamlit-web-app-interface"><span class="header-section-number">4.1.5</span> Streamlit Web App Interface</h3>
+</section>
 </section>
 <section id="training-pipeline-and-data-engineering" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="training-pipeline-and-data-engineering"><span class="header-section-number">4.2</span> Training pipeline and data engineering</h2>
