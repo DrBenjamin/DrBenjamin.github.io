@@ -2246,12 +2246,13 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#literature-review" id="toc-literature-review" class="nav-link" data-scroll-target="#literature-review"><span class="header-section-number">2</span> Literature Review</a>
   <ul>
-  <li><a href="#market-research-on-motion-capture-systems" id="toc-market-research-on-motion-capture-systems" class="nav-link" data-scroll-target="#market-research-on-motion-capture-systems"><span class="header-section-number">2.1</span> Market research on motion capture systems</a></li>
+  <li><a href="#deep-learning-and-pems" id="toc-deep-learning-and-pems" class="nav-link" data-scroll-target="#deep-learning-and-pems"><span class="header-section-number">2.1</span> Deep learning and PEMs</a></li>
+  <li><a href="#market-research-on-motion-capture-systems" id="toc-market-research-on-motion-capture-systems" class="nav-link" data-scroll-target="#market-research-on-motion-capture-systems"><span class="header-section-number">2.2</span> Market research on motion capture systems</a></li>
   </ul></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">3</span> Methodology</a>
   <ul>
   <li><a href="#study-design-and-setting" id="toc-study-design-and-setting" class="nav-link" data-scroll-target="#study-design-and-setting"><span class="header-section-number">3.1</span> Study design and setting</a></li>
-  <li><a href="#data-source-and-characteristics" id="toc-data-source-and-characteristics" class="nav-link" data-scroll-target="#data-source-and-characteristics"><span class="header-section-number">3.2</span> Data source and characteristics</a></li>
+  <li><a href="#data-source-preprocessing-and-class-definition" id="toc-data-source-preprocessing-and-class-definition" class="nav-link" data-scroll-target="#data-source-preprocessing-and-class-definition"><span class="header-section-number">3.2</span> Data source, preprocessing and class definition</a></li>
   <li><a href="#variables-features-and-preprocessing" id="toc-variables-features-and-preprocessing" class="nav-link" data-scroll-target="#variables-features-and-preprocessing"><span class="header-section-number">3.3</span> Variables, features, and preprocessing</a>
   <ul>
   <li><a href="#the-classes" id="toc-the-classes" class="nav-link" data-scroll-target="#the-classes"><span class="header-section-number">3.3.1</span> The classes</a></li>
@@ -2271,9 +2272,11 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#hardware-and-runtime" id="toc-hardware-and-runtime" class="nav-link" data-scroll-target="#hardware-and-runtime"><span class="header-section-number">4.1.1</span> Hardware and runtime</a></li>
   <li><a href="#softwareframeworkservice-stack" id="toc-softwareframeworkservice-stack" class="nav-link" data-scroll-target="#softwareframeworkservice-stack"><span class="header-section-number">4.1.2</span> Software/framework/service stack</a></li>
-  <li><a href="#environment-manifests-used-in-this-project-congested-by-dockerfiles" id="toc-environment-manifests-used-in-this-project-congested-by-dockerfiles" class="nav-link" data-scroll-target="#environment-manifests-used-in-this-project-congested-by-dockerfiles"><span class="header-section-number">4.1.3</span> Environment manifests used in this project (congested by Dockerfiles)</a></li>
-  <li><a href="#example-reproducible-local-environment" id="toc-example-reproducible-local-environment" class="nav-link" data-scroll-target="#example-reproducible-local-environment"><span class="header-section-number">4.1.4</span> Example reproducible local environment</a></li>
-  <li><a href="#streamlit-web-app-interface" id="toc-streamlit-web-app-interface" class="nav-link" data-scroll-target="#streamlit-web-app-interface"><span class="header-section-number">4.1.5</span> Streamlit Web App Interface</a></li>
+  <li><a href="#environment-manifests-used-in-this-project-congested-by-dockerfiles" id="toc-environment-manifests-used-in-this-project-congested-by-dockerfiles" class="nav-link" data-scroll-target="#environment-manifests-used-in-this-project-congested-by-dockerfiles"><span class="header-section-number">4.1.3</span> Environment manifests used in this project (congested by Dockerfiles)</a>
+  <ul class="collapse">
+  <li><a href="#example-reproducible-local-environment" id="toc-example-reproducible-local-environment" class="nav-link" data-scroll-target="#example-reproducible-local-environment"><span class="header-section-number">4.1.3.1</span> Example reproducible local environment</a></li>
+  </ul></li>
+  <li><a href="#streamlit-web-app-interface" id="toc-streamlit-web-app-interface" class="nav-link" data-scroll-target="#streamlit-web-app-interface"><span class="header-section-number">4.1.4</span> Streamlit Web App Interface</a></li>
   </ul></li>
   <li><a href="#training-pipeline-and-data-engineering" id="toc-training-pipeline-and-data-engineering" class="nav-link" data-scroll-target="#training-pipeline-and-data-engineering"><span class="header-section-number">4.2</span> Training pipeline and data engineering</a>
   <ul>
@@ -2289,29 +2292,23 @@ vertical-align: -.125em;
   <li><a href="#results-1" id="toc-results-1" class="nav-link" data-scroll-target="#results-1"><span class="header-section-number">5</span> Results</a>
   <ul>
   <li><a href="#dataset-and-preprocessing-outcomes" id="toc-dataset-and-preprocessing-outcomes" class="nav-link" data-scroll-target="#dataset-and-preprocessing-outcomes"><span class="header-section-number">5.1</span> Dataset and preprocessing outcomes</a></li>
-  <li><a href="#class-training" id="toc-class-training" class="nav-link" data-scroll-target="#class-training"><span class="header-section-number">5.2</span> 2-Class Training</a>
+  <li><a href="#class-training-model-performance" id="toc-class-training-model-performance" class="nav-link" data-scroll-target="#class-training-model-performance"><span class="header-section-number">5.2</span> 2-Class Training Model performance</a>
   <ul>
-  <li><a href="#model-performance---2-class-problem" id="toc-model-performance---2-class-problem" class="nav-link" data-scroll-target="#model-performance---2-class-problem"><span class="header-section-number">5.2.1</span> Model performance - 2-class problem</a>
-  <ul class="collapse">
-  <li><a href="#training-1" id="toc-training-1" class="nav-link" data-scroll-target="#training-1"><span class="header-section-number">5.2.1.1</span> Training 1</a></li>
-  <li><a href="#training-2" id="toc-training-2" class="nav-link" data-scroll-target="#training-2"><span class="header-section-number">5.2.1.2</span> Training 2</a></li>
-  <li><a href="#training-3-extra-body-landmark-overlay" id="toc-training-3-extra-body-landmark-overlay" class="nav-link" data-scroll-target="#training-3-extra-body-landmark-overlay"><span class="header-section-number">5.2.1.3</span> Training 3 (extra body landmark overlay)</a></li>
+  <li><a href="#training-1" id="toc-training-1" class="nav-link" data-scroll-target="#training-1"><span class="header-section-number">5.2.1</span> Training 1</a></li>
+  <li><a href="#training-2" id="toc-training-2" class="nav-link" data-scroll-target="#training-2"><span class="header-section-number">5.2.2</span> Training 2</a></li>
+  <li><a href="#training-3-extra-body-landmark-overlay" id="toc-training-3-extra-body-landmark-overlay" class="nav-link" data-scroll-target="#training-3-extra-body-landmark-overlay"><span class="header-section-number">5.2.3</span> Training 3 (extra body landmark overlay)</a></li>
+  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis"><span class="header-section-number">5.2.4</span> Error analysis</a></li>
   </ul></li>
-  <li><a href="#error-analysis" id="toc-error-analysis" class="nav-link" data-scroll-target="#error-analysis"><span class="header-section-number">5.2.2</span> Error analysis</a></li>
-  </ul></li>
-  <li><a href="#class-training-1" id="toc-class-training-1" class="nav-link" data-scroll-target="#class-training-1"><span class="header-section-number">5.3</span> 3-Class Training</a>
+  <li><a href="#class-training-model-performance-1" id="toc-class-training-model-performance-1" class="nav-link" data-scroll-target="#class-training-model-performance-1"><span class="header-section-number">5.3</span> 3-Class Training Model performance</a>
   <ul>
-  <li><a href="#model-performance---3-class-problem" id="toc-model-performance---3-class-problem" class="nav-link" data-scroll-target="#model-performance---3-class-problem"><span class="header-section-number">5.3.1</span> Model performance - 3-class problem</a>
+  <li><a href="#training-1-mobilenet-v2-architecture" id="toc-training-1-mobilenet-v2-architecture" class="nav-link" data-scroll-target="#training-1-mobilenet-v2-architecture"><span class="header-section-number">5.3.1</span> Training 1 (MobileNet-V2 architecture)</a></li>
+  <li><a href="#training-2-efficientnet-lite0-architecture" id="toc-training-2-efficientnet-lite0-architecture" class="nav-link" data-scroll-target="#training-2-efficientnet-lite0-architecture"><span class="header-section-number">5.3.2</span> Training 2 (EfficientNet-Lite0 architecture)</a></li>
+  <li><a href="#training-3-efficientnet-lite2-architecture" id="toc-training-3-efficientnet-lite2-architecture" class="nav-link" data-scroll-target="#training-3-efficientnet-lite2-architecture"><span class="header-section-number">5.3.3</span> Training 3 (EfficientNet-Lite2 architecture)</a></li>
+  <li><a href="#training-4-efficientnet-lite4-architecture" id="toc-training-4-efficientnet-lite4-architecture" class="nav-link" data-scroll-target="#training-4-efficientnet-lite4-architecture"><span class="header-section-number">5.3.4</span> <strong>Training 4 (EfficientNet-Lite4 architecture)</strong></a></li>
+  <li><a href="#error-analysis-1" id="toc-error-analysis-1" class="nav-link" data-scroll-target="#error-analysis-1"><span class="header-section-number">5.3.5</span> Error analysis</a>
   <ul class="collapse">
-  <li><a href="#training-1-mobilenet-v2-architecture" id="toc-training-1-mobilenet-v2-architecture" class="nav-link" data-scroll-target="#training-1-mobilenet-v2-architecture"><span class="header-section-number">5.3.1.1</span> Training 1 (MobileNet-V2 architecture)</a></li>
-  <li><a href="#training-2-efficientnet-lite0-architecture" id="toc-training-2-efficientnet-lite0-architecture" class="nav-link" data-scroll-target="#training-2-efficientnet-lite0-architecture"><span class="header-section-number">5.3.1.2</span> Training 2 (EfficientNet-Lite0 architecture)</a></li>
-  <li><a href="#training-3-efficientnet-lite2-architecture" id="toc-training-3-efficientnet-lite2-architecture" class="nav-link" data-scroll-target="#training-3-efficientnet-lite2-architecture"><span class="header-section-number">5.3.1.3</span> Training 3 (EfficientNet-Lite2 architecture)</a></li>
-  <li><a href="#training-4-efficientnet-lite4-architecture" id="toc-training-4-efficientnet-lite4-architecture" class="nav-link" data-scroll-target="#training-4-efficientnet-lite4-architecture"><span class="header-section-number">5.3.1.4</span> <strong>Training 4 (EfficientNet-Lite4 architecture)</strong></a></li>
-  </ul></li>
-  <li><a href="#error-analysis-1" id="toc-error-analysis-1" class="nav-link" data-scroll-target="#error-analysis-1"><span class="header-section-number">5.3.2</span> Error analysis</a>
-  <ul class="collapse">
-  <li><a href="#common-failure-modes-observed-in-confusion-matrices" id="toc-common-failure-modes-observed-in-confusion-matrices" class="nav-link" data-scroll-target="#common-failure-modes-observed-in-confusion-matrices"><span class="header-section-number">5.3.2.1</span> Common failure modes observed in confusion matrices</a></li>
-  <li><a href="#comparison-of-results-to-2-class-training" id="toc-comparison-of-results-to-2-class-training" class="nav-link" data-scroll-target="#comparison-of-results-to-2-class-training"><span class="header-section-number">5.3.2.2</span> Comparison of results to 2-class training</a></li>
+  <li><a href="#common-failure-modes-observed-in-confusion-matrices" id="toc-common-failure-modes-observed-in-confusion-matrices" class="nav-link" data-scroll-target="#common-failure-modes-observed-in-confusion-matrices"><span class="header-section-number">5.3.5.1</span> Common failure modes observed in confusion matrices</a></li>
+  <li><a href="#comparison-of-results-to-2-class-training" id="toc-comparison-of-results-to-2-class-training" class="nav-link" data-scroll-target="#comparison-of-results-to-2-class-training"><span class="header-section-number">5.3.5.2</span> Comparison of results to 2-class training</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -2333,8 +2330,12 @@ vertical-align: -.125em;
   <li><a href="#deployment-readiness" id="toc-deployment-readiness" class="nav-link" data-scroll-target="#deployment-readiness"><span class="header-section-number">7.5</span> Deployment readiness</a></li>
   <li><a href="#milestones" id="toc-milestones" class="nav-link" data-scroll-target="#milestones"><span class="header-section-number">7.6</span> Milestones</a></li>
   </ul></li>
-  <li><a href="#appendix-a.-figures" id="toc-appendix-a.-figures" class="nav-link" data-scroll-target="#appendix-a.-figures"><span class="header-section-number">8</span> Appendix A. Figures</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9</span> References</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
+  <ul>
+  <li><a href="#a.-figures" id="toc-a.-figures" class="nav-link" data-scroll-target="#a.-figures">A. Figures</a></li>
+  <li><a href="#b.-list-of-abbreviations" id="toc-b.-list-of-abbreviations" class="nav-link" data-scroll-target="#b.-list-of-abbreviations">B. List of Abbreviations</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Dissertation.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -2373,8 +2374,8 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">27.05.2026 09:34<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: improved Introduction chapter</em></p>
+      <p class="date">27.05.2026 11:53<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: added two sources and restructured Literature Review, Methodology and Results chapters</em></p>
     </div>
   </div>
   
@@ -2394,8 +2395,8 @@ vertical-align: -.125em;
 
 <section id="contribution" class="level1 unnumbered">
 <h1 class="unnumbered">Contribution</h1>
-<p>The development of this dissertation incorporated the selective use of generative artificial intelligence (AI) tools as supportive research and technical assistance instruments. Github Copilot and Posit Assistant were utilized to assist in troubleshooting Python dependency conflicts, resolving CI/CD configuration issues involving Jenkins and Docker, and supporting administrative setup tasks related to RStudio Server. In addition, Perplexity was used for targeted literature discovery and contextual identification of relevant academic sources and references.</p>
-<p>All critical analysis, interpretation, methodological decisions, and written academic content were independently evaluated, verified, and finalized by the author. This was achieved through systematic inspection of model outputs, including accuracy, loss trajectories, precision/recall metrics, and confusion matrices across training runs, as well as consistency checks between expected and observed model behavior.</p>
+<p>The development of this dissertation incorporated the selective use of generative artificial intelligence (AI) tools as supportive research and technical assistance instruments. Github Copilot and Posit Assistant were utilized to assist in troubleshooting Python dependency conflicts, resolving Continuous Integration/Continuous Development configuration issues involving Jenkins and Docker, and supporting administrative setup tasks related to RStudio Server. In addition, Perplexity was used for targeted literature discovery and contextual identification of relevant academic sources and references. DeepL was selectively used as language support tool to translate particular technical terminology from German into English, in cases the the author was not readily knowing it.</p>
+<p>All critical analysis, interpretation, methodological decisions, and written academic content were independently evaluated, verified, and finalized by the author. This was achieved through systematic inspection of model outputs, including accuracy, loss trajectories, precision/recall metrics, and confusion matrices across training runs, as well as consistency checks between expected and observed model behaviour.</p>
 <p>Also, I received guidance and support from my two supervisor, Dr. Syed Ahmar Shah and John Wilson, who gave me many recommendations during the whole process to conduct the project as well reviewed the draft of the paper once and gave me valuable feedback.</p>
 </section>
 <section id="abstract" class="level1 unnumbered">
@@ -2410,7 +2411,7 @@ vertical-align: -.125em;
 </section>
 <section id="methods" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="methods">Methods</h2>
-<p>Quantitative, observational secondary data analysis evaluating transfer learning on lightweight convolutional neural networks (CNNs) using a curated Kaggle image dataset (n=300) according to clinically informed criteria derived from the physiotherapeutic Klein-Vogelbach framework to yield approximately 1,900 training images with validation and test splits. Transfer learning fine‑tuned classification layers on EfficientNet‑Lite0/2/4 and MobileNet‑V2 backbones; preprocessing included resizing/normalization and clinically conservative augmentations. Models were exported fully as well as quantized TFLite artifacts and evaluated using accuracy, precision, recall, F1, confusion matrices, and balanced accuracy. A binary “normal vs non‑normal” task was also trained to probe clinical interpretability and potential performance gains.</p>
+<p>Quantitative, observational secondary data analysis evaluating transfer learning on lightweight convolutional neural networks using a curated Kaggle image dataset (n=300) according to clinically informed criteria derived from the physiotherapeutic Klein-Vogelbach framework to yield approximately 1,900 training images with validation and test splits. Transfer learning fine‑tuned classification layers on EfficientNet‑Lite0/2/4 and MobileNet‑V2 backbones; preprocessing included resizing/normalization and clinically conservative augmentations. Models were exported fully as well as quantized TFLite artifacts and evaluated using accuracy, precision, recall, F1, confusion matrices, and balanced accuracy. A binary “normal vs non‑normal” task was also trained to probe clinical interpretability and potential performance gains.</p>
 </section>
 <section id="results" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="results">Results</h2>
@@ -2419,17 +2420,18 @@ vertical-align: -.125em;
 </section>
 <section id="conclusion" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Transfer learning on compact CNNs within the used MediaPipe stack is feasible for posture imbalance screening, but current performance is limited potentially constrained by a small sample size, class ambiguity, and domain subtlety. Therefore targeted data growth (especially boundary and “normal” exemplars), refined labels, posture‑aware augmentation, calibration/thresholding, and fairness checks are recommended.</p>
+<p>Transfer learning on compact convolutional neural networks within the used MediaPipe stack is feasible for posture imbalance screening, but current performance is limited potentially constrained by a small sample size, class ambiguity, and domain subtlety. Therefore targeted data growth (especially boundary and “normal” exemplars), refined labels, posture‑aware augmentation, calibration/thresholding, and fairness checks are recommended.</p>
 </section>
 </section>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p><span class="citation" data-cites="Liu2025">Liu et al. (<a href="#ref-Liu2025" role="doc-biblioref">2025</a>)</span> states that there is an increasing pressure on healthcare systems through musculoskeletal disorders with projected rise to 2.161 billion people in 2035. Therefore, healthcare is progressively recognizing the importance of movement quality and postural balance in preventing injury, managing chronic conditions, and optimizing physical performance <span class="citation" data-cites="Whittaker2017">(<a href="#ref-Whittaker2017" role="doc-biblioref">Whittaker et al., 2017</a>)</span>. <span class="citation" data-cites="Wijekulasuriya2025">Wijekulasuriya et al. (<a href="#ref-Wijekulasuriya2025" role="doc-biblioref">2025</a>)</span> found in an extensive recent meta analysis that traditional methods for assessing posture and movement often rely on subjective clinical observations, limiting their accessibility and consistency. Deep learning and computer vision offer promising avenues for developing such objective tools that are scalable and run on consumer hardware that is widely available <span class="citation" data-cites="Google2024 Bazarevsky2020">(<a href="#ref-Bazarevsky2020" role="doc-biblioref">Bazarevsky &amp; Grishchenko, 2020</a>; <a href="#ref-Google2024" role="doc-biblioref">Google, 2024</a>)</span>. This dissertation explores the development of a deep Learning algorithm for supporting the objective assessment of human posture.</p>
-<p>Deep learning is a subset of machine learning based on multi-layered artificial neural networks that learn hierarchical feature representations directly from raw data such as images or motion sequences. Unlike traditional approaches that rely on manually engineered features, deep learning models automatically extract complex, non-linear patterns like edges in images. This enables state-of-the-art performance in domains such as monitoring physical activities of patients . Transfer learning is used to simplify adoption, allowing the reuse of learned visual representations for domain-specific posture classification, extending this paradigm by reusing knowledge from pretrained models. These models often learned from large-scale datasets with wider focus. So, instead of training models from scratch, pretrained networks (e.g., image classification or pose estimation models) are fine-tuned on domain-specific data such as clinical posture datasets. This significantly reduces data requirements and improves generalization, particularly in settings where labelled clinical data are limited or expensive to obtain <span class="citation" data-cites="Ray2024">(<a href="#ref-Ray2024" role="doc-biblioref">Ray &amp; Kolekar, 2024</a>)</span>.</p>
+<p>Deep learning is a subset of machine learning based on multi-layered artificial neural networks that learn hierarchical feature representations directly from raw data such as images or motion sequences. Unlike traditional approaches that rely on manually engineered features, deep learning models automatically extract complex, non-linear patterns like edges in images. This enables state-of-the-art performance in domains such as monitoring physical activities of patients . Transfer learning is used to simplify adoption, allowing the reuse of learned visual representations for domain-specific posture classification, extending this paradigm by reusing knowledge from pretrained models. These models often learned from large-scale datasets with wider focus. So, instead of training models from scratch, pretrained networks, for instance image classification or pose estimation models (PEMs) are fine-tuned on domain-specific data such as clinical posture datasets. This significantly reduces data requirements and improves generalization, particularly in settings where labelled clinical data are limited or expensive to obtain <span class="citation" data-cites="Ray2024">(<a href="#ref-Ray2024" role="doc-biblioref">Ray &amp; Kolekar, 2024</a>)</span>.</p>
 <p>This thesis employs a deep learning method—specifically, a transfer learning approach—to develop a resource-efficient, operational system for posture analysis that can run on standard hardware. Pretrained feature extractors are adapted to classify clinically defined posture categories, leveraging prior knowledge from large-scale vision models to compensate for limited domain-specific data. This combination enables a transition from subjective visual assessment toward scalable, data-driven posture evaluation suitable for healthcare screening, rehabilitation, and movement analysis applications.</p>
 <p>Human posture and coordination are central to both health and performance. Impairments such as muscular tension, poor motor control, or postural imbalance contribute significantly to discomfort, injury, and reduced physical performance in daily and professional life <span class="citation" data-cites="Kubalek-Schrder2013">(<a href="#ref-Kubalek-Schrder2013" role="doc-biblioref">Kubalek-Schröder &amp; Dehler, 2013</a>)</span>. Advanced motor skills rely on precise kinaesthetic differentiation, including fine motor control, proprioceptive sensitivity, accurate force regulation, coordinated timing, and the economy of movement. These elements form the basis of effective movement in sports, rehabilitation, and everyday function <span class="citation" data-cites="ZauckerP2010">(<a href="#ref-ZauckerP2010" role="doc-biblioref">Zaucker, 2010</a>)</span>. Recent research highlights that chronic low back pain and other movement system impairments are closely associated with sustained postural deviations and maladaptive movement patterns that often develop gradually and may not be apparent during isolated clinical assessments <span class="citation" data-cites="Sahrmann2017 Ge2022">(<a href="#ref-Ge2022" role="doc-biblioref">Ge et al., 2022</a>; <a href="#ref-Sahrmann2017" role="doc-biblioref">Sahrmann et al., 2017</a>)</span>.</p>
 <p>Traditional approaches to assessing posture and coordination rely on subjective evaluations, clinical observation, expensive motion analysis systems, or extensive practitioner expertise. While commercial software for posture assessment exists, these solutions often require professional oversight and remain limited in their ability to capture subtle or habitual patterns of imbalance consistently <span class="citation" data-cites="Badhe2018">(<a href="#ref-Badhe2018" role="doc-biblioref">Badhe &amp; Kulkarni, 2018</a>)</span>. This highlights a clear gap between the qualitative nature of clinical assessments and the potential for more objective, data-driven methods enabled by modern deep learning techniques.</p>
-<p>Recent advances in computer vision and deep learning algorithms provide opportunities to bridge these limitations. Convolutional Neural Networks (CNNs) have demonstrated high accuracy in identifying patterns within image and video data and are increasingly applied in gait analysis, posture detection, and motion tracking <span class="citation" data-cites="Jiang2023">(<a href="#ref-Jiang2023" role="doc-biblioref">Jiang et al., 2023</a>)</span>. Among available frameworks, the Google MediaPipe framework brings a lightweight approach that can be run in the browser or on mobile devices, utilizing a statistical 3D human shape modelling pipeline offered as a trainable and modular deep learning framework. It can accurately represent full-body details to detect pose and posture <span class="citation" data-cites="Xu2020 Bazarevsky2020">(<a href="#ref-Bazarevsky2020" role="doc-biblioref">Bazarevsky &amp; Grishchenko, 2020</a>; <a href="#ref-Xu2020" role="doc-biblioref">Xu et al., 2020</a>)</span>. Overall for this research the selected technology provides a reproducible and cross-platform environment for prototyping and experimenting model development as it integrates pre-existing perception components and offers consistent performance evaluation across different devices and platforms.</p>
+<p>Recent advances in computer vision and deep learning algorithms provide opportunities to bridge these limitations. Convolutional Neural Networks (CNNs) have demonstrated high accuracy in identifying patterns within image and video data and are increasingly applied in gait analysis, posture detection, and motion tracking <span class="citation" data-cites="Jiang2023">(<a href="#ref-Jiang2023" role="doc-biblioref">Jiang et al., 2023</a>)</span>. Among available frameworks, the Google MediaPipe framework brings a lightweight approach that can be run in the browser or on mobile devices, utilizing a statistical 3D human shape modelling pipeline offered as a trainable and modular deep learning framework. It can accurately represent full-body details to detect pose and posture <span class="citation" data-cites="Xu2020 Bazarevsky2020">(<a href="#ref-Bazarevsky2020" role="doc-biblioref">Bazarevsky &amp; Grishchenko, 2020</a>; <a href="#ref-Xu2020" role="doc-biblioref">Xu et al., 2020</a>)</span>.</p>
+<p>This project uses transfer learning <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span> to adapt a pre-trained Google MediaPipe CNN model, originally trained on extensive image data, to a new small Kaggle dataset but with more relevant and higher-quality images for posture imbalance detection. By utilizing pre-learned feature representations, the model can achieve faster convergence and improved accuracy even with a comparatively smaller or domain-specific dataset. Overall the selected technology provides a reproducible and cross-platform environment for prototyping and experimenting model development as it integrates pre-existing perception components and offers consistent performance evaluation across different devices and platforms.</p>
 <p>As a physiotherapist with focus on movement quality, I found these gaps were not purely academic but deeply practical in my clinical practice. To reach a level of good understanding of movement (patterns) it required years of training and clinical experience to develop. For instance the ability to accurately assess the quality of movement based on key indicators such as the passive rotatory mobility of the fifth thoracic vertebra (Th5) and adjacent vertebrae <span class="citation" data-cites="Tachihara2019">(<a href="#ref-Tachihara2019" role="doc-biblioref">Tachihara &amp; Hamada, 2019</a>)</span>.</p>
 <section id="research-question" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="research-question"><span class="header-section-number">1.1</span> <strong>Research question</strong></h2>
@@ -2449,10 +2451,9 @@ vertical-align: -.125em;
 <section id="dissertation-structure" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="dissertation-structure"><span class="header-section-number">1.4</span> Dissertation structure</h2>
 <p>The present work is structured as follows:</p>
-<p>The abstract formulates the research question, aim, objectives, and provides a concise summary of the design, methods, results, and conclusions. Where as the introduction outlines the background, rationale, and research question, and defines the aim and objectives of the project.</p>
-<p>The “Literature Review” chapter provides a comprehensive literature review of the current state of AI-based posture and movement analysis, with a focus on the capabilities and limitations of existing pose estimation frameworks such as Google MediaPipe.</p>
-<p>The “Methodology” chapter outlines the methods used, including the study design, data sources, variable definitions, model development approach, and performance evaluation strategy.</p>
-<p>The “Implementation” chapter details the implementation of the training and inference pipelines with a complex CD/CI integration.</p>
+<p>The “Literature Review” chapter provides a comprehensive literature review of the current state of the art posture and movement analysis. A focus on the capabilities and limitations of existing pose estimation frameworks such as Google MediaPipe will be given as well a comparison to commercial products.</p>
+<p>The “Methodology” chapter outlines the methods used, including the study design, data sources, variable definitions, model development approach, and performance evaluation strategies.</p>
+<p>The “Implementation” chapter details the implementation of the training and inference pipelines with a complex continuous development and integration setup.</p>
 <p>The “Result” chapter presents the results of model performance and error analysis and shows the challenges of training a custom CNN model.</p>
 <p>The “Discussion” chapter addresses the findings in relation to existing literature, strengths and limitations, and clinical implications.</p>
 <p>The “Conclusion” chapter outlines the expected impact and dissemination plans, while</p>
@@ -2461,12 +2462,15 @@ vertical-align: -.125em;
 </section>
 <section id="literature-review" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Literature Review</h1>
-<p><span class="citation" data-cites="Cao2024">Cao et al. (<a href="#ref-Cao2024" role="doc-biblioref">2024</a>)</span> describe the detection of human postures undertaken by artificial intelligence as a process in which machines mimic the human visual system and learning behaviour by extracting distinctive features from sensor or image data and subsequently using these features to classify or track postures over time. Furthermore they divide into static and dynamic posture recognition, whereas the static posture recognition treats each input (image or single frame) as a standalone instance. Models for these purposes are trained and perform inference on individual frames, using image-based classifiers such as such as scale-invariant feature transform, histogram of oriented gradients, support vector machine (SVM), Gaussian mixture model, dynamic time warping, hidden Markov model (HMM), lightweight network and convolutional neural networks (CNN) <span class="citation" data-cites="Jiang2023">(<a href="#ref-Jiang2023" role="doc-biblioref">Jiang et al., 2023</a>)</span>. <span class="citation" data-cites="Cao2024">Cao et al. (<a href="#ref-Cao2024" role="doc-biblioref">2024</a>)</span> describe the dynamic pose detection as processing a continuous image sequence (video), with models capturing temporal evolution via recurrent structures such as BiGRUs or similar time-aware networks. As they explain, CNNs perform this capturing or, more precisely, feature extraction through the use of a deep convolutional neural network that locates skeletal keypoints and derives a multidimensional set of pose features, much like the human eye recognises edges, shapes and joints. The extracted pose features are then learned as spatial features (body configuration in each individual frame) and temporal features (how the pose changes across successive frames). These models are also called Pose Estimation Models (PEMs). A widely used open-source example of a CNN PEM is Google’s MediaPipe framework for real-time pose estimation <span class="citation" data-cites="Lugaresi2019">(<a href="#ref-Lugaresi2019" role="doc-biblioref">Lugaresi et al., 2019</a>)</span>.</p>
-<p>Recent validation studies comparing MediaPipe with gold-standard motion capture systems reveal measurable discrepancies in landmark accuracy, particularly for subtle postural features, highlighting the need for domain-specific refinement for clinical use <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span>. Here, “subtle” means inappropriate muscular tension with small or no movement of (the) body(-parts). More broadly, current pose estimation models remain limited by sensitivity to noise and 2D–3D estimation gaps, reducing their reliability for detecting the named tensions and asymmetries critical to movement and pose imbalance analysis <span class="citation" data-cites="Kakuta2022 Lachance2023">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>; <a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Fairness and representativeness in pose estimation systems are also important concerns: current PEMs exhibit performance disparities across demographic groups, with reduced accuracy for under-represented populations in training datasets <span class="citation" data-cites="Lachance2023">(<a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Available datasets frequently focus on male and predominantly white participants between the ages of 19 and 50, while under-representing females, older adults, and individuals with darker skin tones, thereby increasing the risk of systematic bias and reduced generalizability in movement and posture analysis.”</p>
+<p>This chapter reviews the scientific and technological foundations relevant to deep learning based posture and movement analysis. First, current research on deep learning, computer vision, and PEMs is examined to identify methodological capabilities and limitations in clinical posture assessment. Subsequently, existing commercial motion capture systems are reviewed to contextualize current state of the art technological solutions and identify practical gaps motivating the present study.</p>
+<section id="deep-learning-and-pems" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="deep-learning-and-pems"><span class="header-section-number">2.1</span> Deep learning and PEMs</h2>
+<p><span class="citation" data-cites="Cao2024">Cao et al. (<a href="#ref-Cao2024" role="doc-biblioref">2024</a>)</span> describe the detection of human postures undertaken by artificial intelligence as a process in which machines mimic the human visual system and learning behaviour by extracting distinctive features from sensor or image data and subsequently using these features to classify or track postures over time. Furthermore they divide into static and dynamic posture recognition, whereas the static posture recognition treats each input (image or single frame) as a standalone instance. Models for these purposes are trained and perform inference on individual frames, using image-based classifiers such as such as scale-invariant feature transform, histogram of oriented gradients, support vector machine (SVM), Gaussian mixture model, dynamic time warping, hidden Markov model (HMM), lightweight network and convolutional neural networks <span class="citation" data-cites="Jiang2023">(<a href="#ref-Jiang2023" role="doc-biblioref">Jiang et al., 2023</a>)</span>. <span class="citation" data-cites="Cao2024">Cao et al. (<a href="#ref-Cao2024" role="doc-biblioref">2024</a>)</span> describe the dynamic pose detection as processing a continuous image sequence (video), with models capturing temporal evolution via recurrent structures such as BiGRUs or similar time-aware networks. As they explain, CNNs perform this capturing or, more precisely, feature extraction through the use of a deep convolutional neural network that locates skeletal keypoints and derives a multidimensional set of pose features, much like the human eye recognises edges, shapes and joints. The extracted pose features are then learned as spatial features (body configuration in each individual frame) and temporal features (how the pose changes across successive frames), allowing these PEMs to capture both instantaneous postural configurations and movement dynamics over time. A widely used open-source example of a PEM is Google’s MediaPipe framework for real-time pose estimation <span class="citation" data-cites="Lugaresi2019">(<a href="#ref-Lugaresi2019" role="doc-biblioref">Lugaresi et al., 2019</a>)</span>.</p>
+<p>Recent validation studies comparing MediaPipe with gold-standard motion capture systems reveal measurable discrepancies in landmark accuracy, particularly for subtle postural features, highlighting the need for domain-specific refinement for clinical use <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span>. Here, “subtle” means inappropriate muscular tension with small or no movement of (the) body(-parts). More broadly, current PEMs remain limited by sensitivity to noise and 2D–3D estimation gaps, reducing their reliability for detecting the named tensions and asymmetries critical to movement and pose imbalance analysis <span class="citation" data-cites="Kakuta2022 Lachance2023">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>; <a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Fairness and representativeness in pose estimation systems are also important concerns: current PEMs exhibit performance disparities across demographic groups, with reduced accuracy for under-represented populations in training datasets <span class="citation" data-cites="Lachance2023">(<a href="#ref-Lachance2023" role="doc-biblioref">Lachance et al., 2023</a>)</span>. Available datasets frequently focus on male and predominantly white participants between the ages of 19 and 50, while under-representing females, older adults, and individuals with darker skin tones, thereby increasing the risk of systematic bias and reduced generalizability in movement and posture analysis.”</p>
 <p>Consequently, while MediaPipe Pose serves as a robust foundation for pose detection, in its standard configuration of training it does not inherently capture the fine-grained symmetry metrics, sagittal and coronal balance indicators, or compensatory movement patterns that rely on hyper- and hypo-tension that are essential for clinical postural and even more for movement analysis. Computer-vision-based deep learning markerless systems nonetheless represent an important step towards closing the gap between theoretical research, that can be even a century old like the principle of primary control of human movement by <span class="citation" data-cites="AlexanderFM2017">F.M. Alexander (<a href="#ref-AlexanderFM2017" role="doc-biblioref">2017</a>)</span>, and practical implementation in remote clinical assessment <span class="citation" data-cites="Wagh2024 UltralyticsInc2025">(<a href="#ref-UltralyticsInc2025" role="doc-biblioref">Ultralytics, 2025</a>; <a href="#ref-Wagh2024" role="doc-biblioref">Wagh et al., 2024</a>)</span>.</p>
-<p>This project uses transfer learning <span class="citation" data-cites="Kakuta2022">(<a href="#ref-Kakuta2022" role="doc-biblioref">Kakuta et al., 2022</a>)</span> to adapt a pre-trained Google MediaPipe CNN model, originally trained on extensive image data, to a new small Kaggle dataset but with more relevant and higher-quality images for posture imbalance detection. By utilizing pre-learned feature representations, the model can achieve faster convergence and improved accuracy even with a comparatively smaller or domain-specific dataset.</p>
-<section id="market-research-on-motion-capture-systems" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="market-research-on-motion-capture-systems"><span class="header-section-number">2.1</span> Market research on motion capture systems</h2>
+</section>
+<section id="market-research-on-motion-capture-systems" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="market-research-on-motion-capture-systems"><span class="header-section-number">2.2</span> Market research on motion capture systems</h2>
 <p>Modern video analysis with the purpose of detecting pose, movement, and specific markers in sports activities has undergone a paradigm shift, moving from subjective clinical intuition to high-fidelity, data-driven kinematic quantification. Commercial ecosystems like <span class="citation" data-cites="MAR-Systems-Ltd2026">RUNRIGHT 3D (<a href="#ref-MAR-Systems-Ltd2026" role="doc-biblioref">2026</a>)</span> leverage dual-camera 3D reconstruction to analyze over 40 biomechanical metrics without intrusive markers, targeting retail efficiency and rapid, evidence-based footwear recommendations. Similarly, <span class="citation" data-cites="RunDNA2026">RunDNA (<a href="#ref-RunDNA2026" role="doc-biblioref">2026</a>)</span> employs advanced motion capture to track kinetic and kinematic variables from foot strike to toe-off, providing practitioners with a granular, 3D anatomical breakdown of movement asymmetries. For integrated clinical environments, the <span class="citation" data-cites="Medical-XPRT2026">TecnoBody Walker View (<a href="#ref-Medical-XPRT2026" role="doc-biblioref">2026</a>)</span> combines 3D camera technology with a sensorized, load-cell-equipped treadmill to provide real-time biofeedback and synchronized gait analysis. Supplementing these laboratory-grade tools, <span class="citation" data-cites="Running-Reborn-20262026">ViMove2 (<a href="#ref-Running-Reborn-20262026" role="doc-biblioref">2026</a>)</span> utilizes wearable inertial measurement units (IMUs) to provide continuous, longitudinal monitoring of temporal outcomes like ground contact time and cadence, albeit with sensitivity to speed-dependent discrepancies. At the vanguard of performance capture, <span class="citation" data-cites="Move-AI-Ltd2026">Move AI (<a href="#ref-Move-AI-Ltd2026" role="doc-biblioref">2026</a>)</span> offers sophisticated, markerless motion capture solutions that utilize computer vision to extract high-fidelity skeletal data from multi-camera footage, facilitating biomechanical analysis outside of traditional studio settings as shown in <a href="#fig-move-ai" class="quarto-xref">Figure 1</a>.</p>
 <div id="fig-move-ai" class="quarto-float quarto-figure quarto-figure-right anchored" data-fig-align="right">
 <figure class="quarto-float quarto-float-fig figure">
@@ -2487,13 +2491,28 @@ Figure 1: Move AI advertising accurate markerless motion capturing on their web
 <p>In this work, deep learning techniques are applied through transfer learning on a pre-trained TensorFlow Lite model for posture and movement imbalance detection, with a particular focus on evaluating the performance of a fine-tuned CNN model within the Google MediaPipe framework <span class="citation" data-cites="Lugaresi2019">(<a href="#ref-Lugaresi2019" role="doc-biblioref">Lugaresi et al., 2019</a>)</span>.</p>
 <section id="study-design-and-setting" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="study-design-and-setting"><span class="header-section-number">3.1</span> Study design and setting</h2>
-<p>This study is a secondary data analysis exploring postural and movement imbalance detection using deep learning algorithms. The project applies a quantitative, observational design, analyzing existing image data through supervised deep learning, specifically Convolutional Neural Networks (CNNs) implemented via TensorFlow Lite within the Google MediaPipe framework. The aim is to evaluate whether lightweight AI models can detect subtle patterns of imbalance in posture and coordination and to adapt them for potential clinical use through transfer learning on a posture-specific dataset.</p>
+<p>This study is a secondary data analysis exploring postural and movement imbalance detection using deep learning algorithms. The project applies a quantitative, observational design, analyzing existing image data through supervised deep learning, specifically CNNs implemented via TensorFlow Lite within the Google MediaPipe framework. The aim is to evaluate whether lightweight AI models can detect subtle patterns of imbalance in posture and coordination and to adapt them for potential clinical use through transfer learning on a posture-specific dataset.</p>
 <p>The study will be conducted remotely using a secondary dataset. All data analysis will be performed on secured infrastructure provided by the author (see Implementation). No new data collection or participant interaction is planned.</p>
 </section>
-<section id="data-source-and-characteristics" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="data-source-and-characteristics"><span class="header-section-number">3.2</span> Data source and characteristics</h2>
+<section id="data-source-preprocessing-and-class-definition" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-source-preprocessing-and-class-definition"><span class="header-section-number">3.2</span> Data source, preprocessing and class definition</h2>
 <p>This study uses secondary image data of an openly available “Posture Keypoints Detection – Photos &amp; Labels” dataset on Kaggle. The dataset consists of 300 images in static side view with image resolutions of up to around 1.6 MP and an overall high quality look.</p>
 <p>Unlike large-scale, general-purpose image datasets, this Kaggle dataset is specifically curated for posture analysis. It focuses on side-view images suitable for assessing sagittal-plane alignment and upper-body posture. The relatively small dataset size and potential demographic limitations may constrain generalizability and fairness.</p>
+<p>To increase the number of images, various augmentation techniques were applied:</p>
+<ul>
+<li><p>First, the images were duplicated several times and processed via random image editing utilizing the OpenCV framework. For instance, the color-theme or background color were changed, images were cropped or tilted. For each augmented image, 2 changes were applied.</p></li>
+<li><p>Second, a subset of duplicated 300 images with body landmarks as overlay were added to specific runs. This was achieved by an existing MediaPipe Pose model which was adding these annotations.</p></li>
+</ul>
+<p>Preprocessing was applied consistently for all runs (same processed image data set) to maintain comparability between 2/3 class runs and architectures.</p>
+<p>The objective is to reach an accuracy of approximately 80–90%, which is generally considered strong performance for practical detection tasks in applied deep learning settings and for the Google MediaPipe model architecture. Therefore, the images will be annotated into normal and non-normal to define 2 classes. As the first training run consisted of only 300 images in total, which were further divided into training, validation and testing subsets, the largest available architecture class, <strong>EfficientNet-Lite4,</strong> was selected to maximize feature extraction capacity despite limited dataset size. EfficientNet-Lite4 was also retained for training run 2 and 3, although dataset sizes increased substantially. This was done to maintain comparability across experiments.</p>
+<p>To achieve the pose detection defined by Klein-Vogelbach, 3 classes have to be defined:</p>
+<ul>
+<li>normal posture</li>
+<li>slumped posture</li>
+<li>tensed posture</li>
+</ul>
+<p>These classes represent distinct qualitative posture states used in clinical movement analysis. The <strong>normal posture</strong> class represents an aligned and functionally efficient baseline posture. The <strong>slumped posture</strong> class captures flexed, collapsed, or reduced postural tone patterns, typically associated with decreased axial extension. The <strong>tensed posture</strong> class represents increased muscular tone and excessive postural rigidity, often reflected in elevated shoulder girdle and reduced movement fluidity in the spine and hips.</p>
+<p>This three-class formulation enables the CNN to distinguish between physiologically neutral, hypoactive (slumped), and hyperactive (tensed) postural states, aligning the computational labels with clinically meaningful categories from the Klein-Vogelbach framework.</p>
 </section>
 <section id="variables-features-and-preprocessing" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="variables-features-and-preprocessing"><span class="header-section-number">3.3</span> Variables, features, and preprocessing</h2>
@@ -2569,9 +2588,12 @@ Figure 2: 3 types of posture types defined by Klein-Vogelbach, the underlying f
 </section>
 <section id="implementation" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Implementation</h1>
-<p>To utilize the Google MediaPipe framework, an extended pipeline and automation were used to prepare the data, train and evaluate models, and produce deployable artifacts. The research environment and reproducible steps to build the training pipeline and maintain a production ready data-engineering workflow (including the n8n augmentation workflow) are described in this chapter.</p>
+<p>To utilize the Google MediaPipe framework, an extended continuous integration and development pipeline, also known as CI/CD, was developed to train and evaluate models, and produce deployable artifacts. CI/CD is an established industry standard for automating software integration, testing and reproducible generation of deployable artifacts. Also in the data science sphere, this approach becomes often used <span class="citation" data-cites="Rzig2024">(<a href="#ref-Rzig2024" role="doc-biblioref">Rzig et al., 2024</a>)</span>.</p>
+<p>Additionally, an automation workflow was configured to support data preparation and preprocessing steps. To this end n8n, a platform with a visual, node-based editor was used. This fair-code (source-available software licensing model) tool, widely used in machine learning projects as it allows a no-code configuration and easy integration of Advanced Programming Interfaces (APIs), which are used in this work <span class="citation" data-cites="Urmila2025">(<a href="#ref-Urmila2025" role="doc-biblioref">Pol, n.d.</a>)</span>.</p>
+<p>The research environment, together with the reproducible procedures for constructing the training pipeline and maintaining a ready-to-use data engineering setup, is described in this chapter.</p>
 <section id="research-setup" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="research-setup"><span class="header-section-number">4.1</span> Research setup</h2>
+<p>The research setup is describing the four components for realizing this research: the core systems executing that the deep learning (training and inference), the software layer providing application services, the reproducible execution environments, and user-facing interfaces for interaction and experimentation.</p>
 <section id="hardware-and-runtime" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="hardware-and-runtime"><span class="header-section-number">4.1.1</span> Hardware and runtime</h3>
 <p>The development was mostly performed on a remote virtual machine with Ubuntu Linux and specs of 8GB RAM and 4 available CPU Cores. For editing Python scripts and notebooks, the Jupyter Notebook was used. The transfer learning script was usually run for training a custom model locally on a MacBook Pro due to its superior performance.</p>
@@ -2625,9 +2647,8 @@ Figure 2: 3 types of posture types defined by Klein-Vogelbach, the underlying f
 <p><code>├── environment_model-maker.yml</code></p>
 <p><code>├── requirements.txt</code></p>
 <p><code>└── requirements_model-maker.txt</code></p>
-</section>
-<section id="example-reproducible-local-environment" class="level3" data-number="4.1.4">
-<h3 data-number="4.1.4" class="anchored" data-anchor-id="example-reproducible-local-environment"><span class="header-section-number">4.1.4</span> Example reproducible local environment</h3>
+<section id="example-reproducible-local-environment" class="level4" data-number="4.1.3.1">
+<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="example-reproducible-local-environment"><span class="header-section-number">4.1.3.1</span> Example reproducible local environment</h4>
 <p>All scripts, notebooks and the web app can also be run locally; to do this, a Conda environment needs to be created:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MediaPipe Model Maker environment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> code/environment_model-maker.yml</span>
@@ -2637,8 +2658,9 @@ Figure 2: 3 types of posture types defined by Klein-Vogelbach, the underlying f
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> code/environment.yml</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate dissertation-3.13</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="streamlit-web-app-interface" class="level3" data-number="4.1.5">
-<h3 data-number="4.1.5" class="anchored" data-anchor-id="streamlit-web-app-interface"><span class="header-section-number">4.1.5</span> Streamlit Web App Interface</h3>
+</section>
+<section id="streamlit-web-app-interface" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="streamlit-web-app-interface"><span class="header-section-number">4.1.4</span> Streamlit Web App Interface</h3>
 <p>To utilize the existing MediaPipe Pose model to create images with the YOLO 33 body landmarker overlay, for testing purposes an Interface was developed. Therefore Streamlit, an open-source Python framework was chosen to build a graphical user interface at <code>code/mediapipe_pose.py</code>.</p>
 <p>Streamlit is widely used in the data science sphere, to build interactive data apps. The same Interface was used to test the build classification models, as you can see in <a href="#fig-streamlit-app" class="quarto-xref">Figure 3</a>.</p>
 <div id="fig-streamlit-app" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2664,7 +2686,7 @@ Figure 3: Streamlit Web App with classification of postures using the build qua
 <li><p>Receive keypoint coordinates and render overlay images server-side.</p></li>
 <li><p>Save augmented images to MinIO bucket.</p></li>
 </ol>
-<p>Training execution - Training can be run locally via the hosted Jupyter notbook on <code>custom_image_classifier_model_training.ipynb</code>.</p>
+<p>Training execution - Training can be run locally via the hosted Jupyter notebook on <code>custom_image_classifier_model_training.ipynb</code>.</p>
 <section id="augmentation-split-policy" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="augmentation-split-policy"><span class="header-section-number">4.2.1</span> Augmentation &amp; split policy</h3>
 <p>Augmentations used brightness/contrast jitter, cropping, tilting. small rotations, and MediaPipe body landmark overlays. Splits are deterministic and saved into sub-folders in <code>data/</code> for reproducibility.</p>
@@ -2724,22 +2746,14 @@ Figure 4: Implementation map illustrates the pipelines, automation and containe
 <p>Results were measured for seven model trainings in total. Three for 2-class and 4 for 3-class image input datasets.</p>
 <section id="dataset-and-preprocessing-outcomes" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="dataset-and-preprocessing-outcomes"><span class="header-section-number">5.1</span> Dataset and preprocessing outcomes</h2>
-<p>The dataset and splits used across all runs were consistent. The training set contained 300 original images distributed across two or three classes. To increase the number from 300 original images to counts of ~1500 or ~1800, different augmentation techniques were applied.</p>
-<ul>
-<li><p>First, the images were duplicated several times and processed via random image editing utilizing the OpenCV framework. For instance, the color-theme or background color were changed, images were cropped or tilted. For each augmented image, 2 changes were applied.</p></li>
-<li><p>Second, a subset of duplicated 300 images with body landmarks as overlay were added to specific runs. This was achieved by an existing MediaPipe Pose model which was adding these annotations.</p></li>
-</ul>
-<p>Preprocessing was applied consistently for all runs (same processed image data set) to maintain comparability between 2/3 class runs and architectures.</p>
+<p>The dataset and splits used across all runs were consistent. The training set contained 300 original images distributed across two or three classes. For all but the first 2-class training, the number from 300 original images were increased to ~1500 to ~1800.</p>
 </section>
-<section id="class-training" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="class-training"><span class="header-section-number">5.2</span> 2-Class Training</h2>
-<p>The objective is to reach an accuracy of approximately 80–90%, which is generally considered strong performance for practical detection tasks in applied deep learning settings and for the Google MediaPipe model architecture. Therefore, the images will be annotated into normal and non-normal to define 2 classes. As the first training run consisted of only 300 images in total, which were further devided into training, validation and testing subsets, the largest available architecture class, <strong>EfficientNet-Lite4,</strong> was selected to maximize feature extraction capacity despite limited dataset size. EfficientNet-Lite4 was also retained for training run 2 and 3, although dataset sizes increased substantially. This was done to maintain comparability across experiments.</p>
-<section id="model-performance---2-class-problem" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="model-performance---2-class-problem"><span class="header-section-number">5.2.1</span> Model performance - 2-class problem</h3>
+<section id="class-training-model-performance" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="class-training-model-performance"><span class="header-section-number">5.2</span> 2-Class Training Model performance</h2>
 <p>The same base dataset was used for all three training runs. To address class imbalance in run 2 and 3, data augmentation was applied with an 8× multiplication for normal posture images and a 4× multiplication for non-normal posture images, resulting in a balanced dataset of 1,580 synthetically augmented images.</p>
 <p>The third run was extended by an additional 300 images, which were augmented using body landmark overlays generated with the Google MediaPipe Pose framework to incorporate explicit skeletal structure information, which lead to a total of 1880 images.</p>
-<section id="training-1" class="level4" data-number="5.2.1.1">
-<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="training-1"><span class="header-section-number">5.2.1.1</span> Training 1</h4>
+<section id="training-1" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="training-1"><span class="header-section-number">5.2.1</span> Training 1</h3>
 <p><u>Prediction-derived overall accuracy:</u> 0.6000</p>
 <p><u>Model evaluate() loss/accuracy on dataset_obj:</u> 0.546806/0.733333</p>
 <p><strong>Confusion matrix (rows=true, cols=pred)</strong></p>
@@ -2852,8 +2866,8 @@ Figure 5: 2-Class - Training 1 confusion matrix showing low amount of test imag
 </figure>
 </div>
 </section>
-<section id="training-2" class="level4" data-number="5.2.1.2">
-<h4 data-number="5.2.1.2" class="anchored" data-anchor-id="training-2"><span class="header-section-number">5.2.1.2</span> Training 2</h4>
+<section id="training-2" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="training-2"><span class="header-section-number">5.2.2</span> Training 2</h3>
 <p><u>Prediction-derived overall accuracy:</u> 0.5316</p>
 <p><u>Model evaluate() loss/accuracy on dataset_obj:</u> 0.421809/0.854430</p>
 <p><strong>Confusion matrix (rows=true, cols=pred)</strong></p>
@@ -2966,8 +2980,8 @@ Figure 6: 2-Class - Training 2 confusion matrix showing `normal posture` class 
 </figure>
 </div>
 </section>
-<section id="training-3-extra-body-landmark-overlay" class="level4" data-number="5.2.1.3">
-<h4 data-number="5.2.1.3" class="anchored" data-anchor-id="training-3-extra-body-landmark-overlay"><span class="header-section-number">5.2.1.3</span> Training 3 (extra body landmark overlay)</h4>
+<section id="training-3-extra-body-landmark-overlay" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="training-3-extra-body-landmark-overlay"><span class="header-section-number">5.2.3</span> Training 3 (extra body landmark overlay)</h3>
 <p><u>Prediction-derived overall accuracy:</u> 0.5585</p>
 <p><u>Model evaluate() loss/accuracy on dataset_obj:</u> 0.454466/0.840426</p>
 <p><strong>Confusion matrix (rows=true, cols=pred)</strong></p>
@@ -3080,9 +3094,8 @@ Figure 7: 2-Class - Training 3 confusion matrix again showing `normal posture` 
 </figure>
 </div>
 </section>
-</section>
-<section id="error-analysis" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="error-analysis"><span class="header-section-number">5.2.2</span> Error analysis</h3>
+<section id="error-analysis" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="error-analysis"><span class="header-section-number">5.2.4</span> Error analysis</h3>
 <p><strong>Training run 1</strong> achieves the highest accuracy of 0.6000. The confusion matrix using the test-image subset shows that performance is uneven across classes: out of 24 non-normal posture cases, 16 are correctly classified and 8 are misclassified as normal, resulting in a recall of 0.6667. In contrast, only 2 out of 6 normal posture cases are correctly identified, while 4 are misclassified as non-normal, yielding a recall of 0.3333. This indicates a clear bias towards correctly predicting non-normal posture while under-detecting normal posture.</p>
 <p>As the normal posture class contains only 6 test images, the recall estimate for this class is highly sensitive to single misclassifications and therefore unstable. Consequently, using accuracy as the primary performance indicator is misleading due to both the small sample size and the strong class-wise imbalance. Therefore, <strong>balanced accuracy (macro recall)</strong> is introduced as the primary evaluation metric, which is <strong>0.5000</strong>, as it assigns equal weight to each class and directly reflects class-wise sensitivity (recall), providing a more reliable assessment of model performance across posture categories. Secondly two annotation strategies to increase the total number of images are used for following runs:</p>
 <ul>
@@ -3103,18 +3116,8 @@ Figure 7: 2-Class - Training 3 confusion matrix again showing `normal posture` 
 <p>Overall, both ladder models still perform only marginally above the 50% chance level, but the overlay-based model provides a measurable improvement in class-balanced performance rather than accuracy alone.</p>
 </section>
 </section>
-<section id="class-training-1" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="class-training-1"><span class="header-section-number">5.3</span> 3-Class Training</h2>
-<p>To achieve the pose detection defined by Klein-Vogelbach, 3 classes have to be defined:</p>
-<ul>
-<li>normal posture</li>
-<li>slumped posture</li>
-<li>tensed posture</li>
-</ul>
-<p>These classes represent distinct qualitative posture states used in clinical movement analysis. The <strong>normal posture</strong> class represents an aligned and functionally efficient baseline posture. The <strong>slumped posture</strong> class captures flexed, collapsed, or reduced postural tone patterns, typically associated with decreased axial extension. The <strong>tensed posture</strong> class represents increased muscular tone and excessive postural rigidity, often reflected in elevated shoulder girdle and reduced movement fluidity in the spine and hips.</p>
-<p>This three-class formulation enables the CNN to distinguish between physiologically neutral, hypoactive (slumped), and hyperactive (tensed) postural states, aligning the computational labels with clinically meaningful categories from the Klein-Vogelbach framework.</p>
-<section id="model-performance---3-class-problem" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="model-performance---3-class-problem"><span class="header-section-number">5.3.1</span> Model performance - 3-class problem</h3>
+<section id="class-training-model-performance-1" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="class-training-model-performance-1"><span class="header-section-number">5.3</span> 3-Class Training Model performance</h2>
 <p>For the 3-class problem, in total four training runs were performed using all four available base architectures (from light to heavy computational wise):</p>
 <ul>
 <li>`MobileNet-V2`</li>
@@ -3123,8 +3126,8 @@ Figure 7: 2-Class - Training 3 confusion matrix again showing `normal posture` 
 <li>`EfficientNet-Lite4`</li>
 </ul>
 <p>For each run the reported metrics below are derived from evaluation on the same held-out on the test split.</p>
-<section id="training-1-mobilenet-v2-architecture" class="level4" data-number="5.3.1.1">
-<h4 data-number="5.3.1.1" class="anchored" data-anchor-id="training-1-mobilenet-v2-architecture"><span class="header-section-number">5.3.1.1</span> Training 1 (MobileNet-V2 architecture)</h4>
+<section id="training-1-mobilenet-v2-architecture" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="training-1-mobilenet-v2-architecture"><span class="header-section-number">5.3.1</span> Training 1 (MobileNet-V2 architecture)</h3>
 <p><u>Prediction-derived overall accuracy:</u> 0.3065</p>
 <p><u>Model evaluate(internal performance metric) loss/accuracy on dataset_obj:</u> 0.736599/0.748744</p>
 <p><strong>Confusion matrix</strong></p>
@@ -3263,8 +3266,8 @@ Figure 8: 3-Class - Training 1 confusion matrix showing under-representation of
 </figure>
 </div>
 </section>
-<section id="training-2-efficientnet-lite0-architecture" class="level4" data-number="5.3.1.2">
-<h4 data-number="5.3.1.2" class="anchored" data-anchor-id="training-2-efficientnet-lite0-architecture"><span class="header-section-number">5.3.1.2</span> Training 2 (EfficientNet-Lite0 architecture)</h4>
+<section id="training-2-efficientnet-lite0-architecture" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="training-2-efficientnet-lite0-architecture"><span class="header-section-number">5.3.2</span> Training 2 (EfficientNet-Lite0 architecture)</h3>
 <p><u>Prediction-derived overall accuracy:</u> 0.3216</p>
 <p><u>Model evaluate(internal performance metric) loss/accuracy on dataset_obj:</u> 0.638240/0.824121</p>
 <p><strong>Confusion matrix</strong></p>
@@ -3403,8 +3406,8 @@ Figure 9: 3-Class - Training 2 confusion matrix showing under-representation of
 </figure>
 </div>
 </section>
-<section id="training-3-efficientnet-lite2-architecture" class="level4" data-number="5.3.1.3">
-<h4 data-number="5.3.1.3" class="anchored" data-anchor-id="training-3-efficientnet-lite2-architecture"><span class="header-section-number">5.3.1.3</span> Training 3 (EfficientNet-Lite2 architecture)</h4>
+<section id="training-3-efficientnet-lite2-architecture" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="training-3-efficientnet-lite2-architecture"><span class="header-section-number">5.3.3</span> Training 3 (EfficientNet-Lite2 architecture)</h3>
 <p><u>Prediction-derived overall accuracy:</u> 0.3920</p>
 <p><u>Model evaluate(internal performance metric) loss/accuracy on dataset_obj:</u> 0.645087/0.849246</p>
 <p><strong>Confusion matrix</strong></p>
@@ -3543,8 +3546,8 @@ Figure 10: 3-Class - Training 3 confusion matrix showing preference of `slumped
 </figure>
 </div>
 </section>
-<section id="training-4-efficientnet-lite4-architecture" class="level4" data-number="5.3.1.4">
-<h4 data-number="5.3.1.4" class="anchored" data-anchor-id="training-4-efficientnet-lite4-architecture"><span class="header-section-number">5.3.1.4</span> <strong>Training 4 (EfficientNet-Lite4 architecture)</strong></h4>
+<section id="training-4-efficientnet-lite4-architecture" class="level3" data-number="5.3.4">
+<h3 data-number="5.3.4" class="anchored" data-anchor-id="training-4-efficientnet-lite4-architecture"><span class="header-section-number">5.3.4</span> <strong>Training 4 (EfficientNet-Lite4 architecture)</strong></h3>
 <p><u>Prediction-derived overall accuracy:</u> 0.4121</p>
 <p><u>Model evaluate(internal performance metric) loss/accuracy on dataset_obj:</u> 0.703537/0.758794</p>
 <p><strong>Confusion matrix</strong></p>
@@ -3683,25 +3686,24 @@ Figure 11: 3-Class - Training 4 confusion matrix showing again preference of `s
 </figure>
 </div>
 </section>
-</section>
-<section id="error-analysis-1" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="error-analysis-1"><span class="header-section-number">5.3.2</span> Error analysis</h3>
+<section id="error-analysis-1" class="level3" data-number="5.3.5">
+<h3 data-number="5.3.5" class="anchored" data-anchor-id="error-analysis-1"><span class="header-section-number">5.3.5</span> Error analysis</h3>
 <p>Across all experiments a consistent pattern of misclassification is apparent. The models show relatively high recall for the <code>slumped posture</code> class but lower precision, indicating a tendency to predict <code>slumped</code> for a wide range of inputs exemplified visible in <a href="#fig-training-3class-3" class="quarto-xref">Figure 10</a>. <code>Normal posture</code> is frequently misclassified (low recall in several runs), and <code>tensed posture</code> predictions vary by architecture: deeper Lite variants tended to improve overall discrimination.</p>
 <ul>
 <li>Best overall accuracy and balanced recall were achieved by EfficientNet-Lite4 (accuracy 0.4121, balanced accuracy <strong>0.4167</strong>).</li>
 <li>EfficientNet-Lite2 performed second best (accuracy 0.3920, balanced accuracy <strong>0.3979</strong>).</li>
 <li>EfficientNet-Lite0 and MobileNet-V2 produced lower overall accuracy (0.3216 and <strong>0.3065</strong> respectively) and lower balanced accuracy.</li>
 </ul>
-<section id="common-failure-modes-observed-in-confusion-matrices" class="level4" data-number="5.3.2.1">
-<h4 data-number="5.3.2.1" class="anchored" data-anchor-id="common-failure-modes-observed-in-confusion-matrices"><span class="header-section-number">5.3.2.1</span> Common failure modes observed in confusion matrices</h4>
+<section id="common-failure-modes-observed-in-confusion-matrices" class="level4" data-number="5.3.5.1">
+<h4 data-number="5.3.5.1" class="anchored" data-anchor-id="common-failure-modes-observed-in-confusion-matrices"><span class="header-section-number">5.3.5.1</span> Common failure modes observed in confusion matrices</h4>
 <ul>
 <li>Confusion between <code>normal</code> and <code>slumped</code>: many <code>normal</code> examples are predicted as <code>slumped</code>, suggesting the model is sensitive to subtle postural variations or that the dataset contains ambiguous examples near class boundaries.</li>
 <li>Over-prediction of <code>slumped</code>: reflected in row-normalized confusion matrices where the middle column (predicted <code>slumped</code>) is large across runs.</li>
 <li>Lower discrimination for <code>tensed</code> vs. other classes in the smaller architectures, improved modestly in larger EfficientNet-Lite variants.</li>
 </ul>
 </section>
-<section id="comparison-of-results-to-2-class-training" class="level4" data-number="5.3.2.2">
-<h4 data-number="5.3.2.2" class="anchored" data-anchor-id="comparison-of-results-to-2-class-training"><span class="header-section-number">5.3.2.2</span> Comparison of results to 2-class training</h4>
+<section id="comparison-of-results-to-2-class-training" class="level4" data-number="5.3.5.2">
+<h4 data-number="5.3.5.2" class="anchored" data-anchor-id="comparison-of-results-to-2-class-training"><span class="header-section-number">5.3.5.2</span> Comparison of results to 2-class training</h4>
 <p>Chance levels for the 3-class are 1/3 or 33.3%, for the 2-class 1/2 or 50%. Because of this difference, a chance-balanced accuracy will be calculated.</p>
 <ul>
 <li>Best 3-class model: balanced accuracy =0.4167.
@@ -3739,7 +3741,7 @@ Figure 11: 3-Class - Training 4 confusion matrix showing again preference of `s
 </section>
 <section id="clinical-and-practical-implications" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="clinical-and-practical-implications"><span class="header-section-number">6.3</span> Clinical and practical implications</h2>
-<p>Given current performance (balanced accuracy ≈41% for three‑class), the model’s most appropriate near‑term role is as a clinician‑in‑the‑loop decision support tool rather than a standalone diagnostic. Keeping in mind that n=300, further annotation and data expansion are needed to train the model to a better overall performance. In practice, the system can assist screening by flagging potentially “non‑normal” cases for closer review, standardize documentation via landmark/angle overlays, and track an individual’s progress over time under consistent capture conditions. Safe deployment requires confidence calibration with an “abstain/needs review” state, threshold tuning to the intended use (e.g., sensitivity‑oriented screening), and clear presentation of uncertainty. To enhance reliability and equity, future work should expand and re‑balance labeled data—particularly at class boundaries—adopt multi‑rater labeling, incorporate interpretable posture‑aware features (e.g., craniovertebral angle), and validate externally across sites, devices, and demographic subgroups. On‑device TFLite inference supports privacy and low latency, but any clinical use should be governed by explicit intended‑use documentation, bias and robustness monitoring.</p>
+<p>Given current performance (balanced accuracy ≈41% for three‑class), the model’s most appropriate near‑term role is as a clinician‑in‑the‑loop decision support tool rather than a standalone diagnostic. Keeping in mind that n=300, further annotation and data expansion are needed to train the model to a better overall performance. In practice, the system can assist screening by flagging potentially “non‑normal” cases for closer review, standardize documentation via landmark/angle overlays, and track an individual’s progress over time under consistent capture conditions. Safe deployment requires confidence calibration with an “abstain/needs review” state, threshold tuning to the intended use (e.g., sensitivity‑oriented screening), and clear presentation of uncertainty. To enhance reliability and equity, future work should expand and re‑balance labelled data—particularly at class boundaries—adopt multi‑rater labelling, incorporate interpretable posture‑aware features (e.g., craniovertebral angle), and validate externally across sites, devices, and demographic subgroups. On‑device TFLite inference supports privacy and low latency, but any clinical use should be governed by explicit intended‑use documentation, bias and robustness monitoring.</p>
 </section>
 </section>
 <section id="conclusion-and-future-work" class="level1" data-number="7">
@@ -3775,8 +3777,10 @@ Figure 11: 3-Class - Training 4 confusion matrix showing again preference of `s
 <p>Last but not least, a dedicated iOS application should be developed to deploy the trained models on Apple’s A-series chip architecture, leveraging the integrated Neural Engine for efficient on-device inference. This would enable real-time posture analysis with low latency, reduced energy consumption, and enhanced privacy through local processing, while also supporting scalable deployment within mobile E-Health and serious gaming applications.</p>
 </section>
 </section>
-<section id="appendix-a.-figures" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Appendix A. Figures</h1>
+<section id="appendix" class="level1 unnumbered">
+<h1 class="unnumbered">Appendix</h1>
+<section id="a.-figures" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="a.-figures">A. Figures</h2>
 <p><a href="#fig-overlay-mediapipe" class="quarto-xref">Figure 12</a>: Google MediaPipe Pose overlay to show angles of head/neck and torso.</p>
 <div id="fig-overlay-mediapipe" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -3789,12 +3793,42 @@ Figure 12: Overlay annotation by Google MediaPipe Pose.
 </figure>
 </div>
 </section>
-<section id="references" class="level1 unnumbered" data-number="9">
+<section id="b.-list-of-abbreviations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="b.-list-of-abbreviations">B. List of Abbreviations</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Abbrevation</th>
+<th>Term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>API</td>
+<td>Advanced Programming Interface</td>
+</tr>
+<tr class="even">
+<td>CI/CD</td>
+<td>Continuous Integration / Continuous Development</td>
+</tr>
+<tr class="odd">
+<td>CNN</td>
+<td>Convolutional Neural Network</td>
+</tr>
+<tr class="even">
+<td>PEM</td>
+<td>Pose Estimation Model</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="references" class="level1 unnumbered" data-number="8">
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">9 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">8 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Badhe2018" class="csl-entry" role="listitem">
 Badhe, P. C., &amp; Kulkarni, V. (2018). A review on posture assessment. In <em>https://www.iosrjournals.org/iosr-jspe/papers/Vol-5Issue5/Version-1/B05050815.pdf</em>. <a href="https://www.researchgate.net/publication/328981577_A_Review_on_Posture_Assessment">https://www.researchgate.net/publication/328981577_A_Review_on_Posture_Assessment</a>
 </div>
@@ -3837,6 +3871,9 @@ Lugaresi, C., Tang, J., Nash, H., Mcclanahan, C., Uboweja, E., Hays, M., Zhang, 
 <div id="ref-Move-AI-Ltd2026" class="csl-entry" role="listitem">
 Move AI. (2026). Move AI - markerless motion capture &amp; 3D animation. In <em>https://move.ai</em>. <a href="https://move.ai/">https://move.ai/</a>
 </div>
+<div id="ref-Urmila2025" class="csl-entry" role="listitem">
+Pol, U. R. (n.d.). <em>No-code intelligence: Building AI agents with N8N</em>. <a href="https://www.ijfmr.com">www.ijfmr.com</a>
+</div>
 <div id="ref-Ray2024" class="csl-entry" role="listitem">
 Ray, A., &amp; Kolekar, M. H. (2024). Transfer learning and its extensive appositeness in human activity recognition: A survey. <em>Expert Systems with Applications</em>, <em>240</em>, 122538. <a href="https://doi.org/10.1016/J.ESWA.2023.122538">https://doi.org/10.1016/J.ESWA.2023.122538</a>
 </div>
@@ -3845,6 +3882,9 @@ RunDNA. (2026). Real-time 3D running gait analysis. <em>Https://Rundna.com/</em>
 </div>
 <div id="ref-MAR-Systems-Ltd2026" class="csl-entry" role="listitem">
 RUNRIGHT 3D. (2026). A running gait analysis and shoe fitting system. In <em>https://runright-3d.com</em>. <a href="https://runright-3d.com/">https://runright-3d.com/</a>
+</div>
+<div id="ref-Rzig2024" class="csl-entry" role="listitem">
+Rzig, D. E., Houerbi, A., Chavan, R. G., &amp; Hassan, F. (2024). <em>Empirical analysis on CI/CD pipeline evolution in machine learning projects</em>. <em>17</em>. <a href="https://doi.org/10.1145/nnnnnnn.nnnnnnn">https://doi.org/10.1145/nnnnnnn.nnnnnnn</a>
 </div>
 <div id="ref-Sahrmann2017" class="csl-entry" role="listitem">
 Sahrmann, S., Azevedo, D. C., &amp; Dillen, L. V. (2017). Diagnosis and treatment of movement system impairment syndromes. <em>Brazilian Journal of Physical Therapy</em>, <em>21</em>, 391. <a href="https://doi.org/10.1016/J.BJPT.2017.08.001">https://doi.org/10.1016/J.BJPT.2017.08.001</a>
