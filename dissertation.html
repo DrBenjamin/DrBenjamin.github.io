@@ -2511,8 +2511,8 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">03.06.2026 13:15<br>
-<em>Last commit on https://github.com/DrBenjamin/Dissertation: finalized methods chapter</em></p>
+      <p class="date">03.06.2026 15:12<br>
+<em>Last commit on https://github.com/DrBenjamin/Dissertation: Final version</em></p>
     </div>
   </div>
   
@@ -2534,7 +2534,7 @@ window.Quarto = {
 <h1 class="unnumbered">Contribution</h1>
 <p>The development of this dissertation incorporated the selective use of generative artificial intelligence (AI) tools as supportive research and technical assistance instruments. Github Copilot and Posit Assistant were utilized to assist in troubleshooting Python dependency conflicts, resolving Continuous Integration / Continuous Development configuration issues involving Jenkins and Docker, and supporting administrative setup tasks related to RStudio Server. In addition, Perplexity was used for targeted literature discovery and contextual identification of relevant academic sources and references. DeepL was selectively used as language support tool to translate particular technical terminology from German into English, in cases the the author was not readily knowing it.</p>
 <p>All critical analysis, interpretation, methodological decisions, and written academic content were independently evaluated, verified, and finalized by the author. This was achieved through systematic inspection of model outputs, including accuracy, loss trajectories, precision/recall metrics, and confusion matrices across training runs, as well as consistency checks between expected and observed model behaviour.</p>
-<p>For deeper understanding of Convolutional Neural Network and Tensorflow two LinkedIn Learning courses were attended “Deep Learning with Python: Convolutional Neural Networks” and “Deep Learning with TensorFlow: Insights and Innovations<strong>” .</strong> Also, the author received valuable guidance and support from my two supervisor, Dr. Syed Ahmar Shah and John Wilson, who gave me many recommendations during the whole process to conduct the project as well reviewed the draft of the paper once and gave me meaningful feedback.</p>
+<p>For deeper understanding of Convolutional Neural Network and Tensorflow two LinkedIn Learning courses were attended “Deep Learning with Python: Convolutional Neural Networks” and “Deep Learning with TensorFlow: Insights and Innovations<strong>“.</strong> Also, the author received valuable guidance and support from my two supervisor, Dr. Syed Ahmar Shah and John Wilson, who gave me many recommendations during the whole process to conduct the project as well reviewed the draft of the paper once and gave me meaningful feedback.</p>
 </section>
 <section id="abstract" class="level1 unnumbered">
 <h1 class="unnumbered"><strong>Abstract</strong></h1>
@@ -2633,7 +2633,7 @@ Figure 1: Move AI advertising accurate markerless motion capturing on their web
 <h2 data-number="3.1" class="anchored" data-anchor-id="study-design-and-setting"><span class="header-section-number">3.1</span> Study design and setting</h2>
 <p>This study is a retrospective observational secondary data analysis exploring postural and movement imbalance detection using deep learning algorithms. The project applies a quantitative, observational design, analyzing existing image data through supervised deep learning, specifically CNNs implemented via TensorFlow Lite within the Google MediaPipe framework. It can be classed as supervised, as the author manually classified the images into classes, relying on specific knowledge of posture and movement quality.</p>
 <p>The aim of this supervised deep learning project is to evaluate whether lightweight AI models can detect subtle patterns of imbalance in posture and coordination and to adapt them for potential clinical use through transfer learning on a posture-specific dataset.</p>
-<p>The study will be conducted remotely using a preexisting dataset. All data analysis will be performed on secured infrastructure provided by the author (see Implementation). No new data collection or participant interaction will be conducted.</p>
+<p>The study will be conducted remotely using a pre-existing dataset. All data analysis will be performed on secured infrastructure provided by the author (see <a href="#implementation">Implementation</a>). No new data collection or participant interaction will be conducted.</p>
 </section>
 <section id="data-source-preprocessing-and-class-definition" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="data-source-preprocessing-and-class-definition"><span class="header-section-number">3.2</span> Data source, preprocessing and class definition</h2>
@@ -2736,7 +2736,7 @@ Table 1: MediaPipe body landmarks visible from a side view, by contrast to full
 <li><p><code>MobileNet-V2:</code> compactness, but at the cost of limited ability to capture complex features </p></li>
 <li><p><code>EfficientNet-Lite0:</code> lightest-weight architecture (see below for details)</p></li>
 <li><p><code>EfficientNet-Lite2:</code> medium-weight architecture (see below for details)</p></li>
-<li><p><code>EfficientNet-Lite4:</code> heaviest-weight architecture, EffcientNet was released 2019 by GoogleAI with a new method of compound scaling (scaling all dimensions of the network architecture in a balanced way, instead of only one), which is described in <a href="#tbl-efficientnet-compound-scaling" class="quarto-xref">Table 2</a>:</p></li>
+<li><p><code>EfficientNet-Lite4:</code> heaviest-weight architecture, EfficientNet was released 2019 by GoogleAI with the new method ‘compound scaling’ (scaling all dimensions of the network architecture in a balanced way, instead of only one), which is described in <a href="#tbl-efficientnet-compound-scaling" class="quarto-xref">Table 2</a>:</p></li>
 </ul>
 <div id="tbl-efficientnet-compound-scaling" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2780,7 +2780,7 @@ Table 2: Compound scaling and how the dimensions contribute to model performanc
 </tr>
 </tbody>
 </table>
-<p><strong>Legend:</strong> <em>Scaling Dimensions</em> (left) • <em>Benefits and Limitations</em> (left-middle) • <em>Benefits</em> (right-middle) • <em>Limitations</em> (right)</p>
+<p><strong>Legend:</strong> <em>Scaling Dimensions</em> (left) • <em>Meaning</em> (left-middle) • <em>Benefit</em> (right-middle) • <em>Limitation</em> (right)</p>
 </div>
 </figure>
 </div>
@@ -2843,8 +2843,8 @@ Figure 2: Three types of posture types defined by Klein-Vogelbach, the underlyi
 <h2 data-number="3.5" class="anchored" data-anchor-id="analysis-and-performance-evaluation"><span class="header-section-number">3.5</span> Analysis and performance evaluation</h2>
 <p>The analysis was undertaken in two phases:</p>
 <ol type="1">
-<li>Descriptive analysis of dataset composition, annotation completeness, and posture-related metrics.</li>
-<li>Classification and pattern recognition using transfer learning on a deep learning network.</li>
+<li>Descriptive analysis of dataset composition, annotation methods, and posture-related metrics.</li>
+<li>Classification of posture patterns using transfer learning on a deep learning network.</li>
 </ol>
 <p>The model performance was assessed on the basis of</p>
 <ul>
@@ -3067,7 +3067,7 @@ Listing 6: Development environment with Docker Compose, building the necessary 
 <li>n8n Canvas for editing the workflow (Docker container number one) as seen in <a href="#fig-n8n-automation" class="quarto-xref">Figure 5</a>.</li>
 <li>MediaPipe API (Docker container number two) for inference calls.</li>
 <li>MinIO file storage file retrieval (original images).</li>
-<li>MinIO file storage file writing (augmented images). which is accessed via <code>code/n8n/Dissertation_Posture_Analysis_Images.json</code>.</li>
+<li>MinIO file storage file writing (augmented images). which can be found under <code>code/n8n/Dissertation_Posture_Analysis_Images.json</code>.</li>
 </ul>
 <p>The <code>n8n</code> automation processes these images, digesting them from a MinIO bucket. The App uses the same MediaPipe API as the Web App, to annotate images with the Google PEM. Reusing the API for all inferences lead to a more efficient development, as only on source of truth for the image classification and detection/processing code was needed. After the inference, the overlay images are saved back to a second bucket.</p>
 <p><a href="#fig-CNN-workflow" class="quarto-xref">Figure 4</a> visualizes the complex implementation setup and the dependencies.</p>
